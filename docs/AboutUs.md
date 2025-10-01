@@ -21,15 +21,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Win Paing Oo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ferroklaser.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ferroklaser)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Project Coordinator
+* Responsibilities: Deliverables, Deadlines, Scheduling, Tracking
 
 ### Johnny Doe
 
