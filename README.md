@@ -5,7 +5,7 @@
 
 # EASync
 
-**EASync** is a lightweight event and member management application designed for club managers.
+**EASync** is a lightweight event and member management application designed for club managers. 
 It provides a centralised system to organise people and events without the clutter of spreadsheets.
 
 ## Features
@@ -23,4 +23,3 @@ stay organised, even as your club grows.
 
 # Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-
