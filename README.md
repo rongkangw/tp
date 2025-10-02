@@ -21,3 +21,5 @@ With EASync, you can:
 Optimised for users who prefer typing-first input over slow, point-and-click interfaces, EASync makes it simple to
 stay organised, even as your club grows.
 
+# Acknowledgements
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
