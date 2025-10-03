@@ -345,9 +345,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Performance
+    1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
+    2. The system should complete data loading from local storage within 2 seconds on startup.
+    3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
+    4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
 
 *{More to be added}*
 
