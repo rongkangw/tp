@@ -311,28 +311,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC02: Adding a Member**
 
+**Actor: User**
+
+**Preconditions:**
+*App is open*
+
+**Guarantees:**
+*Addition of new member will not affect other members in existing list of members*
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add member via command line 
+2. System displays success message 
+3. System displays the new member in the member list
 
-    Use case ends.
+        Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Missing required parameters in member description (e.g. name, phone).
+    * 1a1. System informs user of missing field(s)
 
-  Use case ends.
+            Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
 
-    * 3a1. AddressBook shows an error message.
+    * 1b1. System informs user of duplicate.
 
-      Use case resumes at step 2.
+            Use case ends.
 
 *{More to be added}*
 
