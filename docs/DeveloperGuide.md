@@ -310,28 +310,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC03: Assigning Member to an Event**
+
+**Actor: User**
+
+**Preconditions:**
+* The member to be assigned must be in the list of members
+* The event to be assigned to must exist in the list of events
+
+**Guarantees:**
+* Member will be displayed with the assigned event tag
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to assign a member to a certain event via command line
+2.  System displays success message
+3.  System displays the member with the event tag
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Missing required parameters in command
+  * 1a1. System informs user of missing fields
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+    Use case ends.
 
 *{More to be added}*
 
