@@ -304,14 +304,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC04: Tag Member with Role**
+**UC04: Tag Member with Event Role**
 
 **Actor: User**
 
 **Preconditions:**
 
-* Both Member and Event exists
-* Member is already assigned to desired event (UC03)
+* The member to be tagged must exist in the list of members.
+* The event must exist in the list of events.
+* Member is already assigned to desired event (UC03).
+* App is displaying list of events instead of list of members.
 
 **Guarantees:**
 
@@ -339,6 +341,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. Member already has the role for the event tagged to him/her already.
     * 1c1. System informs user of invalid action.
+
+      Use case ends.
+
+**UC05: Tag Member with Club Role**
+
+**Actor: User**
+
+**Preconditions:**
+
+* The member to be tagged to must exist in the list of members.
+
+**Guarantees:**
+
+* Member has a club role
+
+**MSS:**
+
+1. User requests to tag a member to a certain event role via command line
+2. System displays success message
+3. System displays member with role for the event
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Missing required parameters in command. (e.g. member index, role name)
+    * 1a1. System informs user of missing fields.
+
+      Use case ends.
+
+* 1b. Incorrect parameters within command. (e.g. member index out of range)
+    * 1b1. System informs user of incorrect parameters.
 
       Use case ends.
 
