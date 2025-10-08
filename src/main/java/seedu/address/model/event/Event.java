@@ -24,7 +24,7 @@ public class Event {
     private final String details;
 
     // Data fields
-    private final Set<Tag> roles = new HashSet<>();; // MVP: No current roles, event roles done in future iterations
+    private final Set<Tag> roles = new HashSet<>(); // MVP: No current roles, event roles done in future iterations
 
     /**
      * Every field must be present and not null.
