@@ -320,6 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees:**
 *Addition of new member will not affect other members in existing list of members*
+
 **MSS**
 
 1. User requests to add member via command line 
