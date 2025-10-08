@@ -317,17 +317,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees:**
 
-* Member has a role for the event
+* Member has a role for the event.
 
 **MSS:**
 
-1. User requests to tag a member to a certain event role via command line
+1. User requests to tag a member to a certain event role
 2. System displays success message
 3. System displays member with role for the event
 
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. Missing required parameters in command. (e.g. member index, event name, role name)
     * 1a1. System informs user of missing fields.
@@ -354,17 +354,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees:**
 
-* Member has a club role
+* Member has a club role.
 
 **MSS:**
 
-1. User requests to tag a member to a certain event role via command line
+1. User requests to tag a member to a certain event role
 2. System displays success message
 3. System displays member with role for the event
 
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. Missing required parameters in command. (e.g. member index, role name)
     * 1a1. System informs user of missing fields.
@@ -382,28 +382,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Preconditions:**
 
-* The event to be removed to must exist in the list of events
+* The event to be removed to must exist in the list of events.
 
 **Guarantees:**
 
-* The event is removed from the list of events
+* The event is removed from the list of events.
 
 **MSS:**
 
-1. User requests to remove an event via command line
+1. User requests to remove an event
 2. System displays success message
 3. System displays event list without the removed event
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 1a. Missing required parameters in command (e.g. event index)
+* 1a. Missing required parameters in command. (e.g. event index)
     * 1a1. System informs user of missing fields.
 
       Use case ends.
 
-* 1b. Incorrect parameters within command (e.g. event index out of range)
+* 1b. Incorrect parameters within command. (e.g. event index out of range)
     * 1b1. System informs user of incorrect parameters.
 
       Use case ends.
@@ -411,9 +411,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Backup & recovery
+   1. The system should allow users to export and import data (e.g., JSON) for backup purposes.
+2. Error tolerance
+   1. Invalid inputs or commands should not crash the system, and should instead trigger informative error messages.
+   2. System crashes should not corrupt or delete data.
 
 *{More to be added}*
 
