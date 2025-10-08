@@ -357,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Member**: A person who is part of the club and participates in club activities and events.
 * **Event**: A scheduled activity organised by the club with a name, date/time, and optional details.
-* **Role**: A responsibility or position a member can hold for an event (e.g., “Logistics”, “Treasurer”, "MC").
+* **Role**: A responsibility or position a member can hold for the club or an event (e.g., “Logistics”, “Treasurer”, "MC").
 * **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
 * **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
 * **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
