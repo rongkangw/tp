@@ -22,19 +22,10 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-<<<<<<< HEAD
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-=======
-            .withEmail("alice@example.com")
-            .withPhone("94351253").withRemark("She likes aardvarks.")
-            .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withRemark("He can't take beer!")
->>>>>>> 2316c301 (Remove Address class and its references)
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
