@@ -287,24 +287,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                    | I want to …​                                                    | So that I can…​                                      |
-|----------|----------------------------|-----------------------------------------------------------------|------------------------------------------------------|
-| `* *`    | new user                   | explore sample data                                             | understand how EASync works before committing        |
-| `* *`    | new user                   | see a list of all possible commands                             | know how to carry out what I want to do with the app |
-| `* *`    | user                       | undo the last command                                           | recover from mistakes                                |
-| `* *`    | user                       | edit members' personal details                                  | update them when information changes                 |
-| `* *`    | user                       | restore archived members                                        | re-engage them if they return                        |
-| `* *`    | user                       | validate contact fields (e.g., missing email, malformed tags)   | catch errors before they affect workflows            |
-| `* *`    | club leader                | search for members by their name, email, role, or by events     | find them quickly                                    |
-| `* *`    | club leader                | check the attendance of the club’s members                      | keep track of their overall club participation       |
-| `* *`    | club leader                | bulk edit members details (eg. membership status)               | update records efficiently                           |
-| `* *`    | club leader                | archive members who are no longer active                        | keep my workspace focused on current contributors.   |
-| `* *`    | user                       | view current role distribution across events                    | identify over- or under-utilized members             |
-| `* *`    | user                       | undo recent role changes                                        | recover from planning mistakes                       |
-| `* *`    | user                       | attach notes to a member profile                                | remember preferences, strengths, or past issues      |
-| `* *`    | club leader                | be informed of duplicate events or members when adding new ones | keep member/event lists clean                        |
-| `* *`    | busy/forgetful club leader | be highlighted to important or upcoming events                  | keep track of my schedule                            |
-| `* *`    | club leader                | check upcoming events/list events chronologically               | remember what events are happening when              |
+| Priority | As a …​                     | I want to …​                                                    | So that I can…​                                      |
+|----------|-----------------------------|-----------------------------------------------------------------|------------------------------------------------------|
+| `* *`    | new club manager            | explore sample data                                             | understand how EASync works before committing        |
+| `* *`    | new club manager            | see a list of all possible commands                             | know how to carry out what I want to do with the app |
+| `* *`    | club manager                | edit members' personal details                                  | update them when information changes                 |
+| `* *`    | club manager                | restore archived members                                        | re-engage them if they return                        |
+| `* *`    | club manager                | validate contact fields (e.g., missing email, malformed tags)   | catch errors before they affect workflows            |
+| `* *`    | club manager                | search for members by their name, email, role, or by events     | find them quickly                                    |
+| `* *`    | club manager                | check the attendance of the club’s members                      | keep track of their overall club participation       |
+| `* *`    | club manager                | bulk edit members details (eg. membership status)               | update records efficiently                           |
+| `* *`    | club manager                | archive members who are no longer active                        | keep my workspace focused on current contributors.   |
+| `* *`    | club manager                | view current role distribution across events                    | identify over- or under-utilized members             |
+| `* *`    | club manager                | attach notes to a member profile                                | remember preferences, strengths, or past issues      |
+| `* *`    | club manager                | be informed of duplicate events or members when adding new ones | keep member/event lists clean                        |
+| `* *`    | busy/forgetful club manager | be highlighted to important or upcoming events                  | keep track of my schedule                            |
+| `* *`    | club manager                | check upcoming events/list events chronologically               | remember what events are happening when              |
 *{More to be added}*
 
 ### Use cases
