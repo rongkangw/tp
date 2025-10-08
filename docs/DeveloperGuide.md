@@ -287,29 +287,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​      | I want to …​                                                                      | So that I can…​                                         |
+|----------|--------------|-----------------------------------------------------------------------------------|---------------------------------------------------------|
+| `* * *`  | club manager | add a new member’s personal details such as name, phone number, and email address | keep track of member information                        |
+| `* * *`  | club manager | view a list of all members                                                        | check who is part of the club                           |
+| `* * *`  | club manager | delete members                                                                    | remove members who have left the club                   |
+| `* * *`  | club manager | tag members with appointed roles                                                  | identify and keep track of key appointment holders      |
+| `* * *`  | club manager | create events with dates, participant lists, and details                          | easily manage club events                               |
+| `* * *`  | club manager | delete events                                                                     | remove events that are cancelled or have already passed |
+| `* * *`  | club manager | backup my address book                                                            | avoid losing data when I leave the app                  |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC06: Removing a Member**
+
+**Preconditions**
+* Member to be removed must exist in the list of members
+
+**Guarantees**
+* Member will be removed from the list of members
+* Updated member list will be displayed
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list members
+2.  System shows a list of members
+3.  User requests to remove a member
+4.  System deletes the member
+5.  System displays success message and member list without the removed member
 
     Use case ends.
 
@@ -319,9 +328,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. System detects an error in the command (e.g., missing or incorrect fields).
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -332,6 +341,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+4. Reliability
+   1.  The system shall remain operational without unexpected termination under all valid user operations and shall provide descriptive error messages for at least 90% invalid inputs tested
+5. Data Integrity
+   1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure.
+   2. Data must be stored locally in a human-readable and editable text file format, as JSON.
+   3. The application must function without relying on any remote server to operate.
 
 *{More to be added}*
 
