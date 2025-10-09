@@ -302,43 +302,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC01: Add a new Event**
+
+**Actor**: User
+
+**Preconditions:** 
+* App is open
+
+**Guarantees**
+* Addition of new event will not affect other events in existing list of events
+* If a new event is added, it will be displayed at the top of the list of events
 
 **MSS**
+1. User requests to add an event via the command line
+2. System displays a success message
+3. System creates a new event
+4. System displays the new event created in the list of events
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. One or more of the parameters are missing
+  
+  * 1a1. System informs user of missing fields
+  
+  Use case ends
 
-  Use case ends.
+* 1b. One or more of the parameters are of invalid format
+  
+  * 1b1. System informs user of incorrect fields
+    
+  Use case ends
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+* 1c. Event with the same name, to and from datetimes are entered in
+    
+  * 1c1. System informs user of duplicated event
+  
+  Use case ends
 
 *{More to be added}*
 
 ### Non-Functional Requirements
+1. Scalability
+   1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user. 
+2. Portability 
+   1. The system must be able to run on Windows, macOS, and Linux as long as Java 17 is installed.
+   2. The system must run without requiring a separate installer. A single distributable JAR must be sufficient to run the program.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Member**: A person who is part of the club and participates in club activities and events.
+* **Event**: A scheduled activity organised by the club with a name, date/time, and optional details.
+* **Role**: A responsibility or position a member can hold for the club or an event (e.g., “Logistics”, “Treasurer”, "MC").
+* **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
+* **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
+* **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
+* **Parameter**: A short identifier placed before input in a command to indicate the information type (e.g., n/ for name,  f/ for from-date).
+* **JAR (Java Archive)**: The file format used to package and deliver the application, containing everything needed for it to run.
 
 --------------------------------------------------------------------------------------------------------------------
 
