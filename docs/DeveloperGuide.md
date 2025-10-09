@@ -287,58 +287,195 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                     | I want to …​                                                                      | So that I can…​                                         |
+|----------|-----------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------|
+| `* *`    | new club manager            | explore sample data                                                               | understand how EASync works before committing           |
+| `* *`    | new club manager            | see a list of all possible commands                                               | know how to carry out what I want to do with the app    |
+| `* *`    | club manager                | edit members' personal details                                                    | update them when information changes                    |
+| `* *`    | club manager                | restore archived members                                                          | re-engage them if they return                           |
+| `* *`    | club manager                | validate contact fields (e.g., missing email, malformed tags)                     | catch errors before they affect workflows               |
+| `* *`    | club manager                | search for members by their name, email, role, or by events                       | find them quickly                                       |
+| `* *`    | club manager                | check the attendance of the club’s members                                        | keep track of their overall club participation          |
+| `* *`    | club manager                | bulk edit members details (eg. membership status)                                 | update records efficiently                              |
+| `* *`    | club manager                | archive members who are no longer active                                          | keep my workspace focused on current contributors.      |
+| `* *`    | club manager                | view current role distribution across events                                      | identify over- or under-utilized members                |
+| `* *`    | club manager                | attach notes to a member profile                                                  | remember preferences, strengths, or past issues         |
+| `* *`    | club manager                | be informed of duplicate events or members when adding new ones                   | keep member/event lists clean                           |
+| `* *`    | busy/forgetful club manager | be highlighted to important or upcoming events                                    | keep track of my schedule                               |
+| `* *`    | club manager                | check upcoming events/list events chronologically                                 | remember what events are happening when                 |
+| `* * *`  | club manager                | add a new member’s personal details such as name, phone number, and email address | keep track of member information                        |
+| `* * *`  | club manager                | view a list of all members                                                        | check who is part of the club                           |
+| `* * *`  | club manager                | delete members                                                                    | remove members who have left the club                   |
+| `* * *`  | club manager                | tag members with appointed roles                                                  | identify and keep track of key appointment holders      |
+| `* * *`  | club manager                | create events with dates, participant lists, and details                          | easily manage club events                               |
+| `* * *`  | club manager                | delete events                                                                     | remove events that are cancelled or have already passed |
+| `* * *`  | club manager                | backup my address book                                                            | avoid losing data when I leave the app                  |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**UC01: Add a new Event**
+
+**Preconditions:** 
+* App is open
+
+**Guarantees**
+* Addition of new event will not affect other events in existing list of events
+* If a new event is added, it will be displayed at the top of the list of events
 
 **MSS**
+1. User requests to add an event via the command line
+2. System displays a success message
+3. System creates a new event
+4. System displays the new event created in the list of events
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+  Use case ends.
+
+**Extensions**
+
+* 1a. One or more of the parameters are missing
+
+    * 1a1. System informs user of missing fields
+
+      Use case ends
+
+* 1b. One or more of the parameters are of invalid format
+
+    * 1b1. System informs user of incorrect fields
+
+      Use case ends
+
+* 1c. Event with the same name, to and from datetimes are entered in
+
+    * 1c1. System informs user of duplicated event
+
+      Use case ends
+
+**UC02: Adding a Member**
+
+**Preconditions**
+* App is open
+
+**Guarantees**
+* Addition of new member will not affect other members in existing list of members
+
+**MSS**
+1. User requests to add member via command line
+2. System displays success message
+3. System displays the new member in the member list 
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Missing required parameters in member description (e.g. name, phone).
+
+    * 1a1. System informs user of missing field(s)
+        Use case ends.
+
+* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
+
+    * 1b1. System informs user of duplicate. 
+        Use case ends.
+
+**UC06: Removing a Member**
+
+**Preconditions**
+* Member to be removed must exist in the list of members
+
+**Guarantees**
+* Member will be removed from the list of members
+* Updated member list will be displayed
+
+**MSS**
+1.  User requests to list members
+2.  System shows a list of members
+3.  User requests to remove a member
+4.  System deletes the member
+5.  System displays success message and member list without the removed member
+
+    Use case ends
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends
+
+* 3a. System detects an error in the command (e.g., missing or incorrect fields)
+
+    * 3a1. System shows an error message
+
+      Use case resumes at step 2
+
+**UC02: Adding a Member**
+
+**Actor: User**
+
+**Preconditions:**
+* App is open
+
+**Guarantees:**
+* Addition of new member will not affect other members in existing list of members
+
+**MSS**
+1. User requests to add member via command line 
+2. System displays success message 
+3. System displays the new member in the member list
 
   Use case ends.
+  
 
-* 3a. The given index is invalid.
+**Extensions**
 
-    * 3a1. AddressBook shows an error message.
+* 1a. Missing required parameters in member description (e.g. name, phone).
 
-      Use case resumes at step 2.
+    * 1a1. System informs user of missing field(s)
+
+    Use case ends.
+
+* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
+
+    * 1b1. System informs user of duplicate.
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Scalability
+   1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user. 
+2. Portability 
+   1. The system must be able to run on Windows, macOS, and Linux as long as Java 17 is installed.
+   2. The system must run without requiring a separate installer. A single distributable JAR must be sufficient to run the program.
+3. Reliability
+   1.  The system shall remain operational without unexpected termination under all valid user operations and shall provide descriptive error messages for at least 90% invalid inputs tested.
+4. Data Integrity
+   1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure.
+   2. Data must be stored locally in a human-readable and editable text file format, as JSON.
+   3. The application must function without relying on any remote server to operate.
+5. Performance
+    1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
+    2. The system should complete data loading from local storage within 2 seconds on startup.
+    3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
+    4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Member**: A person who is part of the club and participates in club activities and events.
+* **Event**: A scheduled activity organised by the club with a name, date/time, and optional details.
+* **Role**: A responsibility or position a member can hold for the club or an event (e.g., “Logistics”, “Treasurer”, "MC").
+* **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
+* **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
+* **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
+* **Parameter**: A short identifier placed before input in a command to indicate the information type (e.g., n/ for name,  f/ for from-date).
+* **JAR (Java Archive)**: The file format used to package and deliver the application, containing everything needed for it to run.
 
 --------------------------------------------------------------------------------------------------------------------
 
