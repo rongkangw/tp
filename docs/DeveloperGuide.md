@@ -346,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System creates a new event
 4. System displays the new event created in the list of events
 
-  Use case ends
+    Use case ends
 
 **Extensions**
 
@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add member
 2. System displays success message
-3. System displays the new member in the member list 
+3. System displays the new member in the member list
 
    Use case ends
 
