@@ -272,15 +272,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile: Student Club Manager**
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of members' and participants' contacts and events
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+EASync provides a student club manager with a centralised system to efficiently manage members’ and participants’ contact information and events, helping them stay organised. Optimised for users who prefer typing as input, it simplifies management of roles, relationships, and member turnover without relying on slow, cluttered spreadsheets or manual tracking.
 
 
 ### User stories
@@ -317,7 +319,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
-
 **UC01: Add a new Event**
 
 **Preconditions:** 
@@ -328,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * If a new event is added, it will be displayed at the top of the list of events
 
 **MSS**
-1. User requests to add an event via the command line
+1. User requests to add an event
 2. System displays a success message
 3. System creates a new event
 4. System displays the new event created in the list of events
@@ -364,23 +365,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * Addition of new member will not affect other members in existing list of members
 
 **MSS**
-1. User requests to add member via command line
+1. User requests to add member
 2. System displays success message
 3. System displays the new member in the member list 
 
-    Use case ends.
+   Use case ends
 
-**Extensions**
+**Extensions:**
 
 * 1a. Missing required parameters in member description (e.g. name, phone).
 
     * 1a1. System informs user of missing field(s)
-        Use case ends.
+      Use case ends.
 
 * 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
 
-    * 1b1. System informs user of duplicate. 
-        Use case ends.
+    * 1b1. System informs user of duplicate.
+      Use case ends.
+
+**UC04: Tag Member with Event Role**
+
+**Preconditions:**
+
+* The member to be tagged must exist in the list of members
+* The event must exist in the list of events
+* Member is already assigned to desired event (UC03)
+
+**Guarantees:**
+
+* Member has a role for the event
+
+**MSS:**
+
+1. User requests to tag a member to a certain event role
+2. System displays success message
+3. System displays member with role for the event
+
+   Use case ends
+
+**Extensions:**
+
+* 1a. Missing required parameters in command (e.g. member index, event name, role name)
+    * 1a1. System informs user of missing fields
+
+      Use case ends
+
+* 1b. Incorrect parameters within command (e.g. member index out of range, event does not exist, role does not exist within the event)
+    * 1b1. System informs user of incorrect parameters
+
+      Use case ends
+
+* 1c. Member already has the role for the event tagged to him/her already
+    * 1c1. System informs user of invalid action
+
+      Use case ends
+
+**UC05: Tag Member with Club Role**
+
+**Preconditions:**
+
+* The member to be tagged to must exist in the list of members
+
+**Guarantees:**
+
+* Member has a club role
+
+**MSS:**
+
+1. User requests to tag a member to a certain club role
+2. System displays success message
+3. System displays member updated with club role
+   Use case ends
+
+**Extensions:**
+
+* 1a. Missing required parameters in command (e.g. member index, role name)
+    * 1a1. System informs user of missing fields
+
+      Use case ends
+
+* 1b. Incorrect parameters within command (e.g. member index out of range)
+    * 1b1. System informs user of incorrect parameters
+
+      Use case ends
 
 **UC06: Removing a Member**
 
@@ -412,41 +479,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
-**UC02: Adding a Member**
-
-**Actor: User**
+**UC07: Removing an Event**
 
 **Preconditions:**
-* App is open
+
+* The event to be removed to must exist in the list of events
 
 **Guarantees:**
-* Addition of new member will not affect other members in existing list of members
 
-**MSS**
-1. User requests to add member via command line 
-2. System displays success message 
-3. System displays the new member in the member list
+* The event is removed from the list of events
 
-  Use case ends.
-  
+**MSS:**
 
-**Extensions**
+1. User requests to remove an event
+2. System displays success message
+3. System displays event list without the removed event
 
-* 1a. Missing required parameters in member description (e.g. name, phone).
+    Use case ends
 
-    * 1a1. System informs user of missing field(s)
+**Extensions:**
 
-    Use case ends.
+* 1a. Missing required parameters in command (e.g. event index)
+    * 1a1. System informs user of missing fields
 
-* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
+      Use case ends
 
-    * 1b1. System informs user of duplicate.
+* 1b. Incorrect parameters within command (e.g. event index out of range)
+    * 1b1. System informs user of incorrect parameters
 
-    Use case ends.
-
-*{More to be added}*
+      Use case ends
 
 ### Non-Functional Requirements
+
 1. Scalability
    1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user. 
 2. Portability 
@@ -463,6 +527,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     2. The system should complete data loading from local storage within 2 seconds on startup.
     3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
     4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
+6. Screen Resolution Compatibility
+   1. The GUI must be clearly visible and easily clickable at 1920×1080 resolution (100% and 125% scaling).
+   2. The GUI must remain visible at 1280×720 resolution (150% scaling).
+7. PDF-Friendly Documentation
+    1. All project documentation (DG/UG) must be exportable and viewable as static PDFs without expandable panels, embedded media, or interactive elements.
 
 *{More to be added}*
 
