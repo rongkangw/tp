@@ -30,7 +30,7 @@ public class DeleteMemberCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Member memberToDelete = model.getFilteredMemberList().get(INDEX_FIRST_MEMBER.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MEMBER);
+        DeleteMemberCommand deleteMemberCommand = new DeleteMemberCommand(INDEX_FIRST_MEMBER);
 
         String expectedMessage = String.format(DeleteMemberCommand.MESSAGE_DELETE_MEMBER_SUCCESS,
                 Messages.format(memberToDelete));
