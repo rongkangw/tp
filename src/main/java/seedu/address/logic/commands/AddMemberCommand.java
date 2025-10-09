@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.member.Member;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the club member list.
  */
 public class AddMemberCommand extends Command {
 
@@ -29,8 +29,8 @@ public class AddMemberCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TAG + "President"
-            + PREFIX_TAG + "Treasurer";
+            + PREFIX_TAG + "President "
+            + PREFIX_TAG + "Treasurer ";
 
     public static final String MESSAGE_SUCCESS = "New member added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEMBER = "This member already exists in the member list";
