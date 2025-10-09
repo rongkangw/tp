@@ -19,7 +19,7 @@ public class DeleteMemberCommand extends Command {
     public static final String COMMAND_WORD = "deleteMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the member identified by the index number used in the current displayed list.\n"
+            + ": Deletes the member identified by the index number used in the displayed member list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -34,7 +34,7 @@ public class DeleteMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Member> lastShownList = model.getFilteredPersonList();
+        List<Member> lastShownList = model.getFilteredMemberList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);

@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -27,14 +27,14 @@ import seedu.address.model.member.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing member in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the member identified "
+            + "by the index number used in the displayed member list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -45,57 +45,57 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_MEMBER_SUCCESS = "Edited Member: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_MEMBER = "This member already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditMemberDescriptor editMemberDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the member in the filtered member list to edit
+     * @param editMemberDescriptor details to edit the member with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditMemberDescriptor editMemberDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editMemberDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editMemberDescriptor = new EditMemberDescriptor(editMemberDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Member> lastShownList = model.getFilteredPersonList();
+        List<Member> lastShownList = model.getFilteredMemberList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
 
         Member memberToEdit = lastShownList.get(index.getZeroBased());
-        Member editedMember = createEditedPerson(memberToEdit, editPersonDescriptor);
+        Member editedMember = createEditedMember(memberToEdit, editMemberDescriptor);
 
-        if (!memberToEdit.isSamePerson(editedMember) && model.hasPerson(editedMember)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!memberToEdit.isSameMember(editedMember) && model.hasMember(editedMember)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
-        model.setPerson(memberToEdit, editedMember);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedMember)));
+        model.setMember(memberToEdit, editedMember);
+        model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Member} with the details of {@code memberToEdit}
+     * edited with {@code editMemberDescriptor}.
      */
-    private static Member createEditedPerson(Member memberToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Member createEditedMember(Member memberToEdit, EditMemberDescriptor editMemberDescriptor) {
         assert memberToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(memberToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(memberToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(memberToEdit.getEmail());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(memberToEdit.getTags());
+        Name updatedName = editMemberDescriptor.getName().orElse(memberToEdit.getName());
+        Phone updatedPhone = editMemberDescriptor.getPhone().orElse(memberToEdit.getPhone());
+        Email updatedEmail = editMemberDescriptor.getEmail().orElse(memberToEdit.getEmail());
+        Set<Tag> updatedTags = editMemberDescriptor.getTags().orElse(memberToEdit.getTags());
 
         return new Member(updatedName, updatedPhone, updatedEmail, updatedTags);
     }
@@ -113,34 +113,34 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editMemberDescriptor.equals(otherEditCommand.editMemberDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editMemberDescriptor", editMemberDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the member with. Each non-empty field value will replace the
+     * corresponding field value of the member.
      */
-    public static class EditPersonDescriptor {
+    public static class EditMemberDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditMemberDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditMemberDescriptor(EditMemberDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -202,15 +202,15 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditMemberDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            EditMemberDescriptor otherEditMemberDescriptor = (EditMemberDescriptor) other;
+            return Objects.equals(name, otherEditMemberDescriptor.name)
+                    && Objects.equals(phone, otherEditMemberDescriptor.phone)
+                    && Objects.equals(email, otherEditMemberDescriptor.email)
+                    && Objects.equals(tags, otherEditMemberDescriptor.tags);
         }
 
         @Override

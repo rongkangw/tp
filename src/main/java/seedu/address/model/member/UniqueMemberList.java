@@ -8,90 +8,90 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.member.exceptions.DuplicatePersonException;
-import seedu.address.model.member.exceptions.PersonNotFoundException;
+import seedu.address.model.member.exceptions.DuplicateMemberException;
+import seedu.address.model.member.exceptions.MemberNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of members that enforces uniqueness between its elements and does not allow nulls.
+ * A member is considered unique by comparing using {@code Member#isSameMember(Member)}. As such, adding and updating of
+ * members uses Member#isSameMember(Member) for equality so as to ensure that the member being added or updated is
+ * unique in terms of identity in the UniqueMemberList. However, the removal of a member uses Member#equals(Object) so
+ * as to ensure that the member with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Member#isSamePerson(Member)
+ * @see Member#isSameMember(Member)
  */
-public class UniquePersonList implements Iterable<Member> {
+public class UniqueMemberList implements Iterable<Member> {
 
     private final ObservableList<Member> internalList = FXCollections.observableArrayList();
     private final ObservableList<Member> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent member as the given argument.
      */
     public boolean contains(Member toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameMember);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a member to the list.
+     * The member must not already exist in the list.
      */
     public void add(Member toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateMemberException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the member {@code target} in the list with {@code editedMember}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The member identity of {@code editedMember} must not be the same as another existing member in the list.
      */
-    public void setPerson(Member target, Member editedMember) {
+    public void setMember(Member target, Member editedMember) {
         requireAllNonNull(target, editedMember);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new MemberNotFoundException();
         }
 
-        if (!target.isSamePerson(editedMember) && contains(editedMember)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameMember(editedMember) && contains(editedMember)) {
+            throw new DuplicateMemberException();
         }
 
         internalList.set(index, editedMember);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent member from the list.
+     * The member must exist in the list.
      */
     public void remove(Member toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new MemberNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setMembers(UniqueMemberList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code members}.
+     * {@code members} must not contain duplicate members.
      */
-    public void setPersons(List<Member> members) {
+    public void setMembers(List<Member> members) {
         requireAllNonNull(members);
-        if (!personsAreUnique(members)) {
-            throw new DuplicatePersonException();
+        if (!membersAreUnique(members)) {
+            throw new DuplicateMemberException();
         }
 
         internalList.setAll(members);
@@ -116,12 +116,12 @@ public class UniquePersonList implements Iterable<Member> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueMemberList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
-        return internalList.equals(otherUniquePersonList.internalList);
+        UniqueMemberList otherUniqueMemberList = (UniqueMemberList) other;
+        return internalList.equals(otherUniqueMemberList.internalList);
     }
 
     @Override
@@ -135,12 +135,12 @@ public class UniquePersonList implements Iterable<Member> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code members} contains only unique members.
      */
-    private boolean personsAreUnique(List<Member> members) {
+    private boolean membersAreUnique(List<Member> members) {
         for (int i = 0; i < members.size() - 1; i++) {
             for (int j = i + 1; j < members.size(); j++) {
-                if (members.get(i).isSamePerson(members.get(j))) {
+                if (members.get(i).isSameMember(members.get(j))) {
                     return false;
                 }
             }

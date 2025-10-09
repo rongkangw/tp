@@ -11,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Member in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Member {
@@ -56,10 +56,10 @@ public class Member {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both members have the same name.
+     * This defines a weaker notion of equality between two members.
      */
-    public boolean isSamePerson(Member otherMember) {
+    public boolean isSameMember(Member otherMember) {
         if (otherMember == this) {
             return true;
         }
@@ -69,8 +69,8 @@ public class Member {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both members have the same identity and data fields.
+     * This defines a stronger notion of equality between two members.
      */
     @Override
     public boolean equals(Object other) {

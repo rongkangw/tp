@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredMembers = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMembers = new FilteredList<>(this.addressBook.getMemberList());
     }
 
     public ModelManager() {
@@ -88,42 +88,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Member member) {
+    public boolean hasMember(Member member) {
         requireNonNull(member);
-        return addressBook.hasPerson(member);
+        return addressBook.hasMember(member);
     }
 
     @Override
     public void deleteMember(Member target) {
-        addressBook.removePerson(target);
+        addressBook.removeMember(target);
     }
 
     @Override
-    public void addPerson(Member member) {
-        addressBook.addPerson(member);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addMember(Member member) {
+        addressBook.addMember(member);
+        updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
     }
 
     @Override
-    public void setPerson(Member target, Member editedMember) {
+    public void setMember(Member target, Member editedMember) {
         requireAllNonNull(target, editedMember);
 
-        addressBook.setPerson(target, editedMember);
+        addressBook.setMember(target, editedMember);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Member List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Member} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Member> getFilteredPersonList() {
+    public ObservableList<Member> getFilteredMemberList() {
         return filteredMembers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Member> predicate) {
+    public void updateFilteredMemberList(Predicate<Member> predicate) {
         requireNonNull(predicate);
         filteredMembers.setPredicate(predicate);
     }
