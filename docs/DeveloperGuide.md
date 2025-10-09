@@ -287,24 +287,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​      | I want to …​                                                                      | So that I can…​                                         |
+|----------|--------------|-----------------------------------------------------------------------------------|---------------------------------------------------------|
+| `* * *`  | club manager | add a new member’s personal details such as name, phone number, and email address | keep track of member information                        |
+| `* * *`  | club manager | view a list of all members                                                        | check who is part of the club                           |
+| `* * *`  | club manager | delete members                                                                    | remove members who have left the club                   |
+| `* * *`  | club manager | tag members with appointed roles                                                  | identify and keep track of key appointment holders      |
+| `* * *`  | club manager | create events with dates, participant lists, and details                          | easily manage club events                               |
+| `* * *`  | club manager | delete events                                                                     | remove events that are cancelled or have already passed |
+| `* * *`  | club manager | backup my address book                                                            | avoid losing data when I leave the app                  |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC01: Add a new Event**
-
-**Actor**: User
 
 **Preconditions:** 
 * App is open
@@ -319,29 +318,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System creates a new event
 4. System displays the new event created in the list of events
 
-   Use case ends.
+    Use case ends
 
 **Extensions**
 
 * 1a. One or more of the parameters are missing
-  
-  * 1a1. System informs user of missing fields
-  
-  Use case ends
+
+    * 1a1. System informs user of missing fields
+
+      Use case ends
 
 * 1b. One or more of the parameters are of invalid format
-  
-  * 1b1. System informs user of incorrect fields
-    
-  Use case ends
+
+    * 1b1. System informs user of incorrect fields
+
+      Use case ends
 
 * 1c. Event with the same name, to and from datetimes are entered in
-    
-  * 1c1. System informs user of duplicated event
-  
+
+    * 1c1. System informs user of duplicated event
+
+      Use case ends
+
+**UC06: Removing a Member**
+
+**Preconditions**
+* Member to be removed must exist in the list of members
+
+**Guarantees**
+* Member will be removed from the list of members
+* Updated member list will be displayed
+
+1.  User requests to list members
+2.  System shows a list of members
+3.  User requests to remove a member
+4.  System deletes the member
+5.  System displays success message and member list without the removed member
+
+    Use case ends
+
+**Extensions**
+
+* 2a. The list is empty
+
   Use case ends
 
-*{More to be added}*
+* 3a. System detects an error in the command (e.g., missing or incorrect fields)
+
+    * 3a1. System shows an error message
+
+      Use case resumes at step 2
 
 ### Non-Functional Requirements
 1. Scalability
@@ -349,9 +375,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Portability 
    1. The system must be able to run on Windows, macOS, and Linux as long as Java 17 is installed.
    2. The system must run without requiring a separate installer. A single distributable JAR must be sufficient to run the program.
+3. Reliability
+   1.  The system shall remain operational without unexpected termination under all valid user operations and shall provide descriptive error messages for at least 90% invalid inputs tested.
+4. Data Integrity
+   1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure.
+   2. Data must be stored locally in a human-readable and editable text file format, as JSON.
+   3. The application must function without relying on any remote server to operate.
 
-
-*{More to be added}*
 
 ### Glossary
 
