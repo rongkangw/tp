@@ -19,6 +19,12 @@ public interface EventStorage {
      */
     Path getEventFilePath();
 
+    /**
+     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
     Optional<Event> readEvents() throws DataLoadingException;
 
     Optional<ReadOnlyAddressBook> readEvents(Path filepath) throws DataLoadingException;
