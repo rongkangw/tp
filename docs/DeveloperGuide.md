@@ -340,9 +340,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Usability
+    1. Command parameters should only be defined format (e.g. n/, f/, dt/) for consistency.
+    2. All commands must be able to be completed by the user using only typed commands.
+       GUI interaction  must be secondary, rather than being the primary input mode.
+2. Single-User Model
+   1. The product must only support one user. Data files must not be shared or accessed concurrently by multiple users.
 
 *{More to be added}*
 
