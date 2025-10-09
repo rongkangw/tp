@@ -327,8 +327,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed        |
 | `* * *`  | club manager                  | backup my address book                                                             | avoid losing data when I leave the app                         |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
