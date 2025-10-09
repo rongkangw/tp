@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalMembers.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.member.Member;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.MemberBuilder;
 
 public class AddMemberCommandTest {
 
@@ -33,30 +33,30 @@ public class AddMemberCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Member validMember = new PersonBuilder().build();
+    public void execute_memberAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingMemberAdded modelStub = new ModelStubAcceptingMemberAdded();
+        Member validMember = new MemberBuilder().build();
 
         CommandResult commandResult = new AddMemberCommand(validMember).execute(modelStub);
 
         assertEquals(String.format(AddMemberCommand.MESSAGE_SUCCESS, Messages.format(validMember)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMember), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validMember), modelStub.membersAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Member validMember = new PersonBuilder().build();
-        AddMemberCommand addMemberCommand = new AddMemberCommand(validMember);
-        ModelStub modelStub = new ModelStubWithPerson(validMember);
+    public void execute_duplicateMember_throwsCommandException() {
+        Member validMember = new MemberBuilder().build();
+        AddMemberCommand addCommand = new AddMemberCommand(validMember);
+        ModelStub modelStub = new ModelStubWithMember(validMember);
 
         assertThrows(CommandException.class, AddMemberCommand.MESSAGE_DUPLICATE_MEMBER, () -> addMemberCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Member alice = new PersonBuilder().withName("Alice").build();
-        Member bob = new PersonBuilder().withName("Bob").build();
+        Member alice = new MemberBuilder().withName("Alice").build();
+        Member bob = new MemberBuilder().withName("Bob").build();
         AddMemberCommand addAliceCommand = new AddMemberCommand(alice);
         AddMemberCommand addBobCommand = new AddMemberCommand(bob);
 
@@ -73,7 +73,7 @@ public class AddMemberCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different member -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -119,7 +119,7 @@ public class AddMemberCommandTest {
         }
 
         @Override
-        public void addPerson(Member member) {
+        public void addMember(Member member) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,65 +134,65 @@ public class AddMemberCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Member member) {
+        public boolean hasMember(Member member) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Member target) {
+        public void deleteMember(Member target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Member target, Member editedMember) {
+        public void setMember(Member target, Member editedMember) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Member> getFilteredPersonList() {
+        public ObservableList<Member> getFilteredMemberList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Member> predicate) {
+        public void updateFilteredMemberList(Predicate<Member> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single member.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithMember extends ModelStub {
         private final Member member;
 
-        ModelStubWithPerson(Member member) {
+        ModelStubWithMember(Member member) {
             requireNonNull(member);
             this.member = member;
         }
 
         @Override
-        public boolean hasPerson(Member member) {
+        public boolean hasMember(Member member) {
             requireNonNull(member);
-            return this.member.isSamePerson(member);
+            return this.member.isSameMember(member);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the member being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Member> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingMemberAdded extends ModelStub {
+        final ArrayList<Member> membersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Member member) {
+        public boolean hasMember(Member member) {
             requireNonNull(member);
-            return personsAdded.stream().anyMatch(member::isSamePerson);
+            return membersAdded.stream().anyMatch(member::isSameMember);
         }
 
         @Override
-        public void addPerson(Member member) {
+        public void addMember(Member member) {
             requireNonNull(member);
-            personsAdded.add(member);
+            membersAdded.add(member);
         }
 
         @Override

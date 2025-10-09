@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalMembers.ALICE;
+import static seedu.address.testutil.TypicalMembers.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.member.Member;
-import seedu.address.model.member.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.member.exceptions.DuplicateMemberException;
+import seedu.address.testutil.MemberBuilder;
 
 public class AddressBookTest {
 
@@ -27,7 +27,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getMemberList());
     }
 
     @Test
@@ -43,53 +43,53 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Member editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateMembers_throwsDuplicateMemberException() {
+        // Two members with the same identity fields
+        Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Member> newMembers = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newMembers);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateMemberException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasMember_nullMember_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasMember(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasMember_memberNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasMember(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasMember_memberInAddressBook_returnsTrue() {
+        addressBook.addMember(ALICE);
+        assertTrue(addressBook.hasMember(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Member editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void hasMember_memberWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addMember(ALICE);
+        Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasMember(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getMemberList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getMemberList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
+        String expected = AddressBook.class.getCanonicalName() + "{members=" + addressBook.getMemberList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose members list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Member> members = FXCollections.observableArrayList();
@@ -99,7 +99,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Member> getPersonList() {
+        public ObservableList<Member> getMemberList() {
             return members;
         }
     }

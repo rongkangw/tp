@@ -38,7 +38,7 @@ public class AddMemberCommand extends Command {
     private final Member toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Member}
      */
     public AddMemberCommand(Member member) {
         requireNonNull(member);
@@ -49,11 +49,12 @@ public class AddMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+
+        if (model.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
-        model.addPerson(toAdd);
+        model.addMember(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
