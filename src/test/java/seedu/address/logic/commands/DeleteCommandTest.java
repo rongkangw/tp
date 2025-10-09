@@ -60,7 +60,7 @@ public class DeleteCommandTest {
                 Messages.format(memberToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(memberToDelete);
+        expectedModel.deleteMember(memberToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

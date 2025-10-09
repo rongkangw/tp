@@ -58,10 +58,10 @@ public interface Model {
     boolean hasPerson(Member member);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given member.
+     * The member must exist in the address book.
      */
-    void deletePerson(Member target);
+    void deleteMember(Member target);
 
     /**
      * Adds the given person.
