@@ -28,7 +28,7 @@ import seedu.address.testutil.MemberBuilder;
 public class AddMemberCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullMember_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddMemberCommand(null));
     }
 
