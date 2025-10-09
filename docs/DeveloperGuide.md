@@ -311,13 +311,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UC02: Adding a Member**
 
-**Actor: User**
+**Preconditions**
+* App is open
 
-**Preconditions:**
-*App is open*
-
-**Guarantees:**
-*Addition of new member will not affect other members in existing list of members*
+**Guarantees**
+* Addition of new member will not affect other members in existing list of members
 
 **MSS**
 
