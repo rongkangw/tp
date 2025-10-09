@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.member.Member;
 
 /**
- * Adds a member to the address book.
+ * Adds a person to the club member list.
  */
-public class AddCommand extends Command {
+public class AddMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addMember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a member to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a member to the member list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -29,18 +29,18 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "President "
+            + PREFIX_TAG + "Treasurer ";
 
     public static final String MESSAGE_SUCCESS = "New member added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MEMBER = "This member already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_MEMBER = "This member already exists in the member list";
 
     private final Member toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Member}
      */
-    public AddCommand(Member member) {
+    public AddMemberCommand(Member member) {
         requireNonNull(member);
         toAdd = member;
     }
@@ -48,6 +48,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
 
         if (model.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
@@ -64,12 +65,12 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddMemberCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddMemberCommand otherAddMemberCommand = (AddMemberCommand) other;
+        return toAdd.equals(otherAddMemberCommand.toAdd);
     }
 
     @Override
