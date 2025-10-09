@@ -320,34 +320,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  System deletes the member
 5.  System displays success message and member list without the removed member
 
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty
 
-  Use case ends.
+  Use case ends
 
-* 3a. System detects an error in the command (e.g., missing or incorrect fields).
+* 3a. System detects an error in the command (e.g., missing or incorrect fields)
 
-    * 3a1. System shows an error message.
+    * 3a1. System shows an error message
 
-      Use case resumes at step 2.
+      Use case resumes at step 2
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-4. Reliability
+1. Reliability
    1.  The system shall remain operational without unexpected termination under all valid user operations and shall provide descriptive error messages for at least 90% invalid inputs tested
-5. Data Integrity
-   1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure.
-   2. Data must be stored locally in a human-readable and editable text file format, as JSON.
-   3. The application must function without relying on any remote server to operate.
+2. Data Integrity
+   1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure
+   2. Data must be stored locally in a human-readable and editable text file format, as JSON
+   3. The application must function without relying on any remote server to operate
 
 *{More to be added}*
 
