@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System creates a new event
 4. System displays the new event created in the list of events
 
-    Use case ends
+  Use case ends.
 
 **Extensions**
 
@@ -411,6 +411,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message
 
       Use case resumes at step 2
+
+**UC02: Adding a Member**
+
+**Actor: User**
+
+**Preconditions:**
+* App is open
+
+**Guarantees:**
+* Addition of new member will not affect other members in existing list of members
+
+**MSS**
+1. User requests to add member via command line 
+2. System displays success message 
+3. System displays the new member in the member list
+
+  Use case ends.
+  
+
+**Extensions**
+
+* 1a. Missing required parameters in member description (e.g. name, phone).
+
+    * 1a1. System informs user of missing field(s)
+
+    Use case ends.
+
+* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
+
+    * 1b1. System informs user of duplicate.
+
+    Use case ends.
 
 *{More to be added}*
 
