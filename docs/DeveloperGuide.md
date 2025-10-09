@@ -272,9 +272,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile: Student Club EXCO**
+**Target user profile: Student Club Manager**
 
-* has a need to manage a significant number of club members, volunteers and participants across events
+* has a need to manage a significant number of members' and participants' contacts and events
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -302,22 +302,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC04: Tag Member with Event Role**
 
-**Actor: User**
-
 **Preconditions:**
 
-* The member to be tagged must exist in the list of members.
-* The event must exist in the list of events.
-* Member is already assigned to desired event (UC03).
-* App is displaying list of events instead of list of members.
+* The member to be tagged must exist in the list of members
+* The event must exist in the list of events
+* Member is already assigned to desired event (UC03)
 
 **Guarantees:**
 
-* Member has a role for the event.
+* Member has a role for the event
 
 **MSS:**
 
@@ -325,68 +322,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System displays success message
 3. System displays member with role for the event
 
-   Use case ends.
+   Use case ends
 
 **Extensions:**
 
-* 1a. Missing required parameters in command. (e.g. member index, event name, role name)
-    * 1a1. System informs user of missing fields.
+* 1a. Missing required parameters in command (e.g. member index, event name, role name)
+    * 1a1. System informs user of missing fields
 
-      Use case ends.
+      Use case ends
 
-* 1b. Incorrect parameters within command. (e.g. member index out of range, event does not exist, role does not exist within the event)
-    * 1b1. System informs user of incorrect parameters.
+* 1b. Incorrect parameters within command (e.g. member index out of range, event does not exist, role does not exist within the event)
+    * 1b1. System informs user of incorrect parameters
 
-      Use case ends.
+      Use case ends
 
-* 1c. Member already has the role for the event tagged to him/her already.
-    * 1c1. System informs user of invalid action.
+* 1c. Member already has the role for the event tagged to him/her already
+    * 1c1. System informs user of invalid action
 
-      Use case ends.
+      Use case ends
 
 **UC05: Tag Member with Club Role**
 
-**Actor: User**
-
 **Preconditions:**
 
-* The member to be tagged to must exist in the list of members.
+* The member to be tagged to must exist in the list of members
 
 **Guarantees:**
 
-* Member has a club role.
+* Member has a club role
 
 **MSS:**
 
-1. User requests to tag a member to a certain event role
+1. User requests to tag a member to a certain club role
 2. System displays success message
-3. System displays member with role for the event
-
-   Use case ends.
+3. System displays member updated with club role
+   Use case ends
 
 **Extensions:**
 
-* 1a. Missing required parameters in command. (e.g. member index, role name)
-    * 1a1. System informs user of missing fields.
+* 1a. Missing required parameters in command (e.g. member index, role name)
+    * 1a1. System informs user of missing fields
 
-      Use case ends.
+      Use case ends
 
-* 1b. Incorrect parameters within command. (e.g. member index out of range)
-    * 1b1. System informs user of incorrect parameters.
+* 1b. Incorrect parameters within command (e.g. member index out of range)
+    * 1b1. System informs user of incorrect parameters
 
-      Use case ends.
+      Use case ends
 
-**UC06: Removing an Event**
-
-**Actor: User**
+**UC07: Removing an Event**
 
 **Preconditions:**
 
-* The event to be removed to must exist in the list of events.
+* The event to be removed to must exist in the list of events
 
 **Guarantees:**
 
-* The event is removed from the list of events.
+* The event is removed from the list of events
 
 **MSS:**
 
@@ -394,28 +386,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System displays success message
 3. System displays event list without the removed event
 
-    Use case ends.
+    Use case ends
 
 **Extensions:**
 
-* 1a. Missing required parameters in command. (e.g. event index)
-    * 1a1. System informs user of missing fields.
+* 1a. Missing required parameters in command (e.g. event index)
+    * 1a1. System informs user of missing fields
 
-      Use case ends.
+      Use case ends
 
-* 1b. Incorrect parameters within command. (e.g. event index out of range)
-    * 1b1. System informs user of incorrect parameters.
+* 1b. Incorrect parameters within command (e.g. event index out of range)
+    * 1b1. System informs user of incorrect parameters
 
-      Use case ends.
+      Use case ends
 
 
 ### Non-Functional Requirements
 
-1. Backup & recovery
-   1. The system should allow users to export and import data (e.g., JSON) for backup purposes.
-2. Error tolerance
-   1. Invalid inputs or commands should not crash the system, and should instead trigger informative error messages.
-   2. System crashes should not corrupt or delete data.
+1. Screen Resolution Compatibility
+   1. The GUI must be clearly visible and easily clickable at 1920×1080 resolution (100% and 125% scaling).
+   2. The GUI must remain visible at 1280×720 resolution (150% scaling).
+2. PDF-Friendly Documentation
+   1. All project documentation (DG/UG) must be exportable and viewable as static PDFs without expandable panels, embedded media, or interactive elements.
 
 *{More to be added}*
 
