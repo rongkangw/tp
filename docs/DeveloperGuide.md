@@ -289,31 +289,43 @@ EASync provides a student club manager with a centralised system to efficiently 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                     | I want to …​                                                                      | So that I can…​                                         |
-|----------|-----------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------|
-| `* *`    | new club manager            | explore sample data                                                               | understand how EASync works before committing           |
-| `* *`    | new club manager            | see a list of all possible commands                                               | know how to carry out what I want to do with the app    |
-| `* *`    | club manager                | edit members' personal details                                                    | update them when information changes                    |
-| `* *`    | club manager                | restore archived members                                                          | re-engage them if they return                           |
-| `* *`    | club manager                | validate contact fields (e.g., missing email, malformed tags)                     | catch errors before they affect workflows               |
-| `* *`    | club manager                | search for members by their name, email, role, or by events                       | find them quickly                                       |
-| `* *`    | club manager                | check the attendance of the club’s members                                        | keep track of their overall club participation          |
-| `* *`    | club manager                | bulk edit members details (eg. membership status)                                 | update records efficiently                              |
-| `* *`    | club manager                | archive members who are no longer active                                          | keep my workspace focused on current contributors.      |
-| `* *`    | club manager                | view current role distribution across events                                      | identify over- or under-utilized members                |
-| `* *`    | club manager                | attach notes to a member profile                                                  | remember preferences, strengths, or past issues         |
-| `* *`    | club manager                | be informed of duplicate events or members when adding new ones                   | keep member/event lists clean                           |
-| `* *`    | busy/forgetful club manager | be highlighted to important or upcoming events                                    | keep track of my schedule                               |
-| `* *`    | club manager                | check upcoming events/list events chronologically                                 | remember what events are happening when                 |
-| `* * *`  | club manager                | add a new member’s personal details such as name, phone number, and email address | keep track of member information                        |
-| `* * *`  | club manager                | view a list of all members                                                        | check who is part of the club                           |
-| `* * *`  | club manager                | delete members                                                                    | remove members who have left the club                   |
-| `* * *`  | club manager                | tag members with appointed roles                                                  | identify and keep track of key appointment holders      |
-| `* * *`  | club manager                | create events with dates, participant lists, and details                          | easily manage club events                               |
-| `* * *`  | club manager                | delete events                                                                     | remove events that are cancelled or have already passed |
-| `* * *`  | club manager                | backup my address book                                                            | avoid losing data when I leave the app                  |
-
-*{More to be added}*
+| Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                |
+|----------|-------------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                              |
+| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                 |
+| `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                      |
+| `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                           |
+| `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                           |
+| `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
+| `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                     |
+| `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews              |
+| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                             |
+| `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
+| `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
+| `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
+| `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
+| `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                       |
+| `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                  |
+| `* *`    | club manager                  | edit members' personal details                                                     | update them when information changes                           |
+| `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                  |
+| `* *`    | club manager                  | validate contact fields (e.g., missing email, malformed tags)                      | catch errors before they affect workflows                      |
+| `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                              |
+| `* *`    | club manager                  | check the attendance of the club’s members                                         | keep track of their overall club participation                 |
+| `* *`    | club manager                  | bulk edit members details (eg. membership status)                                  | update records efficiently                                     |
+| `* *`    | club manager                  | archive members who are no longer active                                           | keep my workspace focused on current contributors.             |
+| `* *`    | club manager                  | view current role distribution across events                                       | identify over- or under-utilized members                       |
+| `* *`    | club manager                  | attach notes to a member profile                                                   | remember preferences, strengths, or past issues                |
+| `* *`    | club manager                  | be informed of duplicate events or members when adding new ones                    | keep member/event lists clean                                  |
+| `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                      |
+| `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                        |
+| `* *`    | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app           |
+| `* * *`  | club manager                  | add a new member’s personal details such as name, phone number, and email address  | keep track of member information                               |
+| `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                  |
+| `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                          |
+| `* * *`  | club manager                  | tag members with appointed roles                                                   | identify and keep track of key appointment holders             |
+| `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                      |
+| `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed        |
+| `* * *`  | club manager                  | backup my address book                                                             | avoid losing data when I leave the app                         |
 
 ### Use cases
 
@@ -321,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UC01: Add a new Event**
 
-**Preconditions:** 
+**Preconditions** 
 * App is open
 
 **Guarantees**
@@ -334,26 +346,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System creates a new event
 4. System displays the new event created in the list of events
 
-  Use case ends.
+    Use case ends
 
 **Extensions**
 
 * 1a. One or more of the parameters are missing
 
     * 1a1. System informs user of missing fields
-
+  
       Use case ends
 
 * 1b. One or more of the parameters are of invalid format
 
     * 1b1. System informs user of incorrect fields
-
+  
       Use case ends
 
 * 1c. Event with the same name, to and from datetimes are entered in
 
     * 1c1. System informs user of duplicated event
-
+  
       Use case ends
 
 **UC02: Adding a Member**
@@ -367,35 +379,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add member
 2. System displays success message
-3. System displays the new member in the member list 
+3. System displays the new member in the member list
 
    Use case ends
 
-**Extensions:**
+**Extensions**
 
-* 1a. Missing required parameters in member description (e.g. name, phone).
+* 1a. Missing required parameters in member description (e.g. name, phone)
 
     * 1a1. System informs user of missing field(s)
-      Use case ends.
+  
+      Use case ends
 
-* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
+* 1b. Member with the same name, address, and phone number as an existing member entry is entered in
 
-    * 1b1. System informs user of duplicate.
-      Use case ends.
+    * 1b1. System informs user of duplicated member
+  
+      Use case ends
+
+**UC03: Assigning Member to an Event**
+
+**Preconditions**
+* The member to be assigned must be in the list of members
+* The event to be assigned to must exist in the list of events
+
+**Guarantees**
+* Member will be displayed with the assigned event tag
+
+**MSS**
+
+1.  User requests to assign a member to a certain event 
+2.  System displays success message
+3.  System displays the member with the event tag
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Missing required parameters in command
+    * 1a1. System informs user of missing fields
+
+      Use case ends
 
 **UC04: Tag Member with Event Role**
 
-**Preconditions:**
+**Preconditions**
 
 * The member to be tagged must exist in the list of members
 * The event must exist in the list of events
 * Member is already assigned to desired event (UC03)
 
-**Guarantees:**
+**Guarantees**
 
 * Member has a role for the event
 
-**MSS:**
+**MSS**
 
 1. User requests to tag a member to a certain event role
 2. System displays success message
@@ -403,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
 
-**Extensions:**
+**Extensions**
 
 * 1a. Missing required parameters in command (e.g. member index, event name, role name)
     * 1a1. System informs user of missing fields
@@ -422,22 +460,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UC05: Tag Member with Club Role**
 
-**Preconditions:**
+**Preconditions**
 
 * The member to be tagged to must exist in the list of members
 
-**Guarantees:**
+**Guarantees**
 
 * Member has a club role
 
-**MSS:**
+**MSS**
 
 1. User requests to tag a member to a certain club role
 2. System displays success message
 3. System displays member updated with club role
+
    Use case ends
 
-**Extensions:**
+**Extensions**
 
 * 1a. Missing required parameters in command (e.g. member index, role name)
     * 1a1. System informs user of missing fields
@@ -481,15 +520,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UC07: Removing an Event**
 
-**Preconditions:**
+**Preconditions**
 
 * The event to be removed to must exist in the list of events
 
-**Guarantees:**
+**Guarantees**
 
 * The event is removed from the list of events
 
-**MSS:**
+**MSS**
 
 1. User requests to remove an event
 2. System displays success message
@@ -497,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
-**Extensions:**
+**Extensions**
 
 * 1a. Missing required parameters in command (e.g. event index)
     * 1a1. System informs user of missing fields
@@ -523,17 +562,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    2. Data must be stored locally in a human-readable and editable text file format, as JSON.
    3. The application must function without relying on any remote server to operate.
 5. Performance
-    1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
-    2. The system should complete data loading from local storage within 2 seconds on startup.
-    3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
-    4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
-6. Screen Resolution Compatibility
+   1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
+   2. The system should complete data loading from local storage within 2 seconds on startup.
+   3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
+   4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
+6. Usability
+   1. Command parameters should only be defined format (e.g. n/, f/, dt/) for consistency.
+   2. All commands must be able to be completed by the user using only typed commands.
+      GUI interaction  must be secondary, rather than being the primary input mode.
+7. Single-User Model
+   1. The product must only support one user. Data files must not be shared or accessed concurrently by multiple users.
+8. Screen Resolution Compatibility
    1. The GUI must be clearly visible and easily clickable at 1920×1080 resolution (100% and 125% scaling).
    2. The GUI must remain visible at 1280×720 resolution (150% scaling).
-7. PDF-Friendly Documentation
-    1. All project documentation (DG/UG) must be exportable and viewable as static PDFs without expandable panels, embedded media, or interactive elements.
+9. PDF-Friendly Documentation
+   1. All project documentation (DG/UG) must be exportable and viewable as static PDFs without expandable panels, embedded media, or interactive elements.
 
-*{More to be added}*
 
 ### Glossary
 
