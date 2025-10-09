@@ -13,6 +13,7 @@ import seedu.address.model.event.Event;
  */
 public interface EventStorage {
 
+
     /**
      * Returns the file path of the data file.
      * @return
