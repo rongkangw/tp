@@ -304,6 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
 | `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
 | `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
+| `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                       |
 | `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                  |
 | `* *`    | club manager                  | edit members' personal details                                                     | update them when information changes                           |
 | `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                  |
@@ -324,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                      |
 | `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed        |
 | `* * *`  | club manager                  | backup my address book                                                             | avoid losing data when I leave the app                         |
-| `* * *`  | club manager                  | undo the last command                                                              | recover from any mistake                                       |
+| `* * *`  | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app           |
 
 *{More to be added}*
 
