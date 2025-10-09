@@ -309,53 +309,107 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+
+**UC01: Add a new Event**
+
+**Actor**: User
+
+**Preconditions:** 
+* App is open
+
+**Guarantees**
+* Addition of new event will not affect other events in existing list of events
+* If a new event is added, it will be displayed at the top of the list of events
+
+**MSS**
+1. User requests to add an event via the command line
+2. System displays a success message
+3. System creates a new event
+4. System displays the new event created in the list of events
+
+  Use case ends.
+
+**Extensions**
+
+* 1a. One or more of the parameters are missing
+  
+  * 1a1. System informs user of missing fields
+  
+  Use case ends
+
+* 1b. One or more of the parameters are of invalid format
+  
+  * 1b1. System informs user of incorrect fields
+    
+  Use case ends
+
+* 1c. Event with the same name, to and from datetimes are entered in
+    
+  * 1c1. System informs user of duplicated event
+  
+  Use case ends
+
+
 **UC02: Adding a Member**
 
 **Actor: User**
 
 **Preconditions:**
-*App is open*
+* App is open
 
 **Guarantees:**
-*Addition of new member will not affect other members in existing list of members*
+* Addition of new member will not affect other members in existing list of members
 
 **MSS**
-
 1. User requests to add member via command line 
 2. System displays success message 
 3. System displays the new member in the member list
 
-        Use case ends.
+  Use case ends.
+  
 
 **Extensions**
 
 * 1a. Missing required parameters in member description (e.g. name, phone).
+
     * 1a1. System informs user of missing field(s)
 
-            Use case ends.
+    Use case ends.
 
 * 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
 
     * 1b1. System informs user of duplicate.
 
-            Use case ends.
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
+1. Scalability
+   1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user. 
+2. Portability 
+   1. The system must be able to run on Windows, macOS, and Linux as long as Java 17 is installed.
+   2. The system must run without requiring a separate installer. A single distributable JAR must be sufficient to run the program.
+3. Performance
+   1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
+   2. The system should complete data loading from local storage within 2 seconds on startup.
+   3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
+   4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
 
-1.  Performance
-    1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
-    2. The system should complete data loading from local storage within 2 seconds on startup.
-    3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
-    4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
+
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Member**: A person who is part of the club and participates in club activities and events.
+* **Event**: A scheduled activity organised by the club with a name, date/time, and optional details.
+* **Role**: A responsibility or position a member can hold for the club or an event (e.g., “Logistics”, “Treasurer”, "MC").
+* **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
+* **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
+* **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
+* **Parameter**: A short identifier placed before input in a command to indicate the information type (e.g., n/ for name,  f/ for from-date).
+* **JAR (Java Archive)**: The file format used to package and deliver the application, containing everything needed for it to run.
 
 --------------------------------------------------------------------------------------------------------------------
 
