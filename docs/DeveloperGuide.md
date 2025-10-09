@@ -287,21 +287,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​               | I want to …​                                                                       | So that I can…​                                                |
-|----------|-----------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| `*`      | new user              | easily purge sample data                                                           | start fresh with my own club info                              |
-| `*`      | club leader           | detect duplicate entries (based on name, email, missing fields)                    | my contact lists stay accurate                                 |
-| `*`      | club leader           | separate clubs by tabs                                                             | clubs do not get mixed up                                      |
-| `*`      | user                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                           |
-| `*`      | club leader           | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                           |
-| `*`      | user                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
-| `*`      | user                  | export an event's participant list with roles                                      | share it with my committee                                     |
-| `*`      | user                  | export a member's timeline and role history                                        | prefer handover documents or performance reviews               |
-| `*`      | experienced user      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                             |
-| `*`      | experienced/lazy user | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
-| `*`      | experienced/lazy user | look at my command history                                                         | quickly reuse the previous command without retyping            |
-| `*`      | lazy club leader      | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
-| `*`      | impatient user        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
+| Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                |
+|----------|-------------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                              |
+| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                 |
+| `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                      |
+| `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                           |
+| `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                           |
+| `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
+| `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                     |
+| `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews              |
+| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                             |
+| `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
+| `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
+| `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
+| `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
 
 
 *{More to be added}*
