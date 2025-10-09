@@ -393,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. Member with the same name, address, and phone number as an existing member entry is entered in
 
-    * 1b1. System informs user of duplicate
+    * 1b1. System informs user of duplicated member
   
       Use case ends
 
@@ -408,7 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to assign a member to a certain event via command line
+1.  User requests to assign a member to a certain event 
 2.  System displays success message
 3.  System displays the member with the event tag
 
@@ -578,7 +578,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. PDF-Friendly Documentation
    1. All project documentation (DG/UG) must be exportable and viewable as static PDFs without expandable panels, embedded media, or interactive elements.
 
-*{More to be added}*
 
 ### Glossary
 
