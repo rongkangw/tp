@@ -318,6 +318,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | club manager                  | be informed of duplicate events or members when adding new ones                    | keep member/event lists clean                                  |
 | `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                      |
 | `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                        |
+| `* *`    | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app           |
 | `* * *`  | club manager                  | add a new member’s personal details such as name, phone number, and email address  | keep track of member information                               |
 | `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                  |
 | `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                          |
@@ -325,7 +326,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                      |
 | `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed        |
 | `* * *`  | club manager                  | backup my address book                                                             | avoid losing data when I leave the app                         |
-| `* * *`  | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app           |
 
 *{More to be added}*
 
