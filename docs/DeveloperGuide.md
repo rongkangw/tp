@@ -303,6 +303,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
+**UC01: Add a new Event**
+
+**Preconditions:** 
+* App is open
+
+**Guarantees**
+* Addition of new event will not affect other events in existing list of events
+* If a new event is added, it will be displayed at the top of the list of events
+
+**MSS**
+1. User requests to add an event via the command line
+2. System displays a success message
+3. System creates a new event
+4. System displays the new event created in the list of events
+
+    Use case ends
+
+**Extensions**
+
+* 1a. One or more of the parameters are missing
+
+    * 1a1. System informs user of missing fields
+
+      Use case ends
+
+* 1b. One or more of the parameters are of invalid format
+
+    * 1b1. System informs user of incorrect fields
+
+      Use case ends
+
+* 1c. Event with the same name, to and from datetimes are entered in
+
+    * 1c1. System informs user of duplicated event
+
+      Use case ends
+
 **UC06: Removing a Member**
 
 **Preconditions**
@@ -311,8 +348,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Guarantees**
 * Member will be removed from the list of members
 * Updated member list will be displayed
-
-**MSS**
 
 1.  User requests to list members
 2.  System shows a list of members
@@ -334,23 +369,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
-*{More to be added}*
-
 ### Non-Functional Requirements
+1. Scalability
+   1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user. 
+2. Portability 
+   1. The system must be able to run on Windows, macOS, and Linux as long as Java 17 is installed.
+   2. The system must run without requiring a separate installer. A single distributable JAR must be sufficient to run the program.
+3. Reliability
+   1.  The system shall remain operational without unexpected termination under all valid user operations and shall provide descriptive error messages for at least 90% invalid inputs tested.
+4. Data Integrity
+   1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure.
+   2. Data must be stored locally in a human-readable and editable text file format, as JSON.
+   3. The application must function without relying on any remote server to operate.
 
-1. Reliability
-   1.  The system shall remain operational without unexpected termination under all valid user operations and shall provide descriptive error messages for at least 90% invalid inputs tested
-2. Data Integrity
-   1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure
-   2. Data must be stored locally in a human-readable and editable text file format, as JSON
-   3. The application must function without relying on any remote server to operate
-
-*{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Member**: A person who is part of the club and participates in club activities and events.
+* **Event**: A scheduled activity organised by the club with a name, date/time, and optional details.
+* **Role**: A responsibility or position a member can hold for the club or an event (e.g., “Logistics”, “Treasurer”, "MC").
+* **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
+* **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
+* **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
+* **Parameter**: A short identifier placed before input in a command to indicate the information type (e.g., n/ for name,  f/ for from-date).
+* **JAR (Java Archive)**: The file format used to package and deliver the application, containing everything needed for it to run.
 
 --------------------------------------------------------------------------------------------------------------------
 
