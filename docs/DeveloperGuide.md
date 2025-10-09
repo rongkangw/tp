@@ -289,41 +289,42 @@ EASync provides a student club manager with a centralised system to efficiently 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority    | As a …​                        | I want to …​                                                                        | So that I can…​                                                 |
-|-------------|--------------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `*`         | new club manager               | easily purge sample data                                                            | start fresh with my own club info                               |
-| `*`         | club manager                   | detect duplicate entries (based on name, email, missing fields)                     | keep my contact lists accurate                                  |
-| `*`         | club manager                   | separate clubs by tabs                                                              | clubs do not get mixed up                                       |
-| `*`         | club manager                   | view a summary of contact health (e.g. duplicates, missing fields)                  | clean up when needed                                            |
-| `*`         | club manager                   | add additional notes to specific members (e.g. dietary restrictions/photo consent)  | plan events smoother                                            |
-| `*`         | club manager                   | simulate role reassignments before committing                                       | plan transitions without disrupting current setups              |
-| `*`         | club manager                   | export an event's participant list with roles                                       | share it with my committee                                      |
-| `*`         | club manager                   | export a member's timeline and role history                                         | prepare handover documents or performance reviews               |
-| `*`         | experienced club manager       | chain commands (e.g. addMember && assignRole)                                       | execute multiple actions in one go                              |
-| `*`         | experienced/lazy club manager  | use keyboard shortcuts for repetitive tasks                                         | save time                                                       |
-| `*`         | experienced/lazy manager       | look at my command history                                                          | quickly reuse the previous command without retyping             |
-| `*`         | lazy club manager              | press on a member's email address to create a new email                             | send emails quickly without having to copy their email address  |
-| `*`         | impatient club manager         | press tab to autocomplete commands                                                  | complete what i need to do faster                               |
-| `* *`       | new club manager               | explore sample data                                                                 | understand how EASync works before committing                   |
-| `* *`       | club manager                   | edit members' personal details                                                      | update them when information changes                            |
-| `* *`       | club manager                   | restore archived members                                                            | re-engage them if they return                                   |
-| `* *`       | club manager                   | validate contact fields (e.g., missing email, malformed tags)                       | catch errors before they affect workflows                       |
-| `* *`       | club manager                   | search for members by their name, email, role, or by events                         | find them quickly                                               |
-| `* *`       | club manager                   | check the attendance of the club’s members                                          | keep track of their overall club participation                  |
-| `* *`       | club manager                   | bulk edit members details (eg. membership status)                                   | update records efficiently                                      |
-| `* *`       | club manager                   | archive members who are no longer active                                            | keep my workspace focused on current contributors.              |
-| `* *`       | club manager                   | view current role distribution across events                                        | identify over- or under-utilized members                        |
-| `* *`       | club manager                   | attach notes to a member profile                                                    | remember preferences, strengths, or past issues                 |
-| `* *`       | club manager                   | be informed of duplicate events or members when adding new ones                     | keep member/event lists clean                                   |
-| `* *`       | busy/forgetful club manager    | be highlighted to important or upcoming events                                      | keep track of my schedule                                       |
-| `* *`       | club manager                   | check upcoming events/list events chronologically                                   | remember what events are happening when                         |
-| `* * *`     | club manager                   | add a new member’s personal details such as name, phone number, and email address   | keep track of member information                                |
-| `* * *`     | club manager                   | view a list of all members                                                          | check who is part of the club                                   |
-| `* * *`     | club manager                   | delete members                                                                      | remove members who have left the club                           |
-| `* * *`     | club manager                   | tag members with appointed roles                                                    | identify and keep track of key appointment holders              |
-| `* * *`     | club manager                   | create events with dates, participant lists, and details                            | easily manage club events                                       |
-| `* * *`     | club manager                   | delete events                                                                       | remove events that are cancelled or have already passed         |
-| `* * *`     | club manager                   | backup my address book                                                              | avoid losing data when I leave the app                          |
+| Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                |
+|----------|-------------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                              |
+| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                 |
+| `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                      |
+| `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                           |
+| `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                           |
+| `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
+| `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                     |
+| `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews              |
+| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                             |
+| `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
+| `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
+| `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
+| `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
+| `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                  |
+| `* *`    | club manager                  | edit members' personal details                                                     | update them when information changes                           |
+| `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                  |
+| `* *`    | club manager                  | validate contact fields (e.g., missing email, malformed tags)                      | catch errors before they affect workflows                      |
+| `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                              |
+| `* *`    | club manager                  | check the attendance of the club’s members                                         | keep track of their overall club participation                 |
+| `* *`    | club manager                  | bulk edit members details (eg. membership status)                                  | update records efficiently                                     |
+| `* *`    | club manager                  | archive members who are no longer active                                           | keep my workspace focused on current contributors.             |
+| `* *`    | club manager                  | view current role distribution across events                                       | identify over- or under-utilized members                       |
+| `* *`    | club manager                  | attach notes to a member profile                                                   | remember preferences, strengths, or past issues                |
+| `* *`    | club manager                  | be informed of duplicate events or members when adding new ones                    | keep member/event lists clean                                  |
+| `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                      |
+| `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                        |
+| `* * *`  | club manager                  | add a new member’s personal details such as name, phone number, and email address  | keep track of member information                               |
+| `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                  |
+| `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                          |
+| `* * *`  | club manager                  | tag members with appointed roles                                                   | identify and keep track of key appointment holders             |
+| `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                      |
+| `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed        |
+| `* * *`  | club manager                  | backup my address book                                                             | avoid losing data when I leave the app                         |
+| `* * *`  | club manager                  | undo the last command                                                              | recover from any mistake                                       |
 
 *{More to be added}*
 
