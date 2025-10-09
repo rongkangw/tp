@@ -25,11 +25,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.member.Member;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddMemberCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddMemberCommand(null));
     }
 
     @Test
@@ -37,9 +37,9 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Member validMember = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validMember).execute(modelStub);
+        CommandResult commandResult = new AddMemberCommand(validMember).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validMember)),
+        assertEquals(String.format(AddMemberCommand.MESSAGE_SUCCESS, Messages.format(validMember)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validMember), modelStub.personsAdded);
     }
@@ -47,24 +47,24 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Member validMember = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validMember);
+        AddMemberCommand addMemberCommand = new AddMemberCommand(validMember);
         ModelStub modelStub = new ModelStubWithPerson(validMember);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_MEMBER, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddMemberCommand.MESSAGE_DUPLICATE_MEMBER, () -> addMemberCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Member alice = new PersonBuilder().withName("Alice").build();
         Member bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddMemberCommand addAliceCommand = new AddMemberCommand(alice);
+        AddMemberCommand addBobCommand = new AddMemberCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddMemberCommand addAliceCommandCopy = new AddMemberCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -79,9 +79,9 @@ public class AddCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddMemberCommand addMemberCommand = new AddMemberCommand(ALICE);
+        String expected = AddMemberCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addMemberCommand.toString());
     }
 
     /**
