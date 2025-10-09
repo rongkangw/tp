@@ -287,21 +287,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​      | I want to …​                                                                      | So that I can…​                                         |
-|----------|--------------|-----------------------------------------------------------------------------------|---------------------------------------------------------|
-| `* * *`  | club manager | add a new member’s personal details such as name, phone number, and email address | keep track of member information                        |
-| `* * *`  | club manager | view a list of all members                                                        | check who is part of the club                           |
-| `* * *`  | club manager | delete members                                                                    | remove members who have left the club                   |
-| `* * *`  | club manager | tag members with appointed roles                                                  | identify and keep track of key appointment holders      |
-| `* * *`  | club manager | create events with dates, participant lists, and details                          | easily manage club events                               |
-| `* * *`  | club manager | delete events                                                                     | remove events that are cancelled or have already passed |
-| `* * *`  | club manager | backup my address book                                                            | avoid losing data when I leave the app                  |
+| Priority | As a …​                     | I want to …​                                                                      | So that I can…​                                         |
+|----------|-----------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------|
+| `* *`    | new club manager            | explore sample data                                                               | understand how EASync works before committing           |
+| `* *`    | new club manager            | see a list of all possible commands                                               | know how to carry out what I want to do with the app    |
+| `* *`    | club manager                | edit members' personal details                                                    | update them when information changes                    |
+| `* *`    | club manager                | restore archived members                                                          | re-engage them if they return                           |
+| `* *`    | club manager                | validate contact fields (e.g., missing email, malformed tags)                     | catch errors before they affect workflows               |
+| `* *`    | club manager                | search for members by their name, email, role, or by events                       | find them quickly                                       |
+| `* *`    | club manager                | check the attendance of the club’s members                                        | keep track of their overall club participation          |
+| `* *`    | club manager                | bulk edit members details (eg. membership status)                                 | update records efficiently                              |
+| `* *`    | club manager                | archive members who are no longer active                                          | keep my workspace focused on current contributors.      |
+| `* *`    | club manager                | view current role distribution across events                                      | identify over- or under-utilized members                |
+| `* *`    | club manager                | attach notes to a member profile                                                  | remember preferences, strengths, or past issues         |
+| `* *`    | club manager                | be informed of duplicate events or members when adding new ones                   | keep member/event lists clean                           |
+| `* *`    | busy/forgetful club manager | be highlighted to important or upcoming events                                    | keep track of my schedule                               |
+| `* *`    | club manager                | check upcoming events/list events chronologically                                 | remember what events are happening when                 |
+| `* * *`  | club manager                | add a new member’s personal details such as name, phone number, and email address | keep track of member information                        |
+| `* * *`  | club manager                | view a list of all members                                                        | check who is part of the club                           |
+| `* * *`  | club manager                | delete members                                                                    | remove members who have left the club                   |
+| `* * *`  | club manager                | tag members with appointed roles                                                  | identify and keep track of key appointment holders      |
+| `* * *`  | club manager                | create events with dates, participant lists, and details                          | easily manage club events                               |
+| `* * *`  | club manager                | delete events                                                                     | remove events that are cancelled or have already passed |
+| `* * *`  | club manager                | backup my address book                                                            | avoid losing data when I leave the app                  |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
+
 
 **UC01: Add a new Event**
 
@@ -318,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System creates a new event
 4. System displays the new event created in the list of events
 
-    Use case ends
+  Use case ends.
 
 **Extensions**
 
@@ -340,6 +355,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends
 
+**UC02: Adding a Member**
+
+**Preconditions**
+* App is open
+
+**Guarantees**
+* Addition of new member will not affect other members in existing list of members
+
+**MSS**
+1. User requests to add member via command line
+2. System displays success message
+3. System displays the new member in the member list 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Missing required parameters in member description (e.g. name, phone).
+
+    * 1a1. System informs user of missing field(s)
+        Use case ends.
+
+* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
+
+    * 1b1. System informs user of duplicate. 
+        Use case ends.
+
 **UC06: Removing a Member**
 
 **Preconditions**
@@ -349,6 +391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * Member will be removed from the list of members
 * Updated member list will be displayed
 
+**MSS**
 1.  User requests to list members
 2.  System shows a list of members
 3.  User requests to remove a member
@@ -369,6 +412,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
+**UC02: Adding a Member**
+
+**Actor: User**
+
+**Preconditions:**
+* App is open
+
+**Guarantees:**
+* Addition of new member will not affect other members in existing list of members
+
+**MSS**
+1. User requests to add member via command line 
+2. System displays success message 
+3. System displays the new member in the member list
+
+  Use case ends.
+  
+
+**Extensions**
+
+* 1a. Missing required parameters in member description (e.g. name, phone).
+
+    * 1a1. System informs user of missing field(s)
+
+    Use case ends.
+
+* 1b. Member with the same name, address, and phone number as an existing member entry is entered in.
+
+    * 1b1. System informs user of duplicate.
+
+    Use case ends.
+
+*{More to be added}*
+
 ### Non-Functional Requirements
 1. Scalability
    1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user. 
@@ -381,7 +458,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure.
    2. Data must be stored locally in a human-readable and editable text file format, as JSON.
    3. The application must function without relying on any remote server to operate.
+5. Performance
+    1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
+    2. The system should complete data loading from local storage within 2 seconds on startup.
+    3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
+    4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
 
+*{More to be added}*
 
 ### Glossary
 
