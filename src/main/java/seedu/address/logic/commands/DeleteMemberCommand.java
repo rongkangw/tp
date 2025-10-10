@@ -12,22 +12,22 @@ import seedu.address.model.Model;
 import seedu.address.model.member.Member;
 
 /**
- * Deletes a member identified using it's displayed index from the address book.
+ * Deletes a member identified using it's displayed index from the member list.
  */
-public class DeleteCommand extends Command {
+public class DeleteMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the member identified by the index number used in the displayed member list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_MEMBER_SUCCESS = "Deleted Member: %1$s";
+    public static final String MESSAGE_DELETE_MEMBER_SUCCESS = "Member: %1$s deleted successfully";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteMemberCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -52,12 +52,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteMemberCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteMemberCommand otherDeleteMemberCommand = (DeleteMemberCommand) other;
+        return targetIndex.equals(otherDeleteMemberCommand.targetIndex);
     }
 
     @Override
