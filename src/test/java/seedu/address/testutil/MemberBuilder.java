@@ -11,9 +11,9 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Member objects.
  */
-public class PersonBuilder {
+public class MemberBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -25,9 +25,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code MemberBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public MemberBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -35,9 +35,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the MemberBuilder with the data of {@code memberToCopy}.
      */
-    public PersonBuilder(Member memberToCopy) {
+    public MemberBuilder(Member memberToCopy) {
         name = memberToCopy.getName();
         phone = memberToCopy.getPhone();
         email = memberToCopy.getEmail();
@@ -45,33 +45,33 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Member} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public MemberBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Member} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public MemberBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Member} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public MemberBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Member} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public MemberBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
