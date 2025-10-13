@@ -17,15 +17,18 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private AddressBookStorage membersStorage;
     private UserPrefsStorage userPrefsStorage;
+    private EventStorage eventStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(AddressBookStorage membersStorage, UserPrefsStorage userPrefsStorage,
+                          EventStorage eventStorage) {
+        this.membersStorage = membersStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.eventStorage = eventStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -46,33 +49,61 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Members methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getMemberFilePath() {
+        return membersStorage.getMemberFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyAddressBook> readMembers() throws DataLoadingException {
+        return readMembers(membersStorage.getMemberFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyAddressBook> readMembers(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return membersStorage.readMembers(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveMembers(ReadOnlyAddressBook addressBook) throws IOException {
+        saveMembers(addressBook, membersStorage.getMemberFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveMembers(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        membersStorage.saveMembers(addressBook, filePath);
     }
 
+    // ================ Event methods ==============================
+
+    @Override
+    public Path getEventFilePath() {
+        return eventStorage.getEventFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAddressBook> readEvents() throws DataLoadingException {
+        return readEvents(eventStorage.getEventFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAddressBook> readEvents(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return eventStorage.readEvents(filePath);
+    }
+
+    @Override
+    public void saveEvents(ReadOnlyAddressBook addressBook) throws IOException {
+        saveEvents(addressBook, eventStorage.getEventFilePath());
+    }
+
+    @Override
+    public void saveEvents(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        eventStorage.saveEvents(addressBook, filePath);
+    }
 }

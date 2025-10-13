@@ -26,12 +26,12 @@ public class JsonAddressBookStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readMembers_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readMembers(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyAddressBook> readMembers(String filePath) throws Exception {
+        return new JsonAddressBookStorage(Paths.get(filePath)).readMembers(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -42,22 +42,22 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readMembers("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readMembers("notJsonFormatAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidMemberAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidMemberAddressBook.json"));
+    public void readMembers_invalidMemberAddressBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readMembers("invalidMemberAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidMemberAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidMemberAddressBook.json"));
+    public void readMembers_invalidAndValidMemberAddressBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readMembers("invalidAndValidMemberAddressBook.json"));
     }
 
     @Test
@@ -68,20 +68,20 @@ public class JsonAddressBookStorageTest {
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readMembers(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addMember(HOON);
         original.removeMember(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        readBack = jsonAddressBookStorage.readMembers(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
         original.addMember(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        readBack = jsonAddressBookStorage.readMembers().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
 
     }

@@ -25,7 +25,7 @@ public interface EventStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<Event> readEvents() throws DataLoadingException;
+    Optional<ReadOnlyAddressBook> readEvents() throws DataLoadingException;
 
     Optional<ReadOnlyAddressBook> readEvents(Path filepath) throws DataLoadingException;
 

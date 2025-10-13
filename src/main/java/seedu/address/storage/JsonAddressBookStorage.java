@@ -12,41 +12,46 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonAddressBookStorage implements AddressBookStorage, EventStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
-    private Path filePath;
+    private Path memberFilePath;
+    private Path eventFilePath;
 
-    public JsonAddressBookStorage(Path filePath) {
-        this.filePath = filePath;
+    public JsonAddressBookStorage(Path memberFilePath, Path eventFilePath) {
+        this.memberFilePath = memberFilePath;
+        this.eventFilePath = eventFilePath;
     }
 
-    public Path getAddressBookFilePath() {
-        return filePath;
+    // ================ Members methods ==============================
+
+    public Path getMemberFilePath() {
+        return memberFilePath;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyAddressBook> readMembers() throws DataLoadingException {
+        return readMembers(memberFilePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readMembers()}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param memberFilePath location of the member data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
-        requireNonNull(filePath);
+    public Optional<ReadOnlyAddressBook> readMembers(Path memberFilePath) throws DataLoadingException {
+        requireNonNull(memberFilePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+                memberFilePath, JsonSerializableAddressBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -54,27 +59,90 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         try {
             return Optional.of(jsonAddressBook.get().toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            logger.info("Illegal values found in " + memberFilePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
         }
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveMembers(ReadOnlyAddressBook addressBook) throws IOException {
+        saveMembers(addressBook, memberFilePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveMembers(ReadOnlyAddressBook)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param memberFilePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveMembers(ReadOnlyAddressBook addressBook, Path memberFilePath) throws IOException {
         requireNonNull(addressBook);
-        requireNonNull(filePath);
+        requireNonNull(memberFilePath);
 
-        FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        FileUtil.createIfMissing(memberFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), memberFilePath);
     }
+
+    // ================ Event methods ==============================
+
+    public Path getEventFilePath() {
+        return eventFilePath;
+    }
+
+    @Override
+    public Optional<ReadOnlyAddressBook> readEvents() throws DataLoadingException {
+        return readEvents(eventFilePath);
+    }
+
+    public Optional<ReadOnlyAddressBook> readEvents(Path eventFilePath) throws DataLoadingException {
+        requireNonNull(eventFilePath);
+
+        Optional<JsonSerializableEvent> jsonEvents= JsonUtil.readJsonFile(
+                eventFilePath, JsonSerializableEvent.class);
+        if (!jsonEvents.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonEvents.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + eventFilePath + ": " + ive.getMessage());
+            throw new DataLoadingException(ive);
+        }
+    }
+
+    @Override
+    public void saveEvents(ReadOnlyAddressBook addressBook) throws IOException {
+        saveEvents(addressBook, eventFilePath);
+    }
+
+    public void saveEvents(ReadOnlyAddressBook addressBook, Path eventFilePath) throws IOException {
+        requireNonNull(addressBook);
+        requireNonNull(eventFilePath);
+
+        FileUtil.createIfMissing(eventFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableEvent(addressBook), eventFilePath);
+    }
+
+    // ================ Address Book methods ==============================
+
+    public Optional<ReadOnlyAddressBook> readFullAddressBook(Path memberFilePath,
+                                                             Path eventFilePath) throws DataLoadingException {
+        requireNonNull(memberFilePath);
+        requireNonNull(eventFilePath);
+
+        Optional<ReadOnlyAddressBook> members = readMembers();
+        Optional<ReadOnlyAddressBook> events = readEvents();
+
+        AddressBook addressBook = new AddressBook();
+        members.ifPresent(m -> addressBook.resetData(m));
+        events.ifPresent(e -> addressBook.setEvents(e.getEventList()));
+        return Optional.of(addressBook);
+    }
+
+    public void saveFullAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveMembers(addressBook);
+        saveEvents(addressBook);
+    }
+
 
 }
