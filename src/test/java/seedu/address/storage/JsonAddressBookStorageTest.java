@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -24,10 +25,16 @@ public class JsonAddressBookStorageTest {
 
     @TempDir
     public Path testFolder;
+    private Path memberFile;
+    private Path eventFile;
+    private JsonAddressBookStorage storage;
 
-    private final Path memberFile = testFolder.resolve("TempMembers.json");
-    private final Path eventFile = testFolder.resolve("TempEvents.json");
-    private final JsonAddressBookStorage storage = new JsonAddressBookStorage(memberFile, eventFile);
+    @BeforeEach
+    public void setUp() {
+        memberFile = testFolder.resolve("TempMembers.json");
+        eventFile = testFolder.resolve("TempEvents.json");
+        storage = new JsonAddressBookStorage(memberFile, eventFile);
+    }
 
     @Test
     public void readMembers_nullFilePath_throwsNullPointerException() {
