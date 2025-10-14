@@ -25,9 +25,9 @@ public class JsonAddressBookStorageTest {
     @TempDir
     public Path testFolder;
 
-    Path memberFile = testFolder.resolve("TempMembers.json");
-    Path eventFile = testFolder.resolve("TempEvents.json");
-    JsonAddressBookStorage storage = new JsonAddressBookStorage(memberFile, eventFile);
+    private final Path memberFile = testFolder.resolve("TempMembers.json");
+    private final Path eventFile = testFolder.resolve("TempEvents.json");
+    private final JsonAddressBookStorage storage = new JsonAddressBookStorage(memberFile, eventFile);
 
     @Test
     public void readMembers_nullFilePath_throwsNullPointerException() {
