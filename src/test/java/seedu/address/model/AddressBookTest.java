@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.CLASS;
 import static seedu.address.testutil.TypicalMembers.ALICE;
 import static seedu.address.testutil.TypicalMembers.getTypicalAddressBook;
 
@@ -17,8 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Event;
 import seedu.address.model.member.Member;
 import seedu.address.model.member.exceptions.DuplicateMemberException;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.MemberBuilder;
 
 public class AddressBookTest {
@@ -47,8 +50,10 @@ public class AddressBookTest {
         // Two members with the same identity fields
         Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
+        Event editedClass = new EventBuilder(CLASS).build();
         List<Member> newMembers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newMembers);
+        List<Event> newEvents = Arrays.asList(CLASS, editedClass);
+        AddressBookStub newData = new AddressBookStub(newMembers, newEvents);
 
         assertThrows(DuplicateMemberException.class, () -> addressBook.resetData(newData));
     }
@@ -93,14 +98,21 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Member> members = FXCollections.observableArrayList();
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Member> members) {
+        AddressBookStub(Collection<Member> members, Collection<Event> events) {
             this.members.setAll(members);
+            this.events.setAll(events);
         }
 
         @Override
         public ObservableList<Member> getMemberList() {
             return members;
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            return events;
         }
     }
 
