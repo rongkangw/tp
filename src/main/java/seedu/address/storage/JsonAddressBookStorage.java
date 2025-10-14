@@ -25,6 +25,12 @@ public class JsonAddressBookStorage implements AddressBookStorage, EventStorage 
     private Path memberFilePath;
     private Path eventFilePath;
 
+    /**
+     * Constructs a {@code JsonAddressBookStorage} with the given member and event file paths
+     *
+     * @param memberFilePath
+     * @param eventFilePath
+     */
     public JsonAddressBookStorage(Path memberFilePath, Path eventFilePath) {
         this.memberFilePath = memberFilePath;
         this.eventFilePath = eventFilePath;
@@ -93,10 +99,17 @@ public class JsonAddressBookStorage implements AddressBookStorage, EventStorage 
         return readEvents(eventFilePath);
     }
 
+    /**
+     * Similar to link {@link #readEvents()}
+     *
+     * @param eventFilePath location of event data. Cannot be null
+     * @return {@code Optional<ReadOnlyAddressBook>} containing event data
+     * @throws DataLoadingException if loading from storage failed.
+     */
     public Optional<ReadOnlyAddressBook> readEvents(Path eventFilePath) throws DataLoadingException {
         requireNonNull(eventFilePath);
 
-        Optional<JsonSerializableEvent> jsonEvents= JsonUtil.readJsonFile(
+        Optional<JsonSerializableEvent> jsonEvents = JsonUtil.readJsonFile(
                 eventFilePath, JsonSerializableEvent.class);
         if (!jsonEvents.isPresent()) {
             return Optional.empty();
@@ -115,6 +128,11 @@ public class JsonAddressBookStorage implements AddressBookStorage, EventStorage 
         saveEvents(addressBook, eventFilePath);
     }
 
+    /**
+     * Similar to {@link #saveEvents(ReadOnlyAddressBook)}.
+     *
+     * @param eventFilePath location where event data is to be stored. Cannot be null.
+     */
     public void saveEvents(ReadOnlyAddressBook addressBook, Path eventFilePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(eventFilePath);
@@ -125,6 +143,14 @@ public class JsonAddressBookStorage implements AddressBookStorage, EventStorage 
 
     // ================ Address Book methods ==============================
 
+    /**
+     * Reads data from both member and event files and store them in a new AddressBook
+     *
+     * @param memberFilePath location where member data is stored
+     * @param eventFilePath location where event data is stored
+     * @return {@code Optional<ReadOnlyAddressBook>} containing both member and event data
+     * @throws DataLoadingException if loading from storage fails
+     */
     public Optional<ReadOnlyAddressBook> readFullAddressBook(Path memberFilePath,
                                                              Path eventFilePath) throws DataLoadingException {
         requireNonNull(memberFilePath);
@@ -139,6 +165,12 @@ public class JsonAddressBookStorage implements AddressBookStorage, EventStorage 
         return Optional.of(addressBook);
     }
 
+    /**
+     * Saves both member and event data from AddressBook to respective files
+     *
+     * @param addressBook addressBook containing members and events
+     * @throws IOException
+     */
     public void saveFullAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveMembers(addressBook);
         saveEvents(addressBook);

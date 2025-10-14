@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.event.Event;
 
 /**
  * Represents a storage for {@link seedu.address.model.event.Event}

@@ -13,7 +13,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
 
-@JsonRootName(value = "addressbook")
+/**
+ * An Immutable AddressBook storing only events that is serializable to JSON format.
+ */
+@JsonRootName(value = "events")
 public class JsonSerializableEvent {
 
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
