@@ -35,7 +35,7 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyAddressBook> readMembers(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Path.of(filePath), eventFile)
+        return new JsonAddressBookStorage(Paths.get(filePath), eventFile)
                 .readMembers(addToTestDataPathIfNotNull(filePath));
     }
 
