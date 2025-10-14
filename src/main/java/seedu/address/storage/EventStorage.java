@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.event.Event;
 
 /**
  * Represents a storage for {@link seedu.address.model.event.Event}
@@ -25,7 +24,7 @@ public interface EventStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<Event> readEvents() throws DataLoadingException;
+    Optional<ReadOnlyAddressBook> readEvents() throws DataLoadingException;
 
     Optional<ReadOnlyAddressBook> readEvents(Path filepath) throws DataLoadingException;
 
