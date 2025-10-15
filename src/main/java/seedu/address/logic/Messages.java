@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.event.Event;
 import seedu.address.model.member.Member;
+import seedu.address.model.tag.Tag;
 
 /**
  * Container for user visible messages.
@@ -55,13 +56,24 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(event.getName())
                 .append("; From: ")
-                .append(event.getFrom())
-                .append("; To: ")
-                .append(event.getTo())
-                .append("; Detail: ")
-                .append(event.getDetail())
-                .append("; Roles: ");
-        event.getRoles().forEach(builder::append);
+                .append(event.getFrom());
+
+        String to = event.getTo();
+        if (to != null && !to.isEmpty()) {
+            builder.append("; To: ").append(to);
+        }
+
+        String detail = event.getDetail();
+        if (detail != null && !detail.isEmpty()) {
+            builder.append("; Detail: ").append(detail);
+        }
+
+        Set<Tag> roles = event.getRoles();
+        if (roles != null && !roles.isEmpty()) {
+            builder.append("; Roles: ");
+            roles.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 }
