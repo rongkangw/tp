@@ -13,7 +13,7 @@ import seedu.address.model.member.UniqueMemberList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameMember comparison)
+ * Duplicates are not allowed (by .isSameMember and .isSameEvent comparisons)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -100,7 +100,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} (member) from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeMember(Member key) {
@@ -110,7 +110,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// event-level operations
 
     /**
-     * Returns true if a event with the same identity as {@code event} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the address book.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -126,7 +126,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given {@code target} in the list with {@code editedEvent}.
+     * Replaces the given {@code target} (event) in the list with {@code editedEvent}.
      * {@code target} must exist in the address book.
      * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
      */
