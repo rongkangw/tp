@@ -97,31 +97,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasEvent(Event event) {
-        requireNonNull(event);
-        return addressBook.hasEvent(event);
-    }
-
-    @Override
     public void deleteMember(Member target) {
         addressBook.removeMember(target);
-    }
-
-    @Override
-    public void deleteEvent(Event target) {
-        addressBook.removeEvent(target);
     }
 
     @Override
     public void addMember(Member member) {
         addressBook.addMember(member);
         updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
-    }
-
-    @Override
-    public void addEvent(Event event) {
-        addressBook.addEvent(event);
-        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
@@ -140,6 +123,22 @@ public class ModelManager implements Model {
     }
      */
 
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        addressBook.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
 
     //=========== Filtered Member List Accessors =============================================================
 
@@ -152,6 +151,14 @@ public class ModelManager implements Model {
         return filteredMembers;
     }
 
+    @Override
+    public void updateFilteredMemberList(Predicate<Member> predicate) {
+        requireNonNull(predicate);
+        filteredMembers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Event List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
@@ -159,12 +166,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
-    }
-
-    @Override
-    public void updateFilteredMemberList(Predicate<Member> predicate) {
-        requireNonNull(predicate);
-        filteredMembers.setPredicate(predicate);
     }
 
     @Override
