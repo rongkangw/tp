@@ -97,7 +97,7 @@ public class EventBuilder {
      * @param detail to be set
      * @return EventBuilder
      */
-    public EventBuilder withDetails(String detail) {
+    public EventBuilder withDetail(String detail) {
         this.detail = detail;
         return this;
     }
