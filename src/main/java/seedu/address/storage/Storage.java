@@ -37,5 +37,4 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, EventStor
 
     @Override
     void saveEvents(ReadOnlyAddressBook addressBook) throws IOException;
-
 }

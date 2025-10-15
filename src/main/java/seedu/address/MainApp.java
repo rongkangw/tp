@@ -80,22 +80,33 @@ public class MainApp extends Application {
         logger.info("Using data file : " + storage.getMemberFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyAddressBook> eventOptional;
         ReadOnlyAddressBook initialData;
+        AddressBook combinedData;
+
         try {
             addressBookOptional = storage.readMembers();
+            eventOptional = storage.readEvents();
+            combinedData = new AddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getMemberFilePath()
                         + " populated with a sample AddressBook.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            combinedData.resetData(initialData);
+            if (eventOptional.isPresent()) {
+                combinedData.setEvents(eventOptional.get().getEventList());
+            }
+
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getMemberFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            combinedData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(combinedData, userPrefs);
     }
+
 
     private void initLogging(Config config) {
         LogsCenter.init(config);

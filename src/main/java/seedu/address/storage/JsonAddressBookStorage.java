@@ -175,6 +175,4 @@ public class JsonAddressBookStorage implements AddressBookStorage, EventStorage 
         saveMembers(addressBook);
         saveEvents(addressBook);
     }
-
-
 }
