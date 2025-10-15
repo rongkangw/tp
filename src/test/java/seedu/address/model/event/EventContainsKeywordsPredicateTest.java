@@ -26,7 +26,8 @@ public class EventContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EventContainsKeywordsPredicate firstPredicateCopy = new EventContainsKeywordsPredicate(firstPredicateKeywordList);
+        EventContainsKeywordsPredicate firstPredicateCopy =
+                new EventContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,8 +43,8 @@ public class EventContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        EventContainsKeywordsPredicate predicate = new EventContainsKeywordsPredicate(Collections.
-                singletonList("Orientation"));
+        EventContainsKeywordsPredicate predicate = new EventContainsKeywordsPredicate(Collections
+                .singletonList("Orientation"));
         assertTrue(predicate.test(new EventBuilder().withName("Orientation Camp").build()));
 
         // Multiple keywords
