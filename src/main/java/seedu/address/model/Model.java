@@ -5,13 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
 import seedu.address.model.member.Member;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Member> PREDICATE_SHOW_ALL_MEMBERS = unused -> true;
 
     /**
@@ -49,7 +52,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -76,12 +81,54 @@ public interface Model {
      */
     void setMember(Member target, Member editedMember);
 
-    /** Returns an unmodifiable view of the filtered member list */
+    /**
+     * Returns an unmodifiable view of the filtered member list
+     */
     ObservableList<Member> getFilteredMemberList();
 
     /**
      * Updates the filter of the filtered member list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMemberList(Predicate<Member> predicate);
+
+    /**
+     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     */
+    boolean hasEvent(Event event);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event target);
+
+    /**
+     * Adds the given event.
+     * {@code event} must not already exist in the address book.
+     */
+    void addEvent(Event event);
+    
+    /* Edit commands: to do for future iteration
+    /**
+     * Replaces the given member {@code target} with {@code editedMember}.
+     * {@code target} must exist in the address book.
+     * The member identity of {@code editedMember} must not be the same as another existing member in the address book.
+     
+    void setEvent(Member target, Member editedEvent);
+    */
+
+    /**
+     * Returns an unmodifiable view of the filtered event list
+     */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Updates the filter of the filtered event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
+
 }
