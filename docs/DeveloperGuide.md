@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UC01: Add a new Event**
 
-**Preconditions** 
+**Preconditions**
 * App is open
 
 **Guarantees**
@@ -353,19 +353,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. One or more of the parameters are missing
 
     * 1a1. System informs user of missing fields
-  
+
       Use case ends
 
 * 1b. One or more of the parameters are of invalid format
 
     * 1b1. System informs user of incorrect fields
-  
+
       Use case ends
 
 * 1c. Event with the same name, to and from datetimes are entered in
 
     * 1c1. System informs user of duplicated event
-  
+
       Use case ends
 
 **UC02: Adding a Member**
@@ -388,13 +388,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Missing required parameters in member description (e.g. name, phone)
 
     * 1a1. System informs user of missing field(s)
-  
+
       Use case ends
 
 * 1b. Member with the same name, address, and phone number as an existing member entry is entered in
 
     * 1b1. System informs user of duplicated member
-  
+
       Use case ends
 
 **UC03: Assigning Member to an Event**
@@ -408,7 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to assign a member to a certain event 
+1.  User requests to assign a member to a certain event
 2.  System displays success message
 3.  System displays the member with the event tag
 
@@ -551,8 +551,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Scalability
-   1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user. 
-2. Portability 
+   1. The system must support managing at least 100 members and 50 events without noticeable degradation in performance by the user.
+2. Portability
    1. The system must be able to run on Windows, macOS, and Linux as long as Java 17 is installed.
    2. The system must run without requiring a separate installer. A single distributable JAR must be sufficient to run the program.
 3. Reliability
