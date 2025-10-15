@@ -168,6 +168,15 @@ public class ModelManager implements Model {
         addressBook.removeEvent(target);
     }
 
+    /* Edit commands are to be implemented in a future iteration
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        addressBook.setEvent(target, editedEvent);
+    }
+     */
+
     //=========== Filtered Event List Accessors =============================================================
 
     /**
