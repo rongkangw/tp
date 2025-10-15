@@ -166,12 +166,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredEventList(Predicate<Event> predicate) {
-        requireNonNull(predicate);
-        filteredEvents.setPredicate(predicate);
-    }
-
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
