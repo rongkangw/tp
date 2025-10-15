@@ -101,7 +101,7 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getMemberFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            combinedData= new AddressBook();
+            combinedData = new AddressBook();
         }
 
         return new ModelManager(combinedData, userPrefs);
