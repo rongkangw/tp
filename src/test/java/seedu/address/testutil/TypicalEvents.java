@@ -21,8 +21,22 @@ public class TypicalEvents {
     public static final Event BEACH_DAY = new EventBuilder().withName("Beach Day")
             .withFrom("25/10/2025").withTo("25/10/2025").withDetails("At Sentosa")
             .withRoles("Gamemaster", "SafetyOfficer").build();
+    public static final Event MEETING = new EventBuilder().withName("Meeting")
+            .withFrom("15/10/2025").withTo("15/10/2025")
+            .withRoles("participant").build();
 
-    public static AddressBook getTypicalEventAddressBook() {
+    public static final Event WORKSHOP = new EventBuilder().withName("Workshop")
+            .withFrom("15/10/2025").withTo("15/10/2025")
+            .withRoles("participant", "facilitator").build();
+
+    public static List<Event> getTypicalEvents() {
+        return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical events.
+     */
+    public static AddressBook getTypicalAddressBookWithEvents() {
         AddressBook ab = new AddressBook();
         for (Event event : getTypicalEvents()) {
             ab.addEvent(event);
@@ -30,7 +44,5 @@ public class TypicalEvents {
         return ab;
     }
 
-    public static List<Event> getTypicalEvents() {
-        return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
-    }
+
 }
