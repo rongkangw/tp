@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -50,8 +51,15 @@
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="memberListPanelPlaceholder"/>
-          <StackPane fx:id="eventListPanelPlaceholder"/>
+            <ScrollPane fx:id="memberListScrollPane" fitToWidth="true" fitToHeight="true"
+                        hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                <StackPane fx:id="memberListPanelPlaceholder" />
+            </ScrollPane>
+
+            <ScrollPane fx:id="eventListScrollPane" fitToWidth="true" fitToHeight="true"
+                        hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                <StackPane fx:id="eventListPanelPlaceholder" />
+            </ScrollPane>
         </StackPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
