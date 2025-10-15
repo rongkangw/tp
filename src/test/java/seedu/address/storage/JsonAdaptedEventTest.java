@@ -21,7 +21,7 @@ public class JsonAdaptedEventTest {
     private static final String VALID_NAME = ORIENTATION.getName().toString();
     private static final String VALID_FROM = ORIENTATION.getFrom();
     private static final String VALID_TO = ORIENTATION.getTo();
-    private static final String VALID_DETAILS = ORIENTATION.getDetails();
+    private static final String VALID_DETAILS = ORIENTATION.getDetail();
     private static final List<JsonAdaptedTag> VALID_ROLES = ORIENTATION.getRoles().stream()
                             .map(JsonAdaptedTag::new)
                             .collect(Collectors.toList());
