@@ -25,7 +25,7 @@ public class JsonSerializableEventTest {
         JsonSerializableEvent dataFromFile = JsonUtil.readJsonFile(TYPICAL_EVENTS_FILE,
                 JsonSerializableEvent.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalEventsAddressBook = TypicalEvents.getTypicalEventAddressBook();
+        AddressBook typicalEventsAddressBook = TypicalEvents.getTypicalAddressBookWithEvents();
         assertEquals(addressBookFromFile, typicalEventsAddressBook);
     }
 

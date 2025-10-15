@@ -24,7 +24,6 @@ public class TypicalEvents {
     public static final Event MEETING = new EventBuilder().withName("Meeting")
             .withFrom("15/10/2025").withTo("15/10/2025")
             .withRoles("participant").build();
-
     public static final Event WORKSHOP = new EventBuilder().withName("Workshop")
             .withFrom("15/10/2025").withTo("15/10/2025")
             .withRoles("participant", "facilitator").build();
