@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.CLASS;
+import static seedu.address.testutil.TypicalEvents.ORIENTATION;
 import static seedu.address.testutil.TypicalMembers.ALICE;
 import static seedu.address.testutil.TypicalMembers.getTypicalAddressBook;
 
@@ -50,9 +50,9 @@ public class AddressBookTest {
         // Two members with the same identity fields
         Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        Event editedClass = new EventBuilder(CLASS).build();
+        Event editedClass = new EventBuilder(ORIENTATION).build();
         List<Member> newMembers = Arrays.asList(ALICE, editedAlice);
-        List<Event> newEvents = Arrays.asList(CLASS, editedClass);
+        List<Event> newEvents = Arrays.asList(ORIENTATION, editedClass);
         AddressBookStub newData = new AddressBookStub(newMembers, newEvents);
 
         assertThrows(DuplicateMemberException.class, () -> addressBook.resetData(newData));

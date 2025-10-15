@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.CLASS;
+import static seedu.address.testutil.TypicalEvents.ORIENTATION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +18,19 @@ public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "@orientation";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = CLASS.getName().toString();
-    private static final String VALID_FROM = CLASS.getFrom();
-    private static final String VALID_TO = CLASS.getTo();
-    private static final String VALID_DETAILS = CLASS.getDetails();
-    private static final List<JsonAdaptedTag> VALID_ROLES = CLASS.getRoles().stream()
+    private static final String VALID_NAME = ORIENTATION.getName().toString();
+    private static final String VALID_FROM = ORIENTATION.getFrom();
+    private static final String VALID_TO = ORIENTATION.getTo();
+    private static final String VALID_DETAILS = ORIENTATION.getDetails();
+    private static final List<JsonAdaptedTag> VALID_ROLES = ORIENTATION.getRoles().stream()
                             .map(JsonAdaptedTag::new)
                             .collect(Collectors.toList());
 
 
     @Test
     public void toModelType_validEvent_returnsEvent() throws Exception {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(CLASS);
-        assertEquals(CLASS, event.toModelType());
+        JsonAdaptedEvent event = new JsonAdaptedEvent(ORIENTATION);
+        assertEquals(ORIENTATION, event.toModelType());
     }
 
     @Test
