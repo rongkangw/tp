@@ -62,7 +62,7 @@ public class DeleteEventCommand extends Command {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
                 .toString();
