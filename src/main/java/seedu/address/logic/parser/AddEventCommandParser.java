@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddEventCommand;
@@ -36,9 +38,15 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_FROM, PREFIX_TO, PREFIX_DETAIL);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         String from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
-        String to = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get());
-        String detail = ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).get());
-        Set<Tag> roleList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ROLE));
+        String to = argMultimap.getValue(PREFIX_TO).isPresent()
+                    ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get())
+                    : "";
+        String detail = argMultimap.getValue(PREFIX_DETAIL).isPresent()
+                        ? ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).get())
+                        : "";
+        Set<Tag> roleList = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
+                            ? ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ROLE))
+                            : Collections.emptySet();
 
         Event event = new Event(name, from, to, detail, roleList);
 
