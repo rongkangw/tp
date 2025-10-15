@@ -12,22 +12,24 @@ import seedu.address.model.event.Event;
  */
 public class TypicalEvents {
 
-    public static final Event CLASS = new EventBuilder().withName("Class")
-            .withFrom("14/10/2025").withTo("14/10/2025")
-            .withRoles("teacher").build();
-
+    public static final Event ORIENTATION = new EventBuilder().withName("Orientation")
+            .withFrom("15/10/2025").withTo("17/10/2025").withDetails("For freshmen")
+            .withRoles("facilitator", "gamemaster").build();
+    public static final Event MOVIE_NIGHT = new EventBuilder().withName("Movie Night")
+            .withFrom("20/10/2025 1800").withTo("20/10/2025 2000").withDetails("Showing The Shining")
+            .withRoles("FoodIC", "OIC").build();
+    public static final Event BEACH_DAY = new EventBuilder().withName("Beach Day")
+            .withFrom("25/10/2025").withTo("25/10/2025").withDetails("At Sentosa")
+            .withRoles("Gamemaster", "SafetyOfficer").build();
     public static final Event MEETING = new EventBuilder().withName("Meeting")
             .withFrom("15/10/2025").withTo("15/10/2025")
             .withRoles("participant").build();
-
     public static final Event WORKSHOP = new EventBuilder().withName("Workshop")
             .withFrom("15/10/2025").withTo("15/10/2025")
             .withRoles("participant", "facilitator").build();
 
-
-
     public static List<Event> getTypicalEvents() {
-        return new ArrayList<>(Arrays.asList(CLASS, MEETING, WORKSHOP));
+        return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
     }
 
     /**
@@ -40,4 +42,6 @@ public class TypicalEvents {
         }
         return ab;
     }
+
+
 }
