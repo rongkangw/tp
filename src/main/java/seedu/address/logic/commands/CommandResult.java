@@ -20,16 +20,16 @@ public class CommandResult {
     private final boolean exit;
 
     /** Whether application is showing members or events. */
-    private final boolean isEvent;
+    private final boolean isEventCommand;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isEvent) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isEventCommand) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.isEvent = isEvent;
+        this.isEventCommand = isEventCommand;
     }
 
     /**
@@ -52,8 +52,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isEvent() {
-        return isEvent;
+    public boolean isEventCommand() {
+        return isEventCommand;
     }
 
     @Override

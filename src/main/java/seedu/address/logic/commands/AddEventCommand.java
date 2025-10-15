@@ -29,6 +29,6 @@ public class AddEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("Hello from addEvent");
+        return new CommandResult("Hello from addEvent", false, false, true);
     }
 }
