@@ -78,25 +78,34 @@ public interface Model {
      */
     void setMember(Member target, Member editedMember);
 
-    /** Returns an unmodifiable view of the filtered member list */
+    /**
+     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     */
+    boolean hasEvent(Event event);
+
+    /**
+     * Adds the given event.
+     * {@code event} must not already exist in the address book.
+     */
+    void addEvent(Event event);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event target);
+
+    /**
+     * Returns an unmodifiable view of the filtered member list
+     */
     ObservableList<Member> getFilteredMemberList();
+
 
     /**
      * Updates the filter of the filtered member list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMemberList(Predicate<Member> predicate);
-
-    /**
-     * Returns true if an event with the same identity as {@code event} exists in the system.
-     */
-    boolean hasEvent(Event event);
-
-    /**
-     * Adds the given event.
-     * {@code event} must not already exist in the system.
-     */
-    void addEvent(Event toAdd);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
