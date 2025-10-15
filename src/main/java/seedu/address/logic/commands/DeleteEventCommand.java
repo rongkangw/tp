@@ -43,7 +43,8 @@ public class DeleteEventCommand extends Command {
         model.deleteEvent(eventToDelete);
         //TODO: update this with proper formatted message
         //return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.getName()), false, false,true);
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.getName()),
+                false, false, true);
     }
 
     @Override
