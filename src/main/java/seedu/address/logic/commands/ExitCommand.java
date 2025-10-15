@@ -13,6 +13,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        // This makes the app go to memberList instead of eventList, need to change this someday
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
     }
 

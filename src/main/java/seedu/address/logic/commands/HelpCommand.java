@@ -15,7 +15,9 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
+    // This makes the app go to memberList instead of eventList, need to change this someday
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE,
+                true, false, false);
     }
 }
