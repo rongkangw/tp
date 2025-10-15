@@ -123,7 +123,7 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
-    //---------------- Tests for getDetails --------------------------------------
+    //---------------- Tests for getDetail --------------------------------------
 
     /*
      * Equivalence Partitions: null, valid throwable object
