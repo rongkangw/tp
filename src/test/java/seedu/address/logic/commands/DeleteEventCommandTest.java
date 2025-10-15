@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showMemberAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.logic.commands.DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS;
+import static seedu.address.testutil.TypicalEvents.getTypicalAddressBookWithEvents;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
-import static seedu.address.testutil.TypicalMembers.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ import seedu.address.model.event.Event;
  */
 public class DeleteEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBookWithEvents(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -51,7 +51,7 @@ public class DeleteEventCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showMemberAtIndex(model, INDEX_FIRST_EVENT);
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST_EVENT);
@@ -67,7 +67,7 @@ public class DeleteEventCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showMemberAtIndex(model, INDEX_FIRST_EVENT);
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -96,7 +96,7 @@ public class DeleteEventCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different member -> returns false
+        // different event -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
