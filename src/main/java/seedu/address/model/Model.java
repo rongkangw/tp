@@ -12,7 +12,9 @@ import seedu.address.model.member.Member;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Member> PREDICATE_SHOW_ALL_MEMBERS = unused -> true;
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
@@ -51,7 +53,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -100,9 +104,9 @@ public interface Model {
      */
     ObservableList<Member> getFilteredMemberList();
 
-
     /**
      * Updates the filter of the filtered member list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMemberList(Predicate<Member> predicate);
@@ -114,7 +118,9 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
 }

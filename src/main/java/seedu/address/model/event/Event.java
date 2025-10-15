@@ -110,8 +110,8 @@ public class Event {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", from)
-                .add("email", to)
+                .add("from", from)
+                .add("to", to)
                 .add("detail", detail)
                 .add("roles", roles)
                 .toString();

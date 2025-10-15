@@ -24,8 +24,8 @@ public class AddEventCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_FROM + "FROM "
-            + PREFIX_TO + "TO "
-            + PREFIX_DETAIL + "DETAILS "
+            + "[" + PREFIX_TO + "TO] "
+            + "[" + PREFIX_DETAIL + "DETAILS] "
             + "[" + PREFIX_ROLE + "ROLE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Coding Workshop "
@@ -57,7 +57,7 @@ public class AddEventCommand extends Command {
         }
 
         model.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), false, false, true);
     }
 
     @Override
