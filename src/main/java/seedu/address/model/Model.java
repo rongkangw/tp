@@ -100,6 +100,7 @@ public interface Model {
      */
     ObservableList<Member> getFilteredMemberList();
 
+
     /**
      * Updates the filter of the filtered member list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
