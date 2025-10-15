@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Event in the address book.
- * Guarantees: detail are present and not null, field values are validated, immutable.
+ * Guarantees: detail is present and not null, field values are validated, immutable.
  */
 public class Event {
 
@@ -64,7 +64,7 @@ public class Event {
 
     /**
      * Returns true if both events have the same name, from date time and to date time.
-     * This defines a weaker notion of equality between two members.
+     * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {

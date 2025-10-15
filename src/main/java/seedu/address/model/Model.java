@@ -107,7 +107,9 @@ public interface Model {
      */
     void updateFilteredMemberList(Predicate<Member> predicate);
 
-    /** Returns an unmodifiable view of the filtered event list */
+    /**
+     * Returns an unmodifiable view of the filtered event list
+     * */
     ObservableList<Event> getFilteredEventList();
 
     /**
