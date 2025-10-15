@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private MemberListPanel memberListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane memberListPanelPlaceholder;
+
+    @FXML
+    private StackPane eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +116,10 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         memberListPanel = new MemberListPanel(logic.getFilteredMemberList());
         memberListPanelPlaceholder.getChildren().add(memberListPanel.getRoot());
+
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+        eventListPanel.getRoot().setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -184,6 +192,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isEvent()) {
+                memberListPanel.getRoot().setVisible(false);
+                eventListPanel.getRoot().setVisible(true);
+            } else {
+                memberListPanel.getRoot().setVisible(true);
+                eventListPanel.getRoot().setVisible(false);
             }
 
             return commandResult;
