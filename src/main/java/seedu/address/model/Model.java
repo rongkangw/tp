@@ -92,7 +92,7 @@ public interface Model {
     void updateFilteredMemberList(Predicate<Member> predicate);
 
     /**
-     * updates the filtered of the filtered event list to filter by the given {@code predicate}
+     * updates the filter of the filtered event list to filter by the given {@code predicate}
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
