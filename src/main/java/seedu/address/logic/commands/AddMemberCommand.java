@@ -49,7 +49,6 @@ public class AddMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-
         if (model.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }

@@ -52,6 +52,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveMembers(model.getAddressBook());
+            storage.saveEvents(model.getAddressBook());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {

@@ -18,9 +18,9 @@ import seedu.address.model.tag.Tag;
 public class MemberUtil {
 
     /**
-     * Returns an add command string for adding the {@code member}.
+     * Returns an add member command string for adding the {@code member}.
      */
-    public static String getAddCommand(Member member) {
+    public static String getAddMemberCommand(Member member) {
         return AddMemberCommand.COMMAND_WORD + " " + getMemberDetails(member);
     }
 
