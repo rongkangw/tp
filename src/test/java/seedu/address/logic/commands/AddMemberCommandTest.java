@@ -146,11 +146,6 @@ public class AddMemberCommandTest {
         }
 
         @Override
-        public boolean hasEvent(Event event) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteMember(Member target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -181,16 +176,13 @@ public class AddMemberCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
-=======
+
         public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
->>>>>>> master
     }
 
     /**
