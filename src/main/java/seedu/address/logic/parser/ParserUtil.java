@@ -105,4 +105,31 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static String parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        return trimmedDate;
+    }
+
+    /**
+     * Parses a {@code String detail}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static String parseDetail(String detail) throws ParseException {
+        requireNonNull(detail);
+        String trimmedDetail = detail.trim();
+        if (trimmedDetail.length() > 500) {
+            throw new ParseException("Detail should be shorter than 500 characters");
+        }
+        return trimmedDetail;
+    }
 }

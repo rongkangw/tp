@@ -47,7 +47,7 @@ class JsonAdaptedEvent {
         name = source.getName().fullName;
         from = source.getFrom();
         to = source.getTo();
-        details = source.getDetails();
+        details = source.getDetail();
         roles.addAll(source.getRoles().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

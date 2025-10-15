@@ -16,22 +16,22 @@ public class EventBuilder {
     public static final String DEFAULT_NAME = "Orientation";
     public static final String DEFAULT_FROM = "Monday";
     public static final String DEFAULT_TO = "Tuesday";
-    public static final String DEFAULT_DETAILS = "NIL";
+    public static final String DEFAULT_DETAIL = "NIL";
 
     private Name name;
     private String from;
     private String to;
-    private String details;
+    private String detail;
     private Set<Tag> roles;
 
     /**
-     * Creates a {@code EventBuilder} with the default details
+     * Creates a {@code EventBuilder} with the default detail
      */
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         from = DEFAULT_FROM;
         to = DEFAULT_TO;
-        details = DEFAULT_DETAILS;
+        detail = DEFAULT_DETAIL;
         roles = new HashSet<>();
     }
 
@@ -43,7 +43,7 @@ public class EventBuilder {
         name = eventToCopy.getName();
         from = eventToCopy.getFrom();
         to = eventToCopy.getTo();
-        details = DEFAULT_DETAILS;
+        detail = DEFAULT_DETAIL;
         roles = new HashSet<>(eventToCopy.getRoles());
     }
 
@@ -92,18 +92,18 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Details} of the {@code Event} that we are building.
+     * Sets the {@code Detail} of the {@code Event} that we are building.
      *
-     * @param details to be set
+     * @param detail to be set
      * @return EventBuilder
      */
-    public EventBuilder withDetails(String details) {
-        this.details = details;
+    public EventBuilder withDetail(String detail) {
+        this.detail = detail;
         return this;
     }
 
     public Event build() {
-        return new Event(name, from, to, details, roles);
+        return new Event(name, from, to, detail, roles);
     }
 
 }

@@ -150,6 +150,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("members", members)
+                .add("events", events)
                 .toString();
     }
 
@@ -180,6 +181,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return members.hashCode();
+        return java.util.Objects.hash(members, events);
     }
 }
