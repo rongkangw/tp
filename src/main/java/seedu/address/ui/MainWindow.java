@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -53,6 +54,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private ScrollPane memberListScrollPane;
+
+    @FXML
+    private ScrollPane eventListScrollPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -119,7 +126,8 @@ public class MainWindow extends UiPart<Stage> {
 
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-        eventListPanel.getRoot().setVisible(false);
+        memberListScrollPane.setVisible(true);
+        eventListScrollPane.setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -195,11 +203,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEventCommand()) {
-                memberListPanel.getRoot().setVisible(false);
-                eventListPanel.getRoot().setVisible(true);
+                memberListScrollPane.setVisible(false);
+                eventListScrollPane.setVisible(true);
             } else {
-                memberListPanel.getRoot().setVisible(true);
-                eventListPanel.getRoot().setVisible(false);
+                memberListScrollPane.setVisible(true);
+                eventListScrollPane.setVisible(false);
             }
 
             return commandResult;
