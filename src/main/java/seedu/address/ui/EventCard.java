@@ -51,7 +51,7 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName().fullName);
         from.setText(event.getFrom());
         to.setText(event.getTo());
-        details.setText(event.getDetails());
+        details.setText(event.getDetail());
         event.getRoles().stream()
                 .sorted(Comparator.comparing(role -> role.tagName))
                 .forEach(role -> roles.getChildren().add(new Label(role.tagName)));

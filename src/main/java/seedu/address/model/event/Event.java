@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Event in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: detail is present and not null, field values are validated, immutable.
  */
 public class Event {
 
@@ -21,7 +21,7 @@ public class Event {
     private final Name name; // Imported from member.Name
     private final String from; // MVP: Store as string for now
     private final String to; // MVP: Store as string for now
-    private final String details;
+    private final String detail;
 
     // Data fields
     private final Set<Tag> roles = new HashSet<>(); // MVP: No current roles, event roles done in future iterations
@@ -29,12 +29,12 @@ public class Event {
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, String from, String to, String details, Set<Tag> roles) {
-        requireAllNonNull(name, from, to, details, roles);
+    public Event(Name name, String from, String to, String detail, Set<Tag> roles) {
+        requireAllNonNull(name, from, to, detail, roles);
         this.name = name;
         this.from = from;
         this.to = to;
-        this.details = details;
+        this.detail = detail;
         this.roles.addAll(roles);
     }
 
@@ -50,8 +50,8 @@ public class Event {
         return to;
     }
 
-    public String getDetails() {
-        return details;
+    public String getDetail() {
+        return detail;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Event {
     }
 
     /**
-     * Returns true if both events have the same name.
+     * Returns true if both events have the same name, from date time and to date time.
      * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
@@ -72,7 +72,9 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName());
+                && otherEvent.getName().equals(getName())
+                && otherEvent.getFrom().equals(getFrom())
+                && otherEvent.getTo().equals(getTo());
     }
 
     /**
@@ -94,14 +96,14 @@ public class Event {
         return name.equals(otherEvent.name)
                 && from.equals(otherEvent.from)
                 && to.equals(otherEvent.to)
-                && details.equals(otherEvent.details)
+                && detail.equals(otherEvent.detail)
                 && roles.equals(otherEvent.roles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, from, to, details, roles);
+        return Objects.hash(name, from, to, detail, roles);
     }
 
     @Override
@@ -110,8 +112,8 @@ public class Event {
                 .add("name", name)
                 .add("phone", from)
                 .add("email", to)
-                .add("address", details)
-                .add("tags", roles)
+                .add("detail", detail)
+                .add("roles", roles)
                 .toString();
     }
 

@@ -88,16 +88,16 @@ public interface Model {
     boolean hasEvent(Event event);
 
     /**
-     * Deletes the given event.
-     * The event must exist in the address book.
-     */
-    void deleteEvent(Event target);
-
-    /**
      * Adds the given event.
      * {@code event} must not already exist in the address book.
      */
     void addEvent(Event event);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event target);
 
     /**
      * Returns an unmodifiable view of the filtered member list
@@ -120,7 +120,7 @@ public interface Model {
 
     /**
      * Returns an unmodifiable view of the filtered event list
-     */
+     * */
     ObservableList<Event> getFilteredEventList();
 
     /**
