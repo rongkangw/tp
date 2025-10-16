@@ -146,7 +146,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredMembers.equals(otherModelManager.filteredMembers);
+                && filteredMembers.equals(otherModelManager.filteredMembers)
+                && filteredEvents.equals(otherModelManager.filteredEvents);
     }
 
     //=========== Event =============================================================
