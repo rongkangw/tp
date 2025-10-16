@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.member.Member;
 
 /**
  * Tests that a {@code Member}'s {@code Name} matches any of the keywords given.

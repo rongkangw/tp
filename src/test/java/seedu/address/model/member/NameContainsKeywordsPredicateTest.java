@@ -21,14 +21,17 @@ public class NameContainsKeywordsPredicateTest<T extends HasName> {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPredicate<T> firstPredicate = new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate<T> secondPredicate = new NameContainsKeywordsPredicate<>(secondPredicateKeywordList);
+        NameContainsKeywordsPredicate<T> firstPredicate = new NameContainsKeywordsPredicate<>(
+                firstPredicateKeywordList);
+        NameContainsKeywordsPredicate<T> secondPredicate = new NameContainsKeywordsPredicate<>(
+                secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate<T> firstPredicateCopy = new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate<T> firstPredicateCopy = new NameContainsKeywordsPredicate<>(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,7 +47,8 @@ public class NameContainsKeywordsPredicateTest<T extends HasName> {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate<Member> predicate = new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
+        NameContainsKeywordsPredicate<Member> predicate = new NameContainsKeywordsPredicate<>(
+                Collections.singletonList("Alice"));
         assertTrue(predicate.test(new MemberBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords

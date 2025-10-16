@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.MOVIE_NIGHT;
+import static seedu.address.testutil.TypicalEvents.ORIENTATION;
 import static seedu.address.testutil.TypicalMembers.ALICE;
 import static seedu.address.testutil.TypicalMembers.BENSON;
-import static seedu.address.testutil.TypicalEvents.ORIENTATION;
-import static seedu.address.testutil.TypicalEvents.MOVIE_NIGHT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
