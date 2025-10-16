@@ -43,10 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane memberListPanelPlaceholder;
-
-    @FXML
-    private StackPane eventListPanelPlaceholder;
+    private StackPane mainListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,11 +112,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         memberListPanel = new MemberListPanel(logic.getFilteredMemberList());
-        memberListPanelPlaceholder.getChildren().add(memberListPanel.getRoot());
-
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
-        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+        mainListPanelPlaceholder.getChildren().addAll(memberListPanel.getRoot(), eventListPanel.getRoot());
+
+        //displays member list on start
         eventListPanel.getRoot().setVisible(false);
+        memberListPanel.getRoot().setVisible(true);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -194,10 +192,13 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+
             if (commandResult.isEventCommand()) {
+                //displays event list
                 memberListPanel.getRoot().setVisible(false);
                 eventListPanel.getRoot().setVisible(true);
             } else {
+                //displays member list
                 memberListPanel.getRoot().setVisible(true);
                 eventListPanel.getRoot().setVisible(false);
             }
