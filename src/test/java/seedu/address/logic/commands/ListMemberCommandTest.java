@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMemberAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
 import static seedu.address.testutil.TypicalMembers.getTypicalAddressBook;
@@ -28,12 +27,14 @@ public class ListMemberCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListMemberCommand(), model, ListMemberCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(
+                new ListMemberCommand(), model, ListMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showMemberAtIndex(model, INDEX_FIRST_MEMBER);
-        assertCommandSuccess(new ListMemberCommand(), model, ListMemberCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(
+                new ListMemberCommand(), model, ListMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

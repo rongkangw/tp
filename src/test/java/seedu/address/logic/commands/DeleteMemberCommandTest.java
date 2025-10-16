@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMemberAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEMBER;
@@ -38,7 +37,7 @@ public class DeleteMemberCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteMember(memberToDelete);
 
-        assertCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -63,7 +62,7 @@ public class DeleteMemberCommandTest {
         expectedModel.deleteMember(memberToDelete);
         showNoMember(expectedModel);
 
-        assertCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

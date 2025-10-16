@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalMembers.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +32,7 @@ public class AddMemberCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addMember(validMember);
 
-        assertCommandSuccess(new AddMemberCommand(validMember), model,
+        CommandTestUtil.assertMemberCommandSuccess(new AddMemberCommand(validMember), model,
                 String.format(AddMemberCommand.MESSAGE_SUCCESS, Messages.format(validMember)),
                 expectedModel);
     }
