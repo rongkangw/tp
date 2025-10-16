@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.name.HasName;
 import seedu.address.model.name.Name;
 import seedu.address.model.tag.Tag;
 
@@ -15,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Represents an Event in the address book.
  * Guarantees: detail is present and not null, field values are validated, immutable.
  */
-public class Event {
+public class Event implements HasName {
 
     // Identity fields
     private final Name name; // Imported from member.Name
@@ -38,6 +39,7 @@ public class Event {
         this.roles.addAll(roles);
     }
 
+    @Override
     public Name getName() {
         return name;
     }
