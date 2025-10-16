@@ -27,7 +27,7 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tags" />
+            <FlowPane fx:id="roles" />
             <Label fx:id="from" styleClass="cell_small_label" text="\$from" />
             <Label fx:id="to" styleClass="cell_small_label" text="\$to" />
             <Label fx:id="details" styleClass="cell_small_label" text="\$details"/>
