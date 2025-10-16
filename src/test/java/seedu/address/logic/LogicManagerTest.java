@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListEventCommand;
 import seedu.address.logic.commands.ListMemberCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -61,13 +63,17 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteMemberCommand = "deleteMember 9";
+        String deleteEventCommand = "deleteEvent 9";
         assertCommandException(deleteMemberCommand, MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
+        assertCommandException(deleteEventCommand, MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
         String listMemberCommand = ListMemberCommand.COMMAND_WORD;
+        String listEventCommand = ListEventCommand.COMMAND_WORD;
         assertCommandSuccess(listMemberCommand, ListMemberCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listEventCommand, ListEventCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -85,6 +91,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredMemberList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredMemberList().remove(0));
+    }
+
+    @Test
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEventList().remove(0));
     }
 
     /**
