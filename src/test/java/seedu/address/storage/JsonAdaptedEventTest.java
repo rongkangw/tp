@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.member.Name;
+import seedu.address.model.name.Name;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "@orientation";

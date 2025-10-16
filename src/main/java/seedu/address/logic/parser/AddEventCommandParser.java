@@ -13,7 +13,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
-import seedu.address.model.member.Name;
+import seedu.address.model.name.Name;
 import seedu.address.model.tag.Tag;
 
 /**

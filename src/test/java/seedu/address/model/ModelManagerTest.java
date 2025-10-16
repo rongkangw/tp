@@ -3,10 +3,13 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMembers.ALICE;
 import static seedu.address.testutil.TypicalMembers.BENSON;
+import static seedu.address.testutil.TypicalEvents.ORIENTATION;
+import static seedu.address.testutil.TypicalEvents.MOVIE_NIGHT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +18,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.member.NameContainsKeywordsPredicate;
+import seedu.address.model.event.EventContainsKeywordsPredicate;
+import seedu.address.model.name.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -72,6 +76,7 @@ public class ModelManagerTest {
         assertEquals(path, modelManager.getAddressBookFilePath());
     }
 
+    //=========== Member =============================================================
     @Test
     public void hasMember_nullMember_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasMember(null));
@@ -88,13 +93,15 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasMember(ALICE));
     }
 
+    //=========== Filtered List =============================================================
     @Test
-    public void getFilteredMemberList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredMemberList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
     }
 
     @Test
-    public void equals() {
+    public void members_equals() {
         AddressBook addressBook = new AddressBookBuilder().withMember(ALICE).withMember(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
@@ -123,6 +130,69 @@ public class ModelManagerTest {
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
+
+        // different userPrefs -> returns false
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    //=========== Event =============================================================
+    @Test
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
+    }
+
+    @Test
+    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasEvent(ORIENTATION));
+    }
+
+    @Test
+    public void hasEvent_eventInAddressBook_returnsTrue() {
+        modelManager.addEvent(ORIENTATION);
+        assertTrue(modelManager.hasEvent(ORIENTATION));
+    }
+
+    @Test
+    public void deleteEvent_eventNotInAddressBook_returnsTrue() {
+        modelManager.addEvent(ORIENTATION);
+        assertTrue(modelManager.hasEvent(ORIENTATION));
+
+        modelManager.deleteEvent(ORIENTATION);
+        assertFalse(modelManager.hasEvent(ORIENTATION));
+    }
+
+    @Test
+    public void events_equals() {
+        AddressBook addressBook = new AddressBookBuilder().withEvent(ORIENTATION).withEvent(MOVIE_NIGHT).build();
+        AddressBook differentAddressBook = new AddressBook();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+
+        // different filteredList -> returns false
+        String[] keywords = ORIENTATION.getName().fullName.split("\\s+");
+        modelManager.updateFilteredEventList(new EventContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

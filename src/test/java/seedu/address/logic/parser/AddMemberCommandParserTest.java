@@ -34,7 +34,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.model.member.Email;
 import seedu.address.model.member.Member;
-import seedu.address.model.member.Name;
+import seedu.address.model.name.Name;
 import seedu.address.model.member.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.MemberBuilder;
