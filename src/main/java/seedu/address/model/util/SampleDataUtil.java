@@ -36,7 +36,7 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new Name("Orientation"), "15/10/2025","17/10/2025", "For freshmen",
+            new Event(new Name("Orientation"), "15/10/2025", "17/10/2025", "For freshmen",
                     getTagSet("facilitator", "gamemaster")),
             new Event(new Name("Movie Night"), "20/10/2025 1800", "20/10/2025 2000", "Showing The Shining",
                     getTagSet("FoodIC", "OIC")),
