@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+<<<<<<< HEAD:src/main/java/seedu/club/model/util/SampleDataUtil.java
 import seedu.club.model.ClubBook;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.member.Email;
@@ -11,6 +12,16 @@ import seedu.club.model.member.Member;
 import seedu.club.model.member.Name;
 import seedu.club.model.member.Phone;
 import seedu.club.model.tag.Tag;
+=======
+import seedu.address.model.AddressBook;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Event;
+import seedu.address.model.member.Email;
+import seedu.address.model.member.Member;
+import seedu.address.model.member.Name;
+import seedu.address.model.member.Phone;
+import seedu.address.model.tag.Tag;
+>>>>>>> master:src/main/java/seedu/address/model/util/SampleDataUtil.java
 
 /**
  * Contains utility methods for populating {@code ClubBook} with sample data.
@@ -33,10 +44,29 @@ public class SampleDataUtil {
         };
     }
 
+<<<<<<< HEAD:src/main/java/seedu/club/model/util/SampleDataUtil.java
     public static ReadOnlyClubBook getSampleClubBook() {
         ClubBook sampleAb = new ClubBook();
+=======
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+            new Event(new Name("Orientation"), "15/10/2025", "17/10/2025", "For freshmen",
+                    getTagSet("facilitator", "gamemaster")),
+            new Event(new Name("Movie Night"), "20/10/2025 1800", "20/10/2025 2000", "Showing The Shining",
+                    getTagSet("FoodIC", "OIC")),
+            new Event(new Name("Beach Day"), "25/10/2025", "25/10/2025", "At Sentosa",
+                    getTagSet("Gamemaster", "SafetyOfficer"))
+        };
+    }
+
+    public static ReadOnlyAddressBook getSampleAddressBook() {
+        AddressBook sampleAb = new AddressBook();
+>>>>>>> master:src/main/java/seedu/address/model/util/SampleDataUtil.java
         for (Member sampleMember : getSampleMembers()) {
             sampleAb.addMember(sampleMember);
+        }
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleAb.addEvent(sampleEvent);
         }
         return sampleAb;
     }
