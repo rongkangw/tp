@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -36,7 +36,8 @@ public class EditMemberDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditMemberDescriptor editedAmy = new EditMemberDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditMemberDescriptor editedAmy = new EditMemberDescriptorBuilder(DESC_AMY)
+                .withName(VALID_MEMBER_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

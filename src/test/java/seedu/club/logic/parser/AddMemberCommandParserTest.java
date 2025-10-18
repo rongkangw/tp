@@ -4,7 +4,7 @@ import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.club.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.club.logic.commands.CommandTestUtil.INVALID_MEMBER_NAME_DESC;
 import static seedu.club.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.club.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.club.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -16,7 +16,7 @@ import static seedu.club.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.club.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.club.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -85,7 +85,7 @@ public class AddMemberCommandParserTest {
         // invalid value followed by valid value
 
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + validExpectedMemberString,
+        assertParseFailure(parser, INVALID_MEMBER_NAME_DESC + validExpectedMemberString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // invalid email
@@ -99,7 +99,7 @@ public class AddMemberCommandParserTest {
         // valid value followed by invalid value
 
         // invalid name
-        assertParseFailure(parser, validExpectedMemberString + INVALID_NAME_DESC,
+        assertParseFailure(parser, validExpectedMemberString + INVALID_MEMBER_NAME_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // invalid email
@@ -124,7 +124,7 @@ public class AddMemberCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMemberCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+        assertParseFailure(parser, VALID_MEMBER_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // missing phone prefix
@@ -136,14 +136,14 @@ public class AddMemberCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB,
+        assertParseFailure(parser, VALID_MEMBER_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, INVALID_MEMBER_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
@@ -159,7 +159,7 @@ public class AddMemberCommandParserTest {
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+        assertParseFailure(parser, INVALID_MEMBER_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.Messages.MESSAGE_MEMBERS_LISTED_OVERVIEW;
-import static seedu.club.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.club.testutil.TypicalMembers.CARL;
 import static seedu.club.testutil.TypicalMembers.ELLE;
 import static seedu.club.testutil.TypicalMembers.FIONA;
@@ -60,7 +59,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredMemberList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredMemberList());
     }
 
@@ -70,7 +69,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredMemberList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredMemberList());
     }
 

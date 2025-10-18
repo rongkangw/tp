@@ -1,6 +1,5 @@
 package seedu.club.logic.commands;
 
-import static seedu.club.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,8 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(
+                new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -26,7 +26,8 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalClubBook(), new UserPrefs());
         expectedModel.setClubBook(new ClubBook());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertMemberCommandSuccess(
+                new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

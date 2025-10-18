@@ -1,6 +1,7 @@
 package seedu.club.testutil;
 
 import seedu.club.model.ClubBook;
+import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 
 /**
@@ -25,6 +26,14 @@ public class ClubBookBuilder {
      */
     public ClubBookBuilder withMember(Member member) {
         clubBook.addMember(member);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Event} to the {@code ClubBook} that we are building.
+     */
+    public ClubBookBuilder withEvent(Event event) {
+        clubBook.addEvent(event);
         return this;
     }
 

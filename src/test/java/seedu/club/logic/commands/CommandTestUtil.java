@@ -3,9 +3,12 @@ package seedu.club.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.club.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -27,8 +30,8 @@ import seedu.club.testutil.EditMemberDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_MEMBER_NAME_AMY = "Amy Bee";
+    public static final String VALID_MEMBER_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -36,8 +39,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String VALID_EVENT_NAME_BEACHDAY = "Beach Day";
+    public static final String VALID_EVENT_NAME_ORIENTATION = "Orientation";
+    public static final String VALID_FROM_BEACHDAY = "25/10/2025";
+    public static final String VALID_FROM_ORIENTATION = "15/10/2025";
+    public static final String VALID_TO_BEACHDAY = "25/10/2025";
+    public static final String VALID_TO_ORIENTATION = "17/10/2025";
+    public static final String VALID_ROLE_FACILITATOR = "facilitator";
+    public static final String VALID_ROLE_FOODIC = "FoodIC";
+
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_MEMBER_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_MEMBER_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -45,10 +57,27 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String NAME_DESC_BEACHDAY = " " + PREFIX_NAME + VALID_EVENT_NAME_BEACHDAY;
+    public static final String NAME_DESC_ORIENTATION = " " + PREFIX_NAME + VALID_EVENT_NAME_ORIENTATION;
+    public static final String FROM_DESC_BEACHDAY = " " + PREFIX_FROM + VALID_FROM_BEACHDAY;
+    public static final String FROM_DESC_ORIENTATION = " " + PREFIX_FROM + VALID_FROM_ORIENTATION;
+    public static final String TO_DESC_BEACHDAY = " " + PREFIX_TO + VALID_TO_BEACHDAY;
+    public static final String TO_DESC_ORIENTATION = " " + PREFIX_TO + VALID_TO_ORIENTATION;
+    public static final String ROLE_DESC_FACILITATOR = " " + PREFIX_ROLE + VALID_ROLE_FACILITATOR;
+    public static final String ROLE_DESC_FOODIC = " " + PREFIX_ROLE + VALID_ROLE_FOODIC;
+
+    public static final String INVALID_MEMBER_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_NAME + "Orientation&"; // '&' not allowed in names
+    /*
+     DATETIME not implemented yet
+     public static final String INVALID_FROM_DESC = " " + PREFIX_FROM + "911a"; // 'a' not allowed in phones
+     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+     */
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "facilitator*"; // '*' not allowed in roles
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -57,10 +86,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditMemberDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditMemberDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
@@ -85,9 +114,19 @@ public class CommandTestUtil {
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+    public static void assertMemberCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                  Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertEventCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

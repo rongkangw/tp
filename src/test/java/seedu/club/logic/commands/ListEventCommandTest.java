@@ -1,6 +1,5 @@
 package seedu.club.logic.commands;
 
-import static seedu.club.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.club.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
@@ -28,12 +27,14 @@ public class ListEventCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertEventCommandSuccess(
+                new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showEventAtIndex(model, INDEX_FIRST_MEMBER);
-        assertCommandSuccess(new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertEventCommandSuccess(
+                new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

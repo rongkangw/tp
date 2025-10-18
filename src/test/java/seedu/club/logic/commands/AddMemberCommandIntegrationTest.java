@@ -1,7 +1,6 @@
 package seedu.club.logic.commands;
 
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.club.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +32,7 @@ public class AddMemberCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
         expectedModel.addMember(validMember);
 
-        assertCommandSuccess(new AddMemberCommand(validMember), model,
+        CommandTestUtil.assertMemberCommandSuccess(new AddMemberCommand(validMember), model,
                 String.format(AddMemberCommand.MESSAGE_SUCCESS, Messages.format(validMember)),
                 expectedModel);
     }

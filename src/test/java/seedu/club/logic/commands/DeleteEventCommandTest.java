@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.club.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.club.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.club.logic.commands.DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS;
 import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
@@ -38,7 +37,7 @@ public class DeleteEventCommandTest {
         ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
         expectedModel.deleteEvent(eventToDelete);
 
-        assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertEventCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -62,7 +61,7 @@ public class DeleteEventCommandTest {
         expectedModel.deleteEvent(eventToDelete);
         showNoEvent(expectedModel);
 
-        assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertEventCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
