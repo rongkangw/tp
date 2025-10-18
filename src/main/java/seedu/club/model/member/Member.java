@@ -36,11 +36,6 @@ public class Member extends NamedEntity {
         this.tags.addAll(tags);
     }
 
-    @Override
-    public Name getName() {
-        return name;
-    }
-
     public Phone getPhone() {
         return phone;
     }

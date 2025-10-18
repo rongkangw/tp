@@ -40,11 +40,6 @@ public class Event extends NamedEntity {
         this.roles.addAll(roles);
     }
 
-    @Override
-    public Name getName() {
-        return name;
-    }
-
     public String getFrom() {
         return from;
     }
