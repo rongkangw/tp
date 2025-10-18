@@ -100,7 +100,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void members_equals() {
+    public void member_equals() {
         ClubBook clubBook = new ClubBookBuilder().withMember(ALICE).withMember(BENSON).build();
         ClubBook differentClubBook = new ClubBook();
         UserPrefs userPrefs = new UserPrefs();
@@ -163,7 +163,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void events_equals() {
+    public void event_equals() {
         ClubBook clubBook = new ClubBookBuilder().withEvent(ORIENTATION).withEvent(MOVIE_NIGHT).build();
         ClubBook differentClubBook = new ClubBook();
         UserPrefs userPrefs = new UserPrefs();

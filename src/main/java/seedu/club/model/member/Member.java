@@ -8,15 +8,15 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.club.commons.util.ToStringBuilder;
-import seedu.club.model.name.HasName;
 import seedu.club.model.name.Name;
+import seedu.club.model.name.Nameable;
 import seedu.club.model.tag.Tag;
 
 /**
  * Represents a Member in the club book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Member implements HasName {
+public class Member implements Nameable {
 
     // Identity fields
     private final Name name;

@@ -1,4 +1,4 @@
-package seedu.club.model.member;
+package seedu.club.model.name;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,11 +10,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.club.model.name.HasName;
-import seedu.club.model.name.NameContainsKeywordsPredicate;
+import seedu.club.model.member.Member;
 import seedu.club.testutil.MemberBuilder;
 
-public class NameContainsKeywordsPredicateTest<T extends HasName> {
+public class NameContainsKeywordsPredicateTest<T extends Nameable> {
 
     @Test
     public void equals() {
