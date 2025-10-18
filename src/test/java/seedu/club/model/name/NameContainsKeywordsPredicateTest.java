@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.club.model.member.Member;
 import seedu.club.testutil.MemberBuilder;
 
-public class NameContainsKeywordsPredicateTest<T extends Nameable> {
+public class NameContainsKeywordsPredicateTest<T extends NamedEntity> {
 
     @Test
     public void equals() {

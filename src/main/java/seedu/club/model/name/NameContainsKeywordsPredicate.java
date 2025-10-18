@@ -9,7 +9,7 @@ import seedu.club.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Member}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate<T extends Nameable> implements Predicate<T> {
+public class NameContainsKeywordsPredicate<T extends NamedEntity> implements Predicate<T> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
