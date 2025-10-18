@@ -14,7 +14,7 @@ import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.event.Event;
 
 /**
- * An Immutable AddressBook storing only events that is serializable to JSON format.
+ * An Immutable ClubBook storing only events that is serializable to JSON format.
  */
 @JsonRootName(value = "events")
 public class JsonSerializableEvent {
@@ -32,7 +32,7 @@ public class JsonSerializableEvent {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyClubBook} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableEvent}.
      */
@@ -41,7 +41,7 @@ public class JsonSerializableEvent {
     }
 
     /**
-     * @return AddressBook containing the events
+     * @return ClubBook containing the events
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

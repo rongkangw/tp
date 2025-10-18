@@ -11,7 +11,7 @@ import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.model.tag.Tag;
 
 /**
- * Represents a Member in the address book.
+ * Represents a Member in the club book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Member {

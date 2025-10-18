@@ -14,12 +14,11 @@ public interface EventStorage {
 
     /**
      * Returns the file path of the data file.
-     * @return
      */
     Path getEventFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyClubBook}.
+     * Returns ClubBook data as a {@link ReadOnlyClubBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.

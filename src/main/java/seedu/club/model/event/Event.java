@@ -12,7 +12,7 @@ import seedu.club.model.member.Name;
 import seedu.club.model.tag.Tag;
 
 /**
- * Represents an Event in the address book.
+ * Represents an Event in the club book.
  * Guarantees: detail is present and not null, field values are validated, immutable.
  */
 public class Event {

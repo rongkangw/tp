@@ -71,7 +71,7 @@ public class DeleteMemberCommandTest {
         showMemberAtIndex(model, INDEX_FIRST_MEMBER);
 
         Index outOfBoundIndex = INDEX_SECOND_MEMBER;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of club book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getClubBook().getMemberList().size());
 
         DeleteMemberCommand deleteMemberCommand = new DeleteMemberCommand(outOfBoundIndex);

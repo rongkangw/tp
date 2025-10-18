@@ -70,7 +70,7 @@ public class DeleteEventCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of club book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getClubBook().getEventList().size());
 
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
