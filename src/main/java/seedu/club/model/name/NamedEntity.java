@@ -9,8 +9,9 @@ public abstract class NamedEntity {
     protected final Name name;
 
     /**
-     * Constructs a {@code Name}.
-     * @param name A valid {@code Name};
+     * Constructs a {@code NamedEntity}.
+     *
+     * @param name A valid {@code Name}
      */
     public NamedEntity(Name name) {
         requireNonNull(name);

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.club.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a name.
+ * Represents the name of a {@code NamedEntity}.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
