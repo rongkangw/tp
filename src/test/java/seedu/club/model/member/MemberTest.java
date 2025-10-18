@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.club.testutil.Assert.assertThrows;
@@ -37,15 +37,15 @@ public class MemberTest {
         assertTrue(ALICE.isSameMember(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new MemberBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new MemberBuilder(ALICE).withName(VALID_MEMBER_NAME_BOB).build();
         assertFalse(ALICE.isSameMember(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Member editedBob = new MemberBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Member editedBob = new MemberBuilder(BOB).withName(VALID_MEMBER_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameMember(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        String nameWithTrailingSpaces = VALID_MEMBER_NAME_BOB + " ";
         editedBob = new MemberBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameMember(editedBob));
     }
@@ -69,7 +69,7 @@ public class MemberTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Member editedAlice = new MemberBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Member editedAlice = new MemberBuilder(ALICE).withName(VALID_MEMBER_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

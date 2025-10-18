@@ -30,7 +30,7 @@ public class ClubBookBuilder {
     }
 
     /**
-     * Adds a new {@code Event} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Event} to the {@code ClubBook} that we are building.
      */
     public ClubBookBuilder withEvent(Event event) {
         clubBook.addEvent(event);

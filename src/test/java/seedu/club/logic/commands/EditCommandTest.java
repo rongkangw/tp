@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -54,10 +54,10 @@ public class EditCommandTest {
         Member lastMember = model.getFilteredMemberList().get(indexLastMember.getZeroBased());
 
         MemberBuilder memberInList = new MemberBuilder(lastMember);
-        Member editedMember = memberInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Member editedMember = memberInList.withName(VALID_MEMBER_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastMember, descriptor);
 
@@ -86,9 +86,9 @@ public class EditCommandTest {
         showMemberAtIndex(model, INDEX_FIRST_MEMBER);
 
         Member memberInFilteredList = model.getFilteredMemberList().get(INDEX_FIRST_MEMBER.getZeroBased());
-        Member editedMember = new MemberBuilder(memberInFilteredList).withName(VALID_NAME_BOB).build();
+        Member editedMember = new MemberBuilder(memberInFilteredList).withName(VALID_MEMBER_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MEMBER,
-                new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember));
 
@@ -122,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidMemberIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMemberList().size() + 1);
-        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
@@ -140,7 +140,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getClubBook().getMemberList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
     }

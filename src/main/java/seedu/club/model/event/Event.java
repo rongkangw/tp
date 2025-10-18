@@ -76,8 +76,8 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Returns true if both members have the same identity and data fields.
-     * This defines a stronger notion of equality between two members.
+     * Returns true if both events have the same identity and data fields.
+     * This defines a stronger notion of equality between two events.
      */
     @Override
     public boolean equals(Object other) {
