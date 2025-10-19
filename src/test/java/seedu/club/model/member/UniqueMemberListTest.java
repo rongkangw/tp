@@ -3,7 +3,7 @@ package seedu.club.model.member;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalMembers.ALICE;
 import static seedu.club.testutil.TypicalMembers.BOB;
@@ -41,7 +41,7 @@ public class UniqueMemberListTest {
     @Test
     public void contains_memberWithSameIdentityFieldsInList_returnsTrue() {
         uniqueMemberList.add(ALICE);
-        Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Member editedAlice = new MemberBuilder(ALICE).withRoles(VALID_ROLE_HUSBAND)
                 .build();
         assertTrue(uniqueMemberList.contains(editedAlice));
     }
@@ -84,7 +84,7 @@ public class UniqueMemberListTest {
     @Test
     public void setMember_editedMemberHasSameIdentity_success() {
         uniqueMemberList.add(ALICE);
-        Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Member editedAlice = new MemberBuilder(ALICE).withRoles(VALID_ROLE_HUSBAND)
                 .build();
         uniqueMemberList.setMember(ALICE, editedAlice);
         UniqueMemberList expectedUniqueMemberList = new UniqueMemberList();

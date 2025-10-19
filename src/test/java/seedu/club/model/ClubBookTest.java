@@ -3,7 +3,7 @@ package seedu.club.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalEvents.ORIENTATION;
 import static seedu.club.testutil.TypicalMembers.ALICE;
@@ -48,7 +48,7 @@ public class ClubBookTest {
     @Test
     public void resetData_withDuplicateMembers_throwsDuplicateMemberException() {
         // Two members with the same identity fields
-        Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Member editedAlice = new MemberBuilder(ALICE).withRoles(VALID_ROLE_HUSBAND)
                 .build();
         Event editedClass = new EventBuilder(ORIENTATION).build();
         List<Member> newMembers = Arrays.asList(ALICE, editedAlice);
@@ -77,7 +77,7 @@ public class ClubBookTest {
     @Test
     public void hasMember_memberWithSameIdentityFieldsInClubBook_returnsTrue() {
         clubBook.addMember(ALICE);
-        Member editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Member editedAlice = new MemberBuilder(ALICE).withRoles(VALID_ROLE_HUSBAND)
                 .build();
         assertTrue(clubBook.hasMember(editedAlice));
     }

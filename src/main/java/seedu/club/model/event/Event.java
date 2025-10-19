@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.model.name.Name;
 import seedu.club.model.name.NamedEntity;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.role.Role;
 
 /**
  * Represents an Event in the club book.
@@ -24,12 +24,12 @@ public class Event extends NamedEntity {
     private final String detail;
 
     // Data fields
-    private final Set<Tag> roles = new HashSet<>(); // MVP: No current roles, event roles done in future iterations
+    private final Set<Role> roles = new HashSet<>(); // MVP: No current roles, event roles done in future iterations
 
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, String from, String to, String detail, Set<Tag> roles) {
+    public Event(Name name, String from, String to, String detail, Set<Role> roles) {
         super(name);
         requireAllNonNull(from, to, detail, roles);
         this.from = from;
@@ -51,10 +51,10 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getRoles() {
+    public Set<Role> getRoles() {
         return Collections.unmodifiableSet(roles);
     }
 

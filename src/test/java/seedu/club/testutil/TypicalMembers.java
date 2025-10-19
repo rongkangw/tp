@@ -6,8 +6,8 @@ import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_FRIEND;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,14 +23,14 @@ public class TypicalMembers {
 
     public static final Member ALICE = new MemberBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withPhone("94351253")
-            .withTags("friends").build();
+            .withRoles("friends").build();
     public static final Member BENSON = new MemberBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withRoles("owesMoney", "friends").build();
     public static final Member CARL = new MemberBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
     public static final Member DANIEL = new MemberBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withTags("friends").build();
+            .withEmail("cornelia@example.com").withRoles("friends").build();
     public static final Member ELLE = new MemberBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").build();
     public static final Member FIONA = new MemberBuilder().withName("Fiona Kunz").withPhone("9482427")
@@ -46,9 +46,9 @@ public class TypicalMembers {
 
     // Manually added - Member's details found in {@code CommandTestUtil}
     public static final Member AMY = new MemberBuilder().withName(VALID_MEMBER_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withRoles(VALID_ROLE_FRIEND).build();
     public static final Member BOB = new MemberBuilder().withName(VALID_MEMBER_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withRoles(VALID_ROLE_HUSBAND, VALID_ROLE_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

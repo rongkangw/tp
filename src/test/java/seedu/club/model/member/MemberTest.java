@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalMembers.ALICE;
 import static seedu.club.testutil.TypicalMembers.BOB;
@@ -20,7 +20,7 @@ public class MemberTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Member member = new MemberBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> member.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> member.getRoles().remove(0));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class MemberTest {
 
         // same name, all other attributes different -> returns true
         Member editedAlice = new MemberBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withRoles(VALID_ROLE_HUSBAND).build();
         assertTrue(ALICE.isSameMember(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -80,15 +80,15 @@ public class MemberTest {
         editedAlice = new MemberBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new MemberBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        // different roles -> returns false
+        editedAlice = new MemberBuilder(ALICE).withRoles(VALID_ROLE_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
         String expected = Member.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", tags=" + ALICE.getTags() + "}";
+                + ", email=" + ALICE.getEmail() + ", roles=" + ALICE.getRoles() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
