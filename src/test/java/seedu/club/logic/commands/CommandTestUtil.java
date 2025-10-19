@@ -17,6 +17,7 @@ import java.util.List;
 
 import seedu.club.commons.core.index.Index;
 import seedu.club.logic.commands.exceptions.CommandException;
+import seedu.club.logic.commands.member.EditCommand;
 import seedu.club.model.ClubBook;
 import seedu.club.model.Model;
 import seedu.club.model.event.Event;

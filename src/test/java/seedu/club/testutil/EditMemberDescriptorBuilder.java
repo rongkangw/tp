@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.club.logic.commands.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;

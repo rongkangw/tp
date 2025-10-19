@@ -7,8 +7,8 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.club.logic.commands.AddMemberCommand;
-import seedu.club.logic.commands.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.AddMemberCommand;
+import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
 import seedu.club.model.member.Member;
 import seedu.club.model.tag.Tag;
 

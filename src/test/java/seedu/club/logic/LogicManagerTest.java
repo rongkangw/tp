@@ -18,10 +18,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.club.logic.commands.AddMemberCommand;
+import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.CommandResult;
-import seedu.club.logic.commands.ListEventCommand;
-import seedu.club.logic.commands.ListMemberCommand;
+import seedu.club.logic.commands.event.ListEventCommand;
+import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.Model;

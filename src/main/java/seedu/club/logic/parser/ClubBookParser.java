@@ -8,19 +8,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.club.commons.core.LogsCenter;
-import seedu.club.logic.commands.AddEventCommand;
-import seedu.club.logic.commands.AddMemberCommand;
-import seedu.club.logic.commands.ClearCommand;
+import seedu.club.logic.commands.event.AddEventCommand;
+import seedu.club.logic.commands.member.AddMemberCommand;
+import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.Command;
-import seedu.club.logic.commands.DeleteEventCommand;
-import seedu.club.logic.commands.DeleteMemberCommand;
-import seedu.club.logic.commands.EditCommand;
-import seedu.club.logic.commands.ExitCommand;
-import seedu.club.logic.commands.FindCommand;
-import seedu.club.logic.commands.HelpCommand;
-import seedu.club.logic.commands.ListEventCommand;
-import seedu.club.logic.commands.ListMemberCommand;
+import seedu.club.logic.commands.event.DeleteEventCommand;
+import seedu.club.logic.commands.member.DeleteMemberCommand;
+import seedu.club.logic.commands.member.EditCommand;
+import seedu.club.logic.commands.general.ExitCommand;
+import seedu.club.logic.commands.member.FindCommand;
+import seedu.club.logic.commands.general.HelpCommand;
+import seedu.club.logic.commands.event.ListEventCommand;
+import seedu.club.logic.commands.member.ListMemberCommand;
+import seedu.club.logic.parser.event.AddEventCommandParser;
+import seedu.club.logic.parser.event.DeleteEventCommandParser;
 import seedu.club.logic.parser.exceptions.ParseException;
+import seedu.club.logic.parser.member.AddMemberCommandParser;
+import seedu.club.logic.parser.member.DeleteMemberCommandParser;
+import seedu.club.logic.parser.member.EditCommandParser;
+import seedu.club.logic.parser.member.FindCommandParser;
 
 /**
  * Parses user input.
