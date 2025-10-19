@@ -19,7 +19,6 @@ import seedu.club.model.tag.Tag;
 public class Event extends NamedEntity {
 
     // Identity fields
-    private final Name name; // Imported from member.Name
     private final String from; // MVP: Store as string for now
     private final String to; // MVP: Store as string for now
     private final String detail;
@@ -33,7 +32,6 @@ public class Event extends NamedEntity {
     public Event(Name name, String from, String to, String detail, Set<Tag> roles) {
         super(name);
         requireAllNonNull(from, to, detail, roles);
-        this.name = name;
         this.from = from;
         this.to = to;
         this.detail = detail;
