@@ -20,5 +20,5 @@ public abstract class NamedEntity {
 
     public Name getName() {
         return name;
-    };
+    }
 }

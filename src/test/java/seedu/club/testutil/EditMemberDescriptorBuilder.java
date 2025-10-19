@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.club.logic.commands.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
@@ -16,7 +16,7 @@ import seedu.club.model.tag.Tag;
  */
 public class EditMemberDescriptorBuilder {
 
-    private EditMemberDescriptor descriptor;
+    private final EditMemberDescriptor descriptor;
 
     public EditMemberDescriptorBuilder() {
         descriptor = new EditMemberDescriptor();

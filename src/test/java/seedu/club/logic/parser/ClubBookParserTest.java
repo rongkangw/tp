@@ -14,17 +14,16 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.club.logic.commands.AddEventCommand;
-import seedu.club.logic.commands.AddMemberCommand;
-import seedu.club.logic.commands.ClearCommand;
-import seedu.club.logic.commands.DeleteEventCommand;
-import seedu.club.logic.commands.DeleteMemberCommand;
-import seedu.club.logic.commands.EditCommand;
-import seedu.club.logic.commands.EditCommand.EditMemberDescriptor;
-import seedu.club.logic.commands.ExitCommand;
-import seedu.club.logic.commands.FindCommand;
-import seedu.club.logic.commands.HelpCommand;
-import seedu.club.logic.commands.ListMemberCommand;
+import seedu.club.logic.commands.event.AddEventCommand;
+import seedu.club.logic.commands.event.DeleteEventCommand;
+import seedu.club.logic.commands.general.ClearCommand;
+import seedu.club.logic.commands.general.ExitCommand;
+import seedu.club.logic.commands.general.HelpCommand;
+import seedu.club.logic.commands.member.AddMemberCommand;
+import seedu.club.logic.commands.member.DeleteMemberCommand;
+import seedu.club.logic.commands.member.EditCommand;
+import seedu.club.logic.commands.member.FindCommand;
+import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
@@ -69,7 +68,7 @@ public class ClubBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Member member = new MemberBuilder().build();
-        EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(member).build();
+        EditCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(member).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_MEMBER.getOneBased() + " " + MemberUtil.getEditMemberDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_MEMBER, descriptor), command);

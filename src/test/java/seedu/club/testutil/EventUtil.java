@@ -6,7 +6,7 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 
-import seedu.club.logic.commands.AddEventCommand;
+import seedu.club.logic.commands.event.AddEventCommand;
 import seedu.club.model.event.Event;
 
 /**
