@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.club.commons.core.index.Index;
 import seedu.club.logic.Messages;
-import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.CommandTestUtil;
+import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
 import seedu.club.model.ClubBook;
 import seedu.club.model.Model;
