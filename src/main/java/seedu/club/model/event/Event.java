@@ -8,17 +8,17 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.club.commons.util.ToStringBuilder;
-import seedu.club.model.member.Name;
+import seedu.club.model.name.Name;
+import seedu.club.model.name.NamedEntity;
 import seedu.club.model.tag.Tag;
 
 /**
  * Represents an Event in the club book.
  * Guarantees: detail is present and not null, field values are validated, immutable.
  */
-public class Event {
+public class Event extends NamedEntity {
 
     // Identity fields
-    private final Name name; // Imported from member.Name
     private final String from; // MVP: Store as string for now
     private final String to; // MVP: Store as string for now
     private final String detail;
@@ -30,16 +30,12 @@ public class Event {
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<Tag> roles) {
-        requireAllNonNull(name, from, to, detail, roles);
-        this.name = name;
+        super(name);
+        requireAllNonNull(from, to, detail, roles);
         this.from = from;
         this.to = to;
         this.detail = detail;
         this.roles.addAll(roles);
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public String getFrom() {
