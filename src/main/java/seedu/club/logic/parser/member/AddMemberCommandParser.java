@@ -5,7 +5,6 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Set;
 

@@ -7,7 +7,6 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.club.testutil.Assert.assertThrows;
 
