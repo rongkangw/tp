@@ -25,8 +25,8 @@ import seedu.club.model.name.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) and unit tests for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalClubBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalClubBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalClubBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalClubBook(), new UserPrefs());
 
     @Test
     public void equals() {

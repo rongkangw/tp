@@ -34,7 +34,7 @@ import seedu.club.testutil.MemberBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalClubBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalClubBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

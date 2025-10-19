@@ -16,7 +16,7 @@ import seedu.club.model.tag.Tag;
  */
 public class EditMemberDescriptorBuilder {
 
-    private EditMemberDescriptor descriptor;
+    private final EditMemberDescriptor descriptor;
 
     public EditMemberDescriptorBuilder() {
         descriptor = new EditMemberDescriptor();

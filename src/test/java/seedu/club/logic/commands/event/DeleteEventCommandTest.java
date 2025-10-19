@@ -26,7 +26,7 @@ import seedu.club.model.event.Event;
  */
 public class DeleteEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

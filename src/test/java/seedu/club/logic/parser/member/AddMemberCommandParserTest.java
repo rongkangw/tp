@@ -40,7 +40,7 @@ import seedu.club.model.tag.Tag;
 import seedu.club.testutil.MemberBuilder;
 
 public class AddMemberCommandParserTest {
-    private AddMemberCommandParser parser = new AddMemberCommandParser();
+    private final AddMemberCommandParser parser = new AddMemberCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

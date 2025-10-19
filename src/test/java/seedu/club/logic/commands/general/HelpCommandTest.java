@@ -13,8 +13,8 @@ import seedu.club.model.ModelManager;
  * Contains integration tests (interaction with the Model) for {@code HelpCommand}
  */
 public class HelpCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
 
     @Test
     public void execute_help_success() {
