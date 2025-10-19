@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ROLE_HUSBAND = "husband";
-    public static final String VALID_ROLE_FRIEND = "friend";
+    public static final String VALID_MEMBER_ROLE_PRESIDENT = "president";
+    public static final String VALID_MEMBER_ROLE_TREASURER = "treasurer";
 
     public static final String VALID_EVENT_NAME_BEACHDAY = "Beach Day";
     public static final String VALID_EVENT_NAME_ORIENTATION = "Orientation";
@@ -44,8 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_FROM_ORIENTATION = "15/10/2025";
     public static final String VALID_TO_BEACHDAY = "25/10/2025";
     public static final String VALID_TO_ORIENTATION = "17/10/2025";
-    public static final String VALID_ROLE_FACILITATOR = "facilitator";
-    public static final String VALID_ROLE_FOODIC = "FoodIC";
+    public static final String VALID_EVENT_ROLE_FACILITATOR = "facilitator";
+    public static final String VALID_EVENT_ROLE_FOODIC = "foodIC";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_MEMBER_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_MEMBER_NAME_BOB;
@@ -53,8 +53,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ROLE_DESC_FRIEND = " " + PREFIX_ROLE + VALID_ROLE_FRIEND;
-    public static final String ROLE_DESC_HUSBAND = " " + PREFIX_ROLE + VALID_ROLE_HUSBAND;
+    public static final String MEMBER_ROLE_DESC_PRESIDENT = " " + PREFIX_ROLE + VALID_MEMBER_ROLE_TREASURER;
+    public static final String MEMBER_ROLE_DESC_TREASURER = " " + PREFIX_ROLE + VALID_MEMBER_ROLE_PRESIDENT;
 
     public static final String NAME_DESC_BEACHDAY = " " + PREFIX_NAME + VALID_EVENT_NAME_BEACHDAY;
     public static final String NAME_DESC_ORIENTATION = " " + PREFIX_NAME + VALID_EVENT_NAME_ORIENTATION;
@@ -62,8 +62,8 @@ public class CommandTestUtil {
     public static final String FROM_DESC_ORIENTATION = " " + PREFIX_FROM + VALID_FROM_ORIENTATION;
     public static final String TO_DESC_BEACHDAY = " " + PREFIX_TO + VALID_TO_BEACHDAY;
     public static final String TO_DESC_ORIENTATION = " " + PREFIX_TO + VALID_TO_ORIENTATION;
-    public static final String ROLE_DESC_FACILITATOR = " " + PREFIX_ROLE + VALID_ROLE_FACILITATOR;
-    public static final String ROLE_DESC_FOODIC = " " + PREFIX_ROLE + VALID_ROLE_FOODIC;
+    public static final String EVENT_ROLE_DESC_FACILITATOR = " " + PREFIX_ROLE + VALID_EVENT_ROLE_FACILITATOR;
+    public static final String EVENT_ROLE_DESC_FOODIC = " " + PREFIX_ROLE + VALID_EVENT_ROLE_FOODIC;
 
     public static final String INVALID_MEMBER_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -87,10 +87,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withRoles(VALID_ROLE_FRIEND).build();
+                .withRoles(VALID_MEMBER_ROLE_TREASURER).build();
         DESC_BOB = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRoles(VALID_ROLE_HUSBAND, VALID_ROLE_FRIEND).build();
+                .withRoles(VALID_MEMBER_ROLE_PRESIDENT, VALID_MEMBER_ROLE_TREASURER).build();
     }
 
     /**

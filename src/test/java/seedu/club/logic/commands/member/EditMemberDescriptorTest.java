@@ -7,8 +7,8 @@ import static seedu.club.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,7 @@ public class EditMemberDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different roles -> returns false
-        editedAmy = new EditMemberDescriptorBuilder(DESC_AMY).withRoles(VALID_ROLE_HUSBAND).build();
+        editedAmy = new EditMemberDescriptorBuilder(DESC_AMY).withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 

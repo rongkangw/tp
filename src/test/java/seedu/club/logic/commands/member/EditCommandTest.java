@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.club.logic.commands.CommandTestUtil.showMemberAtIndex;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
@@ -57,10 +57,10 @@ public class EditCommandTest {
 
         MemberBuilder memberInList = new MemberBuilder(lastMember);
         Member editedMember = memberInList.withName(VALID_MEMBER_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withRoles(VALID_ROLE_HUSBAND).build();
+                .withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
 
         EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withRoles(VALID_ROLE_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
         EditCommand editCommand = new EditCommand(indexLastMember, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember));

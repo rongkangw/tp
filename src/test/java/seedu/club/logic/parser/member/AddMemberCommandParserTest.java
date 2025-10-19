@@ -7,19 +7,19 @@ import static seedu.club.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.club.logic.commands.CommandTestUtil.INVALID_MEMBER_NAME_DESC;
 import static seedu.club.logic.commands.CommandTestUtil.INVALID_MEMBER_ROLE_DESC;
 import static seedu.club.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.club.logic.commands.CommandTestUtil.MEMBER_ROLE_DESC_PRESIDENT;
+import static seedu.club.logic.commands.CommandTestUtil.MEMBER_ROLE_DESC_TREASURER;
 import static seedu.club.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.club.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.club.logic.commands.CommandTestUtil.ROLE_DESC_FRIEND;
-import static seedu.club.logic.commands.CommandTestUtil.ROLE_DESC_HUSBAND;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_TREASURER;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_FRIEND;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -44,25 +44,28 @@ public class AddMemberCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Member expectedMember = new MemberBuilder(BOB).withRoles(VALID_ROLE_FRIEND).build();
+        Member expectedMember = new MemberBuilder(BOB).withRoles(VALID_MEMBER_ROLE_TREASURER).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ROLE_DESC_FRIEND, new AddMemberCommand(expectedMember));
+                + MEMBER_ROLE_DESC_PRESIDENT, new AddMemberCommand(expectedMember));
 
 
         // multiple roles - all accepted
-        Member expectedMemberMultipleRoles = new MemberBuilder(BOB).withRoles(VALID_ROLE_FRIEND, VALID_ROLE_HUSBAND)
+        Member expectedMemberMultipleRoles = new MemberBuilder(BOB)
+                .withRoles(VALID_MEMBER_ROLE_TREASURER, VALID_MEMBER_ROLE_PRESIDENT)
                 .build();
-        assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND,
+        assertParseSuccess(
+                parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + MEMBER_ROLE_DESC_TREASURER + MEMBER_ROLE_DESC_PRESIDENT,
                 new AddMemberCommand(expectedMemberMultipleRoles));
     }
 
     @Test
     public void parse_repeatedNonRoleValue_failure() {
         String validExpectedMemberString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ROLE_DESC_FRIEND;
+                + MEMBER_ROLE_DESC_PRESIDENT;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedMemberString,
@@ -144,19 +147,19 @@ public class AddMemberCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_MEMBER_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + MEMBER_ROLE_DESC_TREASURER + MEMBER_ROLE_DESC_PRESIDENT, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + MEMBER_ROLE_DESC_TREASURER + MEMBER_ROLE_DESC_PRESIDENT, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + MEMBER_ROLE_DESC_TREASURER + MEMBER_ROLE_DESC_PRESIDENT, Email.MESSAGE_CONSTRAINTS);
 
         // invalid role
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_MEMBER_ROLE_DESC + VALID_ROLE_FRIEND, Role.MESSAGE_CONSTRAINTS);
+                + INVALID_MEMBER_ROLE_DESC + VALID_MEMBER_ROLE_TREASURER, Role.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_MEMBER_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB,
@@ -164,7 +167,7 @@ public class AddMemberCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND,
+                + MEMBER_ROLE_DESC_TREASURER + MEMBER_ROLE_DESC_PRESIDENT,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMemberCommand.MESSAGE_USAGE));
     }
 }

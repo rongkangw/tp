@@ -4,10 +4,10 @@ import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_TREASURER;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_FRIEND;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class TypicalMembers {
 
     // Manually added - Member's details found in {@code CommandTestUtil}
     public static final Member AMY = new MemberBuilder().withName(VALID_MEMBER_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withRoles(VALID_ROLE_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withRoles(VALID_MEMBER_ROLE_TREASURER).build();
     public static final Member BOB = new MemberBuilder().withName(VALID_MEMBER_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withRoles(VALID_ROLE_HUSBAND, VALID_ROLE_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withRoles(VALID_MEMBER_ROLE_PRESIDENT, VALID_MEMBER_ROLE_TREASURER)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

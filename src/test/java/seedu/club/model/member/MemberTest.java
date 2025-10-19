@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_HUSBAND;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalMembers.ALICE;
 import static seedu.club.testutil.TypicalMembers.BOB;
@@ -33,7 +33,7 @@ public class MemberTest {
 
         // same name, all other attributes different -> returns true
         Member editedAlice = new MemberBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRoles(VALID_ROLE_HUSBAND).build();
+                .withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
         assertTrue(ALICE.isSameMember(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,7 +81,7 @@ public class MemberTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different roles -> returns false
-        editedAlice = new MemberBuilder(ALICE).withRoles(VALID_ROLE_HUSBAND).build();
+        editedAlice = new MemberBuilder(ALICE).withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
