@@ -44,16 +44,12 @@ public class EventRole extends Role {
         }
 
         EventRole otherRole = (EventRole) other;
-        return assignedTo != null
-                ? roleName.equals(otherRole.roleName) && assignedTo.equals(otherRole.assignedTo)
-                : roleName.equals(otherRole.roleName);
+        return roleName.equals(otherRole.roleName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleName,
-                assignedTo == null ? 0 : assignedTo.getName().hashCode()
-        );
+        return Objects.hash(roleName);
     }
 
     @Override
