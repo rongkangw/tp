@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Member> filteredMembers;
     private final FilteredList<Event> filteredEvents;
+    private ListState currentState = ListState.MEMBER;
 
     /**
      * Initializes a ModelManager with the given clubBook and userPrefs.
@@ -193,5 +194,18 @@ public class ModelManager implements Model {
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+    }
+
+    //=========== State =============================================================
+
+    @Override
+    public ListState getListState() {
+        return currentState;
+    }
+
+    @Override
+    public void setListState(ListState state) {
+        requireNonNull(state);
+        currentState = state;
     }
 }

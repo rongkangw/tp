@@ -10,6 +10,7 @@ import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
+import seedu.club.model.ListState;
 import seedu.club.model.Model;
 import seedu.club.model.event.Event;
 
@@ -35,6 +36,14 @@ public class DeleteEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        /* Ensure that event list is displaying first, so that user does not unintentionally delete
+           an event if they are on member list instead.
+         */
+        if (model.getListState() != ListState.EVENT) {
+            throw new CommandException(Messages.MESSAGE_NOT_EVENT_STATE);
+        }
+
         List<Event> lastShownList = model.getFilteredEventList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -42,11 +51,14 @@ public class DeleteEventCommand extends Command {
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // The following line is technically not necessary since already guaranteed to be on event list,
+        // but is there as a safety measure.
+        model.setListState(ListState.EVENT);
         model.deleteEvent(eventToDelete);
         //TODO: update this with proper formatted message
         //return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.getName()),
-                false, false, true);
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.getName()));
     }
 
     @Override

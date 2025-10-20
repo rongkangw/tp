@@ -21,6 +21,7 @@ import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
+import seedu.club.model.ListState;
 import seedu.club.model.Model;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
@@ -69,6 +70,14 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        /* Ensure that member list is displaying first, so that user does not unintentionally edit
+           an event if they are on event list instead.
+         */
+        if (model.getListState() != ListState.MEMBER) {
+            throw new CommandException(Messages.MESSAGE_NOT_MEMBER_STATE);
+        }
+
         List<Member> lastShownList = model.getFilteredMemberList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -82,6 +91,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
+        // The following line is technically not necessary since already guaranteed to be on member list,
+        // but is there as a safety measure.
+        model.setListState(ListState.MEMBER);
         model.setMember(memberToEdit, editedMember);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));

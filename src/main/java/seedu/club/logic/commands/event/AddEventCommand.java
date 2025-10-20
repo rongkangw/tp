@@ -12,6 +12,7 @@ import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
+import seedu.club.model.ListState;
 import seedu.club.model.Model;
 import seedu.club.model.event.Event;
 
@@ -58,8 +59,9 @@ public class AddEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
+        model.setListState(ListState.EVENT);
         model.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override

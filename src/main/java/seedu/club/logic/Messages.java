@@ -21,6 +21,10 @@ public class Messages {
     public static final String MESSAGE_MEMBERS_LISTED_OVERVIEW = "%1$d members listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_NOT_EVENT_STATE =
+            "The current list is a member list, switch to event list first using \"listMembers\"";
+    public static final String MESSAGE_NOT_MEMBER_STATE =
+            "The current list is an event list, switch to member list first using \"listEvents\"";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
