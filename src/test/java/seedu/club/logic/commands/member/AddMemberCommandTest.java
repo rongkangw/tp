@@ -20,6 +20,7 @@ import seedu.club.logic.Messages;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.ClubBook;
+import seedu.club.model.ListState;
 import seedu.club.model.Model;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.ReadOnlyUserPrefs;
@@ -188,6 +189,16 @@ public class AddMemberCommandTest {
         public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ListState getListState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setListState(ListState listState) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -229,6 +240,14 @@ public class AddMemberCommandTest {
         @Override
         public ReadOnlyClubBook getClubBook() {
             return new ClubBook();
+        }
+
+        /**
+         * Method is overridden but not implemented since {@code ModelStubAcceptingMemberAdded} only cares about
+         * adding members and not setting list states.
+         */
+        @Override
+        public void setListState(ListState state) {
         }
     }
 

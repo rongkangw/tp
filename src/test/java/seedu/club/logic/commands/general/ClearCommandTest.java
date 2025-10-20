@@ -20,7 +20,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        CommandTestUtil.assertMemberCommandSuccess(
+        CommandTestUtil.assertCommandSuccess(
                 new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -30,7 +30,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalClubBook(), new UserPrefs());
         expectedModel.setClubBook(new ClubBook());
 
-        CommandTestUtil.assertMemberCommandSuccess(
+        CommandTestUtil.assertCommandSuccess(
                 new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
