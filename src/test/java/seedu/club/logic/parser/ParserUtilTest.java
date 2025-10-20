@@ -152,7 +152,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseRoles_collectionWithInvalidRoles_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRoles(Arrays.asList(VALID_MEMBER_ROLE_1, INVALID_MEMBER_ROLE)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoles(
+                Arrays.asList(VALID_MEMBER_ROLE_1, INVALID_MEMBER_ROLE))
+        );
     }
 
     @Test
@@ -162,8 +164,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseRoles_collectionWithValidRoles_returnsRoleSet() throws Exception {
-        Set<Role> actualRoleSet = ParserUtil.parseRoles(Arrays.asList(VALID_MEMBER_ROLE_1, VALID_MEMBER_ROLE_2));
-        Set<Role> expectedRoleSet = new HashSet<Role>(Arrays.asList(new Role(VALID_MEMBER_ROLE_1), new Role(VALID_MEMBER_ROLE_2)));
+        Set<Role> actualRoleSet = ParserUtil.parseRoles(
+                Arrays.asList(VALID_MEMBER_ROLE_1, VALID_MEMBER_ROLE_2)
+        );
+        Set<Role> expectedRoleSet = new HashSet<Role>(
+                Arrays.asList(new Role(VALID_MEMBER_ROLE_1), new Role(VALID_MEMBER_ROLE_2))
+        );
 
         assertEquals(expectedRoleSet, actualRoleSet);
     }
