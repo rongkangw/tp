@@ -22,8 +22,8 @@ public class JsonAdaptedEventTest {
     private static final String VALID_FROM = ORIENTATION.getFrom();
     private static final String VALID_TO = ORIENTATION.getTo();
     private static final String VALID_DETAILS = ORIENTATION.getDetail();
-    private static final List<JsonAdaptedRole> VALID_ROLES = ORIENTATION.getRoles().stream()
-                            .map(JsonAdaptedRole::new)
+    private static final List<JsonAdaptedEventRole> VALID_ROLES = ORIENTATION.getRoles().stream()
+                            .map(JsonAdaptedEventRole::new)
                             .collect(Collectors.toList());
 
 
@@ -69,9 +69,9 @@ public class JsonAdaptedEventTest {
     }
 
     @Test
-    public void toModelType_invalidRoles_throwsIllegalValueException() {
-        List<JsonAdaptedRole> invalidRoles = new ArrayList<>(VALID_ROLES);
-        invalidRoles.add(new JsonAdaptedRole(INVALID_ROLE));
+    public void toModelType_invalidEventRoles_throwsIllegalValueException() {
+        List<JsonAdaptedEventRole> invalidRoles = new ArrayList<>(VALID_ROLES);
+        invalidRoles.add(new JsonAdaptedEventRole(INVALID_ROLE));
         JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_FROM, VALID_TO, VALID_DETAILS, invalidRoles);
         assertThrows(IllegalValueException.class, event::toModelType);
     }

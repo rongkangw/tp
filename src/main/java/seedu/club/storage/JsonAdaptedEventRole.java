@@ -4,27 +4,28 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.club.commons.exceptions.IllegalValueException;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.role.Role;
 
 /**
- * Jackson-friendly version of {@link Role}.
+ * Jackson-friendly version of {@link EventRole}.
  */
-class JsonAdaptedRole {
+class JsonAdaptedEventRole {
 
     private final String roleName;
 
     /**
-     * Constructs a {@code JsonAdaptedRole} with the given {@code roleName}.
+     * Constructs a {@code JsonAdaptedEventRole} with the given {@code roleName}.
      */
     @JsonCreator
-    public JsonAdaptedRole(String roleName) {
+    public JsonAdaptedEventRole(String roleName) {
         this.roleName = roleName;
     }
 
     /**
      * Converts a given {@code Role} into this class for Jackson use.
      */
-    public JsonAdaptedRole(Role source) {
+    public JsonAdaptedEventRole(EventRole source) {
         roleName = source.roleName;
     }
 
@@ -38,11 +39,11 @@ class JsonAdaptedRole {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted role.
      */
-    public Role toModelType() throws IllegalValueException {
-        if (!Role.isValidRoleName(roleName)) {
+    public EventRole toModelType() throws IllegalValueException {
+        if (!EventRole.isValidRoleName(roleName)) {
             throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Role(roleName);
+        return new EventRole(roleName);
     }
 
 }

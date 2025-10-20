@@ -9,7 +9,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * A utility class to help with building EditMemberDescriptor objects.
@@ -66,8 +66,8 @@ public class EditMemberDescriptorBuilder {
      * that we are building.
      */
     public EditMemberDescriptorBuilder withRoles(String... roles) {
-        Set<Role> roleSet = Stream.of(roles).map(Role::new).collect(Collectors.toSet());
-        descriptor.setRoles(roleSet);
+        Set<MemberRole> memberRoleSet = Stream.of(roles).map(MemberRole::new).collect(Collectors.toSet());
+        descriptor.setRoles(memberRoleSet);
         return this;
     }
 

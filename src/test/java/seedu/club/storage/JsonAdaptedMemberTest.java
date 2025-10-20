@@ -25,8 +25,8 @@ public class JsonAdaptedMemberTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final List<JsonAdaptedRole> VALID_ROLES = BENSON.getRoles().stream()
-            .map(JsonAdaptedRole::new)
+    private static final List<JsonAdaptedMemberRole> VALID_ROLES = BENSON.getRoles().stream()
+            .map(JsonAdaptedMemberRole::new)
             .collect(Collectors.toList());
 
     @Test
@@ -83,8 +83,8 @@ public class JsonAdaptedMemberTest {
 
     @Test
     public void toModelType_invalidRoles_throwsIllegalValueException() {
-        List<JsonAdaptedRole> invalidRoles = new ArrayList<>(VALID_ROLES);
-        invalidRoles.add(new JsonAdaptedRole(INVALID_ROLE));
+        List<JsonAdaptedMemberRole> invalidRoles = new ArrayList<>(VALID_ROLES);
+        invalidRoles.add(new JsonAdaptedMemberRole(INVALID_ROLE));
         JsonAdaptedMember member =
                 new JsonAdaptedMember(VALID_NAME, VALID_PHONE, VALID_EMAIL, invalidRoles);
         assertThrows(IllegalValueException.class, member::toModelType);

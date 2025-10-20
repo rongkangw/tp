@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.util.SampleDataUtil;
 
 /**
@@ -22,7 +22,7 @@ public class EventBuilder {
     private String from;
     private String to;
     private String detail;
-    private Set<Role> roles;
+    private Set<EventRole> roles;
 
     /**
      * Creates a {@code EventBuilder} with the default detail
@@ -65,7 +65,7 @@ public class EventBuilder {
      * @return EventBuilder
      */
     public EventBuilder withRoles(String ... roles) {
-        this.roles = SampleDataUtil.getRoleSet(roles);
+        this.roles = SampleDataUtil.getEventRoleSet(roles);
         return this;
     }
 

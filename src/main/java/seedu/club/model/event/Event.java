@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.model.name.Name;
 import seedu.club.model.name.NamedEntity;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
 
 /**
  * Represents an Event in the club book.
@@ -24,18 +24,23 @@ public class Event extends NamedEntity {
     private final String detail;
 
     // Data fields
-    private final Set<Role> roles = new HashSet<>(); // MVP: No current roles, event roles done in future iterations
+    private final Set<EventRole> roles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, String from, String to, String detail, Set<Role> roles) {
+    public Event(Name name, String from, String to, String detail, Set<EventRole> roles) {
         super(name);
         requireAllNonNull(from, to, detail, roles);
         this.from = from;
         this.to = to;
         this.detail = detail;
         this.roles.addAll(roles);
+
+        // assign each eventRole to this event
+        for (EventRole role : this.roles) {
+            role.setAssignedTo(this);
+        }
     }
 
     public String getFrom() {
@@ -54,7 +59,7 @@ public class Event extends NamedEntity {
      * Returns an immutable role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Role> getRoles() {
+    public Set<EventRole> getRoles() {
         return Collections.unmodifiableSet(roles);
     }
 
