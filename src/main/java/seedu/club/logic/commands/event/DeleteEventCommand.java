@@ -56,9 +56,7 @@ public class DeleteEventCommand extends Command {
         // but is there as a safety measure.
         model.setListState(ListState.EVENT);
         model.deleteEvent(eventToDelete);
-        //TODO: update this with proper formatted message
-        //return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.getName()));
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
     }
 
     @Override
