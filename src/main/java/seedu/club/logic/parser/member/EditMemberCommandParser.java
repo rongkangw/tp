@@ -25,7 +25,7 @@ import seedu.club.model.role.Role;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditMemberCommand> {
+public class EditMemberCommandParser implements Parser<EditMemberCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -42,7 +42,8 @@ public class EditCommandParser implements Parser<EditMemberCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMemberCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMemberCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
