@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_NAME_BEACHDAY;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_NAME_ORIENTATION;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_ROLE_FOODIC;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_FROM_BEACHDAY;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_ROLE_FOODIC;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TO_BEACHDAY;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalEvents.BEACH_DAY;
@@ -34,36 +34,36 @@ public class EventTest {
 
         // same name, all other attributes different -> returns false
         Event sameOrientationName = new EventBuilder(ORIENTATION).withFrom(VALID_FROM_BEACHDAY)
-                .withTo(VALID_TO_BEACHDAY).withRoles(VALID_ROLE_FOODIC).build();
+                .withTo(VALID_TO_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.isSameEvent(sameOrientationName));
 
         // same from, all other attributes different -> returns false
         Event sameOrientationFrom = new EventBuilder(ORIENTATION).withName(VALID_EVENT_NAME_BEACHDAY)
-                .withTo(VALID_TO_BEACHDAY).withRoles(VALID_ROLE_FOODIC).build();
+                .withTo(VALID_TO_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.isSameEvent(sameOrientationFrom));
 
         // same to, all other attributes different -> returns false
         Event sameOrientationTo = new EventBuilder(ORIENTATION).withName(VALID_EVENT_NAME_BEACHDAY)
-                .withFrom(VALID_FROM_BEACHDAY).withRoles(VALID_ROLE_FOODIC).build();
+                .withFrom(VALID_FROM_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.isSameEvent(sameOrientationTo));
 
         // same name, from, all other attributes different -> returns false
         Event sameOrientationNameAndFrom = new EventBuilder(ORIENTATION)
-                .withTo(VALID_TO_BEACHDAY).withRoles(VALID_ROLE_FOODIC).build();
+                .withTo(VALID_TO_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.isSameEvent(sameOrientationNameAndFrom));
 
         // same name, to, all other attributes different -> returns false
         Event sameOrientationNameAndTo = new EventBuilder(ORIENTATION)
-                .withFrom(VALID_FROM_BEACHDAY).withRoles(VALID_ROLE_FOODIC).build();
+                .withFrom(VALID_FROM_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.isSameEvent(sameOrientationNameAndTo));
 
         // same from, to, all other attributes different -> returns false
         Event sameOrientationFromAndTo = new EventBuilder(ORIENTATION)
-                .withName(VALID_EVENT_NAME_BEACHDAY).withRoles(VALID_ROLE_FOODIC).build();
+                .withName(VALID_EVENT_NAME_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.isSameEvent(sameOrientationFromAndTo));
 
         // same name, from, to, all other attributes different -> returns true
-        Event editedOrientationRoles = new EventBuilder(ORIENTATION).withRoles(VALID_ROLE_FOODIC).build();
+        Event editedOrientationRoles = new EventBuilder(ORIENTATION).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertTrue(ORIENTATION.isSameEvent(editedOrientationRoles));
 
         // name differs in case, all other attributes same -> returns false
@@ -108,7 +108,7 @@ public class EventTest {
         assertFalse(ORIENTATION.equals(editedOrientation));
 
         // different roles -> returns false
-        editedOrientation = new EventBuilder(ORIENTATION).withRoles(VALID_ROLE_FOODIC).build();
+        editedOrientation = new EventBuilder(ORIENTATION).withRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.equals(editedOrientation));
     }
 

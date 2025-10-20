@@ -31,7 +31,7 @@ public class EventUtil {
         sb.append(PREFIX_TO + event.getTo() + " ");
         sb.append(PREFIX_DETAIL + event.getDetail() + " ");
         event.getRoles().stream().forEach(
-            s -> sb.append(PREFIX_ROLE + s.tagName + " ")
+            s -> sb.append(PREFIX_ROLE + s.roleName + " ")
         );
         return sb.toString();
     }

@@ -18,7 +18,7 @@ import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.role.Role;
 
 /**
  * Parses input arguments and creates a new AddEventCommand object
@@ -47,8 +47,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         String detail = argMultimap.getValue(PREFIX_DETAIL).isPresent()
                         ? ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).get())
                         : "";
-        Set<Tag> roleList = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
-                            ? ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ROLE))
+        Set<Role> roleList = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
+                            ? ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE))
                             : Collections.emptySet();
 
         Event event = new Event(name, from, to, detail, roleList);
