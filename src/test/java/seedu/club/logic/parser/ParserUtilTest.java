@@ -23,13 +23,13 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_ROLE = "#friend";
+    private static final String INVALID_MEMBER_ROLE = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_ROLE_1 = "friend";
-    private static final String VALID_ROLE_2 = "neighbour";
+    private static final String VALID_MEMBER_ROLE_1 = "friend";
+    private static final String VALID_MEMBER_ROLE_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -129,19 +129,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseRole_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRole(INVALID_ROLE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseRole(INVALID_MEMBER_ROLE));
     }
 
     @Test
     public void parseRole_validValueWithoutWhitespace_returnsRole() throws Exception {
-        Role expectedRole = new Role(VALID_ROLE_1);
-        assertEquals(expectedRole, ParserUtil.parseRole(VALID_ROLE_1));
+        Role expectedRole = new Role(VALID_MEMBER_ROLE_1);
+        assertEquals(expectedRole, ParserUtil.parseRole(VALID_MEMBER_ROLE_1));
     }
 
     @Test
     public void parseRole_validValueWithWhitespace_returnsTrimmedRole() throws Exception {
-        String roleWithWhitespace = WHITESPACE + VALID_ROLE_1 + WHITESPACE;
-        Role expectedRole = new Role(VALID_ROLE_1);
+        String roleWithWhitespace = WHITESPACE + VALID_MEMBER_ROLE_1 + WHITESPACE;
+        Role expectedRole = new Role(VALID_MEMBER_ROLE_1);
         assertEquals(expectedRole, ParserUtil.parseRole(roleWithWhitespace));
     }
 
@@ -152,7 +152,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseRoles_collectionWithInvalidRoles_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRoles(Arrays.asList(VALID_ROLE_1, INVALID_ROLE)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoles(Arrays.asList(VALID_MEMBER_ROLE_1, INVALID_MEMBER_ROLE)));
     }
 
     @Test
@@ -162,8 +162,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseRoles_collectionWithValidRoles_returnsRoleSet() throws Exception {
-        Set<Role> actualRoleSet = ParserUtil.parseRoles(Arrays.asList(VALID_ROLE_1, VALID_ROLE_2));
-        Set<Role> expectedRoleSet = new HashSet<Role>(Arrays.asList(new Role(VALID_ROLE_1), new Role(VALID_ROLE_2)));
+        Set<Role> actualRoleSet = ParserUtil.parseRoles(Arrays.asList(VALID_MEMBER_ROLE_1, VALID_MEMBER_ROLE_2));
+        Set<Role> expectedRoleSet = new HashSet<Role>(Arrays.asList(new Role(VALID_MEMBER_ROLE_1), new Role(VALID_MEMBER_ROLE_2)));
 
         assertEquals(expectedRoleSet, actualRoleSet);
     }

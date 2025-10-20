@@ -193,7 +193,7 @@ public class AddMemberCommandTest {
     /**
      * A Model stub that contains a single member.
      */
-    private class ModelStubWithMember extends ModelStub {
+    private static class ModelStubWithMember extends ModelStub {
         private final Member member;
 
         ModelStubWithMember(Member member) {
@@ -211,7 +211,7 @@ public class AddMemberCommandTest {
     /**
      * A Model stub that always accept the member being added.
      */
-    private class ModelStubAcceptingMemberAdded extends ModelStub {
+    private static class ModelStubAcceptingMemberAdded extends ModelStub {
         final ArrayList<Member> membersAdded = new ArrayList<>();
 
         @Override

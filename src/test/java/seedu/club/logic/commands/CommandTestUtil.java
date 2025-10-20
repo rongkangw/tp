@@ -45,7 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_TO_BEACHDAY = "25/10/2025";
     public static final String VALID_TO_ORIENTATION = "17/10/2025";
     public static final String VALID_EVENT_ROLE_FACILITATOR = "facilitator";
-    public static final String VALID_EVENT_ROLE_FOODIC = "foodIC";
+    public static final String VALID_EVENT_ROLE_FOODIC = "FoodIC";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_MEMBER_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_MEMBER_NAME_BOB;
