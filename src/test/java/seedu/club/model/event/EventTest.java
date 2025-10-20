@@ -14,6 +14,7 @@ import static seedu.club.testutil.TypicalEvents.ORIENTATION;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.club.model.role.exceptions.DuplicateRoleAssignmentException;
 import seedu.club.testutil.EventBuilder;
 
 public class EventTest {
@@ -79,9 +80,9 @@ public class EventTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
-        Event orientationCopy = new EventBuilder(ORIENTATION).withDetail(ORIENTATION.getDetail()).build();
-        assertTrue(ORIENTATION.equals(orientationCopy));
+        // same values -> returns false because roles cannot be reassigned
+        assertThrows(DuplicateRoleAssignmentException.class,
+                () -> new EventBuilder(ORIENTATION).withDetail(ORIENTATION.getDetail()).build());
 
         // same object -> returns true
         assertTrue(ORIENTATION.equals(ORIENTATION));
