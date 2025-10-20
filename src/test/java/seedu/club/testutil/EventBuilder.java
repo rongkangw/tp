@@ -43,8 +43,13 @@ public class EventBuilder {
         name = eventToCopy.getName();
         from = eventToCopy.getFrom();
         to = eventToCopy.getTo();
-        detail = DEFAULT_DETAIL;
+        detail = eventToCopy.getDetail();
         roles = new HashSet<>(eventToCopy.getRoles());
+
+        for (EventRole role : roles) {
+            role.setAssignedTo(null);
+        }
+
     }
 
     /**
