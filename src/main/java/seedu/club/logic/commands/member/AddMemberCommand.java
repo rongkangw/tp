@@ -15,7 +15,7 @@ import seedu.club.model.Model;
 import seedu.club.model.member.Member;
 
 /**
- * Adds a person to the club member list.
+ * Adds a member to the club's member list.
  */
 public class AddMemberCommand extends Command {
 
