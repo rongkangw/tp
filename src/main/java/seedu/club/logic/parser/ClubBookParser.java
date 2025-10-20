@@ -12,6 +12,7 @@ import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.event.AddEventCommand;
 import seedu.club.logic.commands.event.DeleteEventCommand;
 import seedu.club.logic.commands.event.ListEventCommand;
+import seedu.club.logic.commands.event.UnassignEventCommand;
 import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.general.ExitCommand;
 import seedu.club.logic.commands.general.HelpCommand;
@@ -95,6 +96,9 @@ public class ClubBookParser {
 
         case ListEventCommand.COMMAND_WORD:
             return new ListEventCommand();
+
+        case UnassignEventCommand.COMMAND_WORD:
+            return new UnassignEventCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
