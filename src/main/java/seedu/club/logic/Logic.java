@@ -31,6 +31,11 @@ public interface Logic {
     ListState getListState();
 
     /**
+     * Sets a list to be displayed.
+     */
+    public void setListState(ListState state);
+
+    /**
      * Returns the ClubBook.
      *
      * @see seedu.club.model.Model#getClubBook()

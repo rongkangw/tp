@@ -1,5 +1,7 @@
 package seedu.club.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
@@ -67,6 +69,12 @@ public class LogicManager implements Logic {
     @Override
     public ListState getListState() {
         return model.getListState();
+    }
+
+    @Override
+    public void setListState(ListState state) {
+        requireNonNull(state);
+        model.setListState(state);
     }
 
     @Override
