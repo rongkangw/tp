@@ -7,6 +7,7 @@ import seedu.club.commons.core.GuiSettings;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.parser.exceptions.ParseException;
+import seedu.club.model.ListState;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
@@ -23,6 +24,11 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Returns the current list to be displayed.
+     */
+    ListState getListState();
 
     /**
      * Returns the ClubBook.

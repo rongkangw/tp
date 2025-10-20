@@ -13,6 +13,7 @@ import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.parser.ClubBookParser;
 import seedu.club.logic.parser.exceptions.ParseException;
+import seedu.club.model.ListState;
 import seedu.club.model.Model;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.event.Event;
@@ -61,6 +62,11 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public ListState getListState() {
+        return model.getListState();
     }
 
     @Override
