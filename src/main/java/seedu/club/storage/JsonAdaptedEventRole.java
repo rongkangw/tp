@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.model.role.EventRole;
-import seedu.club.model.role.Role;
 
 /**
  * Jackson-friendly version of {@link EventRole}.
@@ -23,7 +22,7 @@ class JsonAdaptedEventRole {
     }
 
     /**
-     * Converts a given {@code Role} into this class for Jackson use.
+     * Converts a given {@code EventRole} into this class for Jackson use.
      */
     public JsonAdaptedEventRole(EventRole source) {
         roleName = source.roleName;
@@ -35,13 +34,13 @@ class JsonAdaptedEventRole {
     }
 
     /**
-     * Converts this Jackson-friendly adapted role object into the model's {@code Role} object.
+     * Converts this Jackson-friendly adapted event role object into the model's {@code EventRole} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted role.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted event role.
      */
     public EventRole toModelType() throws IllegalValueException {
         if (!EventRole.isValidRoleName(roleName)) {
-            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(EventRole.MESSAGE_CONSTRAINTS);
         }
         return new EventRole(roleName);
     }

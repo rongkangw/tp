@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.model.role.MemberRole;
-import seedu.club.model.role.Role;
 
 /**
  * Jackson-friendly version of {@link MemberRole}.
@@ -23,7 +22,7 @@ class JsonAdaptedMemberRole {
     }
 
     /**
-     * Converts a given {@code Role} into this class for Jackson use.
+     * Converts a given {@code MemberRole} into this class for Jackson use.
      */
     public JsonAdaptedMemberRole(MemberRole source) {
         roleName = source.roleName;
@@ -35,13 +34,13 @@ class JsonAdaptedMemberRole {
     }
 
     /**
-     * Converts this Jackson-friendly adapted role object into the model's {@code Role} object.
+     * Converts this Jackson-friendly adapted member role object into the model's {@code MemberRole} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted role.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted member role.
      */
     public MemberRole toModelType() throws IllegalValueException {
         if (!MemberRole.isValidRoleName(roleName)) {
-            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(MemberRole.MESSAGE_CONSTRAINTS);
         }
         return new MemberRole(roleName);
     }

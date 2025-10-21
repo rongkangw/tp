@@ -62,7 +62,7 @@ public class EditMemberDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code EditMemberDescriptor}
+     * Parses the {@code roles} into a {@code Set<MemberRole>} and set it to the {@code EditMemberDescriptor}
      * that we are building.
      */
     public EditMemberDescriptorBuilder withRoles(String... roles) {
