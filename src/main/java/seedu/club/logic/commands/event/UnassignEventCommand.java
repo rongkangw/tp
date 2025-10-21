@@ -64,6 +64,8 @@ public class UnassignEventCommand extends Command {
 
 
 
+
+
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
 
     }
