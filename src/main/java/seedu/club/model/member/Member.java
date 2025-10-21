@@ -8,35 +8,32 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.club.commons.util.ToStringBuilder;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.name.Name;
+import seedu.club.model.name.NamedEntity;
+import seedu.club.model.role.Role;
 
 /**
  * Represents a Member in the club book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Member {
+public class Member extends NamedEntity {
 
     // Identity fields
-    private final Name name;
     private final Phone phone;
     private final Email email;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Role> roles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Member(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
-        this.name = name;
+    public Member(Name name, Phone phone, Email email, Set<Role> roles) {
+        super(name);
+        requireAllNonNull(phone, email, roles);
         this.phone = phone;
         this.email = email;
-        this.tags.addAll(tags);
-    }
-
-    public Name getName() {
-        return name;
+        this.roles.addAll(roles);
     }
 
     public Phone getPhone() {
@@ -48,11 +45,11 @@ public class Member {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Role> getRoles() {
+        return Collections.unmodifiableSet(roles);
     }
 
     /**
@@ -87,13 +84,13 @@ public class Member {
         return name.equals(otherMember.name)
                 && phone.equals(otherMember.phone)
                 && email.equals(otherMember.email)
-                && tags.equals(otherMember.tags);
+                && roles.equals(otherMember.roles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, roles);
     }
 
     @Override
@@ -102,7 +99,7 @@ public class Member {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("tags", tags)
+                .add("roles", roles)
                 .toString();
     }
 

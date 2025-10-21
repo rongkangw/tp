@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.club.model.member.Member;
 
 /**
- * An UI component that displays information of a {@code Member}.
+ * A UI component that displays information of a {@code Member}.
  */
 public class MemberCard extends UiPart<Region> {
 
@@ -37,7 +37,7 @@ public class MemberCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane memberRoles;
 
     /**
      * Creates a {@code MemberCode} with the given {@code Member} and index to display.
@@ -49,8 +49,8 @@ public class MemberCard extends UiPart<Region> {
         name.setText(member.getName().fullName);
         phone.setText(member.getPhone().value);
         email.setText(member.getEmail().value);
-        member.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        member.getRoles().stream()
+                .sorted(Comparator.comparing(role -> role.roleName))
+                .forEach(role -> memberRoles.getChildren().add(new Label(role.roleName)));
     }
 }

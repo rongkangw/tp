@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
-import seedu.club.model.member.Name;
 import seedu.club.model.member.Phone;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.name.Name;
+import seedu.club.model.role.Role;
 
 /**
  * Jackson-friendly version of {@link Member}.
@@ -26,19 +26,19 @@ class JsonAdaptedMember {
     private final String name;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedRole> roles = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedMember} with the given member details.
      */
     @JsonCreator
     public JsonAdaptedMember(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("email") String email, @JsonProperty("roles") List<JsonAdaptedRole> roles) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (roles != null) {
+            this.roles.addAll(roles);
         }
     }
 
@@ -49,8 +49,8 @@ class JsonAdaptedMember {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        roles.addAll(source.getRoles().stream()
+                .map(JsonAdaptedRole::new)
                 .collect(Collectors.toList()));
     }
 
@@ -60,9 +60,9 @@ class JsonAdaptedMember {
      * @throws IllegalValueException if there were any data constraints violated in the adapted member.
      */
     public Member toModelType() throws IllegalValueException {
-        final List<Tag> memberTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            memberTags.add(tag.toModelType());
+        final List<Role> memberRoles = new ArrayList<>();
+        for (JsonAdaptedRole role : roles) {
+            memberRoles.add(role.toModelType());
         }
 
         if (name == null) {
@@ -89,8 +89,8 @@ class JsonAdaptedMember {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<Tag> modelTags = new HashSet<>(memberTags);
-        return new Member(modelName, modelPhone, modelEmail, modelTags);
+        final Set<Role> modelRoles = new HashSet<>(memberRoles);
+        return new Member(modelName, modelPhone, modelEmail, modelRoles);
     }
 
 }

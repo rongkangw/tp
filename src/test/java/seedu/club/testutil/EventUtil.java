@@ -6,7 +6,7 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 
-import seedu.club.logic.commands.AddEventCommand;
+import seedu.club.logic.commands.event.AddEventCommand;
 import seedu.club.model.event.Event;
 
 /**
@@ -31,7 +31,7 @@ public class EventUtil {
         sb.append(PREFIX_TO + event.getTo() + " ");
         sb.append(PREFIX_DETAIL + event.getDetail() + " ");
         event.getRoles().stream().forEach(
-            s -> sb.append(PREFIX_ROLE + s.tagName + " ")
+            s -> sb.append(PREFIX_ROLE + s.roleName + " ")
         );
         return sb.toString();
     }

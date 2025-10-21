@@ -18,11 +18,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.club.logic.commands.AddMemberCommand;
 import seedu.club.logic.commands.CommandResult;
-import seedu.club.logic.commands.ListEventCommand;
-import seedu.club.logic.commands.ListMemberCommand;
+import seedu.club.logic.commands.event.ListEventCommand;
 import seedu.club.logic.commands.exceptions.CommandException;
+import seedu.club.logic.commands.member.AddMemberCommand;
+import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.Model;
 import seedu.club.model.ModelManager;
@@ -41,7 +41,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -178,7 +178,7 @@ public class LogicManagerTest {
         // Triggers the saveClubBook method by executing an add command
         String addCommand = AddMemberCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
-        Member expectedMember = new MemberBuilder(AMY).withTags().build();
+        Member expectedMember = new MemberBuilder(AMY).withRoles().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addMember(expectedMember);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

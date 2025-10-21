@@ -4,19 +4,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.club.logic.commands.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
-import seedu.club.model.member.Name;
 import seedu.club.model.member.Phone;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.name.Name;
+import seedu.club.model.role.Role;
 
 /**
  * A utility class to help with building EditMemberDescriptor objects.
  */
 public class EditMemberDescriptorBuilder {
 
-    private EditMemberDescriptor descriptor;
+    private final EditMemberDescriptor descriptor;
 
     public EditMemberDescriptorBuilder() {
         descriptor = new EditMemberDescriptor();
@@ -34,7 +34,7 @@ public class EditMemberDescriptorBuilder {
         descriptor.setName(member.getName());
         descriptor.setPhone(member.getPhone());
         descriptor.setEmail(member.getEmail());
-        descriptor.setTags(member.getTags());
+        descriptor.setRoles(member.getRoles());
     }
 
     /**
@@ -62,12 +62,12 @@ public class EditMemberDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditMemberDescriptor}
+     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code EditMemberDescriptor}
      * that we are building.
      */
-    public EditMemberDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditMemberDescriptorBuilder withRoles(String... roles) {
+        Set<Role> roleSet = Stream.of(roles).map(Role::new).collect(Collectors.toSet());
+        descriptor.setRoles(roleSet);
         return this;
     }
 

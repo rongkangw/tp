@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.club.model.event.Event;
 
 /**
- * An UI component that displays information of a {@code Event}.
+ * A UI component that displays information of a {@code Event}.
  */
 public class EventCard extends UiPart<Region> {
 
@@ -39,7 +39,7 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label details;
     @FXML
-    private FlowPane roles;
+    private FlowPane eventRoles;
 
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
@@ -53,7 +53,7 @@ public class EventCard extends UiPart<Region> {
         to.setText(event.getTo());
         details.setText(event.getDetail());
         event.getRoles().stream()
-                .sorted(Comparator.comparing(role -> role.tagName))
-                .forEach(role -> roles.getChildren().add(new Label(role.tagName)));
+                .sorted(Comparator.comparing(role -> role.roleName))
+                .forEach(role -> eventRoles.getChildren().add(new Label(role.roleName)));
     }
 }

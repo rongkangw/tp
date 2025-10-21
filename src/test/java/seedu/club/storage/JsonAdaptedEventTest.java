@@ -12,18 +12,18 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.club.commons.exceptions.IllegalValueException;
-import seedu.club.model.member.Name;
+import seedu.club.model.name.Name;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "@orientation";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ROLE = "#friend";
 
     private static final String VALID_NAME = ORIENTATION.getName().toString();
     private static final String VALID_FROM = ORIENTATION.getFrom();
     private static final String VALID_TO = ORIENTATION.getTo();
     private static final String VALID_DETAILS = ORIENTATION.getDetail();
-    private static final List<JsonAdaptedTag> VALID_ROLES = ORIENTATION.getRoles().stream()
-                            .map(JsonAdaptedTag::new)
+    private static final List<JsonAdaptedRole> VALID_ROLES = ORIENTATION.getRoles().stream()
+                            .map(JsonAdaptedRole::new)
                             .collect(Collectors.toList());
 
 
@@ -70,8 +70,8 @@ public class JsonAdaptedEventTest {
 
     @Test
     public void toModelType_invalidRoles_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidRoles = new ArrayList<>(VALID_ROLES);
-        invalidRoles.add(new JsonAdaptedTag(INVALID_TAG));
+        List<JsonAdaptedRole> invalidRoles = new ArrayList<>(VALID_ROLES);
+        invalidRoles.add(new JsonAdaptedRole(INVALID_ROLE));
         JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_FROM, VALID_TO, VALID_DETAILS, invalidRoles);
         assertThrows(IllegalValueException.class, event::toModelType);
     }

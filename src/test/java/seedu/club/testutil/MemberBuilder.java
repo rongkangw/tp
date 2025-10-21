@@ -5,9 +5,9 @@ import java.util.Set;
 
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
-import seedu.club.model.member.Name;
 import seedu.club.model.member.Phone;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.name.Name;
+import seedu.club.model.role.Role;
 import seedu.club.model.util.SampleDataUtil;
 
 /**
@@ -22,7 +22,7 @@ public class MemberBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Set<Tag> tags;
+    private Set<Role> roles;
 
     /**
      * Creates a {@code MemberBuilder} with the default details.
@@ -31,7 +31,7 @@ public class MemberBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
+        roles = new HashSet<>();
     }
 
     /**
@@ -41,7 +41,7 @@ public class MemberBuilder {
         name = memberToCopy.getName();
         phone = memberToCopy.getPhone();
         email = memberToCopy.getEmail();
-        tags = new HashSet<>(memberToCopy.getTags());
+        roles = new HashSet<>(memberToCopy.getRoles());
     }
 
     /**
@@ -53,10 +53,10 @@ public class MemberBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Member} that we are building.
+     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code Member} that we are building.
      */
-    public MemberBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public MemberBuilder withRoles(String ... roles) {
+        this.roles = SampleDataUtil.getRoleSet(roles);
         return this;
     }
 
@@ -77,7 +77,7 @@ public class MemberBuilder {
     }
 
     public Member build() {
-        return new Member(name, phone, email, tags);
+        return new Member(name, phone, email, roles);
     }
 
 }

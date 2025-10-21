@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.role.Role;
 
 /**
  * Container for user visible messages.
@@ -44,8 +44,8 @@ public class Messages {
                 .append(member.getPhone())
                 .append("; Email: ")
                 .append(member.getEmail())
-                .append("; Tags: ");
-        member.getTags().forEach(builder::append);
+                .append("; Roles: ");
+        member.getRoles().forEach(builder::append);
         return builder.toString();
     }
 
@@ -68,7 +68,7 @@ public class Messages {
             builder.append("; Detail: ").append(detail);
         }
 
-        Set<Tag> roles = event.getRoles();
+        Set<Role> roles = event.getRoles();
         if (roles != null && !roles.isEmpty()) {
             builder.append("; Roles: ");
             roles.forEach(builder::append);

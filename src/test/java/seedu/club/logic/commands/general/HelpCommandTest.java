@@ -1,0 +1,24 @@
+package seedu.club.logic.commands.general;
+
+import static seedu.club.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.club.logic.commands.general.HelpCommand.SHOWING_HELP_MESSAGE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.club.logic.commands.CommandResult;
+import seedu.club.model.Model;
+import seedu.club.model.ModelManager;
+
+/**
+ * Contains integration tests (interaction with the Model) for {@code HelpCommand}
+ */
+public class HelpCommandTest {
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
+
+    @Test
+    public void execute_help_success() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
+        assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+    }
+}

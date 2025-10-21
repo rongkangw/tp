@@ -3,14 +3,14 @@ package seedu.club.testutil;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Set;
 
-import seedu.club.logic.commands.AddMemberCommand;
-import seedu.club.logic.commands.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.AddMemberCommand;
+import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
 import seedu.club.model.member.Member;
-import seedu.club.model.tag.Tag;
+import seedu.club.model.role.Role;
 
 /**
  * A utility class for Member.
@@ -32,8 +32,8 @@ public class MemberUtil {
         sb.append(PREFIX_NAME + member.getName().fullName + " ");
         sb.append(PREFIX_PHONE + member.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + member.getEmail().value + " ");
-        member.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        member.getRoles().stream().forEach(
+            s -> sb.append(PREFIX_ROLE + s.roleName + " ")
         );
         return sb.toString();
     }
@@ -46,12 +46,12 @@ public class MemberUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        if (descriptor.getRoles().isPresent()) {
+            Set<Role> roles = descriptor.getRoles().get();
+            if (roles.isEmpty()) {
+                sb.append(PREFIX_ROLE);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                roles.forEach(s -> sb.append(PREFIX_ROLE).append(s.roleName).append(" "));
             }
         }
         return sb.toString();
