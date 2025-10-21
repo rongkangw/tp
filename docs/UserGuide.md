@@ -91,11 +91,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
 
-### Listing all members : `list`
+### Listing all members : `listMembers`
 
 Shows a list of all members in the club book.
 
-Format: `list`
+Format: `listMembers`
 
 ### Editing a member : `edit`
 
@@ -145,6 +145,24 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd member in the club book.
 * `find Betsy` followed by `delete 1` deletes the 1st member in the results of the `find` command.
+
+### Listing all events : `listEvents`
+
+Shows a list of all events in the club book.
+
+Format: `listEvents`
+
+### Unassigning event : `UnassignEvent`
+
+* Removes an event role from the specified member.
+* If no role is specified, all event roles of that event are removed from the member.
+
+Format: `UnassignEvent e/EVENT m/MEMBER [r/EVENTROLE] `
+
+Examples:
+*  `UnassignEvent e/Meeting m/Bob r/Logistics`
+*  `UnassignEvent e/Workshop m/Jane`
+
 
 ### Clearing all entries : `clear`
 
@@ -202,5 +220,8 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
 **Help**   | `help`
+**ListEvents**   | `listEvents`
+**ListMembers**   | `listMembers`
+**UnassignEvent**   | `UnassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]`
+
