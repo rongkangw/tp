@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.club.commons.util.ToStringBuilder;
+import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
 import seedu.club.model.name.NamedEntity;
 import seedu.club.model.role.Role;
@@ -24,7 +25,8 @@ public class Event extends NamedEntity {
     private final String detail;
 
     // Data fields
-    private final Set<Role> roles = new HashSet<>(); // MVP: No current roles, event roles done in future iterations
+    private final Set<Role> roles = new HashSet<>();
+    private final Set<Member> roster = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -56,6 +58,14 @@ public class Event extends NamedEntity {
      */
     public Set<Role> getRoles() {
         return Collections.unmodifiableSet(roles);
+    }
+
+    /**
+     * Returns an immutable member set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Member> getRoster() {
+        return Collections.unmodifiableSet(roster);
     }
 
     /**
@@ -93,13 +103,14 @@ public class Event extends NamedEntity {
                 && from.equals(otherEvent.from)
                 && to.equals(otherEvent.to)
                 && detail.equals(otherEvent.detail)
-                && roles.equals(otherEvent.roles);
+                && roles.equals(otherEvent.roles)
+                && roster.equals(otherEvent.roster);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, from, to, detail, roles);
+        return Objects.hash(name, from, to, detail, roles, roster);
     }
 
     @Override
@@ -110,6 +121,7 @@ public class Event extends NamedEntity {
                 .add("to", to)
                 .add("detail", detail)
                 .add("roles", roles)
+                .add("roster", roster)
                 .toString();
     }
 
