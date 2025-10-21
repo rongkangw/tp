@@ -155,13 +155,14 @@ Format: `listEvents`
 ### Unassigning event : `UnassignEvent`
 
 * Removes an event role from the specified member.
+* Multiple event roles can be specified.
 * If no role is specified, all event roles of that event are removed from the member.
 
-Format: `UnassignEvent e/EVENT m/MEMBER [r/EVENTROLE] `
+Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]... `
 
 Examples:
-*  `UnassignEvent e/Meeting m/Bob r/Logistics`
-*  `UnassignEvent e/Workshop m/Jane`
+*  `unassignEvent e/Meeting m/Bob r/Logistics`
+*  `unassignEvent e/Workshop m/Jane`
 
 
 ### Clearing all entries : `clear`
@@ -223,5 +224,5 @@ Action     | Format, Examples
 **Help**   | `help`
 **ListEvents**   | `listEvents`
 **ListMembers**   | `listMembers`
-**UnassignEvent**   | `UnassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]`
+**UnassignEvent**   | `unassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]...`
 
