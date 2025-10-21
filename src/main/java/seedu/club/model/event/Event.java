@@ -95,7 +95,8 @@ public class Event extends NamedEntity {
                 && from.equals(otherEvent.from)
                 && to.equals(otherEvent.to)
                 && detail.equals(otherEvent.detail)
-                && roles.equals(otherEvent.roles);
+                && roles.equals(otherEvent.roles)
+                && roster.equals(otherEvent.roster);
     }
 
     @Override
@@ -112,6 +113,7 @@ public class Event extends NamedEntity {
                 .add("to", to)
                 .add("detail", detail)
                 .add("roles", roles)
+                .add("roster", roster)
                 .toString();
     }
 
