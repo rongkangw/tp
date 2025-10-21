@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.club.commons.core.GuiSettings;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.Name;
 
 /**
  * The API of the Model component.
@@ -122,5 +123,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Returns true if there exists a member with the same name as {@code name}
+     */
+    public boolean containsMemberName(Name name);
+
+    /**
+     * Returns true if there exists an event with the same name as {@code name}
+     */
+    public boolean containsEventName(Name name);
 
 }

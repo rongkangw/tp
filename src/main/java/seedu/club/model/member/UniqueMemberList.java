@@ -149,16 +149,4 @@ public class UniqueMemberList implements Iterable<Member> {
         }
         return true;
     }
-
-    /**
-     * Returns true if there exists a member with the same name as {@code name}
-     */
-    public boolean containsMemberName(List<Member> members, Name name) {
-        for (int i = 0; i < members.size() - 1; i++) {
-            if (members.get(i).getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

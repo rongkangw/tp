@@ -13,6 +13,7 @@ import seedu.club.commons.core.GuiSettings;
 import seedu.club.commons.core.LogsCenter;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.Name;
 
 /**
  * Represents the in-memory model of the club book data.
@@ -193,5 +194,25 @@ public class ModelManager implements Model {
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean containsMemberName(Name name) {
+        for (Member member : clubBook.getMemberList()) {
+            if (member.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean containsEventName(Name name) {
+        for (Event event : clubBook.getEventList()) {
+            if (event.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
