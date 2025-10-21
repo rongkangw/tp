@@ -21,6 +21,7 @@ public class EventRole extends Role {
     }
 
     public void setAssignedTo(Event event) {
+        // ensures assignedTo can only be set once
         if (assignedTo != null && assignedTo.equals(event)) {
             throw new DuplicateRoleAssignmentException();
         }

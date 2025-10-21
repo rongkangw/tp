@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.club.model.event.Event;
+import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 import seedu.club.model.util.SampleDataUtil;
@@ -23,6 +24,7 @@ public class EventBuilder {
     private String to;
     private String detail;
     private Set<EventRole> roles;
+    private Set<Member> roster;
 
     /**
      * Creates a {@code EventBuilder} with the default detail
@@ -33,6 +35,7 @@ public class EventBuilder {
         to = DEFAULT_TO;
         detail = DEFAULT_DETAIL;
         roles = new HashSet<>();
+        roster = new HashSet<>();
     }
 
     /**
@@ -45,10 +48,7 @@ public class EventBuilder {
         to = eventToCopy.getTo();
         detail = eventToCopy.getDetail();
         roles = new HashSet<>(eventToCopy.getRoles());
-
-        for (EventRole role : roles) {
-            role.setAssignedTo(null);
-        }
+        roster = new HashSet<>(eventToCopy.getRoster());
 
     }
 
