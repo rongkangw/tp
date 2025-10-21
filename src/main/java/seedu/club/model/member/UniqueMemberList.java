@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.club.model.event.Event;
 import seedu.club.model.member.exceptions.DuplicateMemberException;
 import seedu.club.model.member.exceptions.MemberNotFoundException;
+import seedu.club.model.name.Name;
 
 /**
  * A list of members that enforces uniqueness between its elements and does not allow nulls.
@@ -146,5 +148,17 @@ public class UniqueMemberList implements Iterable<Member> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if there exists a member with the same name as {@code name}
+     */
+    public boolean containsMemberName(List<Member> members, Name name) {
+        for (int i = 0; i < members.size() - 1; i++) {
+            if (members.get(i).getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.club.model.event.exceptions.DuplicateEventException;
 import seedu.club.model.event.exceptions.EventNotFoundException;
+import seedu.club.model.name.Name;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
@@ -147,5 +148,17 @@ public class UniqueEventList implements Iterable<Event> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if there exists an event with the same name as {@code name}
+     */
+    public boolean containsEventName(List<Event> events, Name name) {
+        for (int i = 0; i < events.size() - 1; i++) {
+            if (events.get(i).getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

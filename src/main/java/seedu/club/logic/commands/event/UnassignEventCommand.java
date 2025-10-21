@@ -1,5 +1,6 @@
 package seedu.club.logic.commands.event;
 
+import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.model.Model;
@@ -28,10 +29,15 @@ public class UnassignEventCommand extends Command {
     //private final Member member;
     private final Set<Role> roles;
 
+    private boolean hasRoles = true;
+
     public UnassignEventCommand(Name event, Name member, Set<Role> roles) {
         this.eventName = event;
         this.memberName = member;
         this.roles = roles;
+        if (this.roles.isEmpty()) {
+            hasRoles = false;
+        }
     }
 
 
@@ -40,11 +46,12 @@ public class UnassignEventCommand extends Command {
     public CommandResult execute(Model model) {
 
 
-
         //to be implemented
-        if (this.roles.isEmpty()) {
-            return new CommandResult(MESSAGE_USAGE);
+        if (hasRoles) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS),
+                    false, false, true);
         }
+
 
 
 

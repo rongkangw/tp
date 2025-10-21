@@ -1,6 +1,5 @@
 package seedu.club.logic.parser.event;
 
-import seedu.club.commons.core.index.Index;
 import seedu.club.logic.commands.event.UnassignEventCommand;
 import seedu.club.logic.parser.ArgumentMultimap;
 import seedu.club.logic.parser.ArgumentTokenizer;
