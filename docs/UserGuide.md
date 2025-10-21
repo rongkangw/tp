@@ -6,7 +6,7 @@
 
 # EASync User Guide
 
-EASync is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EASync can get your contact management tasks done faster than traditional GUI apps.
+EASync is a **desktop app that helps student club managers manage member contacts quickly and easily.** Just type to add members, schedule events, or update roles — no need to click through menus. It’s fast, simple, and visual — so you can skip the cluttered spreadsheets and get things done.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -75,21 +75,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Managing Members
+#### Adding a member: `addMember`
 
-### Adding a member: `addMember`
-
-Adds a member to the club book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A member can have any number of tags (including 0)
-</box>
+Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
+* `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
+* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/98765432 r/friends`
 
 ### Listing all members : `list`
 
@@ -145,6 +138,24 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd member in the club book.
 * `find Betsy` followed by `delete 1` deletes the 1st member in the results of the `find` command.
+
+### Managing Events
+#### Adding an event: `addEvent`
+
+Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/ROLES]…​`
+
+Examples:
+* `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
+* `addEvent n/Movie Night r/FoodIC f/20/10/2025 1800 t/20/10/2025 2000`
+
+### Managing Event Participants
+#### Assigning a Member an Event
+
+Format: `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+
+Examples:
+* `assignEvent e/Orientation m/Alice Pauline`
+* `assignEvent e/Movie Night m/Benson Meier r/FoodIC`
 
 ### Clearing all entries : `clear`
 
