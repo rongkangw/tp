@@ -120,6 +120,7 @@ public class EventTest {
                 + ", to=" + ORIENTATION.getTo()
                 + ", detail=" + ORIENTATION.getDetail()
                 + ", roles=" + ORIENTATION.getRoles()
+                + ", roster=" + ORIENTATION.getRoster()
                 + "}";
         assertEquals(expected, ORIENTATION.toString());
     }

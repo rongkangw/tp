@@ -61,6 +61,14 @@ public class Event extends NamedEntity {
     }
 
     /**
+     * Returns an immutable member set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Member> getRoster() {
+        return Collections.unmodifiableSet(roster);
+    }
+
+    /**
      * Returns true if both events have the same name, from date time and to date time.
      * This defines a weaker notion of equality between two events.
      */
