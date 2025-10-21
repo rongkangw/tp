@@ -37,6 +37,26 @@ public class JsonClubBookStorageTest {
     }
 
     @Test
+    public void readEvents_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readEvents(null));
+    }
+
+    private java.util.Optional<ReadOnlyClubBook> readEvents(String filePath) throws Exception {
+        return new JsonClubBookStorage(memberFile, Paths.get(filePath))
+                .readEvents(addToTestDataPathIfNotNull(filePath));
+    }
+
+    @Test
+    public void readEvents_missingFile_emptyResult() throws Exception {
+        assertFalse(readEvents("NonExistentFile.json").isPresent());
+    }
+
+    @Test
+    public void readEvents_notJsonFormat_exceptionThrown() {
+        assertThrows(DataLoadingException.class, () -> readEvents("notJsonFormatClubBook.json"));
+    }
+
+    @Test
     public void readMembers_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readMembers(null));
     }
@@ -53,12 +73,12 @@ public class JsonClubBookStorageTest {
     }
 
     @Test
-    public void read_missingFile_emptyResult() throws Exception {
+    public void readMembers_missingFile_emptyResult() throws Exception {
         assertFalse(readMembers("NonExistentFile.json").isPresent());
     }
 
     @Test
-    public void read_notJsonFormat_exceptionThrown() {
+    public void readMembers_notJsonFormat_exceptionThrown() {
         assertThrows(DataLoadingException.class, () -> readMembers("notJsonFormatClubBook.json"));
     }
 
