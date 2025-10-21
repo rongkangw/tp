@@ -116,12 +116,12 @@ public class AddMemberCommandTest {
         }
 
         @Override
-        public Path getClubBookFilePath() {
+        public Path getMemberStorageFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setClubBookFilePath(Path clubBookFilePath) {
+        public void setMemberStorageFilePath(Path memberStorageFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -40,14 +40,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setClubBookFilePath(Paths.get("club/book/file/path"));
+        userPrefs.setMemberStorageFilePath(Paths.get("club/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setClubBookFilePath(Paths.get("new/club/book/file/path"));
+        userPrefs.setMemberStorageFilePath(Paths.get("new/club/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -64,15 +64,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setClubBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setClubBookFilePath(null));
+    public void setMemberStorageFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMemberStorageFilePath(null));
     }
 
     @Test
-    public void setClubBookFilePath_validPath_setsClubBookFilePath() {
+    public void setMemberStorageFilePath_validPath_setsMemberStorageFilePath() {
         Path path = Paths.get("club/book/file/path");
-        modelManager.setClubBookFilePath(path);
-        assertEquals(path, modelManager.getClubBookFilePath());
+        modelManager.setMemberStorageFilePath(path);
+        assertEquals(path, modelManager.getMemberStorageFilePath());
     }
 
     //=========== Member =============================================================
@@ -132,7 +132,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setClubBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setMemberStorageFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(clubBook, differentUserPrefs)));
     }
 
@@ -195,7 +195,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setClubBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setMemberStorageFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(clubBook, differentUserPrefs)));
     }
 }
