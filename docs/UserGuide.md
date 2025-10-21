@@ -174,7 +174,7 @@ ClubBook data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-Member and Event data are saved automatically as a JSON file in `[JAR file location]/data/clubbook.json` and `[JAR file location]/data/event.json` respectively.
+Member and Event data are saved automatically as a JSON file in `[JAR file location]/data/members.json` and `[JAR file location]/data/events.json` respectively.
 
 Advanced users are welcome to update data directly by editing that data file.
 
