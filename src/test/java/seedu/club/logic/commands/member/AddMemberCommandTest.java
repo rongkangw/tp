@@ -25,6 +25,7 @@ import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.ReadOnlyUserPrefs;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.Name;
 import seedu.club.testutil.MemberBuilder;
 
 /**
@@ -186,6 +187,16 @@ public class AddMemberCommandTest {
         }
 
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean containsMemberName(Name name){
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean containsEventName(Name name){
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -15,11 +15,12 @@ import static java.util.Objects.requireNonNull;
 
 public class UnassignEventCommand extends Command {
     public static final String COMMAND_WORD = "unassignEvent";
-    public static final String MESSAGE_SUCCESS = "The following";
+    public static final String MESSAGE_SUCCESS = "The event has been unassigned from the member successfully.";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the event identified by the index number used in the displayed events list.\n"
             + "Parameters : INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_NAME_DOES_NOT_EXIST = "The event or member does not exist.\n";
 
 
     private final Name eventName;
@@ -44,13 +45,21 @@ public class UnassignEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-
+        if (!model.containsEventName(eventName) || !model.containsMemberName(memberName)) {
+            return new CommandResult(String.format(MESSAGE_NAME_DOES_NOT_EXIST),
+                    false, false, false);
+        }
 
         //to be implemented
         if (hasRoles) {
             return new CommandResult(String.format(MESSAGE_SUCCESS),
                     false, false, true);
         }
+
+
+
+
+
 
 
 
