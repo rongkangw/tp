@@ -101,10 +101,9 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Adds the given member to the roster.
-     * {@code member} must not already exist in the club book.
+     * Adds the given member to the event roster.
      */
-    public void assignMember(Member member) {
+    public void addMember(Member member) {
         roster.add(member);
     }
 

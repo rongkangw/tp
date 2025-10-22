@@ -86,7 +86,9 @@ public class AssignEventCommand extends Command {
         }
 
         model.setViewState(ViewState.SINGLE_EVENT);
-        model.assignEvent(event, member);
+        event.addMember(member);
+        member.addEventRoles(roles);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(event)));
     }
 

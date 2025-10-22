@@ -193,11 +193,6 @@ public class ModelManager implements Model {
         return -1;
     }
 
-    @Override
-    public void assignEvent(Event event, Member toAssign) {
-        event.assignMember(toAssign);
-    }
-
     //=========== Full Event List Accessors =============================================================
 
     /**

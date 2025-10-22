@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.model.name.Name;
 import seedu.club.model.name.NamedEntity;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.role.MemberRole;
 
 /**
@@ -24,6 +25,7 @@ public class Member extends NamedEntity {
 
     // Data fields
     private final Set<MemberRole> roles = new HashSet<>();
+    private final Set<EventRole> eventRoles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -50,6 +52,11 @@ public class Member extends NamedEntity {
      */
     public Set<MemberRole> getRoles() {
         return Collections.unmodifiableSet(roles);
+    }
+
+
+    public void addEventRoles(Set<EventRole> roles) {
+        eventRoles.addAll(roles);
     }
 
     /**

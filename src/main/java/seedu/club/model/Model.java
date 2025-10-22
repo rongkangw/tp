@@ -101,12 +101,6 @@ public interface Model {
     void deleteEvent(Event target);
 
     /**
-     * Assigns the given member to the event.
-     * The event and member must exist in the club book.
-     */
-    void assignEvent(Event event, Member toAssign);
-
-    /**
      * Returns an unmodifiable view of the filtered member list
      */
     ObservableList<Member> getFilteredMemberList();
@@ -138,12 +132,12 @@ public interface Model {
     /**
      * Returns index if there exists a member with the same name as {@code name} and -1 otherwise
      */
-    public int memberNameIndex(Name name);
+    int memberNameIndex(Name name);
 
     /**
      * Returns index if there exists an event with the same name as {@code name} and -1 otherwise
      */
-    public int eventNameIndex(Name name);
+    int eventNameIndex(Name name);
 
     /**
      * Returns the current state of the ClubBook
