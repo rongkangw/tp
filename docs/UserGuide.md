@@ -6,7 +6,7 @@
 
 # EASync User Guide
 
-EASync is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EASync can get your contact management tasks done faster than traditional GUI apps.
+EASync is a **desktop app that helps student club managers manage member contacts and club events quickly and easily.** Just type to add members, schedule events, or update roles — no need to click through menus. It’s fast, simple, and visual — so you can skip the cluttered spreadsheets and get things done.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -75,27 +75,38 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Managing Members
+#### Adding a member: `addMember`
 
-### Adding a member: `addMember`
-
-Adds a member to the club book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A member can have any number of tags (including 0)
-</box>
+Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
+* `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
+* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/98765432 r/friends`
 
-### Listing all members : `list`
+#### Deleting a member : `deleteMember`
+
+Removes a specified member from the club book.
+
+Format: `deleteMember INDEX`
+
+* This will delete the member at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed member list.
+* `INDEX` **must be a positive integer 1,2,3, ...​**
+
+Examples:
+* `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
+* `find Andy` then `deleteMember 1` removes the 1st member in the **search result**.
+
+<box type="important" seamless>
+    You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
+</box>
+
+### Listing all members : `listMembers`
 
 Shows a list of all members in the club book.
 
-Format: `list`
+Format: `listMembers`
 
 ### Editing a member : `edit`
 
@@ -132,23 +143,68 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a member : `delete`
+### Managing Events
+#### Adding an event: `addEvent`
 
-Deletes the specified member from the club book.
-
-Format: `delete INDEX`
-
-* Deletes the member at the specified `INDEX`.
-* The index refers to the index number shown in the displayed member list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd member in the club book.
-* `find Betsy` followed by `delete 1` deletes the 1st member in the results of the `find` command.
+* `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
+* `addEvent n/Movie Night r/FoodIC f/20/10/2025 1800 t/20/10/2025 2000`
+
+#### Deleting an event : `deleteEvent`
+
+Removes a specified event from the club book.
+
+Format: `deleteEvent INDEX`
+
+* This will delete the event at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed event list.
+* `INDEX` **must be a positive integer 1,2,3, ...​**
+
+Examples:
+* `listEvents` then `deleteEvent 2` removes the 2nd event in the displayed event list.
+
+<box type="important" seamless>
+    You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
+</box>
+
+### Listing all events : `listEvents`
+
+Shows a list of all events in the club book.
+
+Format: `listEvents`
+
+### Managing Event Participants
+#### Assigning a Member an Event
+
+Format: `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+
+Examples:
+* `assignEvent e/Orientation m/Alice Pauline`
+* `assignEvent e/Movie Night m/Benson Meier r/FoodIC`
+
+### Unassigning event : `unassignEvent`
+
+* Removes an event role from the specified member.
+* Multiple event roles can be specified.
+* If no role is specified, the member is unassigned from the event and associated event roles are removed, if any.
+
+Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]... `
+
+Examples:
+*  `unassignEvent e/Meeting m/Bob r/Logistics`
+*  `unassignEvent e/Workshop m/Jane`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the club book.
+Clears **all members and events** from the club book.
+
+<box type="warning" seamless>
+
+**Caution:**
+This action is **irreversible**! Ensure that you truly want to clear your **entire club book** before proceeding.
+</box>
 
 Format: `clear`
 
@@ -173,16 +229,21 @@ If your changes to the data file makes its format invalid, ClubBook will discard
 Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+**Q**: I deleted a member/event by mistake, can I undo it? <br>
+**A**: There’s no undo feature yet, and changes save immediately. If you have a backup of members.json or events.json, restore it to recover. Otherwise, re-add the item manually. An undo command is planned for a future release, and this guide will be updated when it’s available.
+
+**Q**: Can I delete several members/events at once? <br>
+**A**: There’s no bulk delete feature yet. You can remove multiple items by running deleteMember or deleteEvent repeatedly. A bulk delete option is planned for a future release, and this guide will be updated when it’s available.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ClubBook home folder.
+**A**: Follow these steps:
+  1. Make a copy of the `data` folder in the **home folder of your current installation**.  
+  2. Install EASync on another computer (follow the [Quick Start guide](#quick-start))
+  3. Take the copied `data` folder and overwrite the `data` folder in the **home folder of your new installation**
+  4. Run EASync on the new computer and verify that your data has been transferred successfully.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -195,12 +256,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**AddMember**    | `addMember n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+| Action            | Format, Examples                                                                                                |
+|-------------------|-----------------------------------------------------------------------------------------------------------------|
+| **AddMember**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                   |
+| **DeleteMember**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                 |
+| **ListMembers**   | `listMembers`                                                                                                   |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                      |
+| **AddEvent**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
+| **DeleteEvent**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
+| **ListEvents**    | `listEvents`                                                                                                    |
+| **AssignEvent**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
+| **UnassignEvent** | `unassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]...`                                                              |
+| **Clear**         | `clear`                                                                                                         |
+| **Help**          | `help`                                                                                                          |
+| **Exit**          | `exit`                                                                                                          |

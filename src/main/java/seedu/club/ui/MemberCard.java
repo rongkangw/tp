@@ -50,7 +50,7 @@ public class MemberCard extends UiPart<Region> {
         phone.setText(member.getPhone().value);
         email.setText(member.getEmail().value);
         member.getRoles().stream()
-                .sorted(Comparator.comparing(role -> role.roleName))
-                .forEach(role -> memberRoles.getChildren().add(new Label(role.roleName)));
+                .sorted(Comparator.comparing(memberRole -> memberRole.roleName))
+                .forEach(memberRole -> memberRoles.getChildren().add(new Label(memberRole.roleName)));
     }
 }

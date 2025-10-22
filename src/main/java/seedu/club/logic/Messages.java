@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
 
 /**
  * Container for user visible messages.
@@ -21,6 +21,10 @@ public class Messages {
     public static final String MESSAGE_MEMBERS_LISTED_OVERVIEW = "%1$d members listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_NOT_EVENT_STATE =
+            "The current list is a member list! Switch to event list first using \"listEvents\"";
+    public static final String MESSAGE_NOT_MEMBER_STATE =
+            "The current list is an event list! Switch to member list first using \"listMembers\"";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -68,7 +72,7 @@ public class Messages {
             builder.append("; Detail: ").append(detail);
         }
 
-        Set<Role> roles = event.getRoles();
+        Set<EventRole> roles = event.getRoles();
         if (roles != null && !roles.isEmpty()) {
             builder.append("; Roles: ");
             roles.forEach(builder::append);

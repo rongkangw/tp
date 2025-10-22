@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "clubBookFilePath" : "clubbook.json"
+  "memberStorageFilePath" : "members.json"
 }

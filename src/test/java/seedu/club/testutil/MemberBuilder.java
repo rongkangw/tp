@@ -7,7 +7,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 import seedu.club.model.util.SampleDataUtil;
 
 /**
@@ -22,7 +22,7 @@ public class MemberBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Set<Role> roles;
+    private Set<MemberRole> roles;
 
     /**
      * Creates a {@code MemberBuilder} with the default details.
@@ -56,7 +56,7 @@ public class MemberBuilder {
      * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code Member} that we are building.
      */
     public MemberBuilder withRoles(String ... roles) {
-        this.roles = SampleDataUtil.getRoleSet(roles);
+        this.roles = SampleDataUtil.getMemberRoleSet(roles);
         return this;
     }
 

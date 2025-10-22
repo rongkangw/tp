@@ -22,11 +22,12 @@ import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Edits the details of an existing member in the club book.
@@ -69,6 +70,14 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        /* Ensure that member list is displaying first, so that user does not unintentionally edit
+           an event if they are on event list instead.
+         */
+        if (model.getViewState() != ViewState.MEMBER) {
+            throw new CommandException(Messages.MESSAGE_NOT_MEMBER_STATE);
+        }
+
         List<Member> lastShownList = model.getFilteredMemberList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -82,6 +91,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
+        // The following line is technically not necessary since already guaranteed to be on member list,
+        // but is there as a safety measure.
+        model.setViewState(ViewState.MEMBER);
         model.setMember(memberToEdit, editedMember);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));
@@ -97,7 +109,7 @@ public class EditCommand extends Command {
         Name updatedName = editMemberDescriptor.getName().orElse(memberToEdit.getName());
         Phone updatedPhone = editMemberDescriptor.getPhone().orElse(memberToEdit.getPhone());
         Email updatedEmail = editMemberDescriptor.getEmail().orElse(memberToEdit.getEmail());
-        Set<Role> updatedRoles = editMemberDescriptor.getRoles().orElse(memberToEdit.getRoles());
+        Set<MemberRole> updatedRoles = editMemberDescriptor.getRoles().orElse(memberToEdit.getRoles());
 
         return new Member(updatedName, updatedPhone, updatedEmail, updatedRoles);
     }
@@ -134,7 +146,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Set<Role> roles;
+        private Set<MemberRole> roles;
 
         public EditMemberDescriptor() {}
 
@@ -184,7 +196,7 @@ public class EditCommand extends Command {
          * Sets {@code roles} to this object's {@code roles}.
          * A defensive copy of {@code roles} is used internally.
          */
-        public void setRoles(Set<Role> roles) {
+        public void setRoles(Set<MemberRole> roles) {
             this.roles = (roles != null) ? new HashSet<>(roles) : null;
         }
 
@@ -193,7 +205,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code roles} is null.
          */
-        public Optional<Set<Role>> getRoles() {
+        public Optional<Set<MemberRole>> getRoles() {
             return (roles != null) ? Optional.of(Collections.unmodifiableSet(roles)) : Optional.empty();
         }
 

@@ -28,14 +28,14 @@ public class ListEventCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertEventCommandSuccess(
+        CommandTestUtil.assertCommandSuccess(
                 new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showEventAtIndex(model, INDEX_FIRST_MEMBER);
-        CommandTestUtil.assertEventCommandSuccess(
+        CommandTestUtil.assertCommandSuccess(
                 new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

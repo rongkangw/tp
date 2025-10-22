@@ -33,7 +33,7 @@ public class AddMemberCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
         expectedModel.addMember(validMember);
 
-        CommandTestUtil.assertMemberCommandSuccess(new AddMemberCommand(validMember), model,
+        CommandTestUtil.assertCommandSuccess(new AddMemberCommand(validMember), model,
                 String.format(AddMemberCommand.MESSAGE_SUCCESS, Messages.format(validMember)),
                 expectedModel);
     }

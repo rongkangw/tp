@@ -41,12 +41,12 @@ public interface Model {
     /**
      * Returns the user prefs' club book file path.
      */
-    Path getClubBookFilePath();
+    Path getMemberStorageFilePath();
 
     /**
      * Sets the user prefs' club book file path.
      */
-    void setClubBookFilePath(Path clubBookFilePath);
+    void setMemberStorageFilePath(Path clubBookFilePath);
 
     /**
      * Replaces club book data with the data in {@code clubBook}.
@@ -113,7 +113,7 @@ public interface Model {
 
     /**
      * Returns an unmodifiable view of the filtered event list
-     * */
+     */
     ObservableList<Event> getFilteredEventList();
 
     /**
@@ -123,4 +123,14 @@ public interface Model {
      */
     void updateFilteredEventList(Predicate<Event> predicate);
 
+    /**
+     * Returns the current state of the ClubBook
+     */
+    ViewState getViewState();
+
+    /**
+     * Changes the current state of the ClubBook.
+     * The state must be one of the values defined in {@link ViewState}
+     */
+    void setViewState(ViewState state);
 }

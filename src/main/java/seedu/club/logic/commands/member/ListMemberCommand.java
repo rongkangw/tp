@@ -6,6 +6,7 @@ import static seedu.club.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 
 /**
  * Lists all members in the club to the user.
@@ -20,6 +21,7 @@ public class ListMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.setViewState(ViewState.MEMBER);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
