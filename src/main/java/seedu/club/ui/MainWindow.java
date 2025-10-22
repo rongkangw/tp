@@ -198,6 +198,10 @@ public class MainWindow extends UiPart<Stage> {
                 //displays event list
                 memberListPanel.getRoot().setVisible(false);
                 eventListPanel.getRoot().setVisible(true);
+            } else if (logic.getViewState().equals(ViewState.SINGLE_EVENT)) {
+                //displays single event with participating members
+                memberListPanel.getRoot().setVisible(true);
+                eventListPanel.getRoot().setVisible(true);
             } else {
                 //displays member list
                 memberListPanel.getRoot().setVisible(true);

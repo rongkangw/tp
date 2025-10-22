@@ -45,6 +45,21 @@ public class Event extends NamedEntity {
         }
     }
 
+    public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
+        super(name);
+        requireAllNonNull(from, to, detail, roles);
+        this.from = from;
+        this.to = to;
+        this.detail = detail;
+        this.roles.addAll(roles);
+        this.roster.addAll(roster);
+
+        // assign each eventRole to this event
+        for (EventRole role : this.roles) {
+            role.setAssignedTo(this);
+        }
+    }
+
     public String getFrom() {
         return from;
     }

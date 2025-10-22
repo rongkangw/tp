@@ -11,6 +11,7 @@ import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 
 /**
@@ -35,16 +36,17 @@ public class DisplayEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFullEventList();
+        List<Event> fullEventList = model.getFullEventList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= fullEventList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event eventToBeDisplayed = lastShownList.get(targetIndex.getZeroBased());
+        Event eventToBeDisplayed = fullEventList.get(targetIndex.getZeroBased());
+        model.setViewState(ViewState.SINGLE_EVENT);
         model.updateFilteredEventList(e -> e.equals(eventToBeDisplayed));
-        return new CommandResult(String.format(MESSAGE_DISPLAY_EVENT_SUCCESS, eventToBeDisplayed.getName()),
-                false, false, true);
+        model.updateFilteredMemberList(m -> eventToBeDisplayed.getRoster().contains(m));
+        return new CommandResult(String.format(MESSAGE_DISPLAY_EVENT_SUCCESS, eventToBeDisplayed.getName()), false, false);
     }
 
     @Override
