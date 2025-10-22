@@ -6,15 +6,16 @@ import seedu.club.model.Model;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
 
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-
 public class UnassignEventCommand extends Command {
     public static final String COMMAND_WORD = "unassignEvent";
-    public static final String MESSAGE_SUCCESS = "The event has been unassigned from the member successfully.";
+    public static final String MESSAGE_SUCCESS_EVENT = "The event has been unassigned from the member successfully.";
+    public static final String MESSAGE_SUCCESS_EVENT_ROLE =
+            "The event role has been unassigned from the member successfully.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the event identified by the index number used in the displayed events list.\n"
             + "Parameters : INDEX (must be a positive integer)\n"
@@ -25,13 +26,11 @@ public class UnassignEventCommand extends Command {
     private final Name eventName;
     private final Name memberName;
 
-    private Event event;
-    private Member member;
-    private final Set<Role> roles;
+    private final Set<EventRole> roles;
 
     private boolean hasRoles = true;
 
-    public UnassignEventCommand(Name event, Name member, Set<Role> roles) {
+    public UnassignEventCommand(Name event, Name member, Set<EventRole> roles) {
         this.eventName = event;
         this.memberName = member;
         this.roles = roles;
@@ -39,7 +38,6 @@ public class UnassignEventCommand extends Command {
             hasRoles = false;
         }
     }
-
 
 
     @Override
@@ -50,19 +48,27 @@ public class UnassignEventCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NAME_DOES_NOT_EXIST),
                     false, false, false);
         }
-        member = model.getFilteredMemberList().get(memberIndex);
-        event = model.getFilteredEventList().get(eventIndex);
+        Member member = model.getFilteredMemberList().get(memberIndex);
+        Event event = model.getFilteredEventList().get(eventIndex);
 
-        //to be implemented
         if (hasRoles) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS),
-                    false, false, true);
+            return executeWithMemberRole(member, roles);
         }
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        return executeNoMemberRole(member, event);
 
     }
 
+    private CommandResult executeWithMemberRole(Member member, Set<EventRole> eventRoles) {
+        member.removeEventRole(eventRoles);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT_ROLE),
+                false, false, true);
+    }
+
     private CommandResult executeNoMemberRole(Member member, Event event) {
+        event.removeMemberFromRoster(member);
+        member.removeEvent(event);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT),
+                false, false, true);
 
     }
 

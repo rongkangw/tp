@@ -7,6 +7,7 @@ import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.name.Name;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.role.Role;
 
 import java.util.Collections;
@@ -38,8 +39,8 @@ public class UnassignEventCommandParser {
         try {
             Name member = ParserUtil.parseName(argMultimap.getValue(PREFIX_MEMBER).get());
             Name event = ParserUtil.parseName(argMultimap.getValue(PREFIX_EVENT).get());
-            Set<Role> roles = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
-                    ? ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE))
+            Set<EventRole> roles = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
+                    ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE))
                     : Collections.emptySet();
 
             return new UnassignEventCommand(member, event, roles);

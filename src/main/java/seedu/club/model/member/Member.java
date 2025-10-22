@@ -8,8 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.club.commons.util.ToStringBuilder;
+import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
 import seedu.club.model.name.NamedEntity;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.role.MemberRole;
 
 /**
@@ -24,6 +26,7 @@ public class Member extends NamedEntity {
 
     // Data fields
     private final Set<MemberRole> roles = new HashSet<>();
+    private final Set<EventRole> eventRoles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -50,6 +53,26 @@ public class Member extends NamedEntity {
      */
     public Set<MemberRole> getRoles() {
         return Collections.unmodifiableSet(roles);
+    }
+
+    /**
+     * Removes specified EventRoles from the member's roles
+     */
+    public void removeEventRole(Set<EventRole> roleSet) {
+        for (EventRole role: eventRoles) {
+            roles.remove(role);
+        }
+    }
+
+    /**
+     * Removes all EventRoles assigned to an event from the member's roles
+     */
+    public void removeEvent(Event event) {
+        for (EventRole role: eventRoles) {
+            if (role.getAssignedTo() == event) {
+                eventRoles.remove(role);
+            }
+        }
     }
 
     /**
