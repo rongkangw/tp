@@ -6,7 +6,7 @@
 
 # EASync User Guide
 
-EASync is a **desktop app that helps student club managers manage member contacts quickly and easily.** Just type to add members, schedule events, or update roles — no need to click through menus. It’s fast, simple, and visual — so you can skip the cluttered spreadsheets and get things done.
+EASync is a **desktop app that helps student club managers manage member contacts and club events quickly and easily.** Just type to add members, schedule events, or update roles — no need to click through menus. It’s fast, simple, and visual — so you can skip the cluttered spreadsheets and get things done.
 
 <!-- * Table of Contents -->
 <page-nav-print />
