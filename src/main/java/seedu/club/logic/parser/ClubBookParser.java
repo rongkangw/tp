@@ -17,7 +17,7 @@ import seedu.club.logic.commands.general.ExitCommand;
 import seedu.club.logic.commands.general.HelpCommand;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.DeleteMemberCommand;
-import seedu.club.logic.commands.member.EditCommand;
+import seedu.club.logic.commands.member.EditMemberCommand;
 import seedu.club.logic.commands.member.FindCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.event.AddEventCommandParser;
@@ -25,7 +25,7 @@ import seedu.club.logic.parser.event.DeleteEventCommandParser;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.logic.parser.member.AddMemberCommandParser;
 import seedu.club.logic.parser.member.DeleteMemberCommandParser;
-import seedu.club.logic.parser.member.EditCommandParser;
+import seedu.club.logic.parser.member.EditMemberCommandParser;
 import seedu.club.logic.parser.member.FindCommandParser;
 
 
@@ -66,8 +66,8 @@ public class ClubBookParser {
         case AddMemberCommand.COMMAND_WORD:
             return new AddMemberCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditMemberCommand.COMMAND_WORD:
+            return new EditMemberCommandParser().parse(arguments);
 
         case DeleteMemberCommand.COMMAND_WORD:
             return new DeleteMemberCommandParser().parse(arguments);

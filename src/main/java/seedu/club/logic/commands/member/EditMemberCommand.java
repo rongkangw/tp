@@ -32,9 +32,9 @@ import seedu.club.model.role.MemberRole;
 /**
  * Edits the details of an existing member in the club book.
  */
-public class EditCommand extends Command {
+public class EditMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the member identified "
             + "by the index number used in the displayed member list. "
@@ -59,7 +59,7 @@ public class EditCommand extends Command {
      * @param index of the member in the filtered member list to edit
      * @param editMemberDescriptor details to edit the member with
      */
-    public EditCommand(Index index, EditMemberDescriptor editMemberDescriptor) {
+    public EditMemberCommand(Index index, EditMemberDescriptor editMemberDescriptor) {
         requireNonNull(index);
         requireNonNull(editMemberDescriptor);
 
@@ -121,13 +121,13 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMemberCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editMemberDescriptor.equals(otherEditCommand.editMemberDescriptor);
+        EditMemberCommand otherEditMemberCommand = (EditMemberCommand) other;
+        return index.equals(otherEditMemberCommand.index)
+                && editMemberDescriptor.equals(otherEditMemberCommand.editMemberDescriptor);
     }
 
     @Override
