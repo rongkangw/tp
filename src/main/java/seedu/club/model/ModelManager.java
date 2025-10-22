@@ -116,6 +116,17 @@ public class ModelManager implements Model {
         clubBook.setMember(target, editedMember);
     }
 
+    @Override
+    public int memberNameIndex(Name name) {
+        ObservableList<Member> memberList= clubBook.getMemberList();
+        for (int i = 0; i < memberList.size(); i ++) {
+            if (memberList.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     //=========== Filtered Member List Accessors =============================================================
 
     /**
@@ -179,6 +190,17 @@ public class ModelManager implements Model {
     }
      */
 
+    @Override
+    public int eventNameIndex(Name name) {
+        ObservableList<Event> eventList= clubBook.getEventList();
+        for (int i = 0; i < eventList.size(); i ++) {
+            if (eventList.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     //=========== Filtered Event List Accessors =============================================================
 
     /**
@@ -196,23 +218,5 @@ public class ModelManager implements Model {
         filteredEvents.setPredicate(predicate);
     }
 
-    @Override
-    public boolean containsMemberName(Name name) {
-        for (Member member : clubBook.getMemberList()) {
-            if (member.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    @Override
-    public boolean containsEventName(Name name) {
-        for (Event event : clubBook.getEventList()) {
-            if (event.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

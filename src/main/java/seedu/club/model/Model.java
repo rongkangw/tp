@@ -125,13 +125,13 @@ public interface Model {
     void updateFilteredEventList(Predicate<Event> predicate);
 
     /**
-     * Returns true if there exists a member with the same name as {@code name}
+     * Returns index if there exists a member with the same name as {@code name} and -1 otherwise
      */
-    public boolean containsMemberName(Name name);
+    public int memberNameIndex(Name name);
 
     /**
-     * Returns true if there exists an event with the same name as {@code name}
+     * Returns index if there exists an event with the same name as {@code name} and -1 otherwise
      */
-    public boolean containsEventName(Name name);
+    public int eventNameIndex(Name name);
 
 }

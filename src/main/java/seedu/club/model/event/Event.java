@@ -74,6 +74,13 @@ public class Event extends NamedEntity {
     }
 
     /**
+     * Removes specified member from the event's roster
+     */
+    public void removeMemberFromRoster(Member member) {
+        roster.remove(member);
+    }
+
+    /**
      * Returns true if both events have the same name, from date time and to date time.
      * This defines a weaker notion of equality between two events.
      */

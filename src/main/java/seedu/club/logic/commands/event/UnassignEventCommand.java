@@ -1,6 +1,5 @@
 package seedu.club.logic.commands.event;
 
-import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.model.Model;
@@ -26,8 +25,8 @@ public class UnassignEventCommand extends Command {
     private final Name eventName;
     private final Name memberName;
 
-    //private final Event event;
-    //private final Member member;
+    private Event event;
+    private Member member;
     private final Set<Role> roles;
 
     private boolean hasRoles = true;
@@ -45,28 +44,25 @@ public class UnassignEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        if (!model.containsEventName(eventName) || !model.containsMemberName(memberName)) {
+        int eventIndex = model.eventNameIndex(eventName);
+        int memberIndex = model.memberNameIndex(memberName);
+        if (model.eventNameIndex(eventName) == -1 || model.memberNameIndex(memberName) == -1) {
             return new CommandResult(String.format(MESSAGE_NAME_DOES_NOT_EXIST),
                     false, false, false);
         }
+        member = model.getFilteredMemberList().get(memberIndex);
+        event = model.getFilteredEventList().get(eventIndex);
 
         //to be implemented
         if (hasRoles) {
             return new CommandResult(String.format(MESSAGE_SUCCESS),
                     false, false, true);
         }
-
-
-
-
-
-
-
-
-
-
-
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+
+    }
+
+    private CommandResult executeNoMemberRole(Member member, Event event) {
 
     }
 
