@@ -40,7 +40,7 @@ public class AddMemberCommand extends Command {
     private final Member toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Member}
+     * Creates an AddMemberCommand to add the specified {@code Member}
      */
     public AddMemberCommand(Member member) {
         requireNonNull(member);
