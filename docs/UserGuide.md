@@ -92,11 +92,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
 
-### Listing all members : `list`
+### Listing all members : `listMembers`
 
 Shows a list of all members in the club book.
 
-Format: `list`
+Format: `listMembers`
 
 ### Editing a member : `edit`
 
@@ -170,6 +170,25 @@ Examples:
     You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
 </box>
 
+### Listing all events : `listEvents`
+
+Shows a list of all events in the club book.
+
+Format: `listEvents`
+
+### Unassigning event : `unassignEvent`
+
+* Removes an event role from the specified member.
+* Multiple event roles can be specified.
+* If no role is specified, the member is unassigned from the event and associated event roles are removed, if any.
+
+Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]... `
+
+Examples:
+*  `unassignEvent e/Meeting m/Bob r/Logistics`
+*  `unassignEvent e/Workshop m/Jane`
+
+
 ### Clearing all entries : `clear`
 
 Clears **all members and events** from the club book.
@@ -237,7 +256,9 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 | **DeleteMember** | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                                                                   |
 | **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                   |
 | **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                        |
-| **List**         | `list`                                                                                                                                                            |
-| **DeleteEvent**  | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                                                                    |
+| **ListMembers**  | `listMembers`                                                                                                                                                          |
+| **DeleteEvent**  | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`      
+| **ListEvents**   | `listEvents`
+| **UnassignEvent**| `unassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]...`
 | **Help**         | `help`                                                                                                                                                            |
 | **Exit**         | `exit`                                                                                                                                                            |
