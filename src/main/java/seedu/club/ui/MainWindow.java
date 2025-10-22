@@ -208,7 +208,7 @@ public class MainWindow extends UiPart<Stage> {
                 singleEventPanel.getRoot().setVisible(false);
             } else if (logic.getViewState().equals(ViewState.SINGLE_EVENT)) {
                 //displays single event with participating members
-                ObservableList<Event> selectedEvent = logic.getFilteredEventList();
+                Event selectedEvent = logic.getFilteredEventList().get(0);
                 ObservableList<Member> participants = logic.getFilteredMemberList();
 
                 singleEventPanel.update(selectedEvent, participants);

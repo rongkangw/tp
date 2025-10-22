@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.ListView?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="0" padding="Insets(0,0,0,0)">
-    <ListView fx:id="eventListView" VBox.vgrow="NEVER" style="-fx-padding: 0;" />
-    <ListView fx:id="memberListView" VBox.vgrow="NEVER" style="-fx-padding: 0;" />
+<?import javafx.scene.layout.StackPane?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
+    <StackPane fx:id="eventCard" stylesheets="@DarkTheme.css" />
+    <ListView fx:id="memberListView" VBox.vgrow="ALWAYS" style="-fx-padding: 0;" />
 </VBox>

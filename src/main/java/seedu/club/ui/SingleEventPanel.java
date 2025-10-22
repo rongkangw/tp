@@ -18,7 +18,7 @@ public class SingleEventPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(SingleEventPanel.class);
 
     @FXML
-    private ListView<Event> eventListView;
+    private StackPane eventCard;
 
     @FXML
     private ListView<Member> memberListView;
@@ -27,12 +27,11 @@ public class SingleEventPanel extends UiPart<Region> {
         super(FXML);
     }
 
-    public SingleEventPanel(ObservableList<Event> eventList, ObservableList<Member> memberList) {
+    public SingleEventPanel(Event event, ObservableList<Member> memberList) {
         super(FXML);
         memberListView.setItems(memberList);
         memberListView.setCellFactory(listView -> new MemberListViewCell());
-        eventListView.setItems(eventList);
-        eventListView.setCellFactory(listView -> new EventListViewCell());
+        eventCard.getChildren().add(new EventCard(event, 1).getRoot());
     }
 
     /**
@@ -70,10 +69,12 @@ public class SingleEventPanel extends UiPart<Region> {
     }
 
 
-    public void update(ObservableList<Event> eventList, ObservableList<Member> memberList) {
+    public void update(Event event, ObservableList<Member> memberList) {
         memberListView.setItems(memberList);
         memberListView.setCellFactory(listView -> new MemberListViewCell());
-        eventListView.setItems(eventList);
-        eventListView.setCellFactory(listView -> new EventListViewCell());
+        eventCard.getChildren().clear();
+        Region eventCardRoot = new EventCard(event, 1).getRoot();
+        eventCard.getChildren().add(new EventCard(event, 1).getRoot());
+        eventCardRoot.applyCss();
     }
 }
