@@ -41,7 +41,7 @@ public class MemberBuilder {
         name = memberToCopy.getName();
         phone = memberToCopy.getPhone();
         email = memberToCopy.getEmail();
-        roles = new HashSet<>(memberToCopy.getRoles());
+        roles = new HashSet<>(memberToCopy.getMemberRoles());
     }
 
     /**

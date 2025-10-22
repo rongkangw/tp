@@ -58,6 +58,5 @@ public class EventRole extends Role {
         return assignedTo == null
                 ? '[' + "null" + ">" + roleName + ']'
                 : '[' + assignedTo.getName().fullName + ">" + roleName + ']';
-
     }
 }

@@ -20,7 +20,7 @@ public class MemberTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Member member = new MemberBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> member.getRoles().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> member.getMemberRoles().remove(0));
     }
 
     @Test
@@ -88,7 +88,7 @@ public class MemberTest {
     @Test
     public void toStringMethod() {
         String expected = Member.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", roles=" + ALICE.getRoles() + "}";
+                + ", email=" + ALICE.getEmail() + ", roles=" + ALICE.getMemberRoles() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

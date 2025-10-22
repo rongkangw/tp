@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
-import seedu.club.model.name.NamedEntity;
 import seedu.club.model.role.EventRole;
 
 /**
@@ -54,7 +53,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(member.getEmail())
                 .append("; Roles: ");
-        member.getRoles().forEach(builder::append);
+        member.getMemberRoles().forEach(builder::append);
         return builder.toString();
     }
 

@@ -25,7 +25,7 @@ public class JsonAdaptedMemberTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final List<JsonAdaptedMemberRole> VALID_MEMBER_ROLES = BENSON.getRoles().stream()
+    private static final List<JsonAdaptedMemberRole> VALID_MEMBER_ROLES = BENSON.getMemberRoles().stream()
             .map(JsonAdaptedMemberRole::new)
             .collect(Collectors.toList());
 

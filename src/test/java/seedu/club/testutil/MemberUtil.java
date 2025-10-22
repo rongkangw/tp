@@ -32,7 +32,7 @@ public class MemberUtil {
         sb.append(PREFIX_NAME + member.getName().fullName + " ");
         sb.append(PREFIX_PHONE + member.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + member.getEmail().value + " ");
-        member.getRoles().stream().forEach(
+        member.getMemberRoles().stream().forEach(
             s -> sb.append(PREFIX_ROLE + s.roleName + " ")
         );
         return sb.toString();
