@@ -51,7 +51,7 @@ public interface Logic {
     /**
      * Returns the user prefs' club book file path.
      */
-    Path getClubBookFilePath();
+    Path getMemberStorageFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

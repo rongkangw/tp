@@ -41,12 +41,12 @@ public interface Model {
     /**
      * Returns the user prefs' club book file path.
      */
-    Path getClubBookFilePath();
+    Path getMemberStorageFilePath();
 
     /**
      * Sets the user prefs' club book file path.
      */
-    void setClubBookFilePath(Path clubBookFilePath);
+    void setMemberStorageFilePath(Path clubBookFilePath);
 
     /**
      * Replaces club book data with the data in {@code clubBook}.

@@ -93,8 +93,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getClubBookFilePath() {
-        return model.getClubBookFilePath();
+    public Path getMemberStorageFilePath() {
+        return model.getMemberStorageFilePath();
     }
 
     @Override

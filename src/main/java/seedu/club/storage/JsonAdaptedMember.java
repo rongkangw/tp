@@ -14,7 +14,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Jackson-friendly version of {@link Member}.
@@ -26,14 +26,14 @@ class JsonAdaptedMember {
     private final String name;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedRole> roles = new ArrayList<>();
+    private final List<JsonAdaptedMemberRole> roles = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedMember} with the given member details.
      */
     @JsonCreator
     public JsonAdaptedMember(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("roles") List<JsonAdaptedRole> roles) {
+            @JsonProperty("email") String email, @JsonProperty("roles") List<JsonAdaptedMemberRole> roles) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,7 +50,7 @@ class JsonAdaptedMember {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         roles.addAll(source.getRoles().stream()
-                .map(JsonAdaptedRole::new)
+                .map(JsonAdaptedMemberRole::new)
                 .collect(Collectors.toList()));
     }
 
@@ -60,8 +60,8 @@ class JsonAdaptedMember {
      * @throws IllegalValueException if there were any data constraints violated in the adapted member.
      */
     public Member toModelType() throws IllegalValueException {
-        final List<Role> memberRoles = new ArrayList<>();
-        for (JsonAdaptedRole role : roles) {
+        final List<MemberRole> memberRoles = new ArrayList<>();
+        for (JsonAdaptedMemberRole role : roles) {
             memberRoles.add(role.toModelType());
         }
 
@@ -89,7 +89,7 @@ class JsonAdaptedMember {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<Role> modelRoles = new HashSet<>(memberRoles);
+        final Set<MemberRole> modelRoles = new HashSet<>(memberRoles);
         return new Member(modelName, modelPhone, modelEmail, modelRoles);
     }
 

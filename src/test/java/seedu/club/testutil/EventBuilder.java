@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.util.SampleDataUtil;
 
 /**
@@ -23,7 +23,7 @@ public class EventBuilder {
     private String from;
     private String to;
     private String detail;
-    private Set<Role> roles;
+    private Set<EventRole> roles;
     private Set<Member> roster;
 
     /**
@@ -46,9 +46,15 @@ public class EventBuilder {
         name = eventToCopy.getName();
         from = eventToCopy.getFrom();
         to = eventToCopy.getTo();
-        detail = DEFAULT_DETAIL;
+        detail = eventToCopy.getDetail();
         roles = new HashSet<>(eventToCopy.getRoles());
         roster = new HashSet<>(eventToCopy.getRoster());
+
+        // prevents DuplicateRoleAssignmentException from being thrown due to the event being copied
+        // only for testing, as in practice duplicate events cannot exist
+        for (EventRole role: roles) {
+            role.setAssignedTo(null);
+        }
     }
 
     /**
@@ -69,7 +75,7 @@ public class EventBuilder {
      * @return EventBuilder
      */
     public EventBuilder withRoles(String ... roles) {
-        this.roles = SampleDataUtil.getRoleSet(roles);
+        this.roles = SampleDataUtil.getEventRoleSet(roles);
         return this;
     }
 
