@@ -48,7 +48,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ClubBook(model.getClubBook()), new UserPrefs());
         expectedModel.setMember(model.getFilteredMemberList().get(0), editedMember);
 
-        CommandTestUtil.assertMemberCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ClubBook(model.getClubBook()), new UserPrefs());
         expectedModel.setMember(lastMember, editedMember);
 
-        CommandTestUtil.assertMemberCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ClubBook(model.getClubBook()), new UserPrefs());
 
-        CommandTestUtil.assertMemberCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ClubBook(model.getClubBook()), new UserPrefs());
         expectedModel.setMember(model.getFilteredMemberList().get(0), editedMember);
 
-        CommandTestUtil.assertMemberCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

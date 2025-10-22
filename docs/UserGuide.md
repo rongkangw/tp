@@ -6,7 +6,7 @@
 
 # EASync User Guide
 
-EASync is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EASync can get your contact management tasks done faster than traditional GUI apps.
+EASync is a **desktop app that helps student club managers manage member contacts and club events quickly and easily.** Just type to add members, schedule events, or update roles — no need to click through menus. It’s fast, simple, and visual — so you can skip the cluttered spreadsheets and get things done.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -76,21 +76,31 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 ### Managing Members
+#### Adding a member: `addMember`
 
-### Adding a member: `addMember`
-
-Adds a member to the club book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A member can have any number of tags (including 0)
-</box>
+Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
+* `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
+* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/98765432 r/friends`
+
+#### Deleting a member : `deleteMember`
+
+Removes a specified member from the club book.
+
+Format: `deleteMember INDEX`
+
+* This will delete the member at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed member list.
+* `INDEX` **must be a positive integer 1,2,3, ...​**
+
+Examples:
+* `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
+* `find Andy` then `deleteMember 1` removes the 1st member in the **search result**.
+
+<box type="important" seamless>
+    You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
+</box>
 
 ### Listing all members : `listMembers`
 
@@ -133,25 +143,14 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a member : `deleteMember`
+### Managing Events
+#### Adding an event: `addEvent`
 
-Removes a specified member from the club book.
-
-Format: `deleteMember INDEX`
-
-* This will delete the member at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed member list.
-* `INDEX` **must be a positive integer 1,2,3, ...​**
+Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`
 
 Examples:
-* `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
-* `find Andy` then `deleteMember 1` removes the 1st member in the **search result**.
-
-<box type="tip" seamless>
-    You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
-</box>
-
-### Managing Events
+* `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
+* `addEvent n/Movie Night r/FoodIC f/20/10/2025 1800 t/20/10/2025 2000`
 
 #### Deleting an event : `deleteEvent`
 
@@ -176,6 +175,15 @@ Shows a list of all events in the club book.
 
 Format: `listEvents`
 
+### Managing Event Participants
+#### Assigning a Member an Event
+
+Format: `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+
+Examples:
+* `assignEvent e/Orientation m/Alice Pauline`
+* `assignEvent e/Movie Night m/Benson Meier r/FoodIC`
+
 ### Unassigning event : `unassignEvent`
 
 * Removes an event role from the specified member.
@@ -187,7 +195,6 @@ Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]... `
 Examples:
 *  `unassignEvent e/Meeting m/Bob r/Logistics`
 *  `unassignEvent e/Workshop m/Jane`
-
 
 ### Clearing all entries : `clear`
 
@@ -249,16 +256,18 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                  |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AddMember**    | `addMember n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**        | `clear`                                                                                                                                                           |
-| **DeleteMember** | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                                                                   |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                   |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                        |
-| **ListMembers**  | `listMembers`                                                                                                                                                          |
-| **DeleteEvent**  | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`      
-| **ListEvents**   | `listEvents`
-| **UnassignEvent**| `unassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]...`
-| **Help**         | `help`                                                                                                                                                            |
-| **Exit**         | `exit`                                                                                                                                                            |
+| Action            | Format, Examples                                                                                                |
+|-------------------|-----------------------------------------------------------------------------------------------------------------|
+| **AddMember**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                   |
+| **DeleteMember**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                 |
+| **ListMembers**   | `listMembers`                                                                                                   |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                      |
+| **AddEvent**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
+| **DeleteEvent**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
+| **ListEvents**    | `listEvents`                                                                                                    |
+| **AssignEvent**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
+| **UnassignEvent** | `unassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]...`                                                              |
+| **Clear**         | `clear`                                                                                                         |
+| **Help**          | `help`                                                                                                          |
+| **Exit**          | `exit`                                                                                                          |

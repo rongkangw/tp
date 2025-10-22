@@ -6,7 +6,9 @@ import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
+import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.NameContainsKeywordsPredicate;
 
@@ -30,8 +32,19 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        /* Ensure that member list is displaying first, so that the ClubBook does not unintentionally show no
+           results if the user is on event list instead.
+         */
+        if (model.getViewState() != ViewState.MEMBER) {
+            throw new CommandException(Messages.MESSAGE_NOT_MEMBER_STATE);
+        }
+
+        // The following line is technically not necessary since already guaranteed to be on member list,
+        // but is there as a safety measure.
+        model.setViewState(ViewState.MEMBER);
         model.updateFilteredMemberList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_MEMBERS_LISTED_OVERVIEW, model.getFilteredMemberList().size()));
