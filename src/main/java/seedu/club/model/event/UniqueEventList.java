@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.club.model.event.exceptions.DuplicateEventException;
 import seedu.club.model.event.exceptions.EventNotFoundException;
-import seedu.club.model.name.Name;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.

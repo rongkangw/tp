@@ -8,10 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.club.model.event.Event;
 import seedu.club.model.member.exceptions.DuplicateMemberException;
 import seedu.club.model.member.exceptions.MemberNotFoundException;
-import seedu.club.model.name.Name;
 
 /**
  * A list of members that enforces uniqueness between its elements and does not allow nulls.
