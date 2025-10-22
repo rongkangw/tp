@@ -29,11 +29,15 @@ EASync is a **desktop app for managing contacts, optimized for use via a Command
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `listMembers` : Lists all members.
+   * `listEvents` : Lists all events.
 
-   * `addMember n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Club Book.
+   * `addMember n/John Doe p/98765432 e/johnd@example.com` : Adds a member named `John Doe` to the Club Book. <br> Notice that the Club Book switches to the member list.
 
-   * `deleteEvent 3` : Deletes the 3rd contact shown in the current list.
+   * `deleteMember 3` : Deletes the 3rd member shown in the current list.
+
+   * `addEvent n/Team Bonding f/15/10/2025 t/16/10/2025` : Adds an event named `Team Bonding` to the Club Book. <br> Notice that the Club Book switches to the event list.
+
+   * `assignEvent e/Team Bonding m/John Doe r/Logistics` : Assigns `John Doe` to handle `Logistics` in the `Team Bonding` event
 
    * `clear` : Deletes all members and events.
 
@@ -53,7 +57,7 @@ EASync is a **desktop app for managing contacts, optimized for use via a Command
   e.g. in `addMember n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [r/ROLE]` can be used as `n/John Doe r/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -108,21 +112,19 @@ Format: `list`
 
 ### Editing a member : `editMember`
 
-Edits an existing member in the club book.
-
-Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/ROLE]…​`
 
 * Edits the member at the specified `INDEX`. The index refers to the index number shown in the displayed member list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values for the provided field will be updated to the input values.
 * Fields not provided will remain unchanged.
-* When editing tags, the existing tags of the member will be removed i.e. adding of tags is not cumulative.
-* You can remove all the member’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing roles, the existing roles of the member will be removed i.e. adding of roles is not cumulative.
+* You can remove all the member’s roles by typing `r/` without
+    specifying any roles after it.
 
 Examples:
 *  `editMember 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
-*  `editMember 2 n/Betsy Crower t/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing tags.
+*  `editMember 2 n/Betsy Crower r/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing roles.
 
 ### Locating members by name: `find`
 
@@ -212,7 +214,7 @@ Action     | Format, Examples
 **AddMember**    | `addMember n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROLE]…​`<br> e.g.,`editMember 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
