@@ -1,5 +1,6 @@
 package seedu.club.logic;
 
+import static java.util.stream.Collectors.joining;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -85,7 +86,9 @@ public class Messages {
         Set<Member> roster = event.getRoster();
         if (roster != null && !roster.isEmpty()) {
             builder.append("; Members Assigned: ");
-            roster.stream().map(NamedEntity::getName).forEach(builder::append);
+            String result = roster.stream().map(x -> x.getName().toString())
+                    .collect(joining(", "));
+            builder.append(result);
         }
 
         return builder.toString();

@@ -61,7 +61,7 @@ public class AssignEventCommand extends Command {
                     false, false);
         }
 
-        Event event = model.getFilteredEventList().get(eventIndex);
+        Event event = model.getFullEventList().get(eventIndex);
 
         Set<EventRole> missingRoles = new HashSet<>(roles);
         missingRoles.removeAll(event.getRoles());
@@ -74,7 +74,7 @@ public class AssignEventCommand extends Command {
             return new CommandResult(String.format(Messages.MESSAGE_MEMBER_NAME_NOT_EXIST, memberName),
                     false, false);
         }
-        Member member = model.getFilteredMemberList().get(memberIndex);
+        Member member = model.getFullMemberList().get(memberIndex);
 
         // assigning is done after member is validated for efficiency
         for (EventRole role : roles) {
@@ -85,9 +85,12 @@ public class AssignEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
-        model.setViewState(ViewState.SINGLE_EVENT);
         event.addMember(member);
         member.addEventRoles(roles);
+
+        model.setViewState(ViewState.SINGLE_EVENT);
+        model.updateFilteredEventList(e -> e.equals(event));
+        model.updateFilteredMemberList(m -> event.getRoster().contains(m));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(event)));
     }

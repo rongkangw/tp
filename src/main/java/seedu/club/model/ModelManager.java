@@ -128,6 +128,17 @@ public class ModelManager implements Model {
         return -1;
     }
 
+    //=========== Full Member List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the full list of {@code Member} back by the internal list of
+     * {@code versionedClubBook}
+     */
+    @Override
+    public ObservableList<Member> getFullMemberList() {
+        return clubBook.getMemberList();
+    }
+
     //=========== Filtered Member List Accessors =============================================================
 
     /**
