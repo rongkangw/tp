@@ -28,14 +28,14 @@ public class ListMemberCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertMemberCommandSuccess(
+        CommandTestUtil.assertCommandSuccess(
                 new ListMemberCommand(), model, ListMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showMemberAtIndex(model, INDEX_FIRST_MEMBER);
-        CommandTestUtil.assertMemberCommandSuccess(
+        CommandTestUtil.assertCommandSuccess(
                 new ListMemberCommand(), model, ListMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
