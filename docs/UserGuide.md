@@ -142,7 +142,7 @@ Examples:
 ### Managing Events
 #### Adding an event: `addEvent`
 
-Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/ROLES]…​`
+Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`
 
 Examples:
 * `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
@@ -214,6 +214,6 @@ _Details coming soon ..._
  **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
  **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
  **List**      | `list`
- **AddEvent**  | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/ROLES]…​`
+ **AddEvent**  | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`
  **AssignEvent** | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
  **Help**      | `help`
