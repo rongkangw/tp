@@ -11,8 +11,8 @@ import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
-import seedu.club.model.ListState;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Member;
 
 /**
@@ -56,7 +56,7 @@ public class AddMemberCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
-        model.setListState(ListState.MEMBER);
+        model.setViewState(ViewState.MEMBER);
         model.addMember(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }

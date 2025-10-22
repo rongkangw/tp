@@ -15,10 +15,10 @@ import org.junit.jupiter.api.Test;
 import seedu.club.commons.core.index.Index;
 import seedu.club.logic.Messages;
 import seedu.club.logic.commands.CommandTestUtil;
-import seedu.club.model.ListState;
 import seedu.club.model.Model;
 import seedu.club.model.ModelManager;
 import seedu.club.model.UserPrefs;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 
 /**
@@ -37,8 +37,8 @@ public class DeleteEventCommandTest {
         String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
-        model.setListState(ListState.EVENT);
-        expectedModel.setListState(ListState.EVENT);
+        model.setViewState(ViewState.EVENT);
+        expectedModel.setViewState(ViewState.EVENT);
 
         expectedModel.deleteEvent(eventToDelete);
 
@@ -52,7 +52,7 @@ public class DeleteEventCommandTest {
 
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_NOT_EVENT_STATE);
 
-        model.setListState(ListState.EVENT);
+        model.setViewState(ViewState.EVENT);
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
@@ -66,8 +66,8 @@ public class DeleteEventCommandTest {
         String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete));
 
         Model expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
-        model.setListState(ListState.EVENT);
-        expectedModel.setListState(ListState.EVENT);
+        model.setViewState(ViewState.EVENT);
+        expectedModel.setViewState(ViewState.EVENT);
 
         expectedModel.deleteEvent(eventToDelete);
         showNoEvent(expectedModel);
@@ -85,7 +85,7 @@ public class DeleteEventCommandTest {
 
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
 
-        model.setListState(ListState.EVENT);
+        model.setViewState(ViewState.EVENT);
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 

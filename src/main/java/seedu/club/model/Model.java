@@ -126,11 +126,11 @@ public interface Model {
     /**
      * Returns the current state of the ClubBook
      */
-    ListState getListState();
+    ViewState getViewState();
 
     /**
      * Changes the current state of the ClubBook.
-     * The state must be one of the values defined in {@link ListState}
+     * The state must be one of the values defined in {@link ViewState}
      */
-    void setListState(ListState state);
+    void setViewState(ViewState state);
 }

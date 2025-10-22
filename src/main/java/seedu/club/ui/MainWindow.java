@@ -16,7 +16,7 @@ import seedu.club.logic.Logic;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.parser.exceptions.ParseException;
-import seedu.club.model.ListState;
+import seedu.club.model.ViewState;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -194,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
 
-            if (logic.getListState().equals(ListState.EVENT)) {
+            if (logic.getViewState().equals(ViewState.EVENT)) {
                 //displays event list
                 memberListPanel.getRoot().setVisible(false);
                 eventListPanel.getRoot().setVisible(true);

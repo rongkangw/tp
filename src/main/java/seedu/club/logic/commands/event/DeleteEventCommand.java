@@ -10,8 +10,8 @@ import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
-import seedu.club.model.ListState;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 
 /**
@@ -40,7 +40,7 @@ public class DeleteEventCommand extends Command {
         /* Ensure that event list is displaying first, so that user does not unintentionally delete
            an event if they are on member list instead.
          */
-        if (model.getListState() != ListState.EVENT) {
+        if (model.getViewState() != ViewState.EVENT) {
             throw new CommandException(Messages.MESSAGE_NOT_EVENT_STATE);
         }
 
@@ -54,7 +54,7 @@ public class DeleteEventCommand extends Command {
 
         // The following line is technically not necessary since already guaranteed to be on event list,
         // but is there as a safety measure.
-        model.setListState(ListState.EVENT);
+        model.setViewState(ViewState.EVENT);
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
     }

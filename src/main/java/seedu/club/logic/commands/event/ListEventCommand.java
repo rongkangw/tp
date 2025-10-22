@@ -5,8 +5,8 @@ import static seedu.club.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
-import seedu.club.model.ListState;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 
 /**
  * Lists all upcoming events in the club to the user.
@@ -21,7 +21,7 @@ public class ListEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setListState(ListState.EVENT);
+        model.setViewState(ViewState.EVENT);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }

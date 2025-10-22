@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Member> filteredMembers;
     private final FilteredList<Event> filteredEvents;
-    private ListState currentState = ListState.MEMBER;
+    private ViewState currentState = ViewState.MEMBER;
 
     /**
      * Initializes a ModelManager with the given clubBook and userPrefs.
@@ -199,12 +199,12 @@ public class ModelManager implements Model {
     //=========== State =============================================================
 
     @Override
-    public ListState getListState() {
+    public ViewState getViewState() {
         return currentState;
     }
 
     @Override
-    public void setListState(ListState state) {
+    public void setViewState(ViewState state) {
         requireNonNull(state);
         currentState = state;
     }

@@ -5,7 +5,7 @@ import seedu.club.logic.commands.general.ExitCommand;
 import seedu.club.logic.commands.general.HelpCommand;
 
 /**
- * Represents the current list state of the ClubBook.
+ * Represents the current view state of the ClubBook.
  * This state determines which list (members or events) is displayed in the UI.
  *
  * <p>The state changes when commands targeting different entities are executed:
@@ -17,7 +17,7 @@ import seedu.club.logic.commands.general.HelpCommand;
  * For neutral commands like {@link ClearCommand}, {@link ExitCommand} and {@link HelpCommand}, the existing
  * state is preserved.
  */
-public enum ListState {
+public enum ViewState {
     MEMBER,
     EVENT
 }

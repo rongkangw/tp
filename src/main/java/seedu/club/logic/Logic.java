@@ -7,8 +7,8 @@ import seedu.club.commons.core.GuiSettings;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.parser.exceptions.ParseException;
-import seedu.club.model.ListState;
 import seedu.club.model.ReadOnlyClubBook;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 
@@ -28,12 +28,12 @@ public interface Logic {
     /**
      * Returns the current list to be displayed.
      */
-    ListState getListState();
+    ViewState getViewState();
 
     /**
      * Sets a list to be displayed.
      */
-    public void setListState(ListState state);
+    void setViewState(ViewState state);
 
     /**
      * Returns the ClubBook.

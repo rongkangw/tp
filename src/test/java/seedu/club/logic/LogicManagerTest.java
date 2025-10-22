@@ -26,11 +26,11 @@ import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.exceptions.ParseException;
-import seedu.club.model.ListState;
 import seedu.club.model.Model;
 import seedu.club.model.ModelManager;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.UserPrefs;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Member;
 import seedu.club.storage.JsonClubBookStorage;
 import seedu.club.storage.JsonUserPrefsStorage;
@@ -70,10 +70,10 @@ public class LogicManagerTest {
         assertCommandException(deleteMemberCommand, MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         assertCommandException(deleteEventCommand, MESSAGE_NOT_EVENT_STATE);
 
-        logic.setListState(ListState.EVENT);
+        logic.setViewState(ViewState.EVENT);
         assertCommandException(deleteMemberCommand, MESSAGE_NOT_MEMBER_STATE);
         assertCommandException(deleteEventCommand, MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        logic.setListState(ListState.MEMBER);
+        logic.setViewState(ViewState.MEMBER);
     }
 
     @Test
