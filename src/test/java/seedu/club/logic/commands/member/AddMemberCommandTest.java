@@ -191,12 +191,12 @@ public class AddMemberCommandTest {
         }
 
         @Override
-        public int memberNameIndex(Name name){
+        public int memberNameIndex(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public int eventNameIndex(Name name){
+        public int eventNameIndex(Name name) {
             throw new AssertionError("This method should not be called.");
         }
     }
