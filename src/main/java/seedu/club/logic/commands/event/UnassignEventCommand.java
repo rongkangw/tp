@@ -1,5 +1,11 @@
 package seedu.club.logic.commands.event;
 
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_EVENT;
+import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_MEMBER;
+
+import java.util.Set;
+
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.model.Model;
@@ -8,11 +14,8 @@ import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 
-import java.util.Set;
 
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_EVENT;
-import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_MEMBER;
+
 
 
 /**
