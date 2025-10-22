@@ -116,7 +116,8 @@ Examples:
 * `find Andy` then `deleteMember 1` removes the 1st member in the **search result**.
 
 <box type="important" seamless>
-    You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
+    
+**Note**: You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
 </box>
 
 ### Listing all members : `listMembers`
@@ -182,7 +183,8 @@ Examples:
 * `listEvents` then `deleteEvent 2` removes the 2nd event in the displayed event list.
 
 <box type="important" seamless>
-    You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
+
+**Note**: You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
 </box>
 
 ### Listing all events : `listEvents`
