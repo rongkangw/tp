@@ -38,7 +38,7 @@ public class DeleteMemberCommandTest {
         ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
         expectedModel.deleteMember(memberToDelete);
 
-        CommandTestUtil.assertMemberCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class DeleteMemberCommandTest {
         expectedModel.deleteMember(memberToDelete);
         showNoMember(expectedModel);
 
-        CommandTestUtil.assertMemberCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteMemberCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

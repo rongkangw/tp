@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Member> filteredMembers;
     private final FilteredList<Event> filteredEvents;
+    private ViewState currentState = ViewState.MEMBER;
 
     /**
      * Initializes a ModelManager with the given clubBook and userPrefs.
@@ -69,14 +70,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getClubBookFilePath() {
-        return userPrefs.getClubBookFilePath();
+    public Path getMemberStorageFilePath() {
+        return userPrefs.getMemberStorageFilePath();
     }
 
     @Override
-    public void setClubBookFilePath(Path clubBookFilePath) {
+    public void setMemberStorageFilePath(Path clubBookFilePath) {
         requireNonNull(clubBookFilePath);
-        userPrefs.setClubBookFilePath(clubBookFilePath);
+        userPrefs.setMemberStorageFilePath(clubBookFilePath);
     }
 
     //=========== ClubBook ================================================================================
@@ -189,7 +190,6 @@ public class ModelManager implements Model {
         clubBook.setEvent(target, editedEvent);
     }
      */
-
     @Override
     public int eventNameIndex(Name name) {
         ObservableList<Event> eventList = clubBook.getEventList();
@@ -199,6 +199,18 @@ public class ModelManager implements Model {
             }
         }
         return -1;
+    }
+
+
+    //=========== Full Event List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the full list of {@code Event} back by the internal list of
+     * {@code versionedClubBook}
+     */
+    @Override
+    public ObservableList<Event> getFullEventList() {
+        return clubBook.getEventList();
     }
 
     //=========== Filtered Event List Accessors =============================================================
@@ -219,4 +231,16 @@ public class ModelManager implements Model {
     }
 
 
+    //=========== State =============================================================
+
+    @Override
+    public ViewState getViewState() {
+        return currentState;
+    }
+
+    @Override
+    public void setViewState(ViewState state) {
+        requireNonNull(state);
+        currentState = state;
+    }
 }

@@ -18,6 +18,7 @@ import seedu.club.logic.commands.CommandTestUtil;
 import seedu.club.model.Model;
 import seedu.club.model.ModelManager;
 import seedu.club.model.UserPrefs;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 
 /**
@@ -33,12 +34,15 @@ public class DeleteEventCommandTest {
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST_EVENT);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.getName());
+        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
+        model.setViewState(ViewState.EVENT);
+        expectedModel.setViewState(ViewState.EVENT);
+
         expectedModel.deleteEvent(eventToDelete);
 
-        CommandTestUtil.assertEventCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -46,6 +50,9 @@ public class DeleteEventCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
 
+        assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_NOT_EVENT_STATE);
+
+        model.setViewState(ViewState.EVENT);
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
@@ -56,13 +63,16 @@ public class DeleteEventCommandTest {
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST_EVENT);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.getName());
+        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete));
 
         Model expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
+        model.setViewState(ViewState.EVENT);
+        expectedModel.setViewState(ViewState.EVENT);
+
         expectedModel.deleteEvent(eventToDelete);
         showNoEvent(expectedModel);
 
-        CommandTestUtil.assertEventCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -75,6 +85,7 @@ public class DeleteEventCommandTest {
 
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
 
+        model.setViewState(ViewState.EVENT);
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 

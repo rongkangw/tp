@@ -3,6 +3,8 @@ package seedu.club.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.club.logic.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.club.logic.Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX;
+import static seedu.club.logic.Messages.MESSAGE_NOT_EVENT_STATE;
+import static seedu.club.logic.Messages.MESSAGE_NOT_MEMBER_STATE;
 import static seedu.club.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.club.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -28,6 +30,7 @@ import seedu.club.model.Model;
 import seedu.club.model.ModelManager;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.UserPrefs;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Member;
 import seedu.club.storage.JsonClubBookStorage;
 import seedu.club.storage.JsonUserPrefsStorage;
@@ -65,7 +68,12 @@ public class LogicManagerTest {
         String deleteMemberCommand = "deleteMember 9";
         String deleteEventCommand = "deleteEvent 9";
         assertCommandException(deleteMemberCommand, MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
+        assertCommandException(deleteEventCommand, MESSAGE_NOT_EVENT_STATE);
+
+        logic.setViewState(ViewState.EVENT);
+        assertCommandException(deleteMemberCommand, MESSAGE_NOT_MEMBER_STATE);
         assertCommandException(deleteEventCommand, MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        logic.setViewState(ViewState.MEMBER);
     }
 
     @Test

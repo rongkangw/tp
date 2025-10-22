@@ -23,7 +23,10 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "An member with the name provided does not exist: %1$s";
     public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "An event with the name provided does not exist: %1$s";
-
+    public static final String MESSAGE_NOT_EVENT_STATE =
+            "The current list is a member list! Switch to event list first using \"listEvents\"";
+    public static final String MESSAGE_NOT_MEMBER_STATE =
+            "The current list is an event list! Switch to member list first using \"listMembers\"";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

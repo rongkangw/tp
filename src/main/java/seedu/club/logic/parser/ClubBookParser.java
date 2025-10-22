@@ -11,6 +11,7 @@ import seedu.club.commons.core.LogsCenter;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.event.AddEventCommand;
 import seedu.club.logic.commands.event.DeleteEventCommand;
+import seedu.club.logic.commands.event.DisplayEventCommand;
 import seedu.club.logic.commands.event.ListEventCommand;
 import seedu.club.logic.commands.event.UnassignEventCommand;
 import seedu.club.logic.commands.general.ClearCommand;
@@ -18,16 +19,17 @@ import seedu.club.logic.commands.general.ExitCommand;
 import seedu.club.logic.commands.general.HelpCommand;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.DeleteMemberCommand;
-import seedu.club.logic.commands.member.EditCommand;
+import seedu.club.logic.commands.member.EditMemberCommand;
 import seedu.club.logic.commands.member.FindCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.event.AddEventCommandParser;
 import seedu.club.logic.parser.event.DeleteEventCommandParser;
+import seedu.club.logic.parser.event.DisplayEventCommandParser;
 import seedu.club.logic.parser.event.UnassignEventCommandParser;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.logic.parser.member.AddMemberCommandParser;
 import seedu.club.logic.parser.member.DeleteMemberCommandParser;
-import seedu.club.logic.parser.member.EditCommandParser;
+import seedu.club.logic.parser.member.EditMemberCommandParser;
 import seedu.club.logic.parser.member.FindCommandParser;
 
 
@@ -68,14 +70,17 @@ public class ClubBookParser {
         case AddMemberCommand.COMMAND_WORD:
             return new AddMemberCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditMemberCommand.COMMAND_WORD:
+            return new EditMemberCommandParser().parse(arguments);
 
         case DeleteMemberCommand.COMMAND_WORD:
             return new DeleteMemberCommandParser().parse(arguments);
 
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
+
+        case DisplayEventCommand.COMMAND_WORD:
+            return new DisplayEventCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

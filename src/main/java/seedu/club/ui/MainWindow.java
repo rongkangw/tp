@@ -2,6 +2,7 @@ package seedu.club.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,9 @@ import seedu.club.logic.Logic;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.parser.exceptions.ParseException;
+import seedu.club.model.ViewState;
+import seedu.club.model.event.Event;
+import seedu.club.model.member.Member;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private MemberListPanel memberListPanel;
     private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
+    private SingleEventPanel singleEventPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -113,16 +118,19 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         memberListPanel = new MemberListPanel(logic.getFilteredMemberList());
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
-        mainListPanelPlaceholder.getChildren().addAll(memberListPanel.getRoot(), eventListPanel.getRoot());
+        singleEventPanel = new SingleEventPanel();
+        mainListPanelPlaceholder.getChildren().addAll(
+                memberListPanel.getRoot(), eventListPanel.getRoot(), singleEventPanel.getRoot());
 
         //displays member list on start
         eventListPanel.getRoot().setVisible(false);
         memberListPanel.getRoot().setVisible(true);
+        singleEventPanel.getRoot().setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getClubBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMemberStorageFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -192,15 +200,26 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-
-            if (commandResult.isEventCommand()) {
+            if (logic.getViewState().equals(ViewState.EVENT)) {
                 //displays event list
                 memberListPanel.getRoot().setVisible(false);
                 eventListPanel.getRoot().setVisible(true);
+                singleEventPanel.getRoot().setVisible(false);
+            } else if (logic.getViewState().equals(ViewState.SINGLE_EVENT)) {
+                //displays single event with participating members
+                Event selectedEvent = logic.getFilteredEventList().get(0);
+                ObservableList<Member> participants = logic.getFilteredMemberList();
+
+                singleEventPanel.update(selectedEvent, participants);
+
+                memberListPanel.getRoot().setVisible(false);
+                eventListPanel.getRoot().setVisible(false);
+                singleEventPanel.getRoot().setVisible(true);
             } else {
                 //displays member list
                 memberListPanel.getRoot().setVisible(true);
                 eventListPanel.getRoot().setVisible(false);
+                singleEventPanel.getRoot().setVisible(false);
             }
 
             return commandResult;

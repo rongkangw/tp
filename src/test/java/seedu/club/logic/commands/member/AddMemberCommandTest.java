@@ -23,6 +23,7 @@ import seedu.club.model.ClubBook;
 import seedu.club.model.Model;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.ReadOnlyUserPrefs;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
@@ -117,12 +118,12 @@ public class AddMemberCommandTest {
         }
 
         @Override
-        public Path getClubBookFilePath() {
+        public Path getMemberStorageFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setClubBookFilePath(Path clubBookFilePath) {
+        public void setMemberStorageFilePath(Path memberStorageFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -177,6 +178,11 @@ public class AddMemberCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getFullEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredMemberList(Predicate<Member> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -193,10 +199,21 @@ public class AddMemberCommandTest {
         @Override
         public int memberNameIndex(Name name) {
             throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
         public int eventNameIndex(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ViewState getViewState() {
+            throw new AssertionError("This method should not be called.");
+        }
+        
+        @Override
+        public void setViewState(ViewState viewState) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -240,6 +257,14 @@ public class AddMemberCommandTest {
         @Override
         public ReadOnlyClubBook getClubBook() {
             return new ClubBook();
+        }
+
+        /**
+         * Method is overridden but not implemented since {@code ModelStubAcceptingMemberAdded} only cares about
+         * adding members and not setting list states.
+         */
+        @Override
+        public void setViewState(ViewState state) {
         }
     }
 

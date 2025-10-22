@@ -22,6 +22,7 @@ import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
@@ -31,9 +32,9 @@ import seedu.club.model.role.MemberRole;
 /**
  * Edits the details of an existing member in the club book.
  */
-public class EditCommand extends Command {
+public class EditMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the member identified "
             + "by the index number used in the displayed member list. "
@@ -58,7 +59,7 @@ public class EditCommand extends Command {
      * @param index of the member in the filtered member list to edit
      * @param editMemberDescriptor details to edit the member with
      */
-    public EditCommand(Index index, EditMemberDescriptor editMemberDescriptor) {
+    public EditMemberCommand(Index index, EditMemberDescriptor editMemberDescriptor) {
         requireNonNull(index);
         requireNonNull(editMemberDescriptor);
 
@@ -69,6 +70,14 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        /* Ensure that member list is displaying first, so that user does not unintentionally edit
+           an event if they are on event list instead.
+         */
+        if (model.getViewState() != ViewState.MEMBER) {
+            throw new CommandException(Messages.MESSAGE_NOT_MEMBER_STATE);
+        }
+
         List<Member> lastShownList = model.getFilteredMemberList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -82,6 +91,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
+        // The following line is technically not necessary since already guaranteed to be on member list,
+        // but is there as a safety measure.
+        model.setViewState(ViewState.MEMBER);
         model.setMember(memberToEdit, editedMember);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));
@@ -109,13 +121,13 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMemberCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editMemberDescriptor.equals(otherEditCommand.editMemberDescriptor);
+        EditMemberCommand otherEditMemberCommand = (EditMemberCommand) other;
+        return index.equals(otherEditMemberCommand.index)
+                && editMemberDescriptor.equals(otherEditMemberCommand.editMemberDescriptor);
     }
 
     @Override

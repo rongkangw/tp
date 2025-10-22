@@ -12,10 +12,11 @@ import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Member;
 
 /**
- * Adds a person to the club member list.
+ * Adds a member to the club's member list.
  */
 public class AddMemberCommand extends Command {
 
@@ -40,7 +41,7 @@ public class AddMemberCommand extends Command {
     private final Member toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Member}
+     * Creates an AddMemberCommand to add the specified {@code Member}
      */
     public AddMemberCommand(Member member) {
         requireNonNull(member);
@@ -55,6 +56,7 @@ public class AddMemberCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
+        model.setViewState(ViewState.MEMBER);
         model.addMember(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
