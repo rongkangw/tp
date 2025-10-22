@@ -13,6 +13,9 @@ import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
 import seedu.club.model.event.Event;
 
+/**
+ * Displays an event with its participating members, identified using its displayed index from the event list
+ */
 public class DisplayEventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";

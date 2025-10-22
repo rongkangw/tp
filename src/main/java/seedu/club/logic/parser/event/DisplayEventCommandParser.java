@@ -7,7 +7,15 @@ import seedu.club.logic.commands.event.DisplayEventCommand;
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and create a new DisplayEventCommand object
+ */
 public class DisplayEventCommandParser {
+    /**
+     * Parses the given {@code String} of arguments in the context of the DisplayEventCommand
+     * and returns a DisplayEventCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public DisplayEventCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);

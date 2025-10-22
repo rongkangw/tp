@@ -14,7 +14,7 @@ import seedu.club.model.Model;
 import seedu.club.model.event.Event;
 
 /**
- * Deletes an event identified using its displayed index from the member list
+ * Deletes an event identified using its displayed index from the event list
  */
 public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "deleteEvent";
