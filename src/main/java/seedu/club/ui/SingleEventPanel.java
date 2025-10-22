@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -13,6 +12,9 @@ import seedu.club.commons.core.LogsCenter;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 
+/**
+ * Panel containing single event and a list of members participating in the event.
+ */
 public class SingleEventPanel extends UiPart<Region> {
     private static final String FXML = "SingleEventPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SingleEventPanel.class);
@@ -27,6 +29,9 @@ public class SingleEventPanel extends UiPart<Region> {
         super(FXML);
     }
 
+    /**
+     * Creates a {@code SingleEventPanel} with the given {@code Event} and {@code ObservableList}.
+     */
     public SingleEventPanel(Event event, ObservableList<Member> memberList) {
         super(FXML);
         memberListView.setItems(memberList);
@@ -51,6 +56,10 @@ public class SingleEventPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Updates {@code EventCard} and {@code ObservableList} with the
+     * given {@code Event} and {@code ObservableList}
+     */
     public void update(Event event, ObservableList<Member> memberList) {
         memberListView.setItems(memberList);
         memberListView.setCellFactory(listView -> new MemberListViewCell());

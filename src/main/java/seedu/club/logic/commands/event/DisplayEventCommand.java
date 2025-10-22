@@ -47,7 +47,8 @@ public class DisplayEventCommand extends Command {
         model.setViewState(ViewState.SINGLE_EVENT);
         model.updateFilteredEventList(e -> e.equals(eventToBeDisplayed));
         model.updateFilteredMemberList(m -> eventToBeDisplayed.getRoster().contains(m));
-        return new CommandResult(String.format(MESSAGE_DISPLAY_EVENT_SUCCESS, eventToBeDisplayed.getName()), false, false);
+        return new CommandResult(String.format(MESSAGE_DISPLAY_EVENT_SUCCESS,
+                eventToBeDisplayed.getName()), false, false);
     }
 
     @Override

@@ -45,6 +45,9 @@ public class Event extends NamedEntity {
         }
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
         super(name);
         requireAllNonNull(from, to, detail, roles);
