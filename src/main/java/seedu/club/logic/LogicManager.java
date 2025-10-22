@@ -1,5 +1,7 @@
 package seedu.club.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
@@ -15,6 +17,7 @@ import seedu.club.logic.parser.ClubBookParser;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.Model;
 import seedu.club.model.ReadOnlyClubBook;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.storage.Storage;
@@ -64,6 +67,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ViewState getViewState() {
+        return model.getViewState();
+    }
+
+    @Override
+    public void setViewState(ViewState state) {
+        requireNonNull(state);
+        model.setViewState(state);
+    }
+
+    @Override
     public ReadOnlyClubBook getClubBook() {
         return model.getClubBook();
     }
@@ -79,8 +93,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getClubBookFilePath() {
-        return model.getClubBookFilePath();
+    public Path getMemberStorageFilePath() {
+        return model.getMemberStorageFilePath();
     }
 
     @Override

@@ -11,6 +11,7 @@ import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.member.Member;
 
 /**
@@ -36,6 +37,14 @@ public class DeleteMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        /* Ensure that member list is displaying first, so that user does not unintentionally delete
+           an event if they are on event list instead.
+         */
+        if (model.getViewState() != ViewState.MEMBER) {
+            throw new CommandException(Messages.MESSAGE_NOT_MEMBER_STATE);
+        }
+
         List<Member> lastShownList = model.getFilteredMemberList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -43,6 +52,10 @@ public class DeleteMemberCommand extends Command {
         }
 
         Member memberToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // The following line is technically not necessary since already guaranteed to be on member list,
+        // but is there as a safety measure.
+        model.setViewState(ViewState.MEMBER);
         model.deleteMember(memberToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MEMBER_SUCCESS, Messages.format(memberToDelete)));
     }
