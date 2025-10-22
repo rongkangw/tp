@@ -14,6 +14,9 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_EVENT;
 import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_MEMBER;
 
+/**
+ * Removes assignation between a member and an event or event role.
+ */
 public class UnassignEventCommand extends Command {
     public static final String COMMAND_WORD = "unassignEvent";
     public static final String MESSAGE_SUCCESS_EVENT = "The event has been unassigned from the member successfully.";

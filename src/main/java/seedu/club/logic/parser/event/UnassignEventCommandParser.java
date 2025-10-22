@@ -22,8 +22,8 @@ public class UnassignEventCommandParser {
     public static final Prefix PREFIX_EVENT = new Prefix("e/");
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
-     * and returns a DeleteEventCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UnassignEventCommand
+     * and returns a UnassignEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnassignEventCommand parse(String args) throws ParseException {
