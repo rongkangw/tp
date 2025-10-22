@@ -14,6 +14,7 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_EVENT;
 import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_MEMBER;
 
+
 /**
  * Removes assignation between a member and an event or event role.
  */
@@ -43,6 +44,9 @@ public class UnassignEventCommand extends Command {
 
     private boolean hasRoles = true;
 
+    /**
+     * Creates an UnassignEventCommand for the specified event, member, and roles.
+     */
     public UnassignEventCommand(Name event, Name member, Set<EventRole> roles) {
         this.eventName = event;
         this.memberName = member;

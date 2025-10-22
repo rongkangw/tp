@@ -8,7 +8,6 @@ import seedu.club.logic.parser.Prefix;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
-import seedu.club.model.role.Role;
 
 import java.util.Collections;
 import java.util.Set;
@@ -17,6 +16,10 @@ import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 
 
+
+/**
+ * Parses input arguments and creates a new UnassignEventCommand object
+ */
 public class UnassignEventCommandParser {
     public static final Prefix PREFIX_MEMBER = new Prefix("m/");
     public static final Prefix PREFIX_EVENT = new Prefix("e/");

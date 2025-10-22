@@ -118,8 +118,8 @@ public class ModelManager implements Model {
 
     @Override
     public int memberNameIndex(Name name) {
-        ObservableList<Member> memberList= clubBook.getMemberList();
-        for (int i = 0; i < memberList.size(); i ++) {
+        ObservableList<Member> memberList = clubBook.getMemberList();
+        for (int i = 0; i < memberList.size(); i++) {
             if (memberList.get(i).getName().equals(name)) {
                 return i;
             }
@@ -192,8 +192,8 @@ public class ModelManager implements Model {
 
     @Override
     public int eventNameIndex(Name name) {
-        ObservableList<Event> eventList= clubBook.getEventList();
-        for (int i = 0; i < eventList.size(); i ++) {
+        ObservableList<Event> eventList = clubBook.getEventList();
+        for (int i = 0; i < eventList.size(); i++) {
             if (eventList.get(i).getName().equals(name)) {
                 return i;
             }
