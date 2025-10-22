@@ -35,13 +35,14 @@ public class DisplayEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFilteredEventList();
+        List<Event> lastShownList = model.getFullEventList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToBeDisplayed = lastShownList.get(targetIndex.getZeroBased());
+        model.updateFilteredEventList(e -> e.equals(eventToBeDisplayed));
         return new CommandResult(String.format(MESSAGE_DISPLAY_EVENT_SUCCESS, eventToBeDisplayed.getName()),
                 false, false, true);
     }
