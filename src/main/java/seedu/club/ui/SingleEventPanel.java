@@ -30,16 +30,6 @@ public class SingleEventPanel extends UiPart<Region> {
     }
 
     /**
-     * Creates a {@code SingleEventPanel} with the given {@code Event} and {@code ObservableList}.
-     */
-    public SingleEventPanel(Event event, ObservableList<Member> memberList) {
-        super(FXML);
-        memberListView.setItems(memberList);
-        memberListView.setCellFactory(listView -> new MemberListViewCell());
-        eventCard.getChildren().add(new EventCard(event, 1).getRoot());
-    }
-
-    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Member} using a {@code MemberCard}.
      */
     class MemberListViewCell extends ListCell<Member> {
