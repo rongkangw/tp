@@ -10,6 +10,10 @@ import seedu.club.model.role.EventRole;
 
 import java.util.Set;
 
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_EVENT;
+import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_MEMBER;
+
 public class UnassignEventCommand extends Command {
     public static final String COMMAND_WORD = "unassignEvent";
     public static final String MESSAGE_SUCCESS_EVENT = "The event has been unassigned from the member successfully.";
@@ -17,11 +21,17 @@ public class UnassignEventCommand extends Command {
             "The event role has been unassigned from the member successfully.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the event identified by the index number used in the displayed events list.\n"
-            + "Parameters : INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Removes the event roles from the specified member\n"
+            + "If no roles are specified, the member will be removed from the event\n"
+            + "Parameters: "
+            + PREFIX_MEMBER + "MEMBER "
+            + PREFIX_EVENT + "EVENT "
+            + "[" + PREFIX_ROLE + "EVENT ROLE]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_EVENT + "Meeting "
+            + PREFIX_MEMBER + "John "
+            + PREFIX_ROLE + "Facilitator";
     public static final String MESSAGE_NAME_DOES_NOT_EXIST = "The event or member does not exist.\n";
-
 
     private final Name eventName;
     private final Name memberName;
@@ -44,7 +54,7 @@ public class UnassignEventCommand extends Command {
     public CommandResult execute(Model model) {
         int eventIndex = model.eventNameIndex(eventName);
         int memberIndex = model.memberNameIndex(memberName);
-        if (model.eventNameIndex(eventName) == -1 || model.memberNameIndex(memberName) == -1) {
+        if (eventIndex == -1 || memberIndex == -1) {
             return new CommandResult(String.format(MESSAGE_NAME_DOES_NOT_EXIST),
                     false, false, false);
         }
