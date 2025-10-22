@@ -51,30 +51,12 @@ public class SingleEventPanel extends UiPart<Region> {
         }
     }
 
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
-     */
-    class EventListViewCell extends ListCell<Event> {
-        @Override
-        protected void updateItem(Event event, boolean empty) {
-            super.updateItem(event, empty);
-
-            if (empty || event == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new EventCard(event, getIndex() + 1).getRoot());
-            }
-        }
-    }
-
-
     public void update(Event event, ObservableList<Member> memberList) {
         memberListView.setItems(memberList);
         memberListView.setCellFactory(listView -> new MemberListViewCell());
         eventCard.getChildren().clear();
-        Region eventCardRoot = new EventCard(event, 1).getRoot();
-        eventCard.getChildren().add(new EventCard(event, 1).getRoot());
+        Region eventCardRoot = new EventCard(event, -1).getRoot();
+        eventCard.getChildren().add(new EventCard(event, -1).getRoot());
         eventCardRoot.applyCss();
     }
 }

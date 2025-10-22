@@ -364,3 +364,7 @@
     -fx-text-fill: white;
 }
 
+.singleEventPanelMemberList {
+    -fx-border-color: #3e7b91;
+    -fx-border-width: 2;
+}
