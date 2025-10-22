@@ -156,7 +156,7 @@ Format: `listEvents`
 
 * Removes an event role from the specified member.
 * Multiple event roles can be specified.
-* If no role is specified, all event roles of that event are removed from the member.
+* If no role is specified, the member is unassigned from the event and associated event roles are removed, if any.
 
 Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]... `
 
