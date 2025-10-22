@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.model.name.Name;
+import seedu.club.testutil.TypicalMembers;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "@orientation";
@@ -25,6 +26,8 @@ public class JsonAdaptedEventTest {
     private static final List<JsonAdaptedEventRole> VALID_EVENT_ROLES = ORIENTATION.getRoles().stream()
                             .map(JsonAdaptedEventRole::new)
                             .collect(Collectors.toList());
+    private static final List<JsonAdaptedMember> VALID_EVENT_ROSTER = TypicalMembers.getTypicalMembers()
+            .stream().map(JsonAdaptedMember::new).toList();
 
 
     @Test
@@ -36,7 +39,7 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(
-                INVALID_NAME, VALID_FROM, VALID_TO, VALID_DETAILS, VALID_EVENT_ROLES
+                INVALID_NAME, VALID_FROM, VALID_TO, VALID_DETAILS, VALID_EVENT_ROLES, VALID_EVENT_ROSTER
         );
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
@@ -45,7 +48,7 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(
-                null, VALID_FROM, VALID_TO, VALID_DETAILS, VALID_EVENT_ROLES
+                null, VALID_FROM, VALID_TO, VALID_DETAILS, VALID_EVENT_ROLES, VALID_EVENT_ROSTER
         );
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
@@ -54,7 +57,7 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_nullFrom_throwsIllegalValueException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(
-                VALID_NAME, null, VALID_TO, VALID_DETAILS, VALID_EVENT_ROLES
+                VALID_NAME, null, VALID_TO, VALID_DETAILS, VALID_EVENT_ROLES, VALID_EVENT_ROSTER
         );
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
@@ -63,7 +66,7 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_nullTo_throwsIllegalValueException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(
-                VALID_NAME, VALID_FROM, null, VALID_DETAILS, VALID_EVENT_ROLES
+                VALID_NAME, VALID_FROM, null, VALID_DETAILS, VALID_EVENT_ROLES, VALID_EVENT_ROSTER
         );
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
@@ -72,7 +75,7 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_nullDetails_throwsIllegalValueException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(
-                VALID_NAME, VALID_FROM, VALID_TO, null, VALID_EVENT_ROLES
+                VALID_NAME, VALID_FROM, VALID_TO, null, VALID_EVENT_ROLES, VALID_EVENT_ROSTER
         );
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
@@ -83,7 +86,7 @@ public class JsonAdaptedEventTest {
         List<JsonAdaptedEventRole> invalidEventRoles = new ArrayList<>(VALID_EVENT_ROLES);
         invalidEventRoles.add(new JsonAdaptedEventRole(INVALID_EVENT_ROLE));
         JsonAdaptedEvent event = new JsonAdaptedEvent(
-                VALID_NAME, VALID_FROM, VALID_TO, VALID_DETAILS, invalidEventRoles
+                VALID_NAME, VALID_FROM, VALID_TO, VALID_DETAILS, invalidEventRoles, VALID_EVENT_ROSTER
         );
         assertThrows(IllegalValueException.class, event::toModelType);
     }
