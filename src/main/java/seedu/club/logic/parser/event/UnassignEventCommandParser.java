@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.club.logic.commands.event.UnassignEventCommand;
 import seedu.club.logic.parser.ArgumentMultimap;
 import seedu.club.logic.parser.ArgumentTokenizer;
+import seedu.club.logic.parser.Parser;
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.logic.parser.exceptions.ParseException;
@@ -23,7 +24,7 @@ import seedu.club.model.role.EventRole;
 /**
  * Parses input arguments and creates a new UnassignEventCommand object
  */
-public class UnassignEventCommandParser {
+public class UnassignEventCommandParser implements Parser<UnassignEventCommand> {
     public static final Prefix PREFIX_MEMBER = new Prefix("m/");
     public static final Prefix PREFIX_EVENT = new Prefix("e/");
 

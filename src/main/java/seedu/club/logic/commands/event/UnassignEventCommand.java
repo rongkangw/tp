@@ -1,5 +1,7 @@
 package seedu.club.logic.commands.event;
 
+import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
+import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_EVENT;
 import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_MEMBER;
@@ -64,8 +66,12 @@ public class UnassignEventCommand extends Command {
     public CommandResult execute(Model model) {
         int eventIndex = model.eventNameIndex(eventName);
         int memberIndex = model.memberNameIndex(memberName);
-        if (eventIndex == -1 || memberIndex == -1) {
-            return new CommandResult(String.format(MESSAGE_NAME_DOES_NOT_EXIST),
+        if (eventIndex == -1) {
+            return new CommandResult(String.format(MESSAGE_EVENT_NAME_NOT_EXIST, eventName),
+                    false, false, false);
+        }
+        if (memberIndex == -1) {
+            return new CommandResult(String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName),
                     false, false, false);
         }
         Member member = model.getFilteredMemberList().get(memberIndex);

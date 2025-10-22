@@ -21,6 +21,9 @@ public class Messages {
     public static final String MESSAGE_MEMBERS_LISTED_OVERVIEW = "%1$d members listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "An member with the name provided does not exist: %1$s";
+    public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "An event with the name provided does not exist: %1$s";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
