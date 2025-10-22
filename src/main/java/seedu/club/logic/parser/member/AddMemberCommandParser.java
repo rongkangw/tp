@@ -18,7 +18,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Parses input arguments and creates a new AddMemberCommand object
@@ -43,9 +43,9 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Set<Role> roleList = ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
+        Set<MemberRole> memberRoleList = ParserUtil.parseMemberRoles(argMultimap.getAllValues(PREFIX_ROLE));
 
-        Member member = new Member(name, phone, email, roleList);
+        Member member = new Member(name, phone, email, memberRoleList);
 
         return new AddMemberCommand(member);
     }

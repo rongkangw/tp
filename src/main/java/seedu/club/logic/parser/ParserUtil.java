@@ -12,7 +12,8 @@ import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -80,30 +81,57 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String role} into a {@code Role}.
+     * Parses a {@code String role} into a {@code MemberRole}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
-    public static Role parseRole(String role) throws ParseException {
+    public static MemberRole parseMemberRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!Role.isValidRoleName(trimmedRole)) {
-            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        if (!MemberRole.isValidRoleName(trimmedRole)) {
+            throw new ParseException(MemberRole.MESSAGE_CONSTRAINTS);
         }
-        return new Role(trimmedRole);
+        return new MemberRole(trimmedRole);
     }
 
     /**
-     * Parses {@code Collection<String> roles} into a {@code Set<Role>}.
+     * Parses a {@code String event} with a {@code String role} into a {@code EventRole}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
      */
-    public static Set<Role> parseRoles(Collection<String> roles) throws ParseException {
-        requireNonNull(roles);
-        final Set<Role> roleSet = new HashSet<>();
-        for (String roleName : roles) {
-            roleSet.add(parseRole(roleName));
+    public static EventRole parseEventRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!EventRole.isValidRoleName(trimmedRole)) {
+            throw new ParseException(EventRole.MESSAGE_CONSTRAINTS);
         }
-        return roleSet;
+        return new EventRole(trimmedRole);
+    }
+
+    /**
+     * Parses {@code Collection<String> member roles} into a {@code Set<MemberRole>}.
+     */
+    public static Set<MemberRole> parseMemberRoles(Collection<String> roles) throws ParseException {
+        requireNonNull(roles);
+        final Set<MemberRole> memberRoleSet = new HashSet<>();
+        for (String roleName : roles) {
+            memberRoleSet.add(parseMemberRole(roleName));
+        }
+        return memberRoleSet;
+    }
+
+    /**
+     * Parses a {@code String event} with {@code Collection<String> event roles} into a {@code Set<EventRole>}.
+     */
+    public static Set<EventRole> parseEventRoles(Collection<String> roles) throws ParseException {
+        requireNonNull(roles);
+        final Set<EventRole> eventRoleSet = new HashSet<>();
+        for (String roleName : roles) {
+            eventRoleSet.add(parseEventRole(roleName));
+        }
+        return eventRoleSet;
     }
 
     /**
