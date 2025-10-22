@@ -124,6 +124,11 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     /**
+     * Returns an unmodifiable view of the filtered event list
+     */
+    ObservableList<Event> getFullEventList();
+
+    /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.

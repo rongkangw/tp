@@ -8,7 +8,7 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import java.util.Set;
 
 import seedu.club.logic.commands.member.AddMemberCommand;
-import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.club.model.member.Member;
 import seedu.club.model.role.MemberRole;
 

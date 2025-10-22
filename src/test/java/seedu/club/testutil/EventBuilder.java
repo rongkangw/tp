@@ -113,7 +113,7 @@ public class EventBuilder {
     }
 
     public Event build() {
-        return new Event(name, from, to, detail, roles);
+        return new Event(name, from, to, detail, roles, roster);
     }
 
 }

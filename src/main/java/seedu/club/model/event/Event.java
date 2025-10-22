@@ -29,6 +29,7 @@ public class Event extends NamedEntity {
     private final Set<Member> roster = new HashSet<>();
 
     /**
+     * Creates an Event containing no participating members
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles) {
@@ -38,6 +39,25 @@ public class Event extends NamedEntity {
         this.to = to;
         this.detail = detail;
         this.roles.addAll(roles);
+
+        // assign each eventRole to this event
+        for (EventRole role : this.roles) {
+            role.setAssignedTo(this);
+        }
+    }
+
+    /**
+     * Creates an Event with the given roster
+     * Every field must be present and not null.
+     */
+    public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
+        super(name);
+        requireAllNonNull(from, to, detail, roles);
+        this.from = from;
+        this.to = to;
+        this.detail = detail;
+        this.roles.addAll(roles);
+        this.roster.addAll(roster);
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
