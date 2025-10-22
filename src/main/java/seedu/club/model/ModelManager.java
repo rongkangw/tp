@@ -179,6 +179,17 @@ public class ModelManager implements Model {
     }
      */
 
+    //=========== Full Event List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the full list of {@code Event} back by the internal list of
+     * {@code versionedClubBook}
+     */
+    @Override
+    public ObservableList<Event> getFullEventList() {
+        return clubBook.getEventList();
+    }
+
     //=========== Filtered Event List Accessors =============================================================
 
     /**

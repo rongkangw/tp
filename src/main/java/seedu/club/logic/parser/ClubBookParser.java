@@ -11,6 +11,7 @@ import seedu.club.commons.core.LogsCenter;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.event.AddEventCommand;
 import seedu.club.logic.commands.event.DeleteEventCommand;
+import seedu.club.logic.commands.event.DisplayEventCommand;
 import seedu.club.logic.commands.event.ListEventCommand;
 import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.general.ExitCommand;
@@ -22,6 +23,7 @@ import seedu.club.logic.commands.member.FindCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.event.AddEventCommandParser;
 import seedu.club.logic.parser.event.DeleteEventCommandParser;
+import seedu.club.logic.parser.event.DisplayEventCommandParser;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.logic.parser.member.AddMemberCommandParser;
 import seedu.club.logic.parser.member.DeleteMemberCommandParser;
@@ -74,6 +76,9 @@ public class ClubBookParser {
 
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
+
+        case DisplayEventCommand.COMMAND_WORD:
+            return new DisplayEventCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
