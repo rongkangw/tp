@@ -8,7 +8,7 @@ import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and create a new DisplayEventCommand object
+ * Parses input arguments and creates a new DisplayEventCommand object
  */
 public class DisplayEventCommandParser {
     /**

@@ -15,7 +15,8 @@ import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 
 /**
- * Displays an event with its participating members, identified using its displayed index from the event list
+ * Displays an event with its participating members,
+ * identified by the index number used with its participating members.\n
  */
 public class DisplayEventCommand extends Command {
 
