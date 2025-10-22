@@ -29,6 +29,7 @@ public class Event extends NamedEntity {
     private final Set<Member> roster = new HashSet<>();
 
     /**
+     * Creates an Event containing no participating members
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles) {
@@ -46,6 +47,7 @@ public class Event extends NamedEntity {
     }
 
     /**
+     * Creates an Event with the given roster
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {

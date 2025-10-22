@@ -37,6 +37,10 @@ public class DisplayEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        /* Ensure that event list is displaying first*/
+        if (model.getViewState() == ViewState.MEMBER) {
+            throw new CommandException(Messages.MESSAGE_NOT_EVENT_STATE);
+        }
         List<Event> fullEventList = model.getFullEventList();
 
         if (targetIndex.getZeroBased() >= fullEventList.size()) {
