@@ -42,6 +42,4 @@ public class TypicalEvents {
         }
         return cb;
     }
-
-
 }
