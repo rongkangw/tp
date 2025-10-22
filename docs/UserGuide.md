@@ -152,7 +152,7 @@ Shows a list of all events in the club book.
 
 Format: `listEvents`
 
-### Unassigning event : `UnassignEvent`
+### Unassigning event : `unassignEvent`
 
 * Removes an event role from the specified member.
 * Multiple event roles can be specified.
