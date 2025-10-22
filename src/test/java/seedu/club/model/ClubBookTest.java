@@ -3,6 +3,7 @@ package seedu.club.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_ROLE_FACILITATOR;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalEvents.ORIENTATION;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.club.model.event.Event;
+import seedu.club.model.event.exceptions.DuplicateEventException;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.exceptions.DuplicateMemberException;
 import seedu.club.testutil.EventBuilder;
@@ -50,12 +52,22 @@ public class ClubBookTest {
         // Two members with the same identity fields
         Member editedAlice = new MemberBuilder(ALICE).withRoles(VALID_MEMBER_ROLE_PRESIDENT)
                 .build();
-        Event editedClass = new EventBuilder(ORIENTATION).build();
         List<Member> newMembers = Arrays.asList(ALICE, editedAlice);
-        List<Event> newEvents = Arrays.asList(ORIENTATION, editedClass);
-        ClubBookStub newData = new ClubBookStub(newMembers, newEvents);
+        List<Event> events = List.of(ORIENTATION);
+        ClubBookStub newData = new ClubBookStub(newMembers, events);
 
         assertThrows(DuplicateMemberException.class, () -> clubBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
+        Event editedEvent = new EventBuilder(ORIENTATION).withRoles(VALID_EVENT_ROLE_FACILITATOR)
+                .build();
+        List<Member> members = List.of(ALICE);
+        List<Event> newEvents = Arrays.asList(ORIENTATION, editedEvent);
+        ClubBookStub newData = new ClubBookStub(members, newEvents);
+
+        assertThrows(DuplicateEventException.class, () -> clubBook.resetData(newData));
     }
 
     @Test

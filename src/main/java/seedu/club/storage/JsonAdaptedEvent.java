@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
 
 /**
  * Jackson-friendly version of {@link Event}.
@@ -25,7 +25,7 @@ class JsonAdaptedEvent {
     private final String from;
     private final String to;
     private final String details;
-    private final List<JsonAdaptedRole> roles = new ArrayList<>();
+    private final List<JsonAdaptedEventRole> roles = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
@@ -33,7 +33,7 @@ class JsonAdaptedEvent {
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("from") String from,
                             @JsonProperty("to") String to, @JsonProperty("details") String details,
-                            @JsonProperty("roles") List<JsonAdaptedRole> roles) {
+                            @JsonProperty("roles") List<JsonAdaptedEventRole> roles) {
         this.name = name;
         this.from = from;
         this.to = to;
@@ -49,7 +49,7 @@ class JsonAdaptedEvent {
         to = source.getTo();
         details = source.getDetail();
         roles.addAll(source.getRoles().stream()
-                .map(JsonAdaptedRole::new)
+                .map(JsonAdaptedEventRole::new)
                 .collect(Collectors.toList()));
     }
 
@@ -60,8 +60,8 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in adapted event.
      */
     public Event toModelType() throws IllegalValueException {
-        final List<Role> eventRoles = new ArrayList<>();
-        for (JsonAdaptedRole role : roles) {
+        final List<EventRole> eventRoles = new ArrayList<>();
+        for (JsonAdaptedEventRole role : roles) {
             eventRoles.add(role.toModelType());
         }
 
@@ -88,7 +88,7 @@ class JsonAdaptedEvent {
         }
         final String modelDetails = this.details;
 
-        final Set<Role> modelRoles = new HashSet<>(eventRoles);
+        final Set<EventRole> modelRoles = new HashSet<>(eventRoles);
         return new Event(modelName, modelFrom, modelTo, modelDetails, modelRoles);
     }
 

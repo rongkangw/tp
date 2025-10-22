@@ -36,12 +36,12 @@ import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 import seedu.club.testutil.EditMemberDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String ROLE_EMPTY = " " + PREFIX_ROLE;
+    private static final String MEMBER_ROLE_EMPTY = " " + PREFIX_ROLE;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -80,7 +80,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_MEMBER_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_MEMBER_ROLE_DESC, Role.MESSAGE_CONSTRAINTS); // invalid role
+        assertParseFailure(parser, "1" + INVALID_MEMBER_ROLE_DESC, MemberRole.MESSAGE_CONSTRAINTS); // invalid role
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -88,14 +88,14 @@ public class EditCommandParserTest {
         // while parsing {@code PREFIX_ROLE} alone will reset the roles of the {@code Member} being edited,
         // parsing it together with a valid role results in error
         assertParseFailure(parser,
-                "1" + MEMBER_ROLE_DESC_PRESIDENT + MEMBER_ROLE_DESC_TREASURER + ROLE_EMPTY,
-                Role.MESSAGE_CONSTRAINTS);
+                "1" + MEMBER_ROLE_DESC_PRESIDENT + MEMBER_ROLE_DESC_TREASURER + MEMBER_ROLE_EMPTY,
+                MemberRole.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser,
-                "1" + MEMBER_ROLE_DESC_PRESIDENT + ROLE_EMPTY + MEMBER_ROLE_DESC_TREASURER,
-                Role.MESSAGE_CONSTRAINTS);
+                "1" + MEMBER_ROLE_DESC_PRESIDENT + MEMBER_ROLE_EMPTY + MEMBER_ROLE_DESC_TREASURER,
+                MemberRole.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser,
-                "1" + ROLE_EMPTY + MEMBER_ROLE_DESC_PRESIDENT + MEMBER_ROLE_DESC_TREASURER,
-                Role.MESSAGE_CONSTRAINTS);
+                "1" + MEMBER_ROLE_EMPTY + MEMBER_ROLE_DESC_PRESIDENT + MEMBER_ROLE_DESC_TREASURER,
+                MemberRole.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_MEMBER_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
@@ -191,7 +191,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_resetRoles_success() {
         Index targetIndex = INDEX_THIRD_MEMBER;
-        String userInput = targetIndex.getOneBased() + ROLE_EMPTY;
+        String userInput = targetIndex.getOneBased() + MEMBER_ROLE_EMPTY;
 
         EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withRoles().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

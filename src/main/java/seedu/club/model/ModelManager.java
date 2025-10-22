@@ -68,14 +68,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getClubBookFilePath() {
-        return userPrefs.getClubBookFilePath();
+    public Path getMemberStorageFilePath() {
+        return userPrefs.getMemberStorageFilePath();
     }
 
     @Override
-    public void setClubBookFilePath(Path clubBookFilePath) {
+    public void setMemberStorageFilePath(Path clubBookFilePath) {
         requireNonNull(clubBookFilePath);
-        userPrefs.setClubBookFilePath(clubBookFilePath);
+        userPrefs.setMemberStorageFilePath(clubBookFilePath);
     }
 
     //=========== ClubBook ================================================================================
