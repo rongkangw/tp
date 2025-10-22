@@ -80,7 +80,7 @@ public class EventTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Event orientationCopy = new EventBuilder(ORIENTATION).withDetail(ORIENTATION.getDetail()).build();
+        Event orientationCopy = new EventBuilder(ORIENTATION).build();
         assertTrue(ORIENTATION.equals(orientationCopy));
 
         // same object -> returns true
@@ -120,6 +120,7 @@ public class EventTest {
                 + ", to=" + ORIENTATION.getTo()
                 + ", detail=" + ORIENTATION.getDetail()
                 + ", roles=" + ORIENTATION.getRoles()
+                + ", roster=" + ORIENTATION.getRoster()
                 + "}";
         assertEquals(expected, ORIENTATION.toString());
     }

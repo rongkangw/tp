@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
 
 /**
  * Container for user visible messages.
@@ -68,7 +68,7 @@ public class Messages {
             builder.append("; Detail: ").append(detail);
         }
 
-        Set<Role> roles = event.getRoles();
+        Set<EventRole> roles = event.getRoles();
         if (roles != null && !roles.isEmpty()) {
             builder.append("; Roles: ");
             roles.forEach(builder::append);

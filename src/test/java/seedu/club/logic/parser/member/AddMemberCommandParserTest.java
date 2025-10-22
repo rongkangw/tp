@@ -36,7 +36,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 import seedu.club.testutil.MemberBuilder;
 
 public class AddMemberCommandParserTest {
@@ -63,7 +63,7 @@ public class AddMemberCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonRoleValue_failure() {
+    public void parse_repeatedNonMemberRoleValue_failure() {
         String validExpectedMemberString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + MEMBER_ROLE_DESC_PRESIDENT;
 
@@ -159,7 +159,7 @@ public class AddMemberCommandParserTest {
 
         // invalid role
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_MEMBER_ROLE_DESC + VALID_MEMBER_ROLE_TREASURER, Role.MESSAGE_CONSTRAINTS);
+                + INVALID_MEMBER_ROLE_DESC + VALID_MEMBER_ROLE_TREASURER, MemberRole.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_MEMBER_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB,

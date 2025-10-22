@@ -17,19 +17,23 @@ import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.EventRole;
+import seedu.club.model.role.MemberRole;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MEMBER_ROLE = "#friend";
+    private static final String INVALID_EVENT_ROLE = "#treasurer";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_MEMBER_ROLE_1 = "friend";
     private static final String VALID_MEMBER_ROLE_2 = "neighbour";
+    private static final String VALID_EVENT_ROLE_1 = "president";
+    private static final String VALID_EVENT_ROLE_2 = "treasurer";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -123,52 +127,104 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRole_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseRole(null));
+    public void parseMemberRole_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMemberRole(null));
     }
 
     @Test
-    public void parseRole_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRole(INVALID_MEMBER_ROLE));
+    public void parseEventRole_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventRole(null));
     }
 
     @Test
-    public void parseRole_validValueWithoutWhitespace_returnsRole() throws Exception {
-        Role expectedRole = new Role(VALID_MEMBER_ROLE_1);
-        assertEquals(expectedRole, ParserUtil.parseRole(VALID_MEMBER_ROLE_1));
+    public void parseMemberRole_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMemberRole(INVALID_MEMBER_ROLE));
     }
 
     @Test
-    public void parseRole_validValueWithWhitespace_returnsTrimmedRole() throws Exception {
+    public void parseEventRole_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventRole(INVALID_EVENT_ROLE));
+    }
+
+    @Test
+    public void parseMemberRole_validValueWithoutWhitespace_returnsMemberRole() throws Exception {
+        MemberRole expectedRole = new MemberRole(VALID_MEMBER_ROLE_1);
+        assertEquals(expectedRole, ParserUtil.parseMemberRole(VALID_MEMBER_ROLE_1));
+    }
+
+    @Test
+    public void parseEventRole_validValueWithoutWhitespace_returnsEventRole() throws Exception {
+        EventRole expectedRole = new EventRole(VALID_EVENT_ROLE_1);
+        assertEquals(expectedRole, ParserUtil.parseEventRole(VALID_EVENT_ROLE_1));
+    }
+
+    @Test
+    public void parseMemberRole_validValueWithWhitespace_returnsTrimmedMemberRole() throws Exception {
         String roleWithWhitespace = WHITESPACE + VALID_MEMBER_ROLE_1 + WHITESPACE;
-        Role expectedRole = new Role(VALID_MEMBER_ROLE_1);
-        assertEquals(expectedRole, ParserUtil.parseRole(roleWithWhitespace));
+        MemberRole expectedRole = new MemberRole(VALID_MEMBER_ROLE_1);
+        assertEquals(expectedRole, ParserUtil.parseMemberRole(roleWithWhitespace));
     }
 
     @Test
-    public void parseRoles_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseRoles(null));
+    public void parseEventRole_validValueWithWhitespace_returnsTrimmedEventRole() throws Exception {
+        String roleWithWhitespace = WHITESPACE + VALID_EVENT_ROLE_1 + WHITESPACE;
+        EventRole expectedRole = new EventRole(VALID_EVENT_ROLE_1);
+        assertEquals(expectedRole, ParserUtil.parseEventRole(roleWithWhitespace));
     }
 
     @Test
-    public void parseRoles_collectionWithInvalidRoles_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRoles(
+    public void parseMemberRoles_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMemberRoles(null));
+    }
+
+    @Test
+    public void parseEventRoles_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventRoles(null));
+    }
+
+    @Test
+    public void parseMemberRoles_collectionWithInvalidRoles_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMemberRoles(
                 Arrays.asList(VALID_MEMBER_ROLE_1, INVALID_MEMBER_ROLE))
         );
     }
 
     @Test
-    public void parseRoles_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseRoles(Collections.emptyList()).isEmpty());
+    public void parseEventRoles_collectionWithInvalidRoles_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventRoles(
+                Arrays.asList(VALID_EVENT_ROLE_1, INVALID_EVENT_ROLE))
+        );
     }
 
     @Test
-    public void parseRoles_collectionWithValidRoles_returnsRoleSet() throws Exception {
-        Set<Role> actualRoleSet = ParserUtil.parseRoles(
+    public void parseMemberRoles_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseMemberRoles(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseEventRoles_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseEventRoles(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseMemberRoles_collectionWithValidMemberRoles_returnsMemberRoleSet() throws Exception {
+        Set<MemberRole> actualRoleSet = ParserUtil.parseMemberRoles(
                 Arrays.asList(VALID_MEMBER_ROLE_1, VALID_MEMBER_ROLE_2)
         );
-        Set<Role> expectedRoleSet = new HashSet<Role>(
-                Arrays.asList(new Role(VALID_MEMBER_ROLE_1), new Role(VALID_MEMBER_ROLE_2))
+        Set<MemberRole> expectedRoleSet = new HashSet<MemberRole>(
+                Arrays.asList(new MemberRole(VALID_MEMBER_ROLE_1), new MemberRole(VALID_MEMBER_ROLE_2))
+        );
+
+        assertEquals(expectedRoleSet, actualRoleSet);
+    }
+
+    @Test
+    public void parseEventRoles_collectionWithValidEventRoles_returnsEventRoleSet() throws Exception {
+        Set<EventRole> actualRoleSet = ParserUtil.parseEventRoles(
+                Arrays.asList(VALID_EVENT_ROLE_1, VALID_EVENT_ROLE_2)
+        );
+        Set<EventRole> expectedRoleSet = new HashSet<EventRole>(
+                Arrays.asList(new EventRole(VALID_EVENT_ROLE_1), new EventRole(VALID_EVENT_ROLE_2))
         );
 
         assertEquals(expectedRoleSet, actualRoleSet);
