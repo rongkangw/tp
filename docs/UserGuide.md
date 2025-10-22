@@ -134,11 +134,15 @@ Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/ROLE]…​`
 * At least one of the optional fields must be provided.
 * Existing values for the provided field will be updated to the input values.
 * Fields not provided will remain **unchanged**.
-* When editing roles, the existing roles of the member will be removed i.e. adding of roles is not cumulative.
 
 <box type="tip" seamless>
 
 **Tip:** You can remove all the member’s roles by typing `r/` without specifying any roles after it.
+</box>
+
+<box type="warning" seamless>
+
+**Caution:** When editing roles, the existing roles of the member will be removed i.e. adding of roles is not cumulative.
 </box>
 
 Examples:
