@@ -3,6 +3,7 @@ package seedu.club.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.club.testutil.Assert.assertThrows;
+import static seedu.club.testutil.TypicalEvents.*;
 import static seedu.club.testutil.TypicalMembers.ALICE;
 import static seedu.club.testutil.TypicalMembers.HOON;
 import static seedu.club.testutil.TypicalMembers.IDA;
@@ -58,11 +59,65 @@ public class JsonClubBookStorageTest {
     }
 
     @Test
+    public void readEvents_invalidMemberClubBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readEvents("invalidEventClubBook.json"));
+    }
+
+    @Test
+    public void readEvents_invalidAndValidMemberClubBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readEvents("invalidAndValidEventClubBook.json"));
+    }
+
+
+    @Test
+    public void readAndSaveEvents_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempEvents.json");
+        ClubBook original = getTypicalClubBookWithEvents();
+        JsonClubBookStorage jsonClubBookStorage = new JsonClubBookStorage(memberFile, filePath);
+
+        // Save in new file and read back
+        jsonClubBookStorage.saveEvents(original, filePath);
+        ReadOnlyClubBook readBack = jsonClubBookStorage.readEvents(filePath).get();
+        assertEquals(original, new ClubBook(readBack));
+
+        // Modify data, overwrite exiting file, and read back
+        original.addEvent(MEETING);
+        original.removeEvent(ORIENTATION);
+        jsonClubBookStorage.saveEvents(original, filePath);
+        readBack = jsonClubBookStorage.readEvents(filePath).get();
+        assertEquals(original, new ClubBook(readBack));
+
+        // Save and read without specifying file path
+        original.addEvent(WORKSHOP);
+        jsonClubBookStorage.saveEvents(original); // file path not specified
+        readBack = jsonClubBookStorage.readEvents().get(); // file path not specified
+        assertEquals(original, new ClubBook(readBack));
+
+    }
+
+    /**
+     * Saves {@code clubBook} at the specified {@code filePath}.
+     */
+    private void saveClubBookWithEvents(ReadOnlyClubBook clubBook, String filePath) {
+        try {
+            new JsonClubBookStorage(memberFile, Paths.get(filePath))
+                    .saveEvents(clubBook, addToTestDataPathIfNotNull(filePath));
+        } catch (IOException ioe) {
+            throw new AssertionError("There should not be an error writing to the file.", ioe);
+        }
+    }
+
+    @Test
+    public void saveClubBookWithEvents_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveClubBookWithEvents(new ClubBook(), null));
+    }
+
+    @Test
     public void readMembers_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readMembers(null));
     }
 
-    private java.util.Optional<ReadOnlyClubBook> readMembers(String filePath) throws Exception {
+    private Optional<ReadOnlyClubBook> readMembers(String filePath) throws Exception {
         return new JsonClubBookStorage(Paths.get(filePath), eventFile)
                 .readMembers(addToTestDataPathIfNotNull(filePath));
     }
