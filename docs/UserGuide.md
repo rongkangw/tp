@@ -6,11 +6,7 @@
 
 # EASync User Guide
 
-<<<<<<< HEAD
-EASync is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EASync can get your contact management tasks done faster than traditional GUI apps.
-=======
 EASync is a **desktop app that helps student club managers manage member contacts and club events quickly and easily.** Just type to add members, schedule events, or update roles — no need to click through menus. It’s fast, simple, and visual — so you can skip the cluttered spreadsheets and get things done.
->>>>>>> master
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -93,9 +89,19 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 ### Managing Members
+
+#### Listing all members : `listMembers`
+
+Format: `listMembers`
+
+* Displays a list of all members in the club book.
+
 #### Adding a member: `addMember`
 
 Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
+
+* Adds a member to the club book.
+* The new member can be found at the end of the list.
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
@@ -103,13 +109,11 @@ Examples:
 
 #### Deleting a member : `deleteMember`
 
-Removes a specified member from the club book.
-
 Format: `deleteMember INDEX`
 
-* This will delete the member at the specified `INDEX`.
+* Deletes the member at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed member list.
-* `INDEX` **must be a positive integer 1,2,3, …​**
+* `INDEX` **must be a positive integer** e.g. 1,2,3, …​
 
 Examples:
 * `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
@@ -117,43 +121,44 @@ Examples:
 
 <box type="important" seamless>
     
-**Note**: You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
+**Note:** You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
 </box>
 
-### Listing all members : `listMembers`
-
-Shows a list of all members in the club book.
-
-Format: `listMembers`
-
-### Editing a member : `editMember`
+#### Editing a member : `editMember`
 
 Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/ROLE]…​`
 
-* Edits the member at the specified `INDEX`. The index refers to the index number shown in the displayed member list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the details of the member at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed member list. 
+* `INDEX` **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values for the provided field will be updated to the input values.
-* Fields not provided will remain unchanged.
+* Fields not provided will remain **unchanged**.
 * When editing roles, the existing roles of the member will be removed i.e. adding of roles is not cumulative.
-* You can remove all the member’s roles by typing `r/` without
-    specifying any roles after it.
+
+<box type="tip" seamless>
+
+**Tip:** You can remove all the member’s roles by typing `r/` without specifying any roles after it.
+</box>
 
 Examples:
 *  `editMember 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
 *  `editMember 2 n/Betsy Crower r/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing roles.
 
-### Locating members by name: `find`
-
-Finds members whose names contain any of the given keywords.
+#### Locating members by name: `find`
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+* Finds members whose names contain any of the given keywords.
+* Only the name is searched.
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
 * Members matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+<box type="important" seamless>
+**Note:** Only full words will be matched e.g. `Han` will not match `Hans`
+</box>
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -161,9 +166,19 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Managing Events
+
+#### Listing all events : `listEvents`
+
+Format: `listEvents`
+
+* Displays a list of all events in the club book.
+
 #### Adding an event: `addEvent`
 
 Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`
+
+* Adds an event to the club book.
+* The new event can be found at the end of the list.
 
 Examples:
 * `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
@@ -171,54 +186,56 @@ Examples:
 
 #### Deleting an event : `deleteEvent`
 
-Removes a specified event from the club book.
-
 Format: `deleteEvent INDEX`
 
-* This will delete the event at the specified `INDEX`.
+* Deletes the event at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed event list.
-* `INDEX` **must be a positive integer 1,2,3, ...​**
+* `INDEX` **must be a positive integer** e.g. 1,2,3, ...​
 
 Examples:
 * `listEvents` then `deleteEvent 2` removes the 2nd event in the displayed event list.
 
 <box type="important" seamless>
 
-**Note**: You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
+**Note:** You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
 </box>
 
-### Listing all events : `listEvents`
-
-Shows a list of all events in the club book.
-
-Format: `listEvents`
-
 ### Managing Event Participants
-#### Assigning a Member an Event
+
+<box type="info" seamless>
+
+**Note:**<br>
+* Unlike previous commands, you should specify the names for `e/EVENT` and `m/MEMBER` instead of their indices for the following set of commands.
+</box>
+
+#### Assigning a Member to an Event : `assignEvent`
 
 Format: `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+
+* Assigns the specified member with an event role for the specified event.
+* Multiple event roles can be specified.
+* If `EVENTROLE` is not specified, they are just a participant.
 
 Examples:
 * `assignEvent e/Orientation m/Alice Pauline`
 * `assignEvent e/Movie Night m/Benson Meier r/FoodIC`
 
-### Unassigning event : `unassignEvent`
+#### Unassigning a Member from an Event : `unassignEvent`
+
+Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
 
 * Removes an event role from the specified member.
 * Multiple event roles can be specified.
-* If no role is specified, the member is unassigned from the event and associated event roles are removed, if any.
-
-Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+* If `EVENTROLE` is not specified, the member is unassigned from the event and all associated event roles are removed, if any.
 
 Examples:
 *  `unassignEvent e/Meeting m/Bob r/Logistics`
 *  `unassignEvent e/Workshop m/Jane`
 
-### Clearing all entries : `clear`
+### Miscellaneous
+#### Clearing all entries : `clear`
 
-Clears **all members and events** from the club book.
-
-<box type="warning" seamless>
+<box type="warning" theme="danger" seamless>
 
 **Caution:**
 This action is **irreversible**! Ensure that you truly want to clear your **entire club book** before proceeding.
@@ -226,11 +243,13 @@ This action is **irreversible**! Ensure that you truly want to clear your **enti
 
 Format: `clear`
 
-### Exiting the program : `exit`
+* Clears **all members and events** from the club book.
 
-Exits the program.
+#### Exiting the program : `exit`
 
 Format: `exit`
+
+* Exits the program.
 
 ### Saving the data
 
@@ -278,14 +297,14 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 
 | Action             | Format, Examples                                                                                                |
 |--------------------|-----------------------------------------------------------------------------------------------------------------|
+| **List Members**   | `listMembers`                                                                                                   |
 | **Add Member**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                   |
 | **Delete Member**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                 |
-| **List Members**   | `listMembers`                                                                                                   |
 | **Edit Members**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
 | **Find Members**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                      |
+| **List Events**    | `listEvents`                                                                                                    |
 | **Add Event**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
 | **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
-| **List Events**    | `listEvents`                                                                                                    |
 | **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
 | **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                |
 | **Clear**          | `clear`                                                                                                         |
