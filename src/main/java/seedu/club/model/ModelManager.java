@@ -13,6 +13,7 @@ import seedu.club.commons.core.GuiSettings;
 import seedu.club.commons.core.LogsCenter;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.Name;
 
 /**
  * Represents the in-memory model of the club book data.
@@ -116,6 +117,17 @@ public class ModelManager implements Model {
         clubBook.setMember(target, editedMember);
     }
 
+    @Override
+    public int memberNameIndex(Name name) {
+        ObservableList<Member> memberList = clubBook.getMemberList();
+        for (int i = 0; i < memberList.size(); i++) {
+            if (memberList.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     //=========== Filtered Member List Accessors =============================================================
 
     /**
@@ -170,14 +182,21 @@ public class ModelManager implements Model {
         clubBook.removeEvent(target);
     }
 
-    /* Edit commands are to be implemented in a future iteration
     @Override
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-
-        clubBook.setEvent(target, editedEvent);
+    public int eventNameIndex(Name name) {
+        ObservableList<Event> eventList = clubBook.getEventList();
+        for (int i = 0; i < eventList.size(); i++) {
+            if (eventList.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
     }
-     */
+
+    @Override
+    public void assignEvent(Event event, Member toAssign) {
+        event.assignMember(toAssign);
+    }
 
     //=========== Filtered Event List Accessors =============================================================
 

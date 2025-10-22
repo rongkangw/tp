@@ -74,6 +74,21 @@ public class Event extends NamedEntity {
     }
 
     /**
+     * Returns true if a member with the same identity as {@code member} exists in the event roster.
+     */
+    public boolean hasMember(Member member) {
+        return getRoster().contains(member);
+    }
+
+    /**
+     * Adds the given member to the roster.
+     * {@code member} must not already exist in the club book.
+     */
+    public void assignMember(Member member) {
+        roster.add(member);
+    }
+
+    /**
      * Returns true if both events have the same name, from date time and to date time.
      * This defines a weaker notion of equality between two events.
      */

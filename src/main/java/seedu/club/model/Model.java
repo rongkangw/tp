@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.club.commons.core.GuiSettings;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.Name;
 
 /**
  * The API of the Model component.
@@ -100,6 +101,12 @@ public interface Model {
     void deleteEvent(Event target);
 
     /**
+     * Assigns the given member to the event.
+     * The event and member must exist in the club book.
+     */
+    void assignEvent(Event event, Member toAssign);
+
+    /**
      * Returns an unmodifiable view of the filtered member list
      */
     ObservableList<Member> getFilteredMemberList();
@@ -122,6 +129,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Returns index if there exists a member with the same name as {@code name} and -1 otherwise
+     */
+    public int memberNameIndex(Name name);
+
+    /**
+     * Returns index if there exists an event with the same name as {@code name} and -1 otherwise
+     */
+    public int eventNameIndex(Name name);
 
     /**
      * Returns the current state of the ClubBook

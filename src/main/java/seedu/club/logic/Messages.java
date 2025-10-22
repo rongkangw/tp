@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.NamedEntity;
 import seedu.club.model.role.EventRole;
 
 /**
@@ -25,6 +26,9 @@ public class Messages {
             "The current list is a member list! Switch to event list first using \"listEvents\"";
     public static final String MESSAGE_NOT_MEMBER_STATE =
             "The current list is an event list! Switch to member list first using \"listMembers\"";
+    public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "An event with the name provided does not exist: %1$s";
+    public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "A member with the name provided does not exist: %1$s";
+    public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "A event role with the name(s) provided does not exist: %1$s";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -76,6 +80,12 @@ public class Messages {
         if (roles != null && !roles.isEmpty()) {
             builder.append("; Roles: ");
             roles.forEach(builder::append);
+        }
+
+        Set<Member> roster = event.getRoster();
+        if (roster != null && !roster.isEmpty()) {
+            builder.append("; Members Assigned: ");
+            roster.stream().map(NamedEntity::getName).forEach(builder::append);
         }
 
         return builder.toString();
