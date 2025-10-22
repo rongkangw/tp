@@ -26,7 +26,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Edits the details of an existing member in the club book.
@@ -97,7 +97,7 @@ public class EditMemberCommand extends Command {
         Name updatedName = editMemberDescriptor.getName().orElse(memberToEdit.getName());
         Phone updatedPhone = editMemberDescriptor.getPhone().orElse(memberToEdit.getPhone());
         Email updatedEmail = editMemberDescriptor.getEmail().orElse(memberToEdit.getEmail());
-        Set<Role> updatedRoles = editMemberDescriptor.getRoles().orElse(memberToEdit.getRoles());
+        Set<MemberRole> updatedRoles = editMemberDescriptor.getRoles().orElse(memberToEdit.getRoles());
 
         return new Member(updatedName, updatedPhone, updatedEmail, updatedRoles);
     }
@@ -134,7 +134,7 @@ public class EditMemberCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Set<Role> roles;
+        private Set<MemberRole> roles;
 
         public EditMemberDescriptor() {}
 
@@ -184,7 +184,7 @@ public class EditMemberCommand extends Command {
          * Sets {@code roles} to this object's {@code roles}.
          * A defensive copy of {@code roles} is used internally.
          */
-        public void setRoles(Set<Role> roles) {
+        public void setRoles(Set<MemberRole> roles) {
             this.roles = (roles != null) ? new HashSet<>(roles) : null;
         }
 
@@ -193,7 +193,7 @@ public class EditMemberCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code roles} is null.
          */
-        public Optional<Set<Role>> getRoles() {
+        public Optional<Set<MemberRole>> getRoles() {
             return (roles != null) ? Optional.of(Collections.unmodifiableSet(roles)) : Optional.empty();
         }
 

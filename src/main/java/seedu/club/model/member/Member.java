@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.model.name.Name;
 import seedu.club.model.name.NamedEntity;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Represents a Member in the club book.
@@ -23,12 +23,12 @@ public class Member extends NamedEntity {
     private final Email email;
 
     // Data fields
-    private final Set<Role> roles = new HashSet<>();
+    private final Set<MemberRole> roles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Member(Name name, Phone phone, Email email, Set<Role> roles) {
+    public Member(Name name, Phone phone, Email email, Set<MemberRole> roles) {
         super(name);
         requireAllNonNull(phone, email, roles);
         this.phone = phone;
@@ -48,7 +48,7 @@ public class Member extends NamedEntity {
      * Returns an immutable role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Role> getRoles() {
+    public Set<MemberRole> getRoles() {
         return Collections.unmodifiableSet(roles);
     }
 

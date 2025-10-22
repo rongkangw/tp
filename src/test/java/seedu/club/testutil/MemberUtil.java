@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.club.model.member.Member;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * A utility class for Member.
@@ -47,7 +47,7 @@ public class MemberUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         if (descriptor.getRoles().isPresent()) {
-            Set<Role> roles = descriptor.getRoles().get();
+            Set<MemberRole> roles = descriptor.getRoles().get();
             if (roles.isEmpty()) {
                 sb.append(PREFIX_ROLE);
             } else {

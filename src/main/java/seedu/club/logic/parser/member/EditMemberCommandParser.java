@@ -20,7 +20,7 @@ import seedu.club.logic.parser.ArgumentTokenizer;
 import seedu.club.logic.parser.Parser;
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
-import seedu.club.model.role.Role;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -73,14 +73,14 @@ public class EditMemberCommandParser implements Parser<EditMemberCommand> {
      * If {@code roles} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Role>} containing zero roles.
      */
-    private Optional<Set<Role>> parseRolesForEdit(Collection<String> roles) throws ParseException {
+    private Optional<Set<MemberRole>> parseRolesForEdit(Collection<String> roles) throws ParseException {
         assert roles != null;
 
         if (roles.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> roleSet = roles.size() == 1 && roles.contains("") ? Collections.emptySet() : roles;
-        return Optional.of(ParserUtil.parseRoles(roleSet));
+        Collection<String> memberRoleSet = roles.size() == 1 && roles.contains("") ? Collections.emptySet() : roles;
+        return Optional.of(ParserUtil.parseMemberRoles(memberRoleSet));
     }
 
 }
