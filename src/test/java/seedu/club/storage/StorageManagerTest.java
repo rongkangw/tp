@@ -62,13 +62,13 @@ public class StorageManagerTest {
         assertEquals(original, new ClubBook(retrieved));
     }
 
+    /**
+     * Note: This is an integration test that verifies the StorageManager is properly wired to the
+     * {@link JsonClubBookStorage} class.
+     * Test checks if ClubBook stores events correctly.
+     */
     @Test
     public void clubBookReadSaveEvents() throws Exception {
-        /**
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonClubBookStorage} class.
-         * Test checks if ClubBook stores events correctly.
-         */
         ClubBook original = getTypicalClubBookWithEvents();
         storageManager.saveEvents(original);
         ReadOnlyClubBook retrieved = storageManager.readEvents().get();

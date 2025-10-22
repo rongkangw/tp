@@ -11,6 +11,7 @@ import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ public class JsonClubBookStorageTest {
         assertThrows(NullPointerException.class, () -> readEvents(null));
     }
 
-    private java.util.Optional<ReadOnlyClubBook> readEvents(String filePath) throws Exception {
+    private Optional<ReadOnlyClubBook> readEvents(String filePath) throws Exception {
         return new JsonClubBookStorage(memberFile, Paths.get(filePath))
                 .readEvents(addToTestDataPathIfNotNull(filePath));
     }
