@@ -240,3 +240,4 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 | **List**         | `list`                                                                                                                                                            |
 | **DeleteEvent**  | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                                                                    |
 | **Help**         | `help`                                                                                                                                                            |
+| **Exit**         | `exit`                                                                                                                                                            |
