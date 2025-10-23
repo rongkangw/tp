@@ -1,16 +1,14 @@
 package seedu.club.logic.parser.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.club.logic.commands.event.DeleteEventCommand;
-import seedu.club.logic.commands.event.UnassignEventCommand;
-import seedu.club.logic.parser.exceptions.ParseException;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.club.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.club.logic.commands.event.UnassignEventCommand;
+
+
+
 
 public class UnassignEventCommandParserTest {
     private final UnassignEventCommandParser parser = new UnassignEventCommandParser();

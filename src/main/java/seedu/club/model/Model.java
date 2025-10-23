@@ -132,12 +132,12 @@ public interface Model {
     /**
      * Returns index if there exists a member with the same name as {@code name} and -1 otherwise
      */
-     int memberNameIndex(Name name);
+    int memberNameIndex(Name name);
 
     /**
      * Returns index if there exists an event with the same name as {@code name} and -1 otherwise
      */
-     int eventNameIndex(Name name);
+    int eventNameIndex(Name name);
 
     /**
      * Returns the current state of the ClubBook

@@ -211,7 +211,7 @@ public class AddMemberCommandTest {
         public ViewState getViewState() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void setViewState(ViewState viewState) {
             throw new AssertionError("This method should not be called.");
