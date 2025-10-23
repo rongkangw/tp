@@ -12,7 +12,7 @@ import seedu.club.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends ClubBookStorage, UserPrefsStorage, EventStorage {
+public interface Storage extends ClubBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
@@ -37,4 +37,10 @@ public interface Storage extends ClubBookStorage, UserPrefsStorage, EventStorage
 
     @Override
     void saveEvents(ReadOnlyClubBook clubBook) throws IOException;
+
+    @Override
+    Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException;
+
+    @Override
+    void saveClubBook(ReadOnlyClubBook clubBook) throws IOException;
 }

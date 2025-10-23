@@ -14,9 +14,14 @@ import seedu.club.model.ReadOnlyClubBook;
 public interface ClubBookStorage {
 
     /**
-     * Returns the file path of the data file.
+     * Returns the file path of the member data file.
      */
     Path getMemberFilePath();
+
+    /**
+     * Returns the file path of the event data file.
+     */
+    Path getEventFilePath();
 
     /**
      * Returns ClubBook data as a {@link ReadOnlyClubBook}.
@@ -43,4 +48,25 @@ public interface ClubBookStorage {
      */
     void saveMembers(ReadOnlyClubBook clubBook, Path filePath) throws IOException;
 
+    /**
+     * Returns ClubBook data as a {@link ReadOnlyClubBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
+    Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException;
+
+    Optional<ReadOnlyClubBook> readEvents(Path filepath) throws DataLoadingException;
+
+    void saveEvents(ReadOnlyClubBook events) throws IOException;
+
+    void saveEvents(ReadOnlyClubBook events, Path filePath) throws IOException;
+
+    Optional<ReadOnlyClubBook> readClubBook(Path memberFilePath, Path eventFilePath) throws DataLoadingException;
+
+    Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException;
+
+    void saveClubBook(ReadOnlyClubBook clubBook, Path memberFilePath, Path eventFilePath) throws IOException;
+
+    void saveClubBook(ReadOnlyClubBook clubBook) throws IOException;
 }
