@@ -73,6 +73,14 @@ public class MemberBuilder {
     }
 
     /**
+     * Sets the {@code eventRoles} of the {@code Member} that we are building.
+     */
+    public MemberBuilder withEventRoles(Set<EventRole> eventRoles) {
+        this.eventRoles.addAll(eventRoles);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Member} that we are building.
      */
     public MemberBuilder withPhone(String phone) {
@@ -80,13 +88,7 @@ public class MemberBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code eventRoles} of the {@code Member} that we are building.
-     */
-    public MemberBuilder withEventRoles(Set<EventRole> eventRoles) {
-        this.eventRoles.addAll(eventRoles);
-        return this;
-    }
+
 
     /**
      * Sets the {@code Email} of the {@code Member} that we are building.
