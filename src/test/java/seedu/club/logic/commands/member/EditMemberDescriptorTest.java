@@ -12,7 +12,7 @@ import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.club.testutil.EditMemberDescriptorBuilder;
 
 /**

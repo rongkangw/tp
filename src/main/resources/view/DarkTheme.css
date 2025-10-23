@@ -359,3 +359,12 @@
    -fx-background-radius: 2;
    -fx-font-size: 11;
 }
+
+#eventCard .label {
+    -fx-text-fill: white;
+}
+
+.singleEventPanelMemberList {
+    -fx-border-color: #3e7b91;
+    -fx-border-width: 2;
+}

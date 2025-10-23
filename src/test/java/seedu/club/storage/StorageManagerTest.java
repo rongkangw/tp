@@ -2,6 +2,7 @@ package seedu.club.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
 import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
 
 import java.nio.file.Path;
@@ -49,7 +50,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void clubBookReadSave() throws Exception {
+    public void clubBookReadSaveMembers() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonClubBookStorage} class.
@@ -61,9 +62,27 @@ public class StorageManagerTest {
         assertEquals(original, new ClubBook(retrieved));
     }
 
+    /**
+     * Note: This is an integration test that verifies the StorageManager is properly wired to the
+     * {@link JsonClubBookStorage} class.
+     * Test checks if ClubBook stores events correctly.
+     */
+    @Test
+    public void clubBookReadSaveEvents() throws Exception {
+        ClubBook original = getTypicalClubBookWithEvents();
+        storageManager.saveEvents(original);
+        ReadOnlyClubBook retrieved = storageManager.readEvents().get();
+        assertEquals(original, new ClubBook(retrieved));
+    }
+
     @Test
     public void getClubBookFilePath() {
         assertNotNull(storageManager.getMemberFilePath());
+    }
+
+    @Test
+    public void getClubBookEventFilePath() {
+        assertNotNull(storageManager.getEventFilePath());
     }
 
 }

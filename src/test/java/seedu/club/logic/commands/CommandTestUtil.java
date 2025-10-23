@@ -16,7 +16,7 @@ import java.util.List;
 
 import seedu.club.commons.core.index.Index;
 import seedu.club.logic.commands.exceptions.CommandException;
-import seedu.club.logic.commands.member.EditCommand;
+import seedu.club.logic.commands.member.EditMemberCommand;
 import seedu.club.model.ClubBook;
 import seedu.club.model.Model;
 import seedu.club.model.event.Event;
@@ -81,8 +81,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditMemberDescriptor DESC_AMY;
-    public static final EditCommand.EditMemberDescriptor DESC_BOB;
+    public static final EditMemberCommand.EditMemberDescriptor DESC_AMY;
+    public static final EditMemberCommand.EditMemberDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_AMY)
