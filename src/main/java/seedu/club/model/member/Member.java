@@ -38,6 +38,9 @@ public class Member extends NamedEntity {
         this.memberRoles.addAll(memberRoles);
     }
 
+    /**
+     * Constructs a member with every field given
+     */
     public Member(Name name, Phone phone, Email email, Set<MemberRole> memberRoles, Set<EventRole> eventRoles) {
         this(name, phone, email, memberRoles);
         requireAllNonNull(eventRoles);

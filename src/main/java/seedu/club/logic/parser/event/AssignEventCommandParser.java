@@ -4,8 +4,10 @@ import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENTROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
+
 import java.util.Collections;
 import java.util.Set;
+
 import seedu.club.logic.commands.event.AssignEventCommand;
 import seedu.club.logic.parser.ArgumentMultimap;
 import seedu.club.logic.parser.ArgumentTokenizer;

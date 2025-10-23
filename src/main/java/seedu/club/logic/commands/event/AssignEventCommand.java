@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENTROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
@@ -24,7 +26,8 @@ import seedu.club.model.role.EventRole;
 public class AssignEventCommand extends Command {
     public static final String COMMAND_WORD = "assignEvent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a member to an event with any specified role(s). "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Assigns a member to an event with any specified role(s). "
             + "Parameters: "
             + PREFIX_EVENT + "EVENT "
             + PREFIX_MEMBER + "MEMBER "
