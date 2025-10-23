@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.club.model.ClubBook;
 import seedu.club.model.event.Event;
-import seedu.club.model.member.Member;
 
 /**
  * A utility class containing a list of {@code Event} objects to be used in tests.

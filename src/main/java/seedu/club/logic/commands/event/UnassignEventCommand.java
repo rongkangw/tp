@@ -17,10 +17,6 @@ import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 
-
-
-
-
 /**
  * Removes assignation between a member and an event or event role.
  */
@@ -63,7 +59,7 @@ public class UnassignEventCommand extends Command {
     }
 
     @Override
-    public boolean equals (Object other) {
+    public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
