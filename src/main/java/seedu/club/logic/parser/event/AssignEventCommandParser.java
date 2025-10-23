@@ -2,8 +2,8 @@ package seedu.club.logic.parser.event;
 
 import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Collections;
 import java.util.Set;

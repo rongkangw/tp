@@ -2,8 +2,8 @@ package seedu.club.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -11,7 +11,6 @@ import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.role.EventRole;
 import seedu.club.model.role.MemberRole;
-import seedu.club.model.role.Role;
 
 /**
  * Container for user visible messages.

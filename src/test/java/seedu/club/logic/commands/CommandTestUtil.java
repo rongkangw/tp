@@ -3,10 +3,10 @@ package seedu.club.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.club.testutil.Assert.assertThrows;
 
@@ -77,7 +77,8 @@ public class CommandTestUtil {
      public static final String INVALID_FROM_DESC = " " + PREFIX_FROM + "911a"; // 'a' not allowed in phones
      public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
      */
-    public static final String INVALID_EVENT_ROLE_DESC = " " + CliSyntax.PREFIX_ROLE + "facilitator*"; // '*' not allowed in roles
+    public static final String INVALID_EVENT_ROLE_DESC = " " + CliSyntax.PREFIX_ROLE
+            + "facilitator*"; // '*' not allowed in roles
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
