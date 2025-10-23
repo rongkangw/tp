@@ -56,6 +56,14 @@ public class Member extends NamedEntity {
     }
 
     /**
+     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<EventRole> getEventRoles() {
+        return Collections.unmodifiableSet(eventRoles);
+    }
+
+    /**
      * Removes specified EventRoles from the member's roles
      */
     public void removeEventRole(Set<EventRole> roleSet) {

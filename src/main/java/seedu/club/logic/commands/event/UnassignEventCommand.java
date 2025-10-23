@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
+import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
@@ -63,16 +64,14 @@ public class UnassignEventCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         int eventIndex = model.eventNameIndex(eventName);
         int memberIndex = model.memberNameIndex(memberName);
         if (eventIndex == -1) {
-            return new CommandResult(String.format(MESSAGE_EVENT_NAME_NOT_EXIST, eventName),
-                    false, false, false);
+            throw new CommandException(String.format(MESSAGE_EVENT_NAME_NOT_EXIST, eventName));
         }
         if (memberIndex == -1) {
-            return new CommandResult(String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName),
-                    false, false, false);
+            return new CommandResult(String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName));
         }
         Member member = model.getFilteredMemberList().get(memberIndex);
         Event event = model.getFilteredEventList().get(eventIndex);
@@ -81,20 +80,19 @@ public class UnassignEventCommand extends Command {
             return executeWithMemberRole(member, roles);
         }
         return executeNoMemberRole(member, event);
-
     }
 
     private CommandResult executeWithMemberRole(Member member, Set<EventRole> eventRoles) {
         member.removeEventRole(eventRoles);
         return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT_ROLE),
-                false, false, true);
+                false, false);
     }
 
     private CommandResult executeNoMemberRole(Member member, Event event) {
         event.removeMemberFromRoster(member);
         member.removeEvent(event);
         return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT),
-                false, false, true);
+                false, false);
 
     }
 

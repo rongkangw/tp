@@ -59,4 +59,8 @@ public class EventCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(eventRole -> eventRole.roleName))
                 .forEach(eventRole -> eventRoles.getChildren().add(new Label(eventRole.roleName)));
     }
+
+    public void setEventRoles(FlowPane eventRoles) {
+        this.eventRoles = eventRoles;
+    }
 }
