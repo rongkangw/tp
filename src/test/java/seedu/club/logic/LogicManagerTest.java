@@ -186,7 +186,7 @@ public class LogicManagerTest {
         // Triggers the saveClubBook method by executing an add command
         String addCommand = AddMemberCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
-        Member expectedMember = new MemberBuilder(AMY).withRoles().build();
+        Member expectedMember = new MemberBuilder(AMY).withMemberRoles().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addMember(expectedMember);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

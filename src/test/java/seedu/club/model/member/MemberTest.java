@@ -33,7 +33,7 @@ public class MemberTest {
 
         // same name, all other attributes different -> returns true
         Member editedAlice = new MemberBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
+                .withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
         assertTrue(ALICE.isSameMember(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,7 +81,7 @@ public class MemberTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different roles -> returns false
-        editedAlice = new MemberBuilder(ALICE).withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
+        editedAlice = new MemberBuilder(ALICE).withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
