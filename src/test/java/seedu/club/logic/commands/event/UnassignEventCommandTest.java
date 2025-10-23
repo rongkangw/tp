@@ -71,26 +71,4 @@ public class UnassignEventCommandTest {
         assert(unassignEventCommandOne.equals(unassignEventCommandTwo));
     }
 
-
-    /* @Test
-    public void execute_UnassignEventWithEventRoles_success() {
-        EventRole roleToDelete = model
-                .getFilteredMemberList()
-                .get(INDEX_FIRST_MEMBER.getZeroBased())
-                .getEventRoles()
-                .iterator().next();
-        Name eventName = new Name("Orientation");
-        Name memberName = new Name("John");
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                Set.of(roleToDelete));
-        String expectedMessage = String.format(MESSAGE_SUCCESS_EVENT);
-        ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
-        expectedModel.getFilteredMemberList()
-        .get(INDEX_FIRST_MEMBER.getZeroBased()).removeEventRole(Set.of(roleToDelete));
-        CommandTestUtil.assertCommandSuccess(unassignEventCommand, model, expectedMessage, expectedModel);
-    }*/
-    //requires assignEvent in memberBuilder
-
-
-
 }

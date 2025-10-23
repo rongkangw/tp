@@ -25,7 +25,7 @@ public class Member extends NamedEntity {
     private final Email email;
 
     // Data fields
-    private final Set<MemberRole> roles = new HashSet<>();
+    private final Set<MemberRole> memberRoles = new HashSet<>();
     private final Set<EventRole> eventRoles = new HashSet<>();
 
     /**
@@ -36,7 +36,7 @@ public class Member extends NamedEntity {
         requireAllNonNull(phone, email, roles);
         this.phone = phone;
         this.email = email;
-        this.roles.addAll(roles);
+        this.memberRoles.addAll(roles);
     }
 
     public Phone getPhone() {
@@ -52,7 +52,7 @@ public class Member extends NamedEntity {
      * if modification is attempted.
      */
     public Set<MemberRole> getRoles() {
-        return Collections.unmodifiableSet(roles);
+        return Collections.unmodifiableSet(memberRoles);
     }
 
     /**
@@ -68,7 +68,7 @@ public class Member extends NamedEntity {
      */
     public void removeEventRole(Set<EventRole> roleSet) {
         for (EventRole role: eventRoles) {
-            roles.remove(role);
+            memberRoles.remove(role);
         }
     }
 
@@ -115,13 +115,13 @@ public class Member extends NamedEntity {
         return name.equals(otherMember.name)
                 && phone.equals(otherMember.phone)
                 && email.equals(otherMember.email)
-                && roles.equals(otherMember.roles);
+                && memberRoles.equals(otherMember.memberRoles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, roles);
+        return Objects.hash(name, phone, email, memberRoles);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class Member extends NamedEntity {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("roles", roles)
+                .add("roles", memberRoles)
                 .toString();
     }
 

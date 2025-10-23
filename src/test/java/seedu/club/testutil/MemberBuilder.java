@@ -46,7 +46,7 @@ public class MemberBuilder {
         phone = memberToCopy.getPhone();
         email = memberToCopy.getEmail();
         memberRoles = new HashSet<>(memberToCopy.getRoles());
-
+        eventRoles = new HashSet<>(memberToCopy.getEventRoles());
     }
 
     /**

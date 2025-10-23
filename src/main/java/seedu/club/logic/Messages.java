@@ -21,7 +21,7 @@ public class Messages {
     public static final String MESSAGE_MEMBERS_LISTED_OVERVIEW = "%1$d members listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "An member with the name provided does not exist: %1$s";
+    public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "A member with the name provided does not exist: %1$s";
     public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "An event with the name provided does not exist: %1$s";
     public static final String MESSAGE_NOT_EVENT_STATE =
             "The current list is a member list! Switch to event list first using \"listEvents\"";

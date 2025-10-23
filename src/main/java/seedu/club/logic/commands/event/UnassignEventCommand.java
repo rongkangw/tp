@@ -2,9 +2,9 @@ package seedu.club.logic.commands.event;
 
 import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_EVENT;
-import static seedu.club.logic.parser.event.UnassignEventCommandParser.PREFIX_MEMBER;
 
 import java.util.Set;
 
