@@ -161,6 +161,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 <box type="important" seamless>
+
 **Note:** Only full words will be matched e.g. `Han` will not match `Hans`
 </box>
 
