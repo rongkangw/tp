@@ -205,6 +205,17 @@ Examples:
 **Note:** You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
 </box>
 
+#### Displaying an event : `event`
+
+Format: `event INDEX`
+
+*  Displays the event at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed event list.
+* `INDEX` **must be a positive integer 1,2,3, ...​**
+
+Examples:
+* `listEvents` then `event 2` displays the full content of the 2nd event in the displayed event list.
+
 ### Managing Event Participants
 
 <box type="info" seamless>
