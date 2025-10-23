@@ -88,7 +88,11 @@ public class UnassignEventCommand extends Command {
         if (hasRoles) {
             return executeWithMemberRole(member, roles);
         }
-        return executeNoMemberRole(member, event);
+
+        CommandResult result =  executeNoMemberRole(member, event);
+        model.updateFilteredEventList(e -> e.equals(event));
+        model.updateFilteredMemberList(m -> event.getRoster().contains(m));
+        return result;
     }
 
     private CommandResult executeWithMemberRole(Member member, Set<EventRole> eventRoles) {
@@ -102,7 +106,6 @@ public class UnassignEventCommand extends Command {
         member.removeEvent(event);
         return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT),
                 false, false);
-
     }
 
 

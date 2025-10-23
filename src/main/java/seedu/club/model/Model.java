@@ -82,12 +82,7 @@ public interface Model {
      * The member identity of {@code editedMember} must not be the same as another existing member in the club book.
      */
     void setMember(Member target, Member editedMember);
-
-    /**
-     * Returns index if there exists a member with the same name as {@code name} and -1 otherwise
-     */
-    int memberNameIndex(Name name);
-
+    
     /**
      * Returns an unmodifiable view of the unfiltered member list
      */
