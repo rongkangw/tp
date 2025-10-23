@@ -1,5 +1,7 @@
 package seedu.club.logic;
 
+import static java.util.stream.Collectors.joining;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,6 +10,7 @@ import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.role.EventRole;
+import seedu.club.model.role.MemberRole;
 
 /**
  * Container for user visible messages.
@@ -25,6 +28,10 @@ public class Messages {
             "The current list is a member list! Switch to event list first using \"listEvents\"";
     public static final String MESSAGE_NOT_MEMBER_STATE =
             "The current list is an event list! Switch to member list first using \"listMembers\"";
+    public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "The event with the name provided does not exist: %1$s";
+    public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "The member with the name provided does not exist: %1$s";
+    public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "The event role with the name(s) "
+            + "provided does not exist: %1$s";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -48,8 +55,10 @@ public class Messages {
                 .append(member.getPhone())
                 .append("; Email: ")
                 .append(member.getEmail())
-                .append("; Roles: ");
-        member.getRoles().forEach(builder::append);
+                .append("; Member Roles: ");
+        String result = member.getMemberRoles().stream().map(MemberRole::toString)
+                .collect(joining(", "));
+        builder.append(result);
         return builder.toString();
     }
 
@@ -76,6 +85,14 @@ public class Messages {
         if (roles != null && !roles.isEmpty()) {
             builder.append("; Roles: ");
             roles.forEach(builder::append);
+        }
+
+        Set<Member> roster = event.getRoster();
+        if (roster != null && !roster.isEmpty()) {
+            builder.append("; Members Assigned: ");
+            String result = roster.stream().map(x -> x.getName().toString())
+                    .collect(joining(", "));
+            builder.append(result);
         }
 
         return builder.toString();

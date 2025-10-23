@@ -23,14 +23,14 @@ public class TypicalMembers {
 
     public static final Member ALICE = new MemberBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withPhone("94351253")
-            .withRoles("friends").build();
+            .withMemberRoles("friends").build();
     public static final Member BENSON = new MemberBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withRoles("owesMoney", "friends").build();
+            .withMemberRoles("owesMoney", "friends").build();
     public static final Member CARL = new MemberBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
     public static final Member DANIEL = new MemberBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withRoles("friends").build();
+            .withEmail("cornelia@example.com").withMemberRoles("friends").build();
     public static final Member ELLE = new MemberBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").build();
     public static final Member FIONA = new MemberBuilder().withName("Fiona Kunz").withPhone("9482427")
@@ -46,9 +46,9 @@ public class TypicalMembers {
 
     // Manually added - Member's details found in {@code CommandTestUtil}
     public static final Member AMY = new MemberBuilder().withName(VALID_MEMBER_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withRoles(VALID_MEMBER_ROLE_TREASURER).build();
+            .withEmail(VALID_EMAIL_AMY).withMemberRoles(VALID_MEMBER_ROLE_TREASURER).build();
     public static final Member BOB = new MemberBuilder().withName(VALID_MEMBER_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withRoles(VALID_MEMBER_ROLE_PRESIDENT, VALID_MEMBER_ROLE_TREASURER)
+            .withEmail(VALID_EMAIL_BOB).withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT, VALID_MEMBER_ROLE_TREASURER)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

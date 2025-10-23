@@ -50,7 +50,7 @@ public class ClubBookTest {
     @Test
     public void resetData_withDuplicateMembers_throwsDuplicateMemberException() {
         // Two members with the same identity fields
-        Member editedAlice = new MemberBuilder(ALICE).withRoles(VALID_MEMBER_ROLE_PRESIDENT)
+        Member editedAlice = new MemberBuilder(ALICE).withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT)
                 .build();
         List<Member> newMembers = Arrays.asList(ALICE, editedAlice);
         List<Event> events = List.of(ORIENTATION);
@@ -89,7 +89,7 @@ public class ClubBookTest {
     @Test
     public void hasMember_memberWithSameIdentityFieldsInClubBook_returnsTrue() {
         clubBook.addMember(ALICE);
-        Member editedAlice = new MemberBuilder(ALICE).withRoles(VALID_MEMBER_ROLE_PRESIDENT)
+        Member editedAlice = new MemberBuilder(ALICE).withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT)
                 .build();
         assertTrue(clubBook.hasMember(editedAlice));
     }

@@ -105,6 +105,4 @@ class JsonAdaptedEvent {
         final Set<Member> modelRoster = new HashSet<>(eventRoster);
         return new Event(modelName, modelFrom, modelTo, modelDetails, modelRoles, modelRoster);
     }
-
-
 }

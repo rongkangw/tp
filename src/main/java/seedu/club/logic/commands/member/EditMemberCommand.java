@@ -109,7 +109,7 @@ public class EditMemberCommand extends Command {
         Name updatedName = editMemberDescriptor.getName().orElse(memberToEdit.getName());
         Phone updatedPhone = editMemberDescriptor.getPhone().orElse(memberToEdit.getPhone());
         Email updatedEmail = editMemberDescriptor.getEmail().orElse(memberToEdit.getEmail());
-        Set<MemberRole> updatedRoles = editMemberDescriptor.getRoles().orElse(memberToEdit.getRoles());
+        Set<MemberRole> updatedRoles = editMemberDescriptor.getRoles().orElse(memberToEdit.getMemberRoles());
 
         return new Member(updatedName, updatedPhone, updatedEmail, updatedRoles);
     }

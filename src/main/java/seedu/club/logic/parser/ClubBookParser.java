@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.club.commons.core.LogsCenter;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.event.AddEventCommand;
+import seedu.club.logic.commands.event.AssignEventCommand;
 import seedu.club.logic.commands.event.DeleteEventCommand;
 import seedu.club.logic.commands.event.DisplayEventCommand;
 import seedu.club.logic.commands.event.ListEventCommand;
@@ -22,6 +23,7 @@ import seedu.club.logic.commands.member.EditMemberCommand;
 import seedu.club.logic.commands.member.FindCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.event.AddEventCommandParser;
+import seedu.club.logic.parser.event.AssignEventCommandParser;
 import seedu.club.logic.parser.event.DeleteEventCommandParser;
 import seedu.club.logic.parser.event.DisplayEventCommandParser;
 import seedu.club.logic.parser.exceptions.ParseException;
@@ -68,14 +70,29 @@ public class ClubBookParser {
         case AddMemberCommand.COMMAND_WORD:
             return new AddMemberCommandParser().parse(arguments);
 
-        case EditMemberCommand.COMMAND_WORD:
-            return new EditMemberCommandParser().parse(arguments);
-
         case DeleteMemberCommand.COMMAND_WORD:
             return new DeleteMemberCommandParser().parse(arguments);
 
+        case EditMemberCommand.COMMAND_WORD:
+            return new EditMemberCommandParser().parse(arguments);
+
+        case ListMemberCommand.COMMAND_WORD:
+            return new ListMemberCommand();
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventCommandParser().parse(arguments);
+
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
+
+        case ListEventCommand.COMMAND_WORD:
+            return new ListEventCommand();
+
+        case AssignEventCommand.COMMAND_WORD:
+            return new AssignEventCommandParser().parse(arguments);
 
         case DisplayEventCommand.COMMAND_WORD:
             return new DisplayEventCommandParser().parse(arguments);
@@ -83,23 +100,11 @@ public class ClubBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListMemberCommand.COMMAND_WORD:
-            return new ListMemberCommand();
-
-        case AddEventCommand.COMMAND_WORD:
-            return new AddEventCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case ListEventCommand.COMMAND_WORD:
-            return new ListEventCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
