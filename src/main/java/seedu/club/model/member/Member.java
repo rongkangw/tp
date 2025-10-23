@@ -97,7 +97,7 @@ public class Member extends NamedEntity {
      */
     public void addEventRoles(Set<EventRole> roles) {
         eventRoles.addAll(roles);
-        }
+    }
 
     /**
      * Returns true if both members have the same name.

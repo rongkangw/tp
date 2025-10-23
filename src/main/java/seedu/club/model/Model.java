@@ -82,7 +82,6 @@ public interface Model {
      * The member identity of {@code editedMember} must not be the same as another existing member in the club book.
      */
     void setMember(Member target, Member editedMember);
-    
     /**
      * Returns an unmodifiable view of the unfiltered member list
      */

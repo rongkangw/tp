@@ -89,7 +89,7 @@ public class UnassignEventCommand extends Command {
             return executeWithMemberRole(member, roles);
         }
 
-        CommandResult result =  executeNoMemberRole(member, event);
+        CommandResult result = executeNoMemberRole(member, event);
         model.updateFilteredEventList(e -> e.equals(event));
         model.updateFilteredMemberList(m -> event.getRoster().contains(m));
         return result;
