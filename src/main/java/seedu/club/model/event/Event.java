@@ -52,7 +52,7 @@ public class Event extends NamedEntity {
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
         super(name);
-        requireAllNonNull(from, to, detail, roles);
+        requireAllNonNull(from, to, detail, roles, roster);
         this.from = from;
         this.to = to;
         this.detail = detail;
