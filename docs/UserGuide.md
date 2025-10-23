@@ -20,7 +20,7 @@ EASync is a **desktop app that helps student club managers manage member contact
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ClubBook.
+1. Copy the file to a folder you want to use as the _home folder_ for your ClubBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EASync.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -29,13 +29,17 @@ EASync is a **desktop app that helps student club managers manage member contact
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `listEvents` : Lists all events.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Club Book.
+   * `addMember n/John Doe p/98765432 e/johnd@example.com` : Adds a member named `John Doe` to the Club Book. <br> Notice that the Club Book switches to the member list.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `deleteMember 3` : Deletes the 3rd member shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `addEvent n/Team Bonding f/15/10/2025 t/16/10/2025` : Adds an event named `Team Bonding` to the Club Book. <br> Notice that the Club Book switches to the event list.
+
+   * `assignEvent e/Team Bonding m/John Doe r/Logistics` : Assigns `John Doe` to handle `Logistics` in the `Team Bonding` event
+
+   * `clear` : Deletes all members and events.
 
    * `exit` : Exits the app.
 
@@ -49,22 +53,31 @@ EASync is a **desktop app that helps student club managers manage member contact
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `addMember n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [r/ROLE]` can be used as `n/John Doe r/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+</box>
+
+<box type="tip" seamless>
+
+**Tips for command flexibility:**<br>
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+<box type="warning" seamless>
+
+**Caution:**
+If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Viewing help : `help`
@@ -76,9 +89,19 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 ### Managing Members
+
+#### Listing all members : `listMembers`
+
+Format: `listMembers`
+
+* Displays a list of all members in the club book.
+
 #### Adding a member: `addMember`
 
 Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
+
+* Adds a member to the club book.
+* The new member can be found at the end of the list.
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
@@ -86,57 +109,61 @@ Examples:
 
 #### Deleting a member : `deleteMember`
 
-Removes a specified member from the club book.
-
 Format: `deleteMember INDEX`
 
-* This will delete the member at the specified `INDEX`.
+* Deletes the member at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed member list.
-* `INDEX` **must be a positive integer 1,2,3, ...​**
+* `INDEX` **must be a positive integer** e.g. 1,2,3, …​
 
 Examples:
 * `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
 * `find Andy` then `deleteMember 1` removes the 1st member in the **search result**.
 
 <box type="important" seamless>
-    You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
+    
+**Note:** You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
 </box>
 
-### Listing all members : `listMembers`
+#### Editing a member : `editMember`
 
-Shows a list of all members in the club book.
+Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/ROLE]…​`
 
-Format: `listMembers`
-
-### Editing a member : `edit`
-
-Edits an existing member in the club book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
-
-* Edits the member at the specified `INDEX`. The index refers to the index number shown in the displayed member list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the details of the member at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed member list. 
+* `INDEX` **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the member will be removed i.e adding of tags is not cumulative.
-* You can remove all the member’s tags by typing `t/` without
-    specifying any tags after it.
+* Existing values for the provided field will be updated to the input values.
+* Fields not provided will remain **unchanged**.
+
+<box type="tip" seamless>
+
+**Tip:** You can remove all the member’s roles by typing `r/` without specifying any roles after it.
+</box>
+
+<box type="warning" seamless>
+
+**Caution:** When editing roles, the existing roles of the member will be removed i.e. adding of roles is not cumulative.
+</box>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing tags.
+*  `editMember 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
+*  `editMember 2 n/Betsy Crower r/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing roles.
 
-### Locating members by name: `find`
-
-Finds members whose names contain any of the given keywords.
+#### Locating members by name: `find`
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Finds members whose names contain any of the given keywords.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Members matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+<box type="important" seamless>
+
+**Note:** Only full words will be matched e.g. `Han` will not match `Hans`
+</box>
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -144,9 +171,19 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Managing Events
+
+#### Listing all events : `listEvents`
+
+Format: `listEvents`
+
+* Displays a list of all events in the club book.
+
 #### Adding an event: `addEvent`
 
 Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`
+
+* Adds an event to the club book.
+* The new event can be found at the end of the list.
 
 Examples:
 * `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
@@ -154,53 +191,67 @@ Examples:
 
 #### Deleting an event : `deleteEvent`
 
-Removes a specified event from the club book.
-
 Format: `deleteEvent INDEX`
 
-* This will delete the event at the specified `INDEX`.
+* Deletes the event at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed event list.
-* `INDEX` **must be a positive integer 1,2,3, ...​**
+* `INDEX` **must be a positive integer** e.g. 1,2,3, ...​
 
 Examples:
 * `listEvents` then `deleteEvent 2` removes the 2nd event in the displayed event list.
 
 <box type="important" seamless>
-    You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
+
+**Note:** You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
 </box>
 
-### Listing all events : `listEvents`
+#### Displaying an event : `event`
 
-Shows a list of all events in the club book.
+Format: `event INDEX`
 
-Format: `listEvents`
+*  Displays the event at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed event list.
+* `INDEX` **must be a positive integer 1,2,3, ...​**
+
+Examples:
+* `listEvents` then `event 2` displays the full content of the 2nd event in the displayed event list.
 
 ### Managing Event Participants
-#### Assigning a Member an Event
+
+<box type="info" seamless>
+
+**Note:**<br>
+* Unlike previous commands, you should specify the names for `e/EVENT` and `m/MEMBER` instead of their indices for the following set of commands.
+</box>
+
+#### Assigning a Member to an Event : `assignEvent`
 
 Format: `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+
+* Assigns the specified member with an event role for the specified event.
+* Multiple event roles can be specified.
+* If `EVENTROLE` is not specified, they are just a participant.
 
 Examples:
 * `assignEvent e/Orientation m/Alice Pauline`
 * `assignEvent e/Movie Night m/Benson Meier r/FoodIC`
 
-### Unassigning event : `unassignEvent`
+#### Unassigning a Member from an Event : `unassignEvent`
+
+Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
 
 * Removes an event role from the specified member.
 * Multiple event roles can be specified.
-* If no role is specified, the member is unassigned from the event and associated event roles are removed, if any.
-
-Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]... `
+* If `EVENTROLE` is not specified, the member is unassigned from the event and all associated event roles are removed, if any.
 
 Examples:
 *  `unassignEvent e/Meeting m/Bob r/Logistics`
 *  `unassignEvent e/Workshop m/Jane`
 
-### Clearing all entries : `clear`
+### Miscellaneous
+#### Clearing all entries : `clear`
 
-Clears **all members and events** from the club book.
-
-<box type="warning" seamless>
+<box type="warning" theme="danger" seamless>
 
 **Caution:**
 This action is **irreversible**! Ensure that you truly want to clear your **entire club book** before proceeding.
@@ -208,11 +259,13 @@ This action is **irreversible**! Ensure that you truly want to clear your **enti
 
 Format: `clear`
 
-### Exiting the program : `exit`
+* Clears **all members and events** from the club book.
 
-Exits the program.
+#### Exiting the program : `exit`
 
 Format: `exit`
+
+* Exits the program.
 
 ### Saving the data
 
@@ -220,7 +273,9 @@ ClubBook data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-ClubBook data are saved automatically as a JSON file `[JAR file location]/data/clubbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Member and Event data are saved automatically as a JSON file in `[JAR file location]/data/members.json` and `[JAR file location]/data/events.json` respectively.
+
+Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
@@ -256,18 +311,18 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                |
-|-------------------|-----------------------------------------------------------------------------------------------------------------|
-| **AddMember**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                   |
-| **DeleteMember**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                 |
-| **ListMembers**   | `listMembers`                                                                                                   |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                      |
-| **AddEvent**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
-| **DeleteEvent**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
-| **ListEvents**    | `listEvents`                                                                                                    |
-| **AssignEvent**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
-| **UnassignEvent** | `unassignEvent  e/EVENT m/MEMBER [r/EVENTROLE]...`                                                              |
-| **Clear**         | `clear`                                                                                                         |
-| **Help**          | `help`                                                                                                          |
-| **Exit**          | `exit`                                                                                                          |
+| Action             | Format, Examples                                                                                                |
+|--------------------|-----------------------------------------------------------------------------------------------------------------|
+| **List Members**   | `listMembers`                                                                                                   |
+| **Add Member**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                   |
+| **Delete Member**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                 |
+| **Edit Members**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Find Members**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                      |
+| **List Events**    | `listEvents`                                                                                                    |
+| **Add Event**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
+| **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
+| **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
+| **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                |
+| **Clear**          | `clear`                                                                                                         |
+| **Help**           | `help`                                                                                                          |
+| **Exit**           | `exit`                                                                                                          |
