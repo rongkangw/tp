@@ -62,6 +62,19 @@ public class UnassignEventCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals (Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof UnassignEventCommand compare)) {
+            return false;
+        }
+        return (this.eventName.equals(compare.eventName)) && (this.memberName.equals(compare.memberName))
+                && (this.roles.equals(compare.roles));
+    }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -71,7 +84,7 @@ public class UnassignEventCommand extends Command {
             throw new CommandException(String.format(MESSAGE_EVENT_NAME_NOT_EXIST, eventName));
         }
         if (memberIndex == -1) {
-            return new CommandResult(String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName));
+            throw new CommandException(String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName));
         }
         Member member = model.getFilteredMemberList().get(memberIndex);
         Event event = model.getFilteredEventList().get(eventIndex);

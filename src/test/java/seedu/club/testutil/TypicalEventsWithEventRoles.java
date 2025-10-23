@@ -11,7 +11,7 @@ import seedu.club.model.member.Member;
 /**
  * A utility class containing a list of {@code Event} objects to be used in tests.
  */
-public class TypicalEvents {
+public class TypicalEventsWithEventRoles {
 
     public static final Event ORIENTATION = new EventBuilder().withName("Orientation")
             .withFrom("15/10/2025").withTo("17/10/2025").withDetail("For freshmen")
@@ -28,6 +28,12 @@ public class TypicalEvents {
     public static final Event WORKSHOP = new EventBuilder().withName("Workshop")
             .withFrom("15/10/2025").withTo("15/10/2025")
             .withRoles("participant", "facilitator").build();
+    public static final Member JOHN = new MemberBuilder()
+            .withName("John")
+            .withPhone("9482449")
+            .withEmail("John@example.com")
+            .withEventRoles(ORIENTATION.getRoles())
+            .build();
 
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
@@ -36,11 +42,12 @@ public class TypicalEvents {
     /**
      * Returns an {@code ClubBook} with all the typical events.
      */
-    public static ClubBook getTypicalClubBookWithEvents() {
+    public static ClubBook getTypicalClubBookWithEventRoles() {
         ClubBook cb = new ClubBook();
         for (Event event : getTypicalEvents()) {
             cb.addEvent(event);
         }
+        cb.addMember(JOHN);
         return cb;
     }
 }

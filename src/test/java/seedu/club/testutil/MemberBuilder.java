@@ -34,6 +34,7 @@ public class MemberBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         memberRoles = new HashSet<>();
+        eventRoles = new HashSet<>();
 
     }
 
