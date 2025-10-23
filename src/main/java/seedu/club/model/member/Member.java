@@ -107,13 +107,14 @@ public class Member extends NamedEntity {
         return name.equals(otherMember.name)
                 && phone.equals(otherMember.phone)
                 && email.equals(otherMember.email)
-                && memberRoles.equals(otherMember.memberRoles);
+                && memberRoles.equals(otherMember.memberRoles)
+                && eventRoles.equals(otherMember.eventRoles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, memberRoles);
+        return Objects.hash(name, phone, email, memberRoles, eventRoles);
     }
 
     @Override
@@ -122,7 +123,8 @@ public class Member extends NamedEntity {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("roles", memberRoles)
+                .add("memberRoles", memberRoles)
+                .add("eventRoles", eventRoles)
                 .toString();
     }
 
