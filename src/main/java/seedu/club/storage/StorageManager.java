@@ -23,7 +23,7 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code ClubBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ClubBookStorage clubBookStorage, UserPrefsStorage userPrefsStorage,) {
+    public StorageManager(ClubBookStorage clubBookStorage, UserPrefsStorage userPrefsStorage) {
         this.clubBookStorage = clubBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -44,7 +44,6 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
 
     // ================ Members methods ==============================
 
@@ -105,5 +104,12 @@ public class StorageManager implements Storage {
     }
 
     // ================ ClubBook methods ==============================
+    public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
+        return clubBookStorage.readClubBook();
+    }
 
+    public void saveClubBook(ReadOnlyClubBook clubBook) throws IOException {
+        saveMembers(clubBook);
+        saveEvents(clubBook);
+    }
 }

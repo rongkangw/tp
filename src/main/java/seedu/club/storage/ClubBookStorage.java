@@ -62,11 +62,7 @@ public interface ClubBookStorage {
 
     void saveEvents(ReadOnlyClubBook events, Path filePath) throws IOException;
 
-    Optional<ReadOnlyClubBook> readClubBook(Path memberFilePath, Path eventFilePath) throws DataLoadingException;
-
     Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException;
-
-    void saveClubBook(ReadOnlyClubBook clubBook, Path memberFilePath, Path eventFilePath) throws IOException;
 
     void saveClubBook(ReadOnlyClubBook clubBook) throws IOException;
 }

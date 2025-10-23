@@ -61,8 +61,7 @@ public class MainApp extends Application {
         ClubBookStorage clubBookStorage = new JsonClubBookStorage(
                 userPrefs.getMemberStorageFilePath(),
                 userPrefs.getEventStorageFilePath());
-        EventStorage eventStorage = (EventStorage) clubBookStorage;
-        storage = new StorageManager(clubBookStorage, userPrefsStorage, eventStorage);
+        storage = new StorageManager(clubBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -80,31 +79,23 @@ public class MainApp extends Application {
         logger.info("Using data file : " + storage.getMemberFilePath());
 
         Optional<ReadOnlyClubBook> clubBookOptional;
-        Optional<ReadOnlyClubBook> eventOptional;
         ReadOnlyClubBook initialData;
-        ClubBook combinedData;
 
         try {
-            clubBookOptional = storage.readMembers();
-            eventOptional = storage.readEvents();
-            combinedData = new ClubBook();
+            clubBookOptional = storage.readClubBook();
+
             if (!clubBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getMemberFilePath()
                         + " populated with a sample ClubBook.");
             }
             initialData = clubBookOptional.orElseGet(SampleDataUtil::getSampleClubBook);
-            combinedData.resetData(initialData);
-            if (eventOptional.isPresent()) {
-                combinedData.setEvents(eventOptional.get().getEventList());
-            }
-
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getMemberFilePath() + " could not be loaded."
                     + " Will be starting with an empty ClubBook.");
-            combinedData = new ClubBook();
+            initialData = new ClubBook();
         }
 
-        return new ModelManager(combinedData, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
 

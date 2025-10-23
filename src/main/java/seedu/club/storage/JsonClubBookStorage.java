@@ -18,7 +18,7 @@ import seedu.club.model.ReadOnlyClubBook;
 /**
  * A class to access ClubBook data stored as a json file on the hard disk.
  */
-public class JsonClubBookStorage implements ClubBookStorage, EventStorage {
+public class JsonClubBookStorage implements ClubBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonClubBookStorage.class);
 
@@ -146,13 +146,10 @@ public class JsonClubBookStorage implements ClubBookStorage, EventStorage {
     /**
      * Reads data from both member and event files and store them in a new ClubBook
      *
-     * @param memberFilePath location where member data is stored
-     * @param eventFilePath location where event data is stored
      * @return {@code Optional<ReadOnlyClubBook>} containing both member and event data
      * @throws DataLoadingException if loading from storage fails
      */
-    public Optional<ReadOnlyClubBook> readFullClubBook(Path memberFilePath,
-                                                       Path eventFilePath) throws DataLoadingException {
+    public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
         requireNonNull(memberFilePath);
         requireNonNull(eventFilePath);
 
@@ -171,7 +168,7 @@ public class JsonClubBookStorage implements ClubBookStorage, EventStorage {
      * @param clubBook clubBook containing members and events
      * @throws IOException
      */
-    public void saveFullClubBook(ReadOnlyClubBook clubBook) throws IOException {
+    public void saveClubBook(ReadOnlyClubBook clubBook) throws IOException {
         saveMembers(clubBook);
         saveEvents(clubBook);
     }
