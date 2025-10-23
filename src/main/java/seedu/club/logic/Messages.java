@@ -28,9 +28,9 @@ public class Messages {
             "The current list is a member list! Switch to event list first using \"listEvents\"";
     public static final String MESSAGE_NOT_MEMBER_STATE =
             "The current list is an event list! Switch to member list first using \"listMembers\"";
-    public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "An event with the name provided does not exist: %1$s";
-    public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "A member with the name provided does not exist: %1$s";
-    public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "A event role with the name(s) "
+    public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "The event with the name provided does not exist: %1$s";
+    public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "The member with the name provided does not exist: %1$s";
+    public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "The event role with the name(s) "
             + "provided does not exist: %1$s";
 
     /**
