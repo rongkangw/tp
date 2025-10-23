@@ -10,6 +10,7 @@ import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.role.EventRole;
+import seedu.club.model.role.MemberRole;
 import seedu.club.model.role.Role;
 
 /**
@@ -56,7 +57,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(member.getEmail())
                 .append("; Member Roles: ");
-        String result = member.getMemberRoles().stream().map(Role::toString)
+        String result = member.getMemberRoles().stream().map(MemberRole::toString)
                 .collect(joining(", "));
         builder.append(result);
         return builder.toString();
