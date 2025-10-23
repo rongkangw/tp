@@ -57,6 +57,6 @@ public class EventRole extends Role {
     public String toString() {
         return assignedTo == null
                 ? "null" + ">" + roleName
-                : assignedTo + ">" + roleName;
+                : assignedTo.getName() + ">" + roleName;
     }
 }
