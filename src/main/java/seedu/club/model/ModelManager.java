@@ -128,6 +128,17 @@ public class ModelManager implements Model {
         return -1;
     }
 
+    //=========== Full Member List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the full list of {@code Member} back by the internal list of
+     * {@code versionedClubBook}
+     */
+    @Override
+    public ObservableList<Member> getFullMemberList() {
+        return clubBook.getMemberList();
+    }
+
     //=========== Filtered Member List Accessors =============================================================
 
     /**
@@ -182,14 +193,6 @@ public class ModelManager implements Model {
         clubBook.removeEvent(target);
     }
 
-    /* Edit commands are to be implemented in a future iteration
-    @Override
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-
-        clubBook.setEvent(target, editedEvent);
-    }
-     */
     @Override
     public int eventNameIndex(Name name) {
         ObservableList<Event> eventList = clubBook.getEventList();

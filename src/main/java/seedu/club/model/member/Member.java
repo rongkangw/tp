@@ -31,12 +31,21 @@ public class Member extends NamedEntity {
     /**
      * Every field must be present and not null.
      */
-    public Member(Name name, Phone phone, Email email, Set<MemberRole> roles) {
+    public Member(Name name, Phone phone, Email email, Set<MemberRole> memberRoles) {
         super(name);
-        requireAllNonNull(phone, email, roles);
+        requireAllNonNull(phone, email, memberRoles);
         this.phone = phone;
         this.email = email;
-        this.memberRoles.addAll(roles);
+        this.memberRoles.addAll(memberRoles);
+    }
+
+    /**
+     * Constructs a member with every field given
+     */
+    public Member(Name name, Phone phone, Email email, Set<MemberRole> memberRoles, Set<EventRole> eventRoles) {
+        this(name, phone, email, memberRoles);
+        requireAllNonNull(eventRoles);
+        this.eventRoles.addAll(eventRoles);
     }
 
     public Phone getPhone() {
@@ -48,15 +57,15 @@ public class Member extends NamedEntity {
     }
 
     /**
-     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable member role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<MemberRole> getRoles() {
+    public Set<MemberRole> getMemberRoles() {
         return Collections.unmodifiableSet(memberRoles);
     }
 
     /**
-     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable event role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<EventRole> getEventRoles() {
@@ -76,12 +85,19 @@ public class Member extends NamedEntity {
      * Removes all EventRoles assigned to an event from the member's roles
      */
     public void removeEvent(Event event) {
-        for (EventRole role: eventRoles) {
+        for (EventRole role : eventRoles) {
             if (role.getAssignedTo() == event) {
                 eventRoles.remove(role);
             }
         }
     }
+
+    /**
+     * Adds a set of EventRoles to a member's roles
+     */
+    public void addEventRoles(Set<EventRole> roles) {
+        eventRoles.addAll(roles);
+        }
 
     /**
      * Returns true if both members have the same name.
@@ -115,13 +131,14 @@ public class Member extends NamedEntity {
         return name.equals(otherMember.name)
                 && phone.equals(otherMember.phone)
                 && email.equals(otherMember.email)
-                && memberRoles.equals(otherMember.memberRoles);
+                && memberRoles.equals(otherMember.memberRoles)
+                && eventRoles.equals(otherMember.eventRoles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, memberRoles);
+        return Objects.hash(name, phone, email, memberRoles, eventRoles);
     }
 
     @Override
@@ -130,7 +147,8 @@ public class Member extends NamedEntity {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("roles", memberRoles)
+                .add("memberRoles", memberRoles)
+                .add("eventRoles", eventRoles)
                 .toString();
     }
 

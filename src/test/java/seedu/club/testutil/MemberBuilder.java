@@ -35,7 +35,6 @@ public class MemberBuilder {
         email = new Email(DEFAULT_EMAIL);
         memberRoles = new HashSet<>();
         eventRoles = new HashSet<>();
-
     }
 
     /**
@@ -45,7 +44,7 @@ public class MemberBuilder {
         name = memberToCopy.getName();
         phone = memberToCopy.getPhone();
         email = memberToCopy.getEmail();
-        memberRoles = new HashSet<>(memberToCopy.getRoles());
+        memberRoles = new HashSet<>(memberToCopy.getMemberRoles());
         eventRoles = new HashSet<>(memberToCopy.getEventRoles());
     }
 
@@ -58,10 +57,18 @@ public class MemberBuilder {
     }
 
     /**
-     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code Member} that we are building.
+     * Parses the {@code roles} into a {@code Set<MemberRole>} and set it to the {@code Member} that we are building.
      */
-    public MemberBuilder withRoles(String ... roles) {
+    public MemberBuilder withMemberRoles(String ... roles) {
         this.memberRoles = SampleDataUtil.getMemberRoleSet(roles);
+        return this;
+    }
+
+    /**
+     * Parses the {@code roles} into a {@code Set<EventRole>} and set it to the {@code Member} that we are building.
+     */
+    public MemberBuilder withEventRoles(String ... roles) {
+        this.eventRoles = SampleDataUtil.getEventRoleSet(roles);
         return this;
     }
 

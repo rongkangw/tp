@@ -52,7 +52,7 @@ public class Event extends NamedEntity {
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
         super(name);
-        requireAllNonNull(from, to, detail, roles);
+        requireAllNonNull(from, to, detail, roles, roster);
         this.from = from;
         this.to = to;
         this.detail = detail;
@@ -98,6 +98,20 @@ public class Event extends NamedEntity {
      */
     public void removeMemberFromRoster(Member member) {
         roster.remove(member);
+    }
+
+    /**
+     * Returns true if a member with the same identity as {@code member} exists in the event roster.
+     */
+    public boolean hasMember(Member member) {
+        return getRoster().contains(member);
+    }
+
+    /**
+     * Adds the given member to the event roster.
+     */
+    public void addMember(Member member) {
+        roster.add(member);
     }
 
     /**
