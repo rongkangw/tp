@@ -2,7 +2,7 @@ package seedu.club.logic.parser.event;
 
 import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENTROLE;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
 
 import java.util.Collections;
@@ -28,7 +28,7 @@ public class AssignEventCommandParser implements Parser<AssignEventCommand> {
      */
     public AssignEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENT, PREFIX_MEMBER, PREFIX_EVENTROLE);
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENT, PREFIX_MEMBER, PREFIX_ROLE);
 
         if (!argMultimap.arePrefixesPresent(PREFIX_EVENT, PREFIX_MEMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -38,8 +38,8 @@ public class AssignEventCommandParser implements Parser<AssignEventCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT, PREFIX_MEMBER);
         Name eventName = ParserUtil.parseName(argMultimap.getValue(PREFIX_EVENT).get());
         Name memberName = ParserUtil.parseName(argMultimap.getValue(PREFIX_MEMBER).get());
-        Set<EventRole> eventRoleList = !argMultimap.getAllValues(PREFIX_EVENTROLE).isEmpty()
-                ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_EVENTROLE))
+        Set<EventRole> eventRoleList = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
+                ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE))
                 : Collections.emptySet();
 
         return new AssignEventCommand(eventName, memberName, eventRoleList);

@@ -17,6 +17,5 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_EVENT = new Prefix("e/");
     public static final Prefix PREFIX_MEMBER = new Prefix("m/");
-    public static final Prefix PREFIX_EVENTROLE = new Prefix("r/");
 
 }

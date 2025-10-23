@@ -2,7 +2,7 @@ package seedu.club.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENTROLE;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
 
 import java.util.HashSet;
@@ -31,11 +31,11 @@ public class AssignEventCommand extends Command {
             + "Parameters: "
             + PREFIX_EVENT + "EVENT "
             + PREFIX_MEMBER + "MEMBER "
-            + "[" + PREFIX_EVENTROLE + "EVENTROLE]...\n"
+            + "[" + PREFIX_ROLE + "EVENTROLE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT + "Movie Night "
             + PREFIX_MEMBER + "John Doe "
-            + PREFIX_EVENTROLE + "FoodIC ";
+            + PREFIX_ROLE + "FoodIC ";
 
     public static final String MESSAGE_SUCCESS = "Assigned member to event: %1$s";
     public static final String MESSAGE_DUPLICATE_MEMBER = "This member already exists in the event";

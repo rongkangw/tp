@@ -1,9 +1,9 @@
 package seedu.club.testutil;
 
 import static seedu.club.logic.parser.CliSyntax.PREFIX_DETAIL;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 
 import seedu.club.logic.commands.event.AddEventCommand;

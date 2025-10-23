@@ -3,10 +3,10 @@ package seedu.club.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.club.testutil.Assert.assertThrows;
 
@@ -17,6 +17,7 @@ import java.util.List;
 import seedu.club.commons.core.index.Index;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.commands.member.EditMemberCommand;
+import seedu.club.logic.parser.CliSyntax;
 import seedu.club.model.ClubBook;
 import seedu.club.model.Model;
 import seedu.club.model.event.Event;
@@ -62,8 +63,8 @@ public class CommandTestUtil {
     public static final String FROM_DESC_ORIENTATION = " " + PREFIX_FROM + VALID_FROM_ORIENTATION;
     public static final String TO_DESC_BEACHDAY = " " + PREFIX_TO + VALID_TO_BEACHDAY;
     public static final String TO_DESC_ORIENTATION = " " + PREFIX_TO + VALID_TO_ORIENTATION;
-    public static final String EVENT_ROLE_DESC_FACILITATOR = " " + PREFIX_ROLE + VALID_EVENT_ROLE_FACILITATOR;
-    public static final String EVENT_ROLE_DESC_FOODIC = " " + PREFIX_ROLE + VALID_EVENT_ROLE_FOODIC;
+    public static final String EVENT_ROLE_DESC_FACILITATOR = " " + CliSyntax.PREFIX_ROLE + VALID_EVENT_ROLE_FACILITATOR;
+    public static final String EVENT_ROLE_DESC_FOODIC = " " + CliSyntax.PREFIX_ROLE + VALID_EVENT_ROLE_FOODIC;
 
     public static final String INVALID_MEMBER_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -76,7 +77,7 @@ public class CommandTestUtil {
      public static final String INVALID_FROM_DESC = " " + PREFIX_FROM + "911a"; // 'a' not allowed in phones
      public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
      */
-    public static final String INVALID_EVENT_ROLE_DESC = " " + PREFIX_ROLE + "facilitator*"; // '*' not allowed in roles
+    public static final String INVALID_EVENT_ROLE_DESC = " " + CliSyntax.PREFIX_ROLE + "facilitator*"; // '*' not allowed in roles
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
