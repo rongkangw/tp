@@ -13,8 +13,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.club.commons.core.index.Index;
-import seedu.club.logic.commands.member.EditCommand;
-import seedu.club.logic.commands.member.EditCommand.EditMemberDescriptor;
+import seedu.club.logic.commands.member.EditMemberCommand;
+import seedu.club.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.club.logic.parser.ArgumentMultimap;
 import seedu.club.logic.parser.ArgumentTokenizer;
 import seedu.club.logic.parser.Parser;
@@ -25,14 +25,14 @@ import seedu.club.model.role.MemberRole;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditMemberCommandParser implements Parser<EditMemberCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditMemberCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE);
@@ -42,7 +42,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMemberCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
@@ -61,10 +62,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseRolesForEdit(argMultimap.getAllValues(PREFIX_ROLE)).ifPresent(editMemberDescriptor::setRoles);
 
         if (!editMemberDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditMemberCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editMemberDescriptor);
+        return new EditMemberCommand(index, editMemberDescriptor);
     }
 
     /**

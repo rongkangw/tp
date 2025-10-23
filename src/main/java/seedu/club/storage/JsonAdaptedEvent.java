@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.model.event.Event;
+import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 
@@ -26,6 +27,7 @@ class JsonAdaptedEvent {
     private final String to;
     private final String details;
     private final List<JsonAdaptedEventRole> roles = new ArrayList<>();
+    private final List<JsonAdaptedMember> roster = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
@@ -33,13 +35,17 @@ class JsonAdaptedEvent {
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("from") String from,
                             @JsonProperty("to") String to, @JsonProperty("details") String details,
-                            @JsonProperty("roles") List<JsonAdaptedEventRole> roles) {
+                            @JsonProperty("roles") List<JsonAdaptedEventRole> roles,
+                            @JsonProperty("roster") List<JsonAdaptedMember> roster) {
         this.name = name;
         this.from = from;
         this.to = to;
         this.details = details;
         if (roles != null) {
             this.roles.addAll(roles);
+        }
+        if (roster != null) {
+            this.roster.addAll(roster);
         }
     }
 
@@ -50,6 +56,9 @@ class JsonAdaptedEvent {
         details = source.getDetail();
         roles.addAll(source.getRoles().stream()
                 .map(JsonAdaptedEventRole::new)
+                .collect(Collectors.toList()));
+        roster.addAll(source.getRoster().stream()
+                .map(JsonAdaptedMember::new)
                 .collect(Collectors.toList()));
     }
 
@@ -63,6 +72,10 @@ class JsonAdaptedEvent {
         final List<EventRole> eventRoles = new ArrayList<>();
         for (JsonAdaptedEventRole role : roles) {
             eventRoles.add(role.toModelType());
+        }
+        final List<Member> eventRoster = new ArrayList<>();
+        for (JsonAdaptedMember member: roster) {
+            eventRoster.add(member.toModelType());
         }
 
         if (name == null) {
@@ -89,7 +102,8 @@ class JsonAdaptedEvent {
         final String modelDetails = this.details;
 
         final Set<EventRole> modelRoles = new HashSet<>(eventRoles);
-        return new Event(modelName, modelFrom, modelTo, modelDetails, modelRoles);
+        final Set<Member> modelRoster = new HashSet<>(eventRoster);
+        return new Event(modelName, modelFrom, modelTo, modelDetails, modelRoles, modelRoster);
     }
 
 

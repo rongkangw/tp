@@ -19,5 +19,6 @@ import seedu.club.logic.commands.general.HelpCommand;
  */
 public enum ViewState {
     MEMBER,
-    EVENT
+    EVENT,
+    SINGLE_EVENT
 }

@@ -21,7 +21,7 @@ import seedu.club.logic.commands.general.ExitCommand;
 import seedu.club.logic.commands.general.HelpCommand;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.DeleteMemberCommand;
-import seedu.club.logic.commands.member.EditCommand;
+import seedu.club.logic.commands.member.EditMemberCommand;
 import seedu.club.logic.commands.member.FindCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.exceptions.ParseException;
@@ -68,10 +68,10 @@ public class ClubBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Member member = new MemberBuilder().build();
-        EditCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(member).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(member).build();
+        EditMemberCommand command = (EditMemberCommand) parser.parseCommand(EditMemberCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_MEMBER.getOneBased() + " " + MemberUtil.getEditMemberDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_MEMBER, descriptor), command);
+        assertEquals(new EditMemberCommand(INDEX_FIRST_MEMBER, descriptor), command);
     }
 
     @Test

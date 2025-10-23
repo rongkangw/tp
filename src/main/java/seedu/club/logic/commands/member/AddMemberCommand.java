@@ -16,7 +16,7 @@ import seedu.club.model.ViewState;
 import seedu.club.model.member.Member;
 
 /**
- * Adds a person to the club member list.
+ * Adds a member to the club's member list.
  */
 public class AddMemberCommand extends Command {
 
@@ -41,7 +41,7 @@ public class AddMemberCommand extends Command {
     private final Member toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Member}
+     * Creates an AddMemberCommand to add the specified {@code Member}
      */
     public AddMemberCommand(Member member) {
         requireNonNull(member);
