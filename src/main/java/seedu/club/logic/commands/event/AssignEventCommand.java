@@ -111,7 +111,8 @@ public class AssignEventCommand extends Command {
 
         AssignEventCommand otherAssignEventCommand = (AssignEventCommand) other;
         return eventName.equals(otherAssignEventCommand.eventName)
-                && memberName.equals(otherAssignEventCommand.memberName);
+                && memberName.equals(otherAssignEventCommand.memberName)
+                && roles.equals(otherAssignEventCommand.roles);
     }
 
     @Override
@@ -119,6 +120,7 @@ public class AssignEventCommand extends Command {
         return new ToStringBuilder(this)
                 .add("event", eventName)
                 .add("member", memberName)
+                .add("roles", roles)
                 .toString();
     }
 }
