@@ -88,7 +88,7 @@ public class MemberTest {
     @Test
     public void toStringMethod() {
         String expected = Member.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", roles=" + ALICE.getMemberRoles() + "}";
+                + ", email=" + ALICE.getEmail() + ", memberRoles=" + ALICE.getMemberRoles() + ", eventRoles=" + ALICE.getEventRoles() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
