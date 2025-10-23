@@ -207,22 +207,14 @@ Examples:
 
 #### Displaying an event : `event`
 
-Displays a specified event from the club book with its participating members.
-
 Format: `event INDEX`
 
-* This will display the event at the specified `INDEX`.
+*  Displays the event at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed event list.
 * `INDEX` **must be a positive integer 1,2,3, ...​**
 
 Examples:
-* `listEvents` then `event 2` displays the 2nd event in the displayed event list.
-
-### Listing all events : `listEvents`
-
-Shows a list of all events in the club book.
-
-Format: `listEvents`
+* `listEvents` then `event 2` displays the full content of the 2nd event in the displayed event list.
 
 ### Managing Event Participants
 
