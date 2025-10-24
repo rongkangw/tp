@@ -13,6 +13,9 @@ Class HelpWindow
 Class ResultDisplay
 Class MemberListPanel
 Class MemberCard
+Class EventListPanel
+Class EventCard
+Class SingleEventPanel
 Class StatusBarFooter
 Class CommandBox
 }
@@ -35,8 +38,11 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" MemberListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" EventListPanel
+MainWindow *-down-> "1" SingleEventPanel
 
 MemberListPanel -down-> "*" MemberCard
+EventListPanel -down-> "*" EventCard
 
 MainWindow -left-|> UiPart
 
@@ -44,10 +50,14 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 MemberListPanel --|> UiPart
 MemberCard --|> UiPart
+EventListPanel --|> UiPart
+EventCard --|> UiPart
+SingleEventPanel --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 MemberCard ..> Model
+EventCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
