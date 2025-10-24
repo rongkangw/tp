@@ -204,6 +204,7 @@ public class ModelManager implements Model {
         return -1;
     }
 
+
     //=========== Full Event List Accessors =============================================================
 
     /**
@@ -231,6 +232,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
+
 
     //=========== State =============================================================
 

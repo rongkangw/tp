@@ -94,6 +94,13 @@ public class Event extends NamedEntity {
     }
 
     /**
+     * Removes specified member from the event's roster
+     */
+    public void removeMemberFromRoster(Member member) {
+        roster.remove(member);
+    }
+
+    /**
      * Returns true if a member with the same identity as {@code member} exists in the event roster.
      */
     public boolean hasMember(Member member) {
