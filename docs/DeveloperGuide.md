@@ -568,15 +568,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Missing required parameters in command (e.g. event index)
+* 1a. Missing required parameter in command (e.g. event index)
 
-    * 1a1. System informs user of missing fields
+    * 1a1. System informs user of missing field
 
         Use case ends
 
-* 1b. Incorrect parameters within command (e.g. event index out of range)
+* 1b. Incorrect parameter within command (e.g. event index out of range)
 
-    * 1b1. System informs user of incorrect parameters
+    * 1b1. System informs user of incorrect parameter
 
         Use case ends
 
@@ -584,7 +584,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Preconditions**
 
-* The member and event must exist. The member must not have been already assigned to the event.
+* The member and event must exist
+* The member must not have been already assigned to the event
 
 **Guarantees**
 
@@ -594,12 +595,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to assign a member to an event
 2. System displays success message
-3. System displays event’s roster with the assigned member
+3. System updates event’s roster with the assigned member
+4. System displays event’s details(UC08)
         Use case ends
 
 **Extensions**
 
-* 1a. Missing required parameters in command (e.g. member)
+* 1a. Missing required parameters in command (e.g. member name)
 
     * 1a1. System informs user of missing fields
 
@@ -617,47 +619,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC10: Assigning a member to an event with an event role**
+* 1d. Event role is specified in user request and event role exists under the event
 
-**Preconditions**
-
-* The member and event must exist
-* The member must not have been already assigned to the event 
-* The event role must exist under the event
-
-**Guarantees**
-
-* The member will be added to the event’s roster. 
-* The event role will be added to the member’s event roles list.
-
-**MSS**
-
-1. User requests to assign a member to an event with an event role specified
-2. System displays success message
-3. System displays event’s roster with the assigned member, with the event role added to the member
-        Use case ends
-
-**Extensions**
-
-* 1a. Missing required parameters in command (e.g. member)
-
-    * 1a1. System informs user of missing fields
+    * 1d1. System displays success message 
+    * 1d2. System displays event’s roster with the assigned member, with the event role added to the member
 
         Use case ends
 
-* 1b. Invalid parameters within command (e.g. blank or non-alphanumeric characters)
+* 1e. Event role is specified in user request but event role does not exist under the event
 
-    * 1b1. System informs user of invalid parameters
-
-        Use case ends
-
-* 1c. Member is already assigned to the event
-
-    * 1c1. System informs user that the member is already assigned to the event
+    * 1e1. System informs user that the event role does not exist under the event
 
         Use case ends
 
-**UC11: Unassigning a member from an event**
+**UC10: Unassigning a member from an event**
 
 **Preconditions**
 
@@ -666,7 +641,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* The member will be removed from the event’s roster. 
+* The member will be removed from the event’s roster
 * Any event roles that the member may have under that event will also be removed
 
 **MSS**
@@ -696,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC12: Unassigning an event role from a member**
+**UC11: Unassigning an event role from a member**
 
 **Preconditions**
 * The member and event must exist 
