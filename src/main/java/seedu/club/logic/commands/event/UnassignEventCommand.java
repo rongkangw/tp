@@ -98,8 +98,6 @@ public class UnassignEventCommand extends Command {
 
     private CommandResult executeWithEventRole(Member member, Set<EventRole> eventRoles,
                                                 Model model, Event event) throws CommandException {
-        Member thisMember = member;
-        boolean bool = member.getEventRoles().containsAll(eventRoles);
         if (!member.getEventRoles().containsAll(eventRoles)) {
             throw new CommandException(String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, eventRoles.toString()));
         }
