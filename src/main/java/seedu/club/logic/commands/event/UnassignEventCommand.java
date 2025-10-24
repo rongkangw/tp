@@ -12,6 +12,7 @@ import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
+import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
@@ -72,6 +73,8 @@ public class UnassignEventCommand extends Command {
     }
 
 
+
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int eventIndex = model.eventNameIndex(eventName);
@@ -82,31 +85,34 @@ public class UnassignEventCommand extends Command {
         if (memberIndex == -1) {
             throw new CommandException(String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName));
         }
-        Member member = model.getFilteredMemberList().get(memberIndex);
-        Event event = model.getFilteredEventList().get(eventIndex);
+        Member member = model.getFullMemberList().get(memberIndex);
+        Event event = model.getFullEventList().get(eventIndex);
 
         if (hasRoles) {
-            return executeWithMemberRole(member, roles);
+            return executeWithMemberRole(member, roles, model, event);
         }
 
-        CommandResult result = executeNoMemberRole(member, event);
-        model.updateFilteredEventList(e -> e.equals(event));
-        model.updateFilteredMemberList(m -> event.getRoster().contains(m));
-        return result;
+        return executeNoMemberRole(member, event, model);
     }
 
-    private CommandResult executeWithMemberRole(Member member, Set<EventRole> eventRoles) {
+    private CommandResult executeWithMemberRole(Member member, Set<EventRole> eventRoles,
+                                                Model model, Event event) {
         member.removeEventRole(eventRoles);
+        model.updateFilteredEventList(e -> e.equals(event));
+        model.updateFilteredMemberList(m -> event.getRoster().contains(m));
+        model.setViewState(ViewState.MEMBER);
         return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT_ROLE),
                 false, false);
     }
 
-    private CommandResult executeNoMemberRole(Member member, Event event) {
-        event.removeMemberFromRoster(member);
+    private CommandResult executeNoMemberRole(Member member, Event event,
+                                              Model model) {
         member.removeEvent(event);
+        event.removeMemberFromRoster(member);
+        model.updateFilteredEventList(e -> e.equals(event));
+        model.updateFilteredMemberList(m -> event.getRoster().contains(m));
+        model.setViewState(ViewState.EVENT);
         return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT),
                 false, false);
     }
-
-
 }

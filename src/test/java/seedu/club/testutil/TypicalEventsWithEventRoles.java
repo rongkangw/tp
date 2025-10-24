@@ -34,6 +34,13 @@ public class TypicalEventsWithEventRoles {
             .withEmail("John@example.com")
             .withEventRoles(ORIENTATION.getRoles())
             .build();
+    public static final Member JANE = new MemberBuilder()
+            .withName("Jane")
+            .withPhone("9483449")
+            .withEmail("Jane@example.com")
+            .withEventRoles(MOVIE_NIGHT.getRoles())
+            .build();
+
 
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
@@ -48,6 +55,8 @@ public class TypicalEventsWithEventRoles {
             cb.addEvent(event);
         }
         cb.addMember(JOHN);
+        cb.addMember(JANE);
         return cb;
     }
+
 }

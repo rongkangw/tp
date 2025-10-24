@@ -76,20 +76,15 @@ public class Member extends NamedEntity {
      * Removes specified EventRoles from the member's roles
      */
     public void removeEventRole(Set<EventRole> roleSet) {
-        for (EventRole role: eventRoles) {
-            memberRoles.remove(role);
-        }
+        eventRoles.removeAll(roleSet);
+
     }
 
     /**
      * Removes all EventRoles assigned to an event from the member's roles
      */
     public void removeEvent(Event event) {
-        for (EventRole role : eventRoles) {
-            if (role.getAssignedTo() == event) {
-                eventRoles.remove(role);
-            }
-        }
+        eventRoles.removeIf(role -> event.equals(role.getAssignedTo()));
     }
 
     /**

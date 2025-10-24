@@ -99,7 +99,7 @@ public class MemberBuilder {
     }
 
     public Member build() {
-        return new Member(name, phone, email, memberRoles);
+        return new Member(name, phone, email, memberRoles, eventRoles);
     }
 
 }
