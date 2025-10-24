@@ -1,6 +1,7 @@
 package seedu.club.logic.commands.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.club.logic.Messages.MESSAGE_EVENTROLE_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -50,6 +51,17 @@ public class UnassignEventCommandTest {
                 Collections.emptySet());
         assertCommandFailure(unassignEventCommand, model,
                 String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName));
+    }
+
+    @Test
+    public void execute_eventRoleDoesNotExist_throwsCommandException() {
+        Name memberName = new Name("John");
+        Name eventName = new Name("Orientation");
+        Set<EventRole> roles = Set.of(new EventRole("Publicity"));
+        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
+                roles);
+        assertCommandFailure(unassignEventCommand, model,
+                String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, memberName));
     }
 
     @Test
