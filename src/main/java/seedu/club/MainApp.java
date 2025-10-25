@@ -87,6 +87,8 @@ public class MainApp extends Application {
             if (!clubBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getMemberFilePath()
                         + " populated with a sample ClubBook.");
+                logger.info("Creating a new data file " + storage.getEventFilePath()
+                        + " populated with a sample ClubBook.");
             }
             initialData = clubBookOptional.orElseGet(SampleDataUtil::getSampleClubBook);
         } catch (DataLoadingException e) {

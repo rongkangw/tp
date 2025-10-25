@@ -156,6 +156,9 @@ public class JsonClubBookStorage implements ClubBookStorage {
         Optional<ReadOnlyClubBook> members = readMembers();
         Optional<ReadOnlyClubBook> events = readEvents();
 
+        if (!members.isPresent() || !events.isPresent()) {
+            return Optional.empty();
+        }
         ClubBook clubBook = new ClubBook();
         members.ifPresent(m -> clubBook.resetData(m));
         events.ifPresent(e -> clubBook.setEvents(e.getEventList()));
