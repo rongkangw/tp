@@ -48,13 +48,13 @@ public class StorageManager implements Storage {
     // ================ Members methods ==============================
 
     @Override
-    public Path getMemberFilePath() {
-        return clubBookStorage.getMemberFilePath();
+    public Path getClubBookFilePath() {
+        return clubBookStorage.getClubBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException {
-        return readMembers(clubBookStorage.getMemberFilePath());
+        return readMembers(clubBookStorage.getClubBookFilePath());
     }
 
     @Override
@@ -65,7 +65,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveMembers(ReadOnlyClubBook clubBook) throws IOException {
-        saveMembers(clubBook, clubBookStorage.getMemberFilePath());
+        saveMembers(clubBook, clubBookStorage.getClubBookFilePath());
     }
 
     @Override
@@ -77,13 +77,8 @@ public class StorageManager implements Storage {
     // ================ Event methods ==============================
 
     @Override
-    public Path getEventFilePath() {
-        return clubBookStorage.getEventFilePath();
-    }
-
-    @Override
     public Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException {
-        return readEvents(clubBookStorage.getEventFilePath());
+        return readEvents(clubBookStorage.getClubBookFilePath());
     }
 
     @Override
@@ -94,7 +89,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveEvents(ReadOnlyClubBook clubBook) throws IOException {
-        saveEvents(clubBook, clubBookStorage.getEventFilePath());
+        saveEvents(clubBook, clubBookStorage.getClubBookFilePath());
     }
 
     @Override

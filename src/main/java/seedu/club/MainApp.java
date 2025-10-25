@@ -58,8 +58,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ClubBookStorage clubBookStorage = new JsonClubBookStorage(
-                userPrefs.getMemberStorageFilePath(),
-                userPrefs.getEventStorageFilePath());
+                userPrefs.getClubBookStorageFilePath());
         storage = new StorageManager(clubBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
@@ -75,7 +74,7 @@ public class MainApp extends Application {
      * or an empty club book will be used instead if errors occur when reading {@code storage}'s club book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getMemberFilePath());
+        logger.info("Using data file : " + storage.getClubBookFilePath());
 
         Optional<ReadOnlyClubBook> clubBookOptional;
         ReadOnlyClubBook initialData;
@@ -84,14 +83,12 @@ public class MainApp extends Application {
             clubBookOptional = storage.readClubBook();
 
             if (!clubBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getMemberFilePath()
-                        + " populated with a sample ClubBook.");
-                logger.info("Creating a new data file " + storage.getEventFilePath()
+                logger.info("Creating a new data file " + storage.getClubBookFilePath()
                         + " populated with a sample ClubBook.");
             }
             initialData = clubBookOptional.orElseGet(SampleDataUtil::getSampleClubBook);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getMemberFilePath() + " could not be loaded."
+            logger.warning("Data file at " + storage.getClubBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty ClubBook.");
             initialData = new ClubBook();
         }

@@ -14,8 +14,7 @@ import seedu.club.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path memberStorageFilePath = Paths.get("data" , "members.json");
-    private Path eventStorageFilePath = Paths.get("data", "events.json");
+    private Path clubBookStorageFilePath = Paths.get("data" , "members.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,8 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setMemberStorageFilePath(newUserPrefs.getMemberStorageFilePath());
-        setEventStorageFilePath(newUserPrefs.getEventStorageFilePath());
+        setClubBookStorageFilePath(newUserPrefs.getClubBookStorageFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -49,22 +47,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getMemberStorageFilePath() {
-        return memberStorageFilePath;
+    public Path getClubBookStorageFilePath() {
+        return clubBookStorageFilePath;
     }
 
-    public void setMemberStorageFilePath(Path memberStorageFilePath) {
+    public void setClubBookStorageFilePath(Path memberStorageFilePath) {
         requireNonNull(memberStorageFilePath);
-        this.memberStorageFilePath = memberStorageFilePath;
-    }
-
-    public Path getEventStorageFilePath() {
-        return eventStorageFilePath;
-    }
-
-    public void setEventStorageFilePath(Path eventStorageFilePath) {
-        requireNonNull(eventStorageFilePath);
-        this.eventStorageFilePath = eventStorageFilePath;
+        this.clubBookStorageFilePath = memberStorageFilePath;
     }
 
     @Override
@@ -80,21 +69,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && memberStorageFilePath.equals(otherUserPrefs.memberStorageFilePath)
-                && eventStorageFilePath.equals(otherUserPrefs.eventStorageFilePath);
+                && clubBookStorageFilePath.equals(otherUserPrefs.clubBookStorageFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, memberStorageFilePath, eventStorageFilePath);
+        return Objects.hash(guiSettings, clubBookStorageFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + memberStorageFilePath);
-        sb.append("\nLocal event data file location : " + eventStorageFilePath);
+        sb.append("\nLocal data file location : " + clubBookStorageFilePath);
         return sb.toString();
     }
 

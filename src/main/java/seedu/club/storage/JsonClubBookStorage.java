@@ -22,42 +22,39 @@ public class JsonClubBookStorage implements ClubBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonClubBookStorage.class);
 
-    private Path memberFilePath;
-    private Path eventFilePath;
+    private Path clubBookFilePath;
 
     /**
      * Constructs a {@code JsonClubBookStorage} with the given member and event file paths
      *
-     * @param memberFilePath
-     * @param eventFilePath
+     * @param clubBookFilePath
      */
-    public JsonClubBookStorage(Path memberFilePath, Path eventFilePath) {
-        this.memberFilePath = memberFilePath;
-        this.eventFilePath = eventFilePath;
+    public JsonClubBookStorage(Path clubBookFilePath) {
+        this.clubBookFilePath = clubBookFilePath;
     }
 
     // ================ Members methods ==============================
 
-    public Path getMemberFilePath() {
-        return memberFilePath;
+    public Path getClubBookFilePath() {
+        return clubBookFilePath;
     }
 
     @Override
     public Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException {
-        return readMembers(memberFilePath);
+        return readMembers(clubBookFilePath);
     }
 
     /**
      * Similar to {@link #readMembers()}.
      *
-     * @param memberFilePath location of the member data. Cannot be null.
+     * @param clubBookFilePath location of the member data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyClubBook> readMembers(Path memberFilePath) throws DataLoadingException {
-        requireNonNull(memberFilePath);
+    public Optional<ReadOnlyClubBook> readMembers(Path clubBookFilePath) throws DataLoadingException {
+        requireNonNull(clubBookFilePath);
 
         Optional<JsonSerializableClubBook> jsonClubBook = JsonUtil.readJsonFile(
-                memberFilePath, JsonSerializableClubBook.class);
+                clubBookFilePath, JsonSerializableClubBook.class);
         if (!jsonClubBook.isPresent()) {
             return Optional.empty();
         }
@@ -65,52 +62,52 @@ public class JsonClubBookStorage implements ClubBookStorage {
         try {
             return Optional.of(jsonClubBook.get().toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + memberFilePath + ": " + ive.getMessage());
+            logger.info("Illegal values found in " + clubBookFilePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
         }
     }
 
     @Override
     public void saveMembers(ReadOnlyClubBook clubBook) throws IOException {
-        saveMembers(clubBook, memberFilePath);
+        saveMembers(clubBook, clubBookFilePath);
     }
 
     /**
      * Similar to {@link #saveMembers(ReadOnlyClubBook)}.
      *
-     * @param memberFilePath location of the data. Cannot be null.
+     * @param clubBookFilePath location of the data. Cannot be null.
      */
-    public void saveMembers(ReadOnlyClubBook clubBook, Path memberFilePath) throws IOException {
+    public void saveMembers(ReadOnlyClubBook clubBook, Path clubBookFilePath) throws IOException {
         requireNonNull(clubBook);
-        requireNonNull(memberFilePath);
+        requireNonNull(clubBookFilePath);
 
-        FileUtil.createIfMissing(memberFilePath);
-        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), memberFilePath);
+        FileUtil.createIfMissing(clubBookFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), clubBookFilePath);
     }
 
     // ================ Event methods ==============================
 
     public Path getEventFilePath() {
-        return eventFilePath;
+        return clubBookFilePath;
     }
 
     @Override
     public Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException {
-        return readEvents(eventFilePath);
+        return readEvents(clubBookFilePath);
     }
 
     /**
      * Similar to link {@link #readEvents()}
      *
-     * @param eventFilePath location of event data. Cannot be null
+     * @param clubBookFilePath location of event data. Cannot be null
      * @return {@code Optional<ReadOnlyClubBook>} containing event data
      * @throws DataLoadingException if loading from storage failed.
      */
-    public Optional<ReadOnlyClubBook> readEvents(Path eventFilePath) throws DataLoadingException {
-        requireNonNull(eventFilePath);
+    public Optional<ReadOnlyClubBook> readEvents(Path clubBookFilePath) throws DataLoadingException {
+        requireNonNull(clubBookFilePath);
 
         Optional<JsonSerializableClubBook> jsonEvents = JsonUtil.readJsonFile(
-                eventFilePath, JsonSerializableClubBook.class);
+                clubBookFilePath, JsonSerializableClubBook.class);
         if (!jsonEvents.isPresent()) {
             return Optional.empty();
         }
@@ -118,27 +115,27 @@ public class JsonClubBookStorage implements ClubBookStorage {
         try {
             return Optional.of(jsonEvents.get().toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + eventFilePath + ": " + ive.getMessage());
+            logger.info("Illegal values found in " + clubBookFilePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
         }
     }
 
     @Override
     public void saveEvents(ReadOnlyClubBook clubBook) throws IOException {
-        saveEvents(clubBook, eventFilePath);
+        saveEvents(clubBook, clubBookFilePath);
     }
 
     /**
      * Similar to {@link #saveEvents(ReadOnlyClubBook)}.
      *
-     * @param eventFilePath location where event data is to be stored. Cannot be null.
+     * @param clubBookFilePath location where event data is to be stored. Cannot be null.
      */
-    public void saveEvents(ReadOnlyClubBook clubBook, Path eventFilePath) throws IOException {
+    public void saveEvents(ReadOnlyClubBook clubBook, Path clubBookFilePath) throws IOException {
         requireNonNull(clubBook);
-        requireNonNull(eventFilePath);
+        requireNonNull(clubBookFilePath);
 
-        FileUtil.createIfMissing(eventFilePath);
-        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), eventFilePath);
+        FileUtil.createIfMissing(clubBookFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), clubBookFilePath);
     }
 
     // ================ Club Book methods ==============================
@@ -150,8 +147,8 @@ public class JsonClubBookStorage implements ClubBookStorage {
      * @throws DataLoadingException if loading from storage fails
      */
     public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
-        requireNonNull(memberFilePath);
-        requireNonNull(eventFilePath);
+        requireNonNull(clubBookFilePath);
+        requireNonNull(clubBookFilePath);
 
         Optional<ReadOnlyClubBook> members = readMembers();
         Optional<ReadOnlyClubBook> events = readEvents();

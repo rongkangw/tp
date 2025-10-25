@@ -16,12 +16,7 @@ public interface ClubBookStorage {
     /**
      * Returns the file path of the member data file.
      */
-    Path getMemberFilePath();
-
-    /**
-     * Returns the file path of the event data file.
-     */
-    Path getEventFilePath();
+    Path getClubBookFilePath();
 
     /**
      * Returns ClubBook data as a {@link ReadOnlyClubBook}.
@@ -32,7 +27,7 @@ public interface ClubBookStorage {
     Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException;
 
     /**
-     * @see #getMemberFilePath()
+     * @see #getClubBookFilePath()
      */
     Optional<ReadOnlyClubBook> readMembers(Path filePath) throws DataLoadingException;
 
