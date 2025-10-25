@@ -12,14 +12,13 @@ import seedu.club.model.ReadOnlyClubBook;
  * Represents a storage for {@link ClubBook}.
  */
 public interface ClubBookStorage {
-
     /**
-     * Returns the file path of the member data file.
+     * Returns the file path of the ClubBook data file.
      */
     Path getClubBookFilePath();
 
     /**
-     * Returns ClubBook data as a {@link ReadOnlyClubBook}.
+     * Returns ClubBook members data as a {@link ReadOnlyClubBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
@@ -27,12 +26,12 @@ public interface ClubBookStorage {
     Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException;
 
     /**
-     * @see #getClubBookFilePath()
+     * @see #readMembers()
      */
     Optional<ReadOnlyClubBook> readMembers(Path filePath) throws DataLoadingException;
 
     /**
-     * Saves the given {@link ReadOnlyClubBook} to the storage.
+     * Saves members from the given {@link ReadOnlyClubBook} to the storage.
      * @param clubBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
@@ -44,20 +43,42 @@ public interface ClubBookStorage {
     void saveMembers(ReadOnlyClubBook clubBook, Path filePath) throws IOException;
 
     /**
-     * Returns ClubBook data as a {@link ReadOnlyClubBook}.
+     * Returns ClubBook events data as a {@link ReadOnlyClubBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
     Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException;
 
+    /**
+     * @see #readEvents()
+     */
     Optional<ReadOnlyClubBook> readEvents(Path filepath) throws DataLoadingException;
 
-    void saveEvents(ReadOnlyClubBook events) throws IOException;
+    /**
+     * Saves events from the given {@link ReadOnlyClubBook} to the storage.
+     * @param clubBook cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void saveEvents(ReadOnlyClubBook clubBook) throws IOException;
 
+    /**
+     * @see #saveEvents(ReadOnlyClubBook)
+     */
     void saveEvents(ReadOnlyClubBook events, Path filePath) throws IOException;
 
+    /**
+     * Returns ClubBook data as a {@link ReadOnlyClubBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
     Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException;
 
+    /**
+     * Saves the given {@link ReadOnlyClubBook} to the storage.
+     * @param clubBook cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
     void saveClubBook(ReadOnlyClubBook clubBook) throws IOException;
 }

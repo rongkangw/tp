@@ -25,8 +25,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonClubBookStorage clubBookStorage = new JsonClubBookStorage(getTempFilePath("ab"),
-                getTempFilePath("bc"));
+        JsonClubBookStorage clubBookStorage = new JsonClubBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(clubBookStorage, userPrefsStorage);
     }
@@ -77,12 +76,12 @@ public class StorageManagerTest {
 
     @Test
     public void getClubBookFilePath() {
-        assertNotNull(storageManager.getMemberFilePath());
+        assertNotNull(storageManager.getClubBookFilePath());
     }
 
     @Test
     public void getClubBookEventFilePath() {
-        assertNotNull(storageManager.getEventFilePath());
+        assertNotNull(storageManager.getClubBookFilePath());
     }
 
 }

@@ -17,8 +17,8 @@ import seedu.club.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private ClubBookStorage clubBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final ClubBookStorage clubBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code ClubBookStorage} and {@code UserPrefStorage}.
@@ -46,11 +46,6 @@ public class StorageManager implements Storage {
     }
 
     // ================ Members methods ==============================
-
-    @Override
-    public Path getClubBookFilePath() {
-        return clubBookStorage.getClubBookFilePath();
-    }
 
     @Override
     public Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException {
@@ -99,10 +94,17 @@ public class StorageManager implements Storage {
     }
 
     // ================ ClubBook methods ==============================
+    @Override
+    public Path getClubBookFilePath() {
+        return clubBookStorage.getClubBookFilePath();
+    }
+
+    @Override
     public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
         return clubBookStorage.readClubBook();
     }
 
+    @Override
     public void saveClubBook(ReadOnlyClubBook clubBook) throws IOException {
         saveMembers(clubBook);
         saveEvents(clubBook);

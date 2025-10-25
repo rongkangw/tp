@@ -33,11 +33,14 @@ public class JsonClubBookStorage implements ClubBookStorage {
         this.clubBookFilePath = clubBookFilePath;
     }
 
-    // ================ Members methods ==============================
-
+    /**
+     * Returns the file path of the ClubBook data file.
+     */
     public Path getClubBookFilePath() {
         return clubBookFilePath;
     }
+
+    // ================ Members methods ==============================
 
     @Override
     public Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException {
@@ -86,10 +89,6 @@ public class JsonClubBookStorage implements ClubBookStorage {
     }
 
     // ================ Event methods ==============================
-
-    public Path getEventFilePath() {
-        return clubBookFilePath;
-    }
 
     @Override
     public Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException {
@@ -153,7 +152,7 @@ public class JsonClubBookStorage implements ClubBookStorage {
         Optional<ReadOnlyClubBook> members = readMembers();
         Optional<ReadOnlyClubBook> events = readEvents();
 
-        if (!members.isPresent() || !events.isPresent()) {
+        if (members.isEmpty() || events.isEmpty()) {
             return Optional.empty();
         }
         ClubBook clubBook = new ClubBook();

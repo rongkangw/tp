@@ -30,15 +30,13 @@ public class JsonClubBookStorageTest {
 
     @TempDir
     public Path testFolder;
-    private Path memberFile;
-    private Path eventFile;
+    private Path clubBookFile;
     private JsonClubBookStorage storage;
 
     @BeforeEach
     public void setUp() {
-        memberFile = testFolder.resolve("TempMembers.json");
-        eventFile = testFolder.resolve("TempEvents.json");
-        storage = new JsonClubBookStorage(memberFile, eventFile);
+        Path clubBookFile = testFolder.resolve("TempClubBook.json");
+        storage = new JsonClubBookStorage(clubBookFile);
     }
 
     @Test
@@ -47,7 +45,7 @@ public class JsonClubBookStorageTest {
     }
 
     private Optional<ReadOnlyClubBook> readEvents(String filePath) throws Exception {
-        return new JsonClubBookStorage(memberFile, Paths.get(filePath))
+        return new JsonClubBookStorage(Paths.get(filePath))
                 .readEvents(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -76,7 +74,7 @@ public class JsonClubBookStorageTest {
     public void readAndSaveEvents_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempEvents.json");
         ClubBook original = getTypicalClubBookWithEvents();
-        JsonClubBookStorage jsonClubBookStorage = new JsonClubBookStorage(memberFile, filePath);
+        JsonClubBookStorage jsonClubBookStorage = new JsonClubBookStorage(filePath);
 
         // Save in new file and read back
         jsonClubBookStorage.saveEvents(original, filePath);
@@ -103,7 +101,7 @@ public class JsonClubBookStorageTest {
      */
     private void saveClubBookWithEvents(ReadOnlyClubBook clubBook, String filePath) {
         try {
-            new JsonClubBookStorage(memberFile, Paths.get(filePath))
+            new JsonClubBookStorage(Paths.get(filePath))
                     .saveEvents(clubBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
@@ -121,7 +119,7 @@ public class JsonClubBookStorageTest {
     }
 
     private Optional<ReadOnlyClubBook> readMembers(String filePath) throws Exception {
-        return new JsonClubBookStorage(Paths.get(filePath), eventFile)
+        return new JsonClubBookStorage(Paths.get(filePath))
                 .readMembers(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -155,7 +153,7 @@ public class JsonClubBookStorageTest {
     public void readAndSaveMember_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempClubBook.json");
         ClubBook original = getTypicalClubBook();
-        JsonClubBookStorage jsonClubBookStorage = new JsonClubBookStorage(filePath, eventFile);
+        JsonClubBookStorage jsonClubBookStorage = new JsonClubBookStorage(filePath);
 
         // Save in new file and read back
         jsonClubBookStorage.saveMembers(original, filePath);
@@ -187,7 +185,7 @@ public class JsonClubBookStorageTest {
      */
     private void saveClubBook(ReadOnlyClubBook clubBook, String filePath) {
         try {
-            new JsonClubBookStorage(Paths.get(filePath), eventFile)
+            new JsonClubBookStorage(Paths.get(filePath))
                     .saveMembers(clubBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

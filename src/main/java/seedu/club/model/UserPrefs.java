@@ -14,7 +14,7 @@ import seedu.club.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path clubBookStorageFilePath = Paths.get("data" , "members.json");
+    private Path clubBookStorageFilePath = Paths.get("data" , "clubBook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
