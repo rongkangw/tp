@@ -23,7 +23,6 @@ import seedu.club.model.ReadOnlyUserPrefs;
 import seedu.club.model.UserPrefs;
 import seedu.club.model.util.SampleDataUtil;
 import seedu.club.storage.ClubBookStorage;
-import seedu.club.storage.EventStorage;
 import seedu.club.storage.JsonClubBookStorage;
 import seedu.club.storage.JsonUserPrefsStorage;
 import seedu.club.storage.Storage;

@@ -53,7 +53,7 @@ public class LogicManagerTest {
                 new JsonClubBookStorage(temporaryFolder.resolve("members.json"),
                         temporaryFolder.resolve("events.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage, clubBookStorage);
+        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -179,7 +179,7 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage, clubBookStorage);
+        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 

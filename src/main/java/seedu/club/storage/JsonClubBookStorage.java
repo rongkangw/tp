@@ -109,8 +109,8 @@ public class JsonClubBookStorage implements ClubBookStorage {
     public Optional<ReadOnlyClubBook> readEvents(Path eventFilePath) throws DataLoadingException {
         requireNonNull(eventFilePath);
 
-        Optional<JsonSerializableEvent> jsonEvents = JsonUtil.readJsonFile(
-                eventFilePath, JsonSerializableEvent.class);
+        Optional<JsonSerializableClubBook> jsonEvents = JsonUtil.readJsonFile(
+                eventFilePath, JsonSerializableClubBook.class);
         if (!jsonEvents.isPresent()) {
             return Optional.empty();
         }
@@ -138,7 +138,7 @@ public class JsonClubBookStorage implements ClubBookStorage {
         requireNonNull(eventFilePath);
 
         FileUtil.createIfMissing(eventFilePath);
-        JsonUtil.saveJsonFile(new JsonSerializableEvent(clubBook), eventFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), eventFilePath);
     }
 
     // ================ Club Book methods ==============================
