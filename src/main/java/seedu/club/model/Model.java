@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.club.commons.core.GuiSettings;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.Name;
 
 /**
  * The API of the Model component.
@@ -81,6 +82,10 @@ public interface Model {
      * The member identity of {@code editedMember} must not be the same as another existing member in the club book.
      */
     void setMember(Member target, Member editedMember);
+    /**
+     * Returns an unmodifiable view of the unfiltered member list
+     */
+    ObservableList<Member> getFullMemberList();
 
     /**
      * Returns true if an event with the same identity as {@code event} exists in the club book.
@@ -117,7 +122,7 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns an unmodifiable view of the filtered event list
+     * Returns an unmodifiable view of the unfiltered event list
      */
     ObservableList<Event> getFullEventList();
 
@@ -127,6 +132,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Returns index if there exists a member with the same name as {@code name} and -1 otherwise
+     */
+    int memberNameIndex(Name name);
+
+    /**
+     * Returns index if there exists an event with the same name as {@code name} and -1 otherwise
+     */
+    int eventNameIndex(Name name);
 
     /**
      * Returns the current state of the ClubBook

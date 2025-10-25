@@ -34,7 +34,7 @@ public class EditMemberDescriptorBuilder {
         descriptor.setName(member.getName());
         descriptor.setPhone(member.getPhone());
         descriptor.setEmail(member.getEmail());
-        descriptor.setRoles(member.getRoles());
+        descriptor.setRoles(member.getMemberRoles());
     }
 
     /**

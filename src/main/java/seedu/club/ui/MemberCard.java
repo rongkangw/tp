@@ -38,6 +38,8 @@ public class MemberCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane memberRoles;
+    @FXML
+    private FlowPane eventRoles;
 
     /**
      * Creates a {@code MemberCode} with the given {@code Member} and index to display.
@@ -49,8 +51,11 @@ public class MemberCard extends UiPart<Region> {
         name.setText(member.getName().fullName);
         phone.setText(member.getPhone().value);
         email.setText(member.getEmail().value);
-        member.getRoles().stream()
+        member.getMemberRoles().stream()
                 .sorted(Comparator.comparing(memberRole -> memberRole.roleName))
                 .forEach(memberRole -> memberRoles.getChildren().add(new Label(memberRole.roleName)));
+        member.getEventRoles().stream()
+                .sorted(Comparator.comparing(eventRole -> eventRole.roleName))
+                .forEach(eventRole -> eventRoles.getChildren().add(new Label(eventRole.roleName)));
     }
 }

@@ -12,6 +12,7 @@ import seedu.club.logic.commands.general.HelpCommand;
  * <ul>
  *   <li>{@code MEMBER} – when the user executes member-related commands.</li>
  *   <li>{@code EVENT} – when the user executes event-related commands.</li>
+ *   <li>{@code SINGLE_EVENT} – when the user executes single-event-related commands.</li>
  * </ul>
  *
  * For neutral commands like {@link ClearCommand}, {@link ExitCommand} and {@link HelpCommand}, the existing

@@ -14,6 +14,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.role.MemberRole;
 
 /**
@@ -26,19 +27,24 @@ class JsonAdaptedMember {
     private final String name;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedMemberRole> roles = new ArrayList<>();
+    private final List<JsonAdaptedMemberRole> memberRoles = new ArrayList<>();
+    private final List<JsonAdaptedEventRole> eventRoles = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedMember} with the given member details.
      */
     @JsonCreator
     public JsonAdaptedMember(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("roles") List<JsonAdaptedMemberRole> roles) {
+            @JsonProperty("email") String email, @JsonProperty("memberRoles") List<JsonAdaptedMemberRole> memberRoles,
+            @JsonProperty("eventRoles") List<JsonAdaptedEventRole> eventRoles) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        if (roles != null) {
-            this.roles.addAll(roles);
+        if (memberRoles != null) {
+            this.memberRoles.addAll(memberRoles);
+        }
+        if (eventRoles != null) {
+            this.eventRoles.addAll(eventRoles);
         }
     }
 
@@ -49,8 +55,11 @@ class JsonAdaptedMember {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        roles.addAll(source.getRoles().stream()
+        memberRoles.addAll(source.getMemberRoles().stream()
                 .map(JsonAdaptedMemberRole::new)
+                .collect(Collectors.toList()));
+        eventRoles.addAll(source.getEventRoles().stream()
+                .map(JsonAdaptedEventRole::new)
                 .collect(Collectors.toList()));
     }
 
@@ -61,8 +70,12 @@ class JsonAdaptedMember {
      */
     public Member toModelType() throws IllegalValueException {
         final List<MemberRole> memberRoles = new ArrayList<>();
-        for (JsonAdaptedMemberRole role : roles) {
-            memberRoles.add(role.toModelType());
+        final List<EventRole> eventRoles = new ArrayList<>();
+        for (JsonAdaptedMemberRole memberRole : this.memberRoles) {
+            memberRoles.add(memberRole.toModelType());
+        }
+        for (JsonAdaptedEventRole eventRole : this.eventRoles) {
+            eventRoles.add(eventRole.toModelType());
         }
 
         if (name == null) {
@@ -89,8 +102,9 @@ class JsonAdaptedMember {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<MemberRole> modelRoles = new HashSet<>(memberRoles);
-        return new Member(modelName, modelPhone, modelEmail, modelRoles);
+        final Set<MemberRole> modelMemberRoles = new HashSet<>(memberRoles);
+        final Set<EventRole> modelEventRoles = new HashSet<>(eventRoles);
+        return new Member(modelName, modelPhone, modelEmail, modelMemberRoles, modelEventRoles);
     }
 
 }

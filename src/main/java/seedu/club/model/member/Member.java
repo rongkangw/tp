@@ -8,8 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.club.commons.util.ToStringBuilder;
+import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
 import seedu.club.model.name.NamedEntity;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.role.MemberRole;
 
 /**
@@ -23,17 +25,27 @@ public class Member extends NamedEntity {
     private final Email email;
 
     // Data fields
-    private final Set<MemberRole> roles = new HashSet<>();
+    private final Set<MemberRole> memberRoles = new HashSet<>();
+    private final Set<EventRole> eventRoles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Member(Name name, Phone phone, Email email, Set<MemberRole> roles) {
+    public Member(Name name, Phone phone, Email email, Set<MemberRole> memberRoles) {
         super(name);
-        requireAllNonNull(phone, email, roles);
+        requireAllNonNull(phone, email, memberRoles);
         this.phone = phone;
         this.email = email;
-        this.roles.addAll(roles);
+        this.memberRoles.addAll(memberRoles);
+    }
+
+    /**
+     * Constructs a member with every field given
+     */
+    public Member(Name name, Phone phone, Email email, Set<MemberRole> memberRoles, Set<EventRole> eventRoles) {
+        this(name, phone, email, memberRoles);
+        requireAllNonNull(eventRoles);
+        this.eventRoles.addAll(eventRoles);
     }
 
     public Phone getPhone() {
@@ -45,11 +57,41 @@ public class Member extends NamedEntity {
     }
 
     /**
-     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable member role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<MemberRole> getRoles() {
-        return Collections.unmodifiableSet(roles);
+    public Set<MemberRole> getMemberRoles() {
+        return Collections.unmodifiableSet(memberRoles);
+    }
+
+    /**
+     * Returns an immutable event role set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<EventRole> getEventRoles() {
+        return Collections.unmodifiableSet(eventRoles);
+    }
+
+    /**
+     * Removes specified EventRoles from the member's roles
+     */
+    public void removeEventRole(Set<EventRole> roleSet) {
+        eventRoles.removeAll(roleSet);
+
+    }
+
+    /**
+     * Removes all EventRoles assigned to an event from the member's roles
+     */
+    public void removeEvent(Event event) {
+        eventRoles.removeIf(role -> event.equals(role.getAssignedTo()));
+    }
+
+    /**
+     * Adds a set of EventRoles to a member's roles
+     */
+    public void addEventRoles(Set<EventRole> roles) {
+        eventRoles.addAll(roles);
     }
 
     /**
@@ -84,13 +126,14 @@ public class Member extends NamedEntity {
         return name.equals(otherMember.name)
                 && phone.equals(otherMember.phone)
                 && email.equals(otherMember.email)
-                && roles.equals(otherMember.roles);
+                && memberRoles.equals(otherMember.memberRoles)
+                && eventRoles.equals(otherMember.eventRoles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, roles);
+        return Objects.hash(name, phone, email, memberRoles, eventRoles);
     }
 
     @Override
@@ -99,7 +142,8 @@ public class Member extends NamedEntity {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("roles", roles)
+                .add("memberRoles", memberRoles)
+                .add("eventRoles", eventRoles)
                 .toString();
     }
 

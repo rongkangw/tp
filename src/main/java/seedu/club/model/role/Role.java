@@ -41,7 +41,7 @@ public abstract class Role {
      */
     @Override
     public String toString() {
-        return '[' + roleName + ']';
+        return roleName;
     }
 
 }

@@ -7,6 +7,7 @@ import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
+import seedu.club.model.role.EventRole;
 import seedu.club.model.role.MemberRole;
 import seedu.club.model.util.SampleDataUtil;
 
@@ -22,7 +23,8 @@ public class MemberBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Set<MemberRole> roles;
+    private Set<MemberRole> memberRoles;
+    private Set<EventRole> eventRoles;
 
     /**
      * Creates a {@code MemberBuilder} with the default details.
@@ -31,7 +33,8 @@ public class MemberBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        roles = new HashSet<>();
+        memberRoles = new HashSet<>();
+        eventRoles = new HashSet<>();
     }
 
     /**
@@ -41,7 +44,8 @@ public class MemberBuilder {
         name = memberToCopy.getName();
         phone = memberToCopy.getPhone();
         email = memberToCopy.getEmail();
-        roles = new HashSet<>(memberToCopy.getRoles());
+        memberRoles = new HashSet<>(memberToCopy.getMemberRoles());
+        eventRoles = new HashSet<>(memberToCopy.getEventRoles());
     }
 
     /**
@@ -53,10 +57,26 @@ public class MemberBuilder {
     }
 
     /**
-     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code Member} that we are building.
+     * Parses the {@code roles} into a {@code Set<MemberRole>} and set it to the {@code Member} that we are building.
      */
-    public MemberBuilder withRoles(String ... roles) {
-        this.roles = SampleDataUtil.getMemberRoleSet(roles);
+    public MemberBuilder withMemberRoles(String ... roles) {
+        this.memberRoles = SampleDataUtil.getMemberRoleSet(roles);
+        return this;
+    }
+
+    /**
+     * Parses the {@code roles} into a {@code Set<EventRole>} and set it to the {@code Member} that we are building.
+     */
+    public MemberBuilder withEventRoles(String ... roles) {
+        this.eventRoles = SampleDataUtil.getEventRoleSet(roles);
+        return this;
+    }
+
+    /**
+     * Sets the {@code eventRoles} of the {@code Member} that we are building.
+     */
+    public MemberBuilder withEventRoles(Set<EventRole> eventRoles) {
+        this.eventRoles.addAll(eventRoles);
         return this;
     }
 
@@ -68,6 +88,8 @@ public class MemberBuilder {
         return this;
     }
 
+
+
     /**
      * Sets the {@code Email} of the {@code Member} that we are building.
      */
@@ -77,7 +99,7 @@ public class MemberBuilder {
     }
 
     public Member build() {
-        return new Member(name, phone, email, roles);
+        return new Member(name, phone, email, memberRoles, eventRoles);
     }
 
 }

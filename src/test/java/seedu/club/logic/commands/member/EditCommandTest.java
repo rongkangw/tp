@@ -58,7 +58,7 @@ public class EditCommandTest {
 
         MemberBuilder memberInList = new MemberBuilder(lastMember);
         Member editedMember = memberInList.withName(VALID_MEMBER_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
+                .withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT).build();
 
         EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_MEMBER_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withRoles(VALID_MEMBER_ROLE_PRESIDENT).build();

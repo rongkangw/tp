@@ -44,7 +44,7 @@ public class AddMemberCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Member expectedMember = new MemberBuilder(BOB).withRoles(VALID_MEMBER_ROLE_TREASURER).build();
+        Member expectedMember = new MemberBuilder(BOB).withMemberRoles(VALID_MEMBER_ROLE_TREASURER).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -53,7 +53,7 @@ public class AddMemberCommandParserTest {
 
         // multiple roles - all accepted
         Member expectedMemberMultipleRoles = new MemberBuilder(BOB)
-                .withRoles(VALID_MEMBER_ROLE_TREASURER, VALID_MEMBER_ROLE_PRESIDENT)
+                .withMemberRoles(VALID_MEMBER_ROLE_TREASURER, VALID_MEMBER_ROLE_PRESIDENT)
                 .build();
         assertParseSuccess(
                 parser,
@@ -117,7 +117,7 @@ public class AddMemberCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero roles
-        Member expectedMember = new MemberBuilder(AMY).withRoles().build();
+        Member expectedMember = new MemberBuilder(AMY).withMemberRoles().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 new AddMemberCommand(expectedMember));
     }
