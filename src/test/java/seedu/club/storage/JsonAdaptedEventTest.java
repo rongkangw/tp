@@ -18,7 +18,7 @@ import seedu.club.testutil.TypicalMembers;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "@orientation";
-    public static final String INVALID_DATETIME = "2025/5/13 0000";
+    private static final String INVALID_DATETIME = "2025/5/13 0000";
     private static final String INVALID_EVENT_ROLE = "#treasurer";
 
     private static final String VALID_NAME = ORIENTATION.getName().toString();

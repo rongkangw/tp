@@ -21,6 +21,10 @@ import seedu.club.model.role.EventRole;
  */
 public class Event extends NamedEntity {
 
+    // DateTime constraints
+    public static final String MESSAGE_CONSTRAINTS =
+            "Starting date/time should be before ending date/time";
+
     // Identity fields
     private final DateTime from;
     private final Optional<DateTime> to;
@@ -29,10 +33,6 @@ public class Event extends NamedEntity {
     // Data fields
     private final Set<EventRole> roles = new HashSet<>();
     private final Set<Member> roster = new HashSet<>();
-
-    // DateTime Constraints
-    public static final String MESSAGE_CONSTRAINTS =
-            "Starting date/time should be before ending date/time";
 
     /**
      * Creates an Event containing no participating members
