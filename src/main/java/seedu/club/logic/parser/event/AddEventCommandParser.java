@@ -44,7 +44,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_FROM, PREFIX_TO, PREFIX_DETAIL);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         DateTime from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
-        Optional<DateTime> to = argMultimap.getValue(PREFIX_TO).map(DateTime::new);
+        Optional<DateTime> to = Optional.of(ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).orElse("")));
         if (!from.isBefore(to.orElse(null))) {
             throw new ParseException(String.format(MESSAGE_END_BEFORE_START_DATE));
         }

@@ -20,7 +20,10 @@ public class DateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date and time should be in the format `DDMMYY HHMM` in 24-hour format";
+    public static final String MESSAGE_INVALID_VALUES =
+            "Invalid date or time values (e.g. day or month or time out of range)";
 
+    public static final String VALIDATION_REGEX = "\\d{6} \\d{4}";
     public static final DateTimeFormatter DATETIME_FORMAT = new DateTimeFormatterBuilder()
             .appendPattern("ddMMuu HHmm")
             .toFormatter()
@@ -36,13 +39,22 @@ public class DateTime {
     public DateTime(String datetime) {
         requireNonNull(datetime);
         if (!datetime.isEmpty()) {
-            checkArgument(isValidDateTime(datetime), MESSAGE_CONSTRAINTS);
+            checkArgument(isValidFormat(datetime), MESSAGE_CONSTRAINTS);
+            checkArgument(isValidDateTime(datetime), MESSAGE_INVALID_VALUES);
         }
         value = datetime;
     }
 
     /**
-     * Returns true if a given string is a valid date and time.
+     * Returns true if a given string has a valid date and time format.
+     */
+    public static boolean isValidFormat(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid date and time. <br>
+     * This is different from {@link #isValidFormat(String)} in that the date and time must be in bounds.
      */
     public static boolean isValidDateTime(String test) {
         try {

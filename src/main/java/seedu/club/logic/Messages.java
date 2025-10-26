@@ -75,7 +75,7 @@ public class Messages {
                 .append(ParserUtil.formatDate(event.getFrom()));
 
         DateTime to = event.getTo();
-        if (to != null) {
+        if (to != null && !to.value.isEmpty()) {
             builder.append("; To: ").append(ParserUtil.formatDate(to));
         }
 
