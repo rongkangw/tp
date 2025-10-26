@@ -1,5 +1,6 @@
 package seedu.club.logic.parser.event;
 
+import static seedu.club.logic.Messages.MESSAGE_END_BEFORE_START_DATE;
 import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_DETAIL;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
@@ -44,6 +45,10 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         DateTime from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
         Optional<DateTime> to = argMultimap.getValue(PREFIX_TO).map(DateTime::new);
+        if (!from.isBefore(to.orElse(null))) {
+            throw new ParseException(String.format(MESSAGE_END_BEFORE_START_DATE));
+        }
+
         String detail = argMultimap.getValue(PREFIX_DETAIL).isPresent()
                         ? ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).get())
                         : "";

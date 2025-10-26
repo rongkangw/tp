@@ -32,6 +32,7 @@ public class Messages {
             "The current list is an event list! Switch to member list first using \"listMembers\"";
     public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "The event with the name provided does not exist: %1$s";
     public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "The member with the name provided does not exist: %1$s";
+    public static final String MESSAGE_END_BEFORE_START_DATE = "Starting date/time should be before ending date/time";
     public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "The event role with the name(s) "
             + "provided does not exist: %1$s";
 

@@ -53,7 +53,17 @@ public class DateTime {
         return true;
     }
 
+    public boolean isBefore(DateTime other) {
+        // Vacuously true
+        if (other == null || other.value.isEmpty()) {
+            return true;
+        }
 
+        LocalDateTime thisDateTime = LocalDateTime.parse(value, DATETIME_FORMAT);
+        LocalDateTime otherDateTime = LocalDateTime.parse(other.value, DATETIME_FORMAT);
+
+        return thisDateTime.isBefore(otherDateTime);
+    }
 
     @Override
     public String toString() {

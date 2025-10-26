@@ -1,5 +1,6 @@
 package seedu.club.model.event;
 
+import static seedu.club.commons.util.AppUtil.checkArgument;
 import static seedu.club.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -29,6 +30,10 @@ public class Event extends NamedEntity {
     private final Set<EventRole> roles = new HashSet<>();
     private final Set<Member> roster = new HashSet<>();
 
+    // DateTime Constraints
+    public static final String MESSAGE_CONSTRAINTS =
+            "Starting date/time should be before ending date/time";
+
     /**
      * Creates an Event containing no participating members
      * Every field must be present and not null.
@@ -36,7 +41,11 @@ public class Event extends NamedEntity {
     public Event(Name name, DateTime from, Optional<DateTime> to,
                  String detail, Set<EventRole> roles) {
         super(name);
+
         requireAllNonNull(from, to, detail, roles);
+        // Starting date/time must be before ending date/time
+        checkArgument(from.isBefore(to.orElse(null)), MESSAGE_CONSTRAINTS);
+
         this.from = from;
         this.to = to;
         this.detail = detail;
@@ -55,7 +64,11 @@ public class Event extends NamedEntity {
     public Event(Name name, DateTime from, Optional<DateTime> to,
                  String detail, Set<EventRole> roles, Set<Member> roster) {
         super(name);
+
         requireAllNonNull(from, to, detail, roles, roster);
+        // Starting date/time must be before ending date/time
+        checkArgument(from.isBefore(to.orElse(null)), MESSAGE_CONSTRAINTS);
+
         this.from = from;
         this.to = to;
         this.detail = detail;
