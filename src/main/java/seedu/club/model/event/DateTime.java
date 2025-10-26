@@ -53,6 +53,9 @@ public class DateTime {
         return true;
     }
 
+    /**
+     * Returns true if this is earlier than the {@code other}
+     */
     public boolean isBefore(DateTime other) {
         // Vacuously true
         if (other == null || other.value.isEmpty()) {
