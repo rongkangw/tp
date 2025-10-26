@@ -312,18 +312,18 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                |
-|--------------------|-----------------------------------------------------------------------------------------------------------------|
-| **List Members**   | `listMembers`                                                                                                   |
-| **Add Member**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                   |
-| **Delete Member**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                 |
-| **Edit Members**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find Members**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                      |
-| **List Events**    | `listEvents`                                                                                                    |
-| **Add Event**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
-| **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
-| **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
-| **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                |
-| **Clear**          | `clear`                                                                                                         |
-| **Help**           | `help`                                                                                                          |
-| **Exit**           | `exit`                                                                                                          |
+| Action             | Format, Examples                                                                                                                                           |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List Members**   | `listMembers`                                                                                                                                              |
+| **Add Member**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                                                              |
+| **Delete Member**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                                                            |
+| **Edit Members**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                            |
+| **Find Members**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                 |
+| **List Events**    | `listEvents`                                                                                                                                               |
+| **Add Event**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`<br> e.g. `addEvent n/Orientation f/091025 1200 t/111025 1800 d/For freshmen r/OGL` |
+| **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                                                             |
+| **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                                                             |
+| **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                                                           |
+| **Clear**          | `clear`                                                                                                                                                    |
+| **Help**           | `help`                                                                                                                                                     |
+| **Exit**           | `exit`                                                                                                                                                     |
