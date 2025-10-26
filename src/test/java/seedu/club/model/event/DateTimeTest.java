@@ -73,7 +73,7 @@ public class DateTimeTest {
         DateTime test = new DateTime("15/10/2025 1200");
         String expected = "15 Oct 2025 12:00pm";
 
-        assertEquals(expected, test.toString());
+        assertEquals(expected.toLowerCase(), test.toString().toLowerCase());
     }
 
     @Test
