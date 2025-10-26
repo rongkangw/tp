@@ -45,7 +45,7 @@ public class EventTest {
 
         // same to, all other attributes different -> returns false
         Event sameOrientationTo = new EventBuilder(ORIENTATION).withName(VALID_EVENT_NAME_BEACHDAY)
-                .withFrom("1/1/2025 0000").withRoles(VALID_EVENT_ROLE_FOODIC).build(); // Start must be before end
+                .withFrom("010125 0000").withRoles(VALID_EVENT_ROLE_FOODIC).build(); // Start must be before end
         assertFalse(ORIENTATION.isSameEvent(sameOrientationTo));
 
         // same name, from, all other attributes different -> returns false
@@ -55,7 +55,7 @@ public class EventTest {
 
         // same name, to, all other attributes different -> returns false
         Event sameOrientationNameAndTo = new EventBuilder(ORIENTATION)
-                .withFrom("1/1/2025 0000").withRoles(VALID_EVENT_ROLE_FOODIC).build(); // Start must be before end
+                .withFrom("010125 0000").withRoles(VALID_EVENT_ROLE_FOODIC).build(); // Start must be before end
         assertFalse(ORIENTATION.isSameEvent(sameOrientationNameAndTo));
 
         // same from, to, all other attributes different -> returns false

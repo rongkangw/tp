@@ -19,10 +19,10 @@ import java.time.format.ResolverStyle;
 public class DateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date and time should be in the format DD/MM/YYYY HHMM in 24-hour format (no leading zeros required)";
+            "Date and time should be in the format `DDMMYY HHMM` in 24-hour format";
 
     public static final DateTimeFormatter DATETIME_FORMAT = new DateTimeFormatterBuilder()
-            .appendPattern("d/M/uuuu HHmm")
+            .appendPattern("ddMMuu HHmm")
             .toFormatter()
             .withResolverStyle(ResolverStyle.STRICT); // Without this, Java adjusts invalid dates to nearest valid one.
 

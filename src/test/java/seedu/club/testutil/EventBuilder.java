@@ -20,8 +20,8 @@ import seedu.club.model.util.SampleDataUtil;
 public class EventBuilder {
 
     public static final String DEFAULT_NAME = "Orientation";
-    public static final String DEFAULT_FROM = "15/10/2025 1200";
-    public static final String DEFAULT_TO = "17/10/2025 1800";
+    public static final String DEFAULT_FROM = "151025 1200";
+    public static final String DEFAULT_TO = "171025 1800";
     public static final String DEFAULT_DETAIL = "NIL";
 
     private Name name;

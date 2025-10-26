@@ -39,14 +39,14 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new Name("Orientation"), new DateTime("15/10/2025 1200"),
-                    Optional.of(new DateTime("17/10/2025 1500")), "For freshmen",
+            new Event(new Name("Orientation"), new DateTime("151025 1200"),
+                    Optional.of(new DateTime("171025 1500")), "For freshmen",
                     getEventRoleSet("facilitator", "gamemaster")),
-            new Event(new Name("Movie Night"), new DateTime("20/10/2025 1800"),
-                    Optional.of(new DateTime("20/10/2025 2000")), "Showing The Shining",
+            new Event(new Name("Movie Night"), new DateTime("201025 1800"),
+                    Optional.of(new DateTime("201025 2000")), "Showing The Shining",
                     getEventRoleSet("FoodIC", "OIC")),
-            new Event(new Name("Beach Day"), new DateTime("25/10/2025 0900"),
-                    Optional.of(new DateTime("25/10/2025 1300")), "At Sentosa",
+            new Event(new Name("Beach Day"), new DateTime("251025 0900"),
+                    Optional.of(new DateTime("251025 1300")), "At Sentosa",
                     getEventRoleSet("Gamemaster", "SafetyOfficer"))
         };
     }
