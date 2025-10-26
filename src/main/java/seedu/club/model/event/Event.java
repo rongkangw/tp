@@ -180,7 +180,7 @@ public class Event extends NamedEntity {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("from", from)
-                .add("to", to)
+                .add("to", to.get())
                 .add("detail", detail)
                 .add("roles", roles)
                 .add("roster", roster)

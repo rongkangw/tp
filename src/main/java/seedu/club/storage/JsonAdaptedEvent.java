@@ -95,12 +95,22 @@ class JsonAdaptedEvent {
         if (from == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
-        final DateTime modelFrom = new DateTime(this.from);
+        final DateTime modelFrom;
+        try {
+            modelFrom = new DateTime(from);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+        }
 
         if (to == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
-        final Optional<DateTime> modelTo = of(new DateTime(this.to));
+        final Optional<DateTime> modelTo;
+        try {
+            modelTo = Optional.of(new DateTime(to));
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+        }
 
         if (details == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
