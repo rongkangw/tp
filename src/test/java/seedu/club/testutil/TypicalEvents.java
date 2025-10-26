@@ -13,19 +13,19 @@ import seedu.club.model.event.Event;
 public class TypicalEvents {
 
     public static final Event ORIENTATION = new EventBuilder().withName("Orientation")
-            .withFrom("15/10/2025").withTo("17/10/2025").withDetail("For freshmen")
+            .withFrom("15/10/2025 1200").withTo("17/10/2025 1800").withDetail("For freshmen")
             .withRoles("facilitator", "gamemaster").build();
     public static final Event MOVIE_NIGHT = new EventBuilder().withName("Movie Night")
             .withFrom("20/10/2025 1800").withTo("20/10/2025 2000").withDetail("Showing The Shining")
             .withRoles("FoodIC", "OIC").build();
     public static final Event BEACH_DAY = new EventBuilder().withName("Beach Day")
-            .withFrom("25/10/2025").withTo("25/10/2025").withDetail("At Sentosa")
+            .withFrom("25/10/2025 0900").withTo("25/10/2025 2000").withDetail("At Sentosa")
             .withRoles("Gamemaster", "SafetyOfficer").build();
     public static final Event MEETING = new EventBuilder().withName("Meeting")
-            .withFrom("15/10/2025").withTo("15/10/2025")
+            .withFrom("15/10/2025 1500").withTo("15/10/2025 1600")
             .withRoles("participant").build();
     public static final Event WORKSHOP = new EventBuilder().withName("Workshop")
-            .withFrom("15/10/2025").withTo("15/10/2025")
+            .withFrom("15/10/2025 1000").withTo("15/10/2025 1300")
             .withRoles("participant", "facilitator").build();
 
     public static List<Event> getTypicalEvents() {

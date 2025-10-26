@@ -7,6 +7,7 @@ import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_NAME_BEACHDA
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_NAME_ORIENTATION;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_ROLE_FOODIC;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_FROM_BEACHDAY;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_FROM_ORIENTATION;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TO_BEACHDAY;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalEvents.BEACH_DAY;
@@ -44,7 +45,7 @@ public class EventTest {
 
         // same to, all other attributes different -> returns false
         Event sameOrientationTo = new EventBuilder(ORIENTATION).withName(VALID_EVENT_NAME_BEACHDAY)
-                .withFrom(VALID_FROM_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
+                .withFrom("1/1/2025 0000").withRoles(VALID_EVENT_ROLE_FOODIC).build(); // Start must be before end
         assertFalse(ORIENTATION.isSameEvent(sameOrientationTo));
 
         // same name, from, all other attributes different -> returns false
@@ -54,7 +55,7 @@ public class EventTest {
 
         // same name, to, all other attributes different -> returns false
         Event sameOrientationNameAndTo = new EventBuilder(ORIENTATION)
-                .withFrom(VALID_FROM_BEACHDAY).withRoles(VALID_EVENT_ROLE_FOODIC).build();
+                .withFrom("1/1/2025 0000").withRoles(VALID_EVENT_ROLE_FOODIC).build(); // Start must be before end
         assertFalse(ORIENTATION.isSameEvent(sameOrientationNameAndTo));
 
         // same from, to, all other attributes different -> returns false
@@ -100,7 +101,7 @@ public class EventTest {
         assertFalse(ORIENTATION.equals(editedOrientation));
 
         // different from -> returns false
-        editedOrientation = new EventBuilder(ORIENTATION).withFrom(VALID_FROM_BEACHDAY).build();
+        editedOrientation = new EventBuilder(BEACH_DAY).withFrom(VALID_FROM_ORIENTATION).build();
         assertFalse(ORIENTATION.equals(editedOrientation));
 
         // different to -> returns false

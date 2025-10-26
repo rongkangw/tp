@@ -1,8 +1,13 @@
 package seedu.club.testutil;
 
+import static java.util.Optional.of;
+import static java.util.Optional.ofNullable;
+
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.club.model.event.DateTime;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
@@ -15,13 +20,13 @@ import seedu.club.model.util.SampleDataUtil;
 public class EventBuilder {
 
     public static final String DEFAULT_NAME = "Orientation";
-    public static final String DEFAULT_FROM = "Monday";
-    public static final String DEFAULT_TO = "Tuesday";
+    public static final String DEFAULT_FROM = "15/10/2025 1200";
+    public static final String DEFAULT_TO = "17/10/2025 1800";
     public static final String DEFAULT_DETAIL = "NIL";
 
     private Name name;
-    private String from;
-    private String to;
+    private DateTime from;
+    private Optional<DateTime> to;
     private String detail;
     private Set<EventRole> roles;
     private Set<Member> roster;
@@ -31,8 +36,8 @@ public class EventBuilder {
      */
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
-        from = DEFAULT_FROM;
-        to = DEFAULT_TO;
+        from = new DateTime(DEFAULT_FROM);
+        to = of(new DateTime(DEFAULT_TO));
         detail = DEFAULT_DETAIL;
         roles = new HashSet<>();
         roster = new HashSet<>();
@@ -45,7 +50,7 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         from = eventToCopy.getFrom();
-        to = eventToCopy.getTo();
+        to = ofNullable(eventToCopy.getTo());
         detail = eventToCopy.getDetail();
         roles = new HashSet<>(eventToCopy.getRoles());
         roster = new HashSet<>(eventToCopy.getRoster());
@@ -86,7 +91,7 @@ public class EventBuilder {
      * @return EventBuilder
      */
     public EventBuilder withFrom(String from) {
-        this.from = from;
+        this.from = new DateTime(from);
         return this;
     }
 
@@ -97,7 +102,7 @@ public class EventBuilder {
      * @return EventBuilder
      */
     public EventBuilder withTo(String to) {
-        this.to = to;
+        this.to = of(new DateTime(to));
         return this;
     }
 

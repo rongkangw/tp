@@ -1,14 +1,14 @@
 {
   "events": [ {
     "name": "Orientation",
-    "from": "15/10/2025",
-    "to": "17/10/2025",
+    "from": "15/10/2025 1200",
+    "to": "17/10/2025 1800",
     "details": "For undergraduates",
     "roles": ["facilitator"]
   }, {
     "name": "Orientation",
-    "from": "15/10/2025",
-    "to": "17/10/2025",
+    "from": "15/10/2025 1200",
+    "to": "17/10/2025 1800",
     "details": "For freshmen",
     "roles": ["gamemaster"]
   } ]

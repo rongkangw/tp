@@ -1,8 +1,8 @@
 {
   "events" : [ {
     "name" : "Orientation",
-    "from" : "15/10/2025",
-    "to" : "17/10/2025",
+    "from" : "15/10/2025 1200",
+    "to" : "17/10/2025 1800",
     "details" : "For freshmen",
     "roles" : [ "facilitator", "gamemaster" ]
   }, {
@@ -13,8 +13,8 @@
     "roles" : [ "FoodIC", "OIC" ]
   } , {
     "name" : "Beach Day",
-    "from" : "25/10/2025",
-    "to" : "25/10/2025",
+    "from" : "25/10/2025 0900",
+    "to" : "25/10/2025 2000",
     "details" : "At Sentosa",
     "roles" : ["Gamemaster", "SafetyOfficer"]
   }]

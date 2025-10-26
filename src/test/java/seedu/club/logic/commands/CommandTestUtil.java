@@ -41,10 +41,10 @@ public class CommandTestUtil {
 
     public static final String VALID_EVENT_NAME_BEACHDAY = "Beach Day";
     public static final String VALID_EVENT_NAME_ORIENTATION = "Orientation";
-    public static final String VALID_FROM_BEACHDAY = "25/10/2025";
-    public static final String VALID_FROM_ORIENTATION = "15/10/2025";
-    public static final String VALID_TO_BEACHDAY = "25/10/2025";
-    public static final String VALID_TO_ORIENTATION = "17/10/2025";
+    public static final String VALID_FROM_BEACHDAY = "25/10/2025 0900";
+    public static final String VALID_FROM_ORIENTATION = "15/10/2025 1200";
+    public static final String VALID_TO_BEACHDAY = "25/10/2025 2000";
+    public static final String VALID_TO_ORIENTATION = "17/10/2025 1800";
     public static final String VALID_EVENT_ROLE_FACILITATOR = "facilitator";
     public static final String VALID_EVENT_ROLE_FOODIC = "FoodIC";
 
