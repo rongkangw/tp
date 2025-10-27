@@ -653,7 +653,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Missing required parameters in command (e.g. member)
+* 1a. Missing required parameters in command (e.g. member name)
 
     * 1a1. System informs user of missing fields
 
