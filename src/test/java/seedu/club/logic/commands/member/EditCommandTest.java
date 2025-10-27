@@ -19,15 +19,20 @@ import org.junit.jupiter.api.Test;
 import seedu.club.commons.core.index.Index;
 import seedu.club.logic.Messages;
 import seedu.club.logic.commands.CommandTestUtil;
+import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.club.model.ClubBook;
 import seedu.club.model.Model;
 import seedu.club.model.ModelManager;
 import seedu.club.model.UserPrefs;
+import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.testutil.EditMemberDescriptorBuilder;
+import seedu.club.testutil.EventBuilder;
 import seedu.club.testutil.MemberBuilder;
+
+import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditCommand}.
@@ -177,6 +182,27 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_eventRosterContainingMemberUpdated() throws CommandException {
+        //set up an event containing the member in its roster and execute command
+        EditMemberCommand editMemberCommand = new EditMemberCommand(INDEX_FIRST_MEMBER,
+                new EditMemberDescriptorBuilder().withPhone("99999999").build());
+        Member originalMember = model.getFilteredMemberList().get(INDEX_FIRST_MEMBER.getZeroBased());
+        Event event = new EventBuilder().withName("Meeting").withRoster(Set.of(originalMember)).build();
+        model.addEvent(event);
+        editMemberCommand.execute(model);
+
+        //check that list is updated correctly
+        Member editedMember = model.getFilteredMemberList().get(INDEX_FIRST_MEMBER.getZeroBased());
+        assertEquals("99999999", editedMember.getPhone().toString());
+
+        //check that roster of event contains the new member and not the old member
+
+        Event updatedEvent = model.getClubBook().getEventList().get(0);
+        assertTrue(updatedEvent.hasMember(editedMember));
+        assertFalse(updatedEvent.hasMember(originalMember));
+    }
+
+    @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
         EditMemberDescriptor editMemberDescriptor = new EditMemberDescriptor();
@@ -185,5 +211,7 @@ public class EditCommandTest {
                 + editMemberDescriptor + "}";
         assertEquals(expected, editMemberCommand.toString());
     }
+
+
 
 }
