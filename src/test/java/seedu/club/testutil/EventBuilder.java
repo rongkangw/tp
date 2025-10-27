@@ -112,6 +112,12 @@ public class EventBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Roster} of the {@code Event} that we are building.
+     *
+     * @param members to be set
+     * @return EventBuilder
+     */
     public EventBuilder withRoster(Set<Member> members) {
         this.roster.addAll(members);
         return this;

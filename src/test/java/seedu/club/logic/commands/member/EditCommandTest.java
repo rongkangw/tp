@@ -14,6 +14,8 @@ import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
 import static seedu.club.testutil.TypicalIndexes.INDEX_SECOND_MEMBER;
 import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.club.commons.core.index.Index;
@@ -32,7 +34,6 @@ import seedu.club.testutil.EditMemberDescriptorBuilder;
 import seedu.club.testutil.EventBuilder;
 import seedu.club.testutil.MemberBuilder;
 
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditCommand}.
@@ -196,10 +197,8 @@ public class EditCommandTest {
         assertEquals("99999999", editedMember.getPhone().toString());
 
         //check that roster of event contains the new member and not the old member
-
-        Event updatedEvent = model.getClubBook().getEventList().get(0);
-        assertTrue(updatedEvent.hasMember(editedMember));
-        assertFalse(updatedEvent.hasMember(originalMember));
+        assertTrue(event.hasMember(editedMember));
+        assertFalse(event.hasMember(originalMember));
     }
 
     @Test
