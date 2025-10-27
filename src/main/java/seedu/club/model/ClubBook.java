@@ -133,6 +133,17 @@ public class ClubBook implements ReadOnlyClubBook {
         events.remove(key);
     }
 
+    /**
+     * Replaces the given event {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in the club book.
+     * The event identity of {@code editedMember} must not be the same as another existing event in the club book.
+     */
+    public void setEvent(Event target, Event editedEvent) {
+        requireNonNull(editedEvent);
+
+        events.setEvent(target, editedEvent);
+    }
+
     //// util methods
 
     @Override
