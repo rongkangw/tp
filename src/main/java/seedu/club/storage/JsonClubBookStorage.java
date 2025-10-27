@@ -147,7 +147,6 @@ public class JsonClubBookStorage implements ClubBookStorage {
      */
     public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
         requireNonNull(clubBookFilePath);
-        requireNonNull(clubBookFilePath);
 
         Optional<ReadOnlyClubBook> members = readMembers();
         Optional<ReadOnlyClubBook> events = readEvents();
@@ -157,7 +156,7 @@ public class JsonClubBookStorage implements ClubBookStorage {
         }
         ClubBook clubBook = new ClubBook();
         members.ifPresent(m -> clubBook.resetData(m));
-        events.ifPresent(e -> clubBook.setEvents(e.getEventList()));
+//        events.ifPresent(e -> clubBook.setEvents(e.getEventList()));
         return Optional.of(clubBook);
     }
 
