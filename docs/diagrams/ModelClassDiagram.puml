@@ -22,6 +22,7 @@ Class MemberRole
 Class UniqueEventList
 Class Event
 Class EventRole
+class DateTime
 
 Class I #FFFFFF
 }
@@ -51,9 +52,13 @@ Member -[hidden]up--> I
 UniqueMemberList -[hidden]right-> I
 
 UniqueEventList --> "~* all" Event
+Event *--> Name
 Event --> "*" Member
+Event --> "1 from" DateTime
+Event --> "0..1 to" DateTime
 Event *--> "*" EventRole
 
+DateTime -[hidden]right-> Phone
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Email
 
