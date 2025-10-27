@@ -24,18 +24,6 @@ public interface Storage extends ClubBookStorage, UserPrefsStorage {
     Path getClubBookFilePath();
 
     @Override
-    Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException;
-
-    @Override
-    void saveMembers(ReadOnlyClubBook clubBook) throws IOException;
-
-    @Override
-    Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException;
-
-    @Override
-    void saveEvents(ReadOnlyClubBook clubBook) throws IOException;
-
-    @Override
     Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException;
 
     @Override

@@ -12,7 +12,6 @@ import seedu.club.commons.exceptions.DataLoadingException;
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.commons.util.FileUtil;
 import seedu.club.commons.util.JsonUtil;
-import seedu.club.model.ClubBook;
 import seedu.club.model.ReadOnlyClubBook;
 
 /**
@@ -40,20 +39,18 @@ public class JsonClubBookStorage implements ClubBookStorage {
         return clubBookFilePath;
     }
 
-    // ================ Members methods ==============================
-
     @Override
-    public Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException {
-        return readMembers(clubBookFilePath);
+    public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
+        return readClubBook(clubBookFilePath);
     }
 
     /**
-     * Similar to {@link #readMembers()}.
+     * Similar to {@link #readClubBook(Path)} ()}.
      *
-     * @param clubBookFilePath location of the member data. Cannot be null.
+     * @param clubBookFilePath location of the clubBook data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyClubBook> readMembers(Path clubBookFilePath) throws DataLoadingException {
+    public Optional<ReadOnlyClubBook> readClubBook(Path clubBookFilePath) throws DataLoadingException {
         requireNonNull(clubBookFilePath);
 
         Optional<JsonSerializableClubBook> jsonClubBook = JsonUtil.readJsonFile(
@@ -61,7 +58,6 @@ public class JsonClubBookStorage implements ClubBookStorage {
         if (!jsonClubBook.isPresent()) {
             return Optional.empty();
         }
-
         try {
             return Optional.of(jsonClubBook.get().toModelType());
         } catch (IllegalValueException ive) {
@@ -71,103 +67,21 @@ public class JsonClubBookStorage implements ClubBookStorage {
     }
 
     @Override
-    public void saveMembers(ReadOnlyClubBook clubBook) throws IOException {
-        saveMembers(clubBook, clubBookFilePath);
-    }
-
-    /**
-     * Similar to {@link #saveMembers(ReadOnlyClubBook)}.
-     *
-     * @param clubBookFilePath location of the data. Cannot be null.
-     */
-    public void saveMembers(ReadOnlyClubBook clubBook, Path clubBookFilePath) throws IOException {
-        requireNonNull(clubBook);
-        requireNonNull(clubBookFilePath);
-
-        FileUtil.createIfMissing(clubBookFilePath);
-        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), clubBookFilePath);
-    }
-
-    // ================ Event methods ==============================
-
-    @Override
-    public Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException {
-        return readEvents(clubBookFilePath);
-    }
-
-    /**
-     * Similar to link {@link #readEvents()}
-     *
-     * @param clubBookFilePath location of event data. Cannot be null
-     * @return {@code Optional<ReadOnlyClubBook>} containing event data
-     * @throws DataLoadingException if loading from storage failed.
-     */
-    public Optional<ReadOnlyClubBook> readEvents(Path clubBookFilePath) throws DataLoadingException {
-        requireNonNull(clubBookFilePath);
-
-        Optional<JsonSerializableClubBook> jsonEvents = JsonUtil.readJsonFile(
-                clubBookFilePath, JsonSerializableClubBook.class);
-        if (!jsonEvents.isPresent()) {
-            return Optional.empty();
-        }
-
-        try {
-            return Optional.of(jsonEvents.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + clubBookFilePath + ": " + ive.getMessage());
-            throw new DataLoadingException(ive);
-        }
-    }
-
-    @Override
-    public void saveEvents(ReadOnlyClubBook clubBook) throws IOException {
-        saveEvents(clubBook, clubBookFilePath);
-    }
-
-    /**
-     * Similar to {@link #saveEvents(ReadOnlyClubBook)}.
-     *
-     * @param clubBookFilePath location where event data is to be stored. Cannot be null.
-     */
-    public void saveEvents(ReadOnlyClubBook clubBook, Path clubBookFilePath) throws IOException {
-        requireNonNull(clubBook);
-        requireNonNull(clubBookFilePath);
-
-        FileUtil.createIfMissing(clubBookFilePath);
-        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), clubBookFilePath);
-    }
-
-    // ================ Club Book methods ==============================
-
-    /**
-     * Reads data from both member and event files and store them in a new ClubBook
-     *
-     * @return {@code Optional<ReadOnlyClubBook>} containing both member and event data
-     * @throws DataLoadingException if loading from storage fails
-     */
-    public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
-        requireNonNull(clubBookFilePath);
-
-        Optional<ReadOnlyClubBook> members = readMembers();
-        Optional<ReadOnlyClubBook> events = readEvents();
-
-        if (members.isEmpty() || events.isEmpty()) {
-            return Optional.empty();
-        }
-        ClubBook clubBook = new ClubBook();
-        members.ifPresent(m -> clubBook.resetData(m));
-//        events.ifPresent(e -> clubBook.setEvents(e.getEventList()));
-        return Optional.of(clubBook);
-    }
-
-    /**
-     * Saves both member and event data from ClubBook to respective files
-     *
-     * @param clubBook clubBook containing members and events
-     * @throws IOException
-     */
     public void saveClubBook(ReadOnlyClubBook clubBook) throws IOException {
-        saveMembers(clubBook);
-        saveEvents(clubBook);
+        saveClubBook(clubBook, clubBookFilePath);
     }
+
+    /**
+     * Similar to {@link #saveClubBook(ReadOnlyClubBook)}
+     *
+     * @param clubBookFilePath location where data is to be stored. Cannot be null.
+     */
+    public void saveClubBook(ReadOnlyClubBook clubBook, Path clubBookFilePath) throws IOException {
+        requireNonNull(clubBook);
+        requireNonNull(clubBookFilePath);
+
+        FileUtil.createIfMissing(clubBookFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableClubBook(clubBook), clubBookFilePath);
+    }
+
 }

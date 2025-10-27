@@ -170,7 +170,7 @@ public class LogicManagerTest {
         // Inject LogicManager with an ClubBookStorage that throws the IOException e when saving
         JsonClubBookStorage clubBookStorage = new JsonClubBookStorage(prefPath) {
             @Override
-            public void saveMembers(ReadOnlyClubBook clubBook, Path filePath)
+            public void saveClubBook(ReadOnlyClubBook clubBook, Path filePath)
                     throws IOException {
                 throw e;
             }

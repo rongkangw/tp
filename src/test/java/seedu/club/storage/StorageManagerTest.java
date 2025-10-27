@@ -56,8 +56,8 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonClubBookStorageTest} class.
          */
         ClubBook original = getTypicalClubBook();
-        storageManager.saveMembers(original);
-        ReadOnlyClubBook retrieved = storageManager.readMembers().get();
+        storageManager.saveClubBook(original);
+        ReadOnlyClubBook retrieved = storageManager.readClubBook().get();
         assertEquals(original, new ClubBook(retrieved));
     }
 
@@ -69,8 +69,8 @@ public class StorageManagerTest {
     @Test
     public void clubBookReadSaveEvents() throws Exception {
         ClubBook original = getTypicalClubBookWithEvents();
-        storageManager.saveEvents(original);
-        ReadOnlyClubBook retrieved = storageManager.readEvents().get();
+        storageManager.saveClubBook(original);
+        ReadOnlyClubBook retrieved = storageManager.readClubBook().get();
         assertEquals(original, new ClubBook(retrieved));
     }
 
