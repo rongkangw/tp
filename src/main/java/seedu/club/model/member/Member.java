@@ -104,7 +104,7 @@ public class Member extends NamedEntity {
         }
 
         return otherMember != null
-                && otherMember.getName().equals(getName());
+                && otherMember.getName().fullName.equalsIgnoreCase(getName().fullName);
     }
 
     /**
