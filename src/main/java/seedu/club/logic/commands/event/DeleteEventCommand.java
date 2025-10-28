@@ -3,6 +3,7 @@ package seedu.club.logic.commands.event;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.club.commons.core.index.Index;
 import seedu.club.commons.util.ToStringBuilder;
@@ -13,6 +14,7 @@ import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
 import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
+import seedu.club.model.member.Member;
 
 /**
  * Deletes an event identified using its displayed index from the event list
@@ -51,6 +53,11 @@ public class DeleteEventCommand extends Command {
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        Set<Member> assignedMembers = eventToDelete.getRoster();
+        for (Member member: assignedMembers) {
+            member.removeEvent(eventToDelete);
+        }
 
         // The following line is technically not necessary since already guaranteed to be on event list,
         // but is there as a safety measure.
