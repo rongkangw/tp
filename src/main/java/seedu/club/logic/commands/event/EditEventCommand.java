@@ -92,6 +92,15 @@ public class EditEventCommand extends Command {
         model.setViewState(ViewState.EVENT);
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+
+
+        //update eventRoles list of members in roster with new eventRole objects
+        Set<Member> roster = editedEvent.getRoster();
+        Set<EventRole> eventRoles = editedEvent.getRoles();
+        for (Member member: roster) {
+            member.updateEditedEventRolesList(eventRoles);
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent)));
     }
 
