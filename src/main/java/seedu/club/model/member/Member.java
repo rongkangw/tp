@@ -114,6 +114,10 @@ public class Member extends NamedEntity {
         return false;
     }
 
+    /**
+     * Iterate through the given set of event roles. Removes existing event roles containing
+     * the same name in the member's event list and replaces them.
+     */
     public void updateEditedEventRolesList(Set<EventRole> updatedRoles) {
         for (EventRole eventRole: updatedRoles) {
             this.removeEventRoleByName(eventRole.roleName);

@@ -1,17 +1,25 @@
 package seedu.club.logic.parser.event;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_DETAIL;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
+
 import seedu.club.commons.core.index.Index;
 import seedu.club.logic.commands.event.EditEventCommand;
 import seedu.club.logic.parser.ArgumentMultimap;
 import seedu.club.logic.parser.ArgumentTokenizer;
+import seedu.club.logic.parser.Parser;
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.club.logic.parser.CliSyntax.*;
 
-public class EditEventCommandParser {
+/**
+ * Parses input arguments and creates a new EditEventCommand object
+ */
+public class EditEventCommandParser implements Parser<EditEventCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditEventCommand
      * and returns an EditEventCommand object for execution.

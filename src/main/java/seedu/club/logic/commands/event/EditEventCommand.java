@@ -1,7 +1,10 @@
 package seedu.club.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.club.logic.parser.CliSyntax.*;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_DETAIL;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.club.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.List;
