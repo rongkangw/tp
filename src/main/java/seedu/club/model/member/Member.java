@@ -3,7 +3,7 @@ package seedu.club.model.member;
 import static seedu.club.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,8 +25,8 @@ public class Member extends NamedEntity {
     private final Email email;
 
     // Data fields
-    private final Set<MemberRole> memberRoles = new LinkedHashSet<>();
-    private final Set<EventRole> eventRoles = new LinkedHashSet<>();
+    private final Set<MemberRole> memberRoles = new HashSet<>();
+    private final Set<EventRole> eventRoles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
