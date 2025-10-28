@@ -1,7 +1,6 @@
 package seedu.club.logic.commands.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.club.logic.Messages.MESSAGE_EVENTROLE_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -9,9 +8,6 @@ import static seedu.club.logic.commands.event.UnassignEventCommand.MESSAGE_SUCCE
 import static seedu.club.testutil.TypicalEventsWithEventRoles.getTypicalClubBookWithEventRoles;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
-
-import java.util.Collections;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +18,6 @@ import seedu.club.model.ModelManager;
 import seedu.club.model.UserPrefs;
 import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.EventRole;
 
 
 public class UnassignEventCommandTest {

@@ -1,17 +1,20 @@
 package seedu.club.logic.parser.event;
 
+import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.club.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.club.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
-import seedu.club.logic.commands.event.UnassignEventCommand;
+
 import seedu.club.logic.commands.event.UnassignEventRoleCommand;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 
-import java.util.Collections;
-import java.util.Set;
 
-import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.club.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.club.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+
 
 public class UnassignEventRoleCommandParserTest {
     private final UnassignEventRoleCommandParser parser = new UnassignEventRoleCommandParser();

@@ -1,13 +1,10 @@
 package seedu.club.logic.commands.event;
 
-import static seedu.club.logic.Messages.MESSAGE_EVENTROLE_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-
-import java.util.Set;
 
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
@@ -17,10 +14,9 @@ import seedu.club.model.ViewState;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.EventRole;
 
 /**
- * Removes assignation between a member and an event or event role.
+ * Removes assignation between a member and an event.
  */
 public class UnassignEventCommand extends Command {
     public static final String COMMAND_WORD = "unassignEvent";

@@ -1,5 +1,12 @@
 package seedu.club.logic.parser.event;
 
+import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
+
+import java.util.Set;
+
 import seedu.club.logic.commands.event.UnassignEventRoleCommand;
 import seedu.club.logic.parser.ArgumentMultimap;
 import seedu.club.logic.parser.ArgumentTokenizer;
@@ -9,13 +16,9 @@ import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 
-import java.util.Collections;
-import java.util.Set;
-
-import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.club.logic.parser.CliSyntax.*;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-
+/**
+ * Parses input arguments and creates a new UnassignEventRoleCommand object
+ */
 public class UnassignEventRoleCommandParser implements Parser<UnassignEventRoleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UnassignEventRoleCommand

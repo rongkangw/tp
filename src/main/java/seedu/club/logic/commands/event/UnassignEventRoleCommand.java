@@ -1,5 +1,14 @@
 package seedu.club.logic.commands.event;
 
+import static seedu.club.logic.Messages.MESSAGE_EVENTROLE_NAME_NOT_EXIST;
+import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
+import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
+
+import java.util.Set;
+
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
@@ -10,12 +19,9 @@ import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 
-import java.util.Set;
-
-import static seedu.club.logic.Messages.*;
-import static seedu.club.logic.parser.CliSyntax.*;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-
+/**
+ * Removes an event role from a member.
+ */
 public class UnassignEventRoleCommand extends Command {
     public static final String COMMAND_WORD = "unassignEventRole";
     public static final String MESSAGE_SUCCESS_EVENT_ROLE =

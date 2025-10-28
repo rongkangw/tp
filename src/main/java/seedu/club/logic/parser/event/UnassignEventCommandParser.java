@@ -3,10 +3,6 @@ package seedu.club.logic.parser.event;
 import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-
-import java.util.Collections;
-import java.util.Set;
 
 import seedu.club.logic.commands.event.UnassignEventCommand;
 import seedu.club.logic.parser.ArgumentMultimap;
@@ -15,7 +11,6 @@ import seedu.club.logic.parser.Parser;
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.EventRole;
 
 /**
  * Parses input arguments and creates a new UnassignEventCommand object
