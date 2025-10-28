@@ -145,18 +145,19 @@ public class Event extends NamedEntity {
         }
 
         Event otherEvent = (Event) other;
+        // does not include roster as it is mutable
         return name.equals(otherEvent.name)
                 && from.equals(otherEvent.from)
                 && to.equals(otherEvent.to)
                 && detail.equals(otherEvent.detail)
-                && roles.equals(otherEvent.roles)
-                && roster.equals(otherEvent.roster);
+                && roles.equals(otherEvent.roles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, from, to, detail, roles, roster);
+        // does not include roster as it is mutable
+        return Objects.hash(name, from, to, detail, roles);
     }
 
     @Override
