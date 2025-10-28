@@ -116,10 +116,8 @@ public class Member extends NamedEntity {
 
     public void updateEditedEventRolesList(Set<EventRole> updatedRoles) {
         for (EventRole eventRole: updatedRoles) {
-            if (this.hasEvent(eventRole.roleName)) {
-                this.removeEventRoleByName(eventRole.roleName);
-                this.addEventRoles(Set.of(eventRole));
-            }
+            this.removeEventRoleByName(eventRole.roleName);
+            this.addEventRoles(Set.of(eventRole));
         }
     }
 
