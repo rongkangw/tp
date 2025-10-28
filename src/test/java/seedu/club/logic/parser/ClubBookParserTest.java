@@ -22,7 +22,7 @@ import seedu.club.logic.commands.general.HelpCommand;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.DeleteMemberCommand;
 import seedu.club.logic.commands.member.EditMemberCommand;
-import seedu.club.logic.commands.member.FindCommand;
+import seedu.club.logic.commands.member.FindMemberCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.event.Event;
@@ -90,9 +90,9 @@ public class ClubBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
+        FindMemberCommand command = (FindMemberCommand) parser.parseCommand(
+                FindMemberCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindMemberCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
     }
 
     @Test
