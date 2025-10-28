@@ -115,7 +115,7 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Returns true if both events have the same name, from date time and to date time.
+     * Returns true if both events have the same name.
      * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
@@ -124,9 +124,7 @@ public class Event extends NamedEntity {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName())
-                && otherEvent.getFrom().equals(getFrom())
-                && otherEvent.getTo().equals(getTo());
+                && otherEvent.getName().equals(getName());
     }
 
     /**
