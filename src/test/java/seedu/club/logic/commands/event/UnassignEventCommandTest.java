@@ -38,8 +38,7 @@ public class UnassignEventCommandTest {
     public void execute_eventDoesNotExist_throwsCommandException() {
         Name memberName = new Name("John");
         Name eventName = new Name("Dinner");
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                Collections.emptySet());
+        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assertCommandFailure(unassignEventCommand, model,
                 String.format(MESSAGE_EVENT_NAME_NOT_EXIST, eventName));
     }
@@ -48,8 +47,7 @@ public class UnassignEventCommandTest {
     public void execute_memberDoesNotExist_throwsCommandException() {
         Name memberName = new Name("Johnnyn");
         Name eventName = new Name("Orientation");
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                Collections.emptySet());
+        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assertCommandFailure(unassignEventCommand, model,
                 String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName));
     }
@@ -59,8 +57,7 @@ public class UnassignEventCommandTest {
         Name memberName = new Name("John");
         Name eventName = new Name("Orientation");
         Set<EventRole> roles = Set.of(new EventRole("Publicity"));
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                roles);
+        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assertCommandFailure(unassignEventCommand, model,
                 String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, roles.toString()));
     }
@@ -69,8 +66,7 @@ public class UnassignEventCommandTest {
     public void equals_thisObject_success() {
         Name memberName = new Name("Jane");
         Name eventName = new Name("Orientation");
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                Collections.emptySet());
+        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assert(unassignEventCommand.equals(unassignEventCommand));
     }
 
@@ -78,12 +74,11 @@ public class UnassignEventCommandTest {
     public void equals_differentType_false() {
         Name memberName = new Name("Jane");
         Name eventName = new Name("Orientation");
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                Collections.emptySet());
+        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assert(!unassignEventCommand.equals("Event"));
     }
 
-    @Test
+    /*@Test
     public void equals_sameNameEventAndRoles_success() {
         Name memberName = new Name("Jane");
         Name eventName = new Name("Orientation");
@@ -122,7 +117,7 @@ public class UnassignEventCommandTest {
         model.updateFilteredEventList(e -> true);
         assertEquals(MESSAGE_SUCCESS_EVENT_ROLE, result);
         assertEquals(model, expectedModel);
-    }
+    }*/
 
     @Test
     public void execute_unassignEventWithNoEventRoles_success() throws CommandException {
@@ -132,8 +127,7 @@ public class UnassignEventCommandTest {
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
 
 
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                Collections.emptySet());
+        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         String result = unassignEventCommand.execute(model).getFeedbackToUser();
 
         ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());

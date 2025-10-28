@@ -21,19 +21,10 @@ public class UnassignEventCommandParserTest {
 
 
     @Test
-    public void parse_validArgsWithNoEventRoles_returnsUnassignEventCommand() {
+    public void parse_validArgs_returnsUnassignEventCommand() {
         assertParseSuccess(parser,
                 " e/Meeting m/John",
-                new UnassignEventCommand(new Name("Meeting"), new Name("John"), Collections.emptySet()));
-    }
-
-    @Test
-    public void parse_validArgsWithEventRoles_returnsUnassignEventCommand() {
-        assertParseSuccess(parser,
-                " e/Meeting m/John r/Facilitator r/SafetyOfficer",
-                new UnassignEventCommand(new Name("Meeting"), new Name("John"),
-                        Set.of(new EventRole("Facilitator"),
-                                new EventRole("SafetyOfficer"))));
+                new UnassignEventCommand(new Name("Meeting"), new Name("John")));
     }
 
 
