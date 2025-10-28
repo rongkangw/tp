@@ -6,7 +6,6 @@ import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.club.logic.commands.event.UnassignEventCommand.MESSAGE_SUCCESS_EVENT;
-import static seedu.club.logic.commands.event.UnassignEventCommand.MESSAGE_SUCCESS_EVENT_ROLE;
 import static seedu.club.testutil.TypicalEventsWithEventRoles.getTypicalClubBookWithEventRoles;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
@@ -52,15 +51,6 @@ public class UnassignEventCommandTest {
                 String.format(MESSAGE_MEMBER_NAME_NOT_EXIST, memberName));
     }
 
-    @Test
-    public void execute_eventRoleDoesNotExist_throwsCommandException() {
-        Name memberName = new Name("John");
-        Name eventName = new Name("Orientation");
-        Set<EventRole> roles = Set.of(new EventRole("Publicity"));
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
-        assertCommandFailure(unassignEventCommand, model,
-                String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, roles.toString()));
-    }
 
     @Test
     public void equals_thisObject_success() {
@@ -71,6 +61,15 @@ public class UnassignEventCommandTest {
     }
 
     @Test
+    public void equals_sameNameAndEvent_success() {
+        Name memberName = new Name("Jane");
+        Name eventName = new Name("Orientation");
+        UnassignEventCommand unassignEventCommandOne = new UnassignEventCommand(eventName, memberName);
+        UnassignEventCommand unassignEventCommandTwo = new UnassignEventCommand(eventName, memberName);
+        assert(unassignEventCommandOne.equals(unassignEventCommandTwo));
+    }
+
+    @Test
     public void equals_differentType_false() {
         Name memberName = new Name("Jane");
         Name eventName = new Name("Orientation");
@@ -78,46 +77,7 @@ public class UnassignEventCommandTest {
         assert(!unassignEventCommand.equals("Event"));
     }
 
-    /*@Test
-    public void equals_sameNameEventAndRoles_success() {
-        Name memberName = new Name("Jane");
-        Name eventName = new Name("Orientation");
-        Set<EventRole> eventRoles = Set.of(new EventRole("Facilitator"),
-                new EventRole("SafetyOfficer"));
-        UnassignEventCommand unassignEventCommandOne = new UnassignEventCommand(eventName, memberName,
-                eventRoles);
-        UnassignEventCommand unassignEventCommandTwo = new UnassignEventCommand(eventName, memberName,
-                eventRoles);
-        assert(unassignEventCommandOne.equals(unassignEventCommandTwo));
-    }
-    @Test
-    public void execute_unassignEventWithEventRoles_success() throws CommandException {
-        EventRole roleToDelete = model
-                .getFilteredMemberList()
-                .get(INDEX_FIRST_MEMBER.getZeroBased())
-                .getEventRoles()
-                .iterator().next();
 
-        Name eventName = new Name("Orientation");
-        Name memberName = new Name("John");
-
-        UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName,
-                Set.of(roleToDelete));
-        boolean bool = model
-                .getFilteredMemberList()
-                .get(INDEX_FIRST_MEMBER.getZeroBased()).getEventRoles().containsAll(Set.of(roleToDelete));
-        ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
-        String result = unassignEventCommand.execute(model).getFeedbackToUser();
-        expectedModel.getClubBook().getMemberList()
-                .get(INDEX_FIRST_MEMBER.getZeroBased())
-                .removeEventRole(Set.of(roleToDelete));
-        expectedModel.updateFilteredMemberList(m -> true);
-        expectedModel.updateFilteredEventList(e -> true);
-        model.updateFilteredMemberList(m -> true);
-        model.updateFilteredEventList(e -> true);
-        assertEquals(MESSAGE_SUCCESS_EVENT_ROLE, result);
-        assertEquals(model, expectedModel);
-    }*/
 
     @Test
     public void execute_unassignEventWithNoEventRoles_success() throws CommandException {

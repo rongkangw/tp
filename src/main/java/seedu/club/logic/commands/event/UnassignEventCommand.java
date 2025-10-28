@@ -25,8 +25,6 @@ import seedu.club.model.role.EventRole;
 public class UnassignEventCommand extends Command {
     public static final String COMMAND_WORD = "unassignEvent";
     public static final String MESSAGE_SUCCESS_EVENT = "The event has been unassigned from the member successfully.";
-    public static final String MESSAGE_SUCCESS_EVENT_ROLE =
-            "The event role has been unassigned from the member successfully.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the event from the specified member\n"

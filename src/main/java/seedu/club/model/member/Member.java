@@ -84,7 +84,7 @@ public class Member extends NamedEntity {
      * Removes all EventRoles assigned to an event from the member's roles
      */
     public void removeEvent(Event event) {
-        eventRoles.removeIf(role -> event.equals(role.getAssignedTo()));
+        eventRoles.removeIf(role -> event.isSameEvent(role.getAssignedTo()));
     }
 
     /**
@@ -126,14 +126,13 @@ public class Member extends NamedEntity {
         return name.equals(otherMember.name)
                 && phone.equals(otherMember.phone)
                 && email.equals(otherMember.email)
-                && memberRoles.equals(otherMember.memberRoles)
-                && eventRoles.equals(otherMember.eventRoles);
+                && memberRoles.equals(otherMember.memberRoles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, memberRoles, eventRoles);
+        return Objects.hash(name, phone, email, memberRoles);
     }
 
     @Override

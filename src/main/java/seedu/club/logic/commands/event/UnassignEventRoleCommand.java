@@ -37,7 +37,6 @@ public class UnassignEventRoleCommand extends Command {
 
     private final Set<EventRole> roles;
 
-    private boolean hasRoles = true;
 
     /**
      * Creates an UnassignEventRoleCommand for the specified event, member, and roles.
@@ -46,9 +45,6 @@ public class UnassignEventRoleCommand extends Command {
         this.eventName = event;
         this.memberName = member;
         this.roles = roles;
-        if (this.roles.isEmpty()) {
-            hasRoles = false;
-        }
     }
 
     @Override
@@ -63,8 +59,6 @@ public class UnassignEventRoleCommand extends Command {
         return (this.eventName.equals(compare.eventName)) && (this.memberName.equals(compare.memberName))
                 && (this.roles.equals(compare.roles));
     }
-
-
 
 
     @Override
@@ -86,6 +80,7 @@ public class UnassignEventRoleCommand extends Command {
         }
         member.removeEventRole(roles);
         model.updateFilteredEventList(e -> e.equals(event));
+        model.updateFilteredMemberList(m -> true);
         model.updateFilteredMemberList(m -> event.getRoster().contains(m));
         model.setViewState(ViewState.MEMBER);
         return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT_ROLE),
