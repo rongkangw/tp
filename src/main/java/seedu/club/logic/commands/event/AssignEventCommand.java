@@ -81,7 +81,7 @@ public class AssignEventCommand extends Command {
 
         // assigning is done after member is validated for efficiency
         for (EventRole role : roles) {
-            role.setAssignedTo(event);
+            role.setAssignedTo(event.getName());
         }
 
         if (event.hasMember(member)) {
