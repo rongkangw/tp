@@ -28,7 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_EVENT_ROLE = "#treasurer";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "62123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_MEMBER_ROLE_1 = "friend";
     private static final String VALID_MEMBER_ROLE_2 = "neighbour";
