@@ -23,7 +23,6 @@ import seedu.club.model.ReadOnlyUserPrefs;
 import seedu.club.model.UserPrefs;
 import seedu.club.model.util.SampleDataUtil;
 import seedu.club.storage.ClubBookStorage;
-import seedu.club.storage.EventStorage;
 import seedu.club.storage.JsonClubBookStorage;
 import seedu.club.storage.JsonUserPrefsStorage;
 import seedu.club.storage.Storage;
@@ -59,10 +58,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ClubBookStorage clubBookStorage = new JsonClubBookStorage(
-                userPrefs.getMemberStorageFilePath(),
-                userPrefs.getEventStorageFilePath());
-        EventStorage eventStorage = (EventStorage) clubBookStorage;
-        storage = new StorageManager(clubBookStorage, userPrefsStorage, eventStorage);
+                userPrefs.getClubBookStorageFilePath());
+        storage = new StorageManager(clubBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -77,34 +74,26 @@ public class MainApp extends Application {
      * or an empty club book will be used instead if errors occur when reading {@code storage}'s club book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getMemberFilePath());
+        logger.info("Using data file : " + storage.getClubBookFilePath());
 
         Optional<ReadOnlyClubBook> clubBookOptional;
-        Optional<ReadOnlyClubBook> eventOptional;
         ReadOnlyClubBook initialData;
-        ClubBook combinedData;
 
         try {
-            clubBookOptional = storage.readMembers();
-            eventOptional = storage.readEvents();
-            combinedData = new ClubBook();
+            clubBookOptional = storage.readClubBook();
+
             if (!clubBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getMemberFilePath()
+                logger.info("Creating a new data file " + storage.getClubBookFilePath()
                         + " populated with a sample ClubBook.");
             }
             initialData = clubBookOptional.orElseGet(SampleDataUtil::getSampleClubBook);
-            combinedData.resetData(initialData);
-            if (eventOptional.isPresent()) {
-                combinedData.setEvents(eventOptional.get().getEventList());
-            }
-
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getMemberFilePath() + " could not be loaded."
+            logger.warning("Data file at " + storage.getClubBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty ClubBook.");
-            combinedData = new ClubBook();
+            initialData = new ClubBook();
         }
 
-        return new ModelManager(combinedData, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
 
