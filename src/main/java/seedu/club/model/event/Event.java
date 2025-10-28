@@ -124,7 +124,7 @@ public class Event extends NamedEntity {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName());
+                && otherEvent.getName().fullName.equalsIgnoreCase(getName().fullName);
     }
 
     /**
