@@ -103,12 +103,16 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 * Adds a member to the club book.
 * The new member can be found at the end of the list.
 * The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only.
-* The `EMAIL` must be of the format `local-part@domain` and adhere to the following constraints:
-  1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, **(+_.-)**. `local-part` **may not** start or end with any special characters.
-  2. This must be followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
-     * end with a domain label at least 2 characters long
-     * have each domain label start and end with alphanumeric characters
-     * have each domain label consist of alphanumeric characters, separated only by hyphens, if any;
+* The `EMAIL` must be of the format `local-part@domain`
+
+<box type="info" seamless>
+
+**Still unclear about `EMAIL` requirements?** <br>
+1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, **(+_.-)**. `local-part` **may not** start or end with any special characters.
+2. `domain` can be made up of several domain labels separated by periods. `domain` must
+   * end with a domain label that has at least 2 characters long
+   * have each domain label start and end with alphanumeric characters
+   * have each domain label consist of alphanumeric characters, separated only by hyphens, if any
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
