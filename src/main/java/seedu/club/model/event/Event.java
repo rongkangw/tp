@@ -3,7 +3,7 @@ package seedu.club.model.event;
 import static seedu.club.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,8 +25,8 @@ public class Event extends NamedEntity {
     private final String detail;
 
     // Data fields
-    private final Set<EventRole> roles = new HashSet<>();
-    private final Set<Member> roster = new HashSet<>();
+    private final Set<EventRole> roles = new LinkedHashSet<>();
+    private final Set<Member> roster = new LinkedHashSet<>();
 
     /**
      * Creates an Event containing no participating members
