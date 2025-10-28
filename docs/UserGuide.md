@@ -102,7 +102,7 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 * Adds a member to the club book.
 * The new member can be found at the end of the list.
-* The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only.
+* The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only. A single whitespace is allowed in between the first and last 4 digits.
 * The `EMAIL` must be of the format `local-part@domain`
 
 <box type="info" seamless>
@@ -116,7 +116,7 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
-* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/98765432 r/friends`
+* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/9876 5432 r/friends`
 
 #### Deleting a member : `deleteMember`
 
