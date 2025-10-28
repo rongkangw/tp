@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.club.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -191,11 +190,6 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(Event target) {
-        Set<Member> assignedMembers = target.getRoster();
-        for (Member member: assignedMembers) {
-            member.removeEvent(target);
-        }
-
         clubBook.removeEvent(target);
     }
 
