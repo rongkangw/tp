@@ -6,7 +6,9 @@
 
 # EASync User Guide
 
-EASync is a **desktop app that helps student club managers manage member contacts and club events quickly and easily.** Just type to add members, schedule events, or update roles — no need to click through menus. It’s fast, simple, and visual — so you can skip the cluttered spreadsheets and get things done.
+EASync is a desktop app designed to help student club managers stay organized with ease. Whether you are coordinating events, tracking member roles, or updating contact lists, EASync makes it easy to manage everything from one place.
+
+You do not need to be a programmer or technical expert. Using EASync is like sending a text: simple, fast, and intuitive. It’s designed to be visual and beginner-friendly, so you can focus on running your club, not figuring out complicated software or clicking through menus.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -15,18 +17,19 @@ EASync is a **desktop app that helps student club managers manage member contact
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. Set up Java <br>
+   To run EASync, your computer needs to have Java version 17 or higher installed.
+   If you are not sure whether Java is installed, have not installed Java or are not sure what version is installed, just follow the step-by-step guides [here](https://se-education.org/guides/tutorials/javaInstallation.html) to install the correct version or check the version of Java downloaded in your computer.
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T11-3/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to a folder you want to use as the _home folder_ for your ClubBook.
+3. Copy the file to a folder you want to use as the _home folder_ for your ClubBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EASync.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EASync.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `listEvents` : Lists all events.
@@ -43,7 +46,7 @@ EASync is a **desktop app that helps student club managers manage member contact
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
