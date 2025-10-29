@@ -77,7 +77,6 @@ public class Member extends NamedEntity {
      */
     public void removeEventRole(Set<EventRole> roleSet) {
         eventRoles.removeAll(roleSet);
-
     }
 
     /**
