@@ -16,13 +16,18 @@ public class ListEventCommand extends Command {
     public static final String COMMAND_WORD = "listEvents";
 
     public static final String MESSAGE_SUCCESS = "Listed all events";
-
+    public static final String MESSAGE_EMPTY_LIST = "There are currently no events";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setViewState(ViewState.EVENT);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        if (!model.getFilteredEventList().isEmpty()) {
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            return new CommandResult(MESSAGE_EMPTY_LIST);
+        }
     }
 }
