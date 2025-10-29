@@ -171,5 +171,4 @@ public class Event extends NamedEntity {
                 .add("roster", roster)
                 .toString();
     }
-
 }
