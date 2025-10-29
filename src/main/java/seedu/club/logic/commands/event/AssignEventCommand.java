@@ -97,7 +97,7 @@ public class AssignEventCommand extends Command {
         model.updateFilteredEventList(e -> e.equals(event));
         model.updateFilteredMemberList(m -> event.getRoster().contains(m));
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(event)));
+        return new CommandResult(Messages.formatAssignRole(member, event, roles));
     }
 
     @Override

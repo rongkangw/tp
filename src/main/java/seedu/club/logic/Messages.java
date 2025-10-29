@@ -108,4 +108,24 @@ public class Messages {
 
         return builder.toString();
     }
+
+    /**
+     *
+     */
+    public static String formatAssignRole(Member member, Event event, Set<EventRole> roles) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Assigned ")
+                .append(member.getName())
+                .append(" to ")
+                .append(event.getName());
+
+        if (roles != null && !roles.isEmpty()) {
+            builder.append(" with event role(s): ");
+            String result = roles.stream().map(r -> r.roleName).sorted()
+                    .collect(joining(", "));
+            builder.append(result);
+        }
+
+        return  builder.toString();
+    }
 }
