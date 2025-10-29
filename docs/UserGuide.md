@@ -17,32 +17,45 @@ You do not need to be a programmer or technical expert. Using EASync is like sen
 
 ## Quick start
 
-1. Set up Java <br>
+1. **Set up Java** <br>
    To run EASync, your computer needs to have Java version 17 or higher installed.
-   If you are not sure whether Java is installed, have not installed Java or are not sure what version is installed, just follow the step-by-step guides [here](https://se-education.org/guides/tutorials/javaInstallation.html) to install the correct version or check the version of Java downloaded in your computer.
+   Using the step-by-step guides [here](https://se-education.org/guides/tutorials/javaInstallation.html), you can:
+   * Check if Java is already installed on your computer. 
+   * Install the correct version if needed. 
+   * Verify your installation afterward.
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T11-3/tp/releases).
+2. **Download EASync** <br>
+   Go to [our releases page on Github](https://github.com/AY2526S1-CS2103T-T11-3/tp/releases) to download the latest `EASync.jar` file.
 
-3. Copy the file to a folder you want to use as the _home folder_ for your ClubBook.
+3. **Choose a Folder for EASync** <br>
+   * Create or pick a folder where you’d like to keep your EASync files. 
+   * Then, move the `EASync.jar` file you just downloaded into that folder. <br>
+   📁 Example: You could create a folder on your Desktop called `ClubBook`.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EASync.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. **Run the app** <br>
+   Open a command terminal, navigate into the folder you put the jar file in, and use the `java -jar EASync.jar` command to run the application. <br>
+    Tip: You can navigate between folders using the `cd path/to/your/folder` command in the terminal. For example, `cd C:/Users/<your username>/Desktop/ClubBook`.
+   After a few seconds, EASync will open, and you should see a window like this:<br>
    ![Ui](images/Ui.png)
+   ✨ The app starts with some sample data so you can explore its features right away!
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. **Try out some commands** <br>
+   You can control EASync by typing into the `Enter command here...` command box and pressing *Enter*. <br>
+   For example: Type `help` and press *Enter* — this opens the Help window.<br>
 
-   * `listEvents` : Lists all events.
+   💡 Commands for getting started:
 
-   * `addMember n/John Doe p/98765432 e/johnd@example.com` : Adds a member named `John Doe` to the Club Book. <br> Notice that the Club Book switches to the member list.
+   * `listEvents` : Shows all the events currently in your Club Book.
+
+   * `addMember n/John Doe p/98765432 e/johnd@example.com` : Adds a member named `John Doe` to the Club Book. <br> Notice that the Club Book switches to display the member list.
 
    * `deleteMember 3` : Deletes the 3rd member shown in the current list.
 
-   * `addEvent n/Team Bonding f/15/10/2025 t/16/10/2025` : Adds an event named `Team Bonding` to the Club Book. <br> Notice that the Club Book switches to the event list.
+   * `addEvent n/Team Bonding f/15/10/2025 t/16/10/2025` : Adds an event named `Team Bonding` to the Club Book. <br> Notice that the Club Book switches to display the event list.
 
-   * `assignEvent e/Team Bonding m/John Doe r/Logistics` : Assigns `John Doe` to handle `Logistics` in the `Team Bonding` event
+   * `assignEvent e/Team Bonding m/John Doe r/Logistics` : Assigns `John Doe` to handle `Logistics` in the `Team Bonding` event. <br> Notice that the Club Book switches to display the details of the single event Team Bonding.
 
-   * `clear` : Deletes all members and events.
+   * `clear` : Delete all members and events from the ClubBook to create your own. Note that this is irreversible!
 
    * `exit` : Exits the app.
 
