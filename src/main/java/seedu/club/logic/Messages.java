@@ -58,11 +58,16 @@ public class Messages {
                 .append("; Phone: ")
                 .append(member.getPhone())
                 .append("; Email: ")
-                .append(member.getEmail())
-                .append("; Member Roles: ");
-        String result = member.getMemberRoles().stream().map(MemberRole::toString).sorted()
-                .collect(joining(", "));
-        builder.append(result);
+                .append(member.getEmail());
+
+        Set<MemberRole> roles = member.getMemberRoles();
+        if (roles != null && !roles.isEmpty()) {
+            builder.append("; Member Roles: ");
+            String result = roles.stream().map(MemberRole::toString).sorted()
+                    .collect(joining(", "));
+            builder.append(result);
+        }
+
         return builder.toString();
     }
 
