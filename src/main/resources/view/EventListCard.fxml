@@ -13,7 +13,7 @@
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox alignment="CENTER_LEFT" spacing="0.5">
+            <HBox spacing="0.5">
                 <Label fx:id="id" alignment="TOP_LEFT" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
@@ -22,10 +22,22 @@
                 </Label>
                 <Label fx:id="name" alignment="TOP_LEFT" styleClass="cell_big_label" text="\$first" wrapText="true" />
             </HBox>
-            <FlowPane fx:id="eventRoles" />
-            <Label fx:id="from" styleClass="cell_small_label" text="\$from" wrapText="true" />
-            <Label fx:id="to" styleClass="cell_small_label" text="\$to" wrapText="true" />
-            <Label fx:id="details" styleClass="cell_small_label" text="\$details" wrapText="true" VBox.vgrow="ALWAYS" />
+            <FlowPane fx:id="eventRoles">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></FlowPane>
+            <Label fx:id="from" styleClass="cell_small_label" text="\$from" wrapText="true">
+            <padding>
+               <Insets top="2.0" />
+            </padding></Label>
+            <Label fx:id="to" styleClass="cell_small_label" text="\$to" wrapText="true">
+            <padding>
+               <Insets top="2.0" />
+            </padding></Label>
+            <Label fx:id="details" styleClass="cell_small_label" text="\$details" wrapText="true" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets top="2.0" />
+            </padding></Label>
         </VBox>
       <rowConstraints>
          <RowConstraints />
