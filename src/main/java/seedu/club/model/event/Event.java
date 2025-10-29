@@ -162,6 +162,18 @@ public class Event extends NamedEntity {
     }
 
     /**
+     * Updates the assigned name in event roles under roles list to new name
+     *
+     * @param updatedName   New name reference for event roles
+     */
+    public Set<EventRole> updateEventRolesAssignedTo(Name updatedName) {
+        for (EventRole eventRole: roles) {
+            eventRole.setAssignedTo(updatedName);
+        }
+        return this.roles;
+    }
+
+    /**
      * Returns true if both events have the same identity and data fields.
      * This defines a stronger notion of equality between two events.
      */
