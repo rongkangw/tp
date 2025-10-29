@@ -61,7 +61,7 @@ class JsonSerializableClubBook {
             clubBook.addMember(member);
         }
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
-            Event event = jsonAdaptedEvent.toModelType();
+            Event event = jsonAdaptedEvent.toModelType(clubBook.getMemberList());
             if (clubBook.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
