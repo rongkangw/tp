@@ -150,7 +150,7 @@ public class Event extends NamedEntity {
      * @param replacementMember the new member to replace with; if {@code null}, the original member is removed
      */
     private void updateMemberInEvent(Member originalMember, Member replacementMember) {
-        if (hasMember(originalMember)) {
+        if (!hasMember(originalMember)) {
             return;
         }
 

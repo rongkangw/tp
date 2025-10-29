@@ -38,7 +38,7 @@ import seedu.club.testutil.MemberBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditCommand}.
  */
-public class EditCommandTest {
+public class EditMemberCommandTest {
 
     private final Model model = new ModelManager(getTypicalClubBook(), new UserPrefs());
 
