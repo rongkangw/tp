@@ -323,6 +323,7 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 | **List Events**    | `listEvents`                                                                                                    |
 | **Add Event**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
 | **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
+| **Display Event**  | `event INDEX` <br/> e.g., `event 2`                                                                             |
 | **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
 | **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                |
 | **Clear**          | `clear`                                                                                                         |
