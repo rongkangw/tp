@@ -1,6 +1,7 @@
 package seedu.club.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
