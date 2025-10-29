@@ -1,10 +1,6 @@
 package seedu.club.testutil;
 
-import static java.util.Optional.of;
-import static java.util.Optional.ofNullable;
-
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.club.model.event.DateTime;
@@ -26,7 +22,7 @@ public class EventBuilder {
 
     private Name name;
     private DateTime from;
-    private Optional<DateTime> to;
+    private DateTime to;
     private String detail;
     private Set<EventRole> roles;
     private Set<Member> roster;
@@ -37,7 +33,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         from = new DateTime(DEFAULT_FROM);
-        to = of(new DateTime(DEFAULT_TO));
+        to = new DateTime(DEFAULT_TO);
         detail = DEFAULT_DETAIL;
         roles = new HashSet<>();
         roster = new HashSet<>();
@@ -50,7 +46,7 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         from = eventToCopy.getFrom();
-        to = ofNullable(eventToCopy.getTo());
+        to = eventToCopy.getTo();
         detail = eventToCopy.getDetail();
         roles = new HashSet<>(eventToCopy.getRoles());
         roster = new HashSet<>(eventToCopy.getRoster());
@@ -102,7 +98,7 @@ public class EventBuilder {
      * @return EventBuilder
      */
     public EventBuilder withTo(String to) {
-        this.to = of(new DateTime(to));
+        this.to = new DateTime(to);
         return this;
     }
 

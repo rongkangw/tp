@@ -56,8 +56,6 @@ public class DateTimeTest {
         DateTime earlierEndDate = new DateTime("091025 1200");
         DateTime earlierEndTime = new DateTime("101025 1159");
 
-        DateTime emptyDate = new DateTime("");
-
         assertFalse(test.isBefore(test)); // Same datetime
         assertTrue(test.isBefore(laterEndDate));
         assertTrue(test.isBefore(laterEndTime));
@@ -65,7 +63,6 @@ public class DateTimeTest {
         assertFalse(test.isBefore(earlierEndTime));
 
         assertTrue(test.isBefore(null));
-        assertTrue(test.isBefore(emptyDate));
     }
 
     @Test
