@@ -98,11 +98,11 @@ If you are using a PDF version of this document, be careful when copying and pas
 
 ### Viewing help : `help`
 
+Format: `help`
+
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
-
-Format: `help`
 
 ### Managing Members
 
@@ -166,9 +166,9 @@ Examples:
 *  `editMember 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
 *  `editMember 2 n/Betsy Crower r/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing roles.
 
-#### Locating members by name: `find`
+#### Locating members by name: `findMember`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findMember KEYWORD [MORE_KEYWORDS]`
 
 * Finds members whose names contain any of the given keywords.
 * Only the name is searched.
@@ -183,8 +183,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 </box>
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `findMember John` returns `john` and `John Doe`
+* `findMember alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Managing Events
@@ -222,6 +222,26 @@ Examples:
 
 **Note:** You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
 </box>
+
+#### Locating events by name: `findEvent`
+
+Format: `findEvent KEYWORD [MORE_KEYWORDS]`
+
+* Finds events whose names contain any of the given keywords.
+* Only the name is searched.
+* The search is case-insensitive. e.g. `orientation` will match `Orientation`
+* The order of the keywords does not matter. e.g. `Orientation Day` will match `Day Orientation`
+* Events matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Orientation Day` will return `Orientation`, `Beach Day`
+
+<box type="important" seamless>
+
+**Note:** Only full words will be matched e.g. `Day` will not match `Days`
+</box>
+
+Examples:
+* `findEvent workshop` returns `Coding Workshop` and `Writing workshop`
+* `findEvent day camp` returns `Beach Day`, `Scout camp`<br>
 
 #### Displaying an event : `event`
 
@@ -271,6 +291,11 @@ Examples:
 
 <box type="warning" theme="danger" seamless>
 
+<box type="tip" seamless>
+**Tip:**
+If you would like to get the sample data to show again, you could remove the `clubBook.json` file from the `data` folder that is in the folder `EASync.jar` is in. Ensure that you truly want to clear your **entire club book** before proceeding.
+</box>
+
 **Caution:**
 This action is **irreversible**! Ensure that you truly want to clear your **entire club book** before proceeding.
 </box>
@@ -282,8 +307,6 @@ Format: `clear`
 #### Exiting the program : `exit`
 
 Format: `exit`
-
-* Exits the program.
 
 ### Saving the data
 
@@ -329,18 +352,19 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                |
-|--------------------|-----------------------------------------------------------------------------------------------------------------|
-| **List Members**   | `listMembers`                                                                                                   |
-| **Add Member**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                   |
-| **Delete Member**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                 |
-| **Edit Members**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find Members**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                      |
-| **List Events**    | `listEvents`                                                                                                    |
-| **Add Event**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
-| **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
-| **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
-| **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                |
-| **Clear**          | `clear`                                                                                                         |
-| **Help**           | `help`                                                                                                          |
-| **Exit**           | `exit`                                                                                                          |
+| Action             | Format, Examples                                                                                                       |
+|--------------------|------------------------------------------------------------------------------------------------------------------------|
+| **List Members**   | `listMembers`                                                                                                          |
+| **Add Member**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                          |
+| **Delete Member**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                        |
+| **Edit Member**    | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Find Member**    | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                       |
+| **List Events**    | `listEvents`                                                                                                           |
+| **Add Event**      | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`                                                  |
+| **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                         |
+| **Find Event**     | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvent orientation workshop`                                         |
+| **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                         |
+| **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                       |
+| **Clear**          | `clear`                                                                                                                |
+| **Help**           | `help`                                                                                                                 |
+| **Exit**           | `exit`                                                                                                                 |
