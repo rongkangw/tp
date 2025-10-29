@@ -69,7 +69,9 @@ public class AssignEventCommand extends Command {
         Set<EventRole> missingRoles = new HashSet<>(roles);
         missingRoles.removeAll(event.getRoles());
         if (!missingRoles.isEmpty()) {
-            return new CommandResult(String.format(Messages.MESSAGE_EVENTROLE_NAME_NOT_EXIST, missingRoles));
+            missingRoles.forEach(m -> m.setAssignedTo(event.getName()));
+            return new CommandResult(String.format(
+                    Messages.MESSAGE_EVENTROLE_NAME_NOT_EXIST, event.getName(), missingRoles));
         }
 
         int memberIndex = model.memberNameIndex(memberName);
