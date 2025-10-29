@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.club.model.ClubBook;
 import seedu.club.model.ReadOnlyClubBook;
+import seedu.club.model.event.DateTime;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
@@ -18,43 +19,46 @@ import seedu.club.model.role.MemberRole;
  * Contains utility methods for populating {@code ClubBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Member[] getSampleMembers() {
+    private static Member[] getSampleMembers() {
         return new Member[] {
             new Member(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                getMemberRoleSet("friends")),
+                getMemberRoleSet("President")),
             new Member(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                getMemberRoleSet("colleagues", "friends")),
+                getMemberRoleSet("Vice President", "Operations")),
             new Member(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                getMemberRoleSet("neighbours")),
+                getMemberRoleSet("Secretary")),
             new Member(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                getMemberRoleSet("family")),
+                getMemberRoleSet("Logistics")),
             new Member(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                getMemberRoleSet("classmates")),
+                getMemberRoleSet("Publicity")),
             new Member(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                getMemberRoleSet("colleagues"))
+                getMemberRoleSet())
         };
     }
 
-    public static Event[] getSampleEvents() {
+    private static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new Name("Orientation"), "15/10/2025", "17/10/2025", "For freshmen",
-                    getEventRoleSet("facilitator", "gamemaster")),
-            new Event(new Name("Movie Night"), "20/10/2025 1800", "20/10/2025 2000", "Showing The Shining",
+            new Event(new Name("Orientation"), new DateTime("151025 1200"),
+                    new DateTime("171025 1500"), "For freshmen",
+                    getEventRoleSet("facilitator", "game master")),
+            new Event(new Name("Movie Night"), new DateTime("201025 1800"),
+                    new DateTime("201025 2000"), "Showing The Shining",
                     getEventRoleSet("FoodIC", "OIC")),
-            new Event(new Name("Beach Day"), "25/10/2025", "25/10/2025", "At Sentosa",
-                    getEventRoleSet("Gamemaster", "SafetyOfficer"))
+            new Event(new Name("Beach Day"), new DateTime("251025 0900"),
+                    new DateTime("251025 1300"), "At Sentosa",
+                    getEventRoleSet("Game Master", "Safety Officer"))
         };
     }
 
     public static ReadOnlyClubBook getSampleClubBook() {
-        ClubBook sampleAb = new ClubBook();
+        ClubBook sampleClubBook = new ClubBook();
         for (Member sampleMember : getSampleMembers()) {
-            sampleAb.addMember(sampleMember);
+            sampleClubBook.addMember(sampleMember);
         }
         for (Event sampleEvent : getSampleEvents()) {
-            sampleAb.addEvent(sampleEvent);
+            sampleClubBook.addEvent(sampleEvent);
         }
-        return sampleAb;
+        return sampleClubBook;
     }
 
     /**
@@ -74,5 +78,4 @@ public class SampleDataUtil {
                 .map(EventRole::new)
                 .collect(Collectors.toSet());
     }
-
 }

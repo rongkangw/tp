@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.club.logic.parser.ParserUtil;
 import seedu.club.model.event.Event;
 
 /**
@@ -52,9 +53,9 @@ public class EventCard extends UiPart<Region> {
             id.setText("");
         }
         name.setText(event.getName().fullName);
-        from.setText(event.getFrom());
-        to.setText(event.getTo());
-        details.setText(event.getDetail());
+        from.setText("From: " + ParserUtil.formatDate(event.getFrom()));
+        to.setText("To: " + ParserUtil.formatDate(event.getTo()));
+        details.setText("Details: " + event.getDetail());
         event.getRoles().stream()
                 .sorted(Comparator.comparing(eventRole -> eventRole.roleName))
                 .forEach(eventRole -> eventRoles.getChildren().add(new Label(eventRole.roleName)));

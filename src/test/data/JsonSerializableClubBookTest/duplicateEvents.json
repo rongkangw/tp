@@ -2,8 +2,8 @@
   "members": [],
   "events": [ {
     "name": "Orientation",
-    "from": "15/10/2025",
-    "to": "17/10/2025",
+    "from": "151025 1200",
+    "to": "171025 1800",
     "details": "For undergraduates",
     "roles": [ {
       "roleName" : "facilitator",
@@ -11,8 +11,8 @@
     } ]
   }, {
     "name": "Orientation",
-    "from": "15/10/2025",
-    "to": "17/10/2025",
+    "from": "151025 1200",
+    "to": "171025 1800",
     "details": "For freshmen",
     "roles": [ {
       "roleName" : "gamemaster",

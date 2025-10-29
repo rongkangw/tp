@@ -55,8 +55,6 @@ public class EventRole extends Role {
 
     @Override
     public String toString() {
-        return assignedTo == null
-                ? "null" + ">" + roleName
-                : assignedTo + ">" + roleName;
+        return assignedTo + ">" + roleName;
     }
 }

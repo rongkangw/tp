@@ -65,4 +65,22 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if {@code s} has length less than or equal {@code length}.
+     *    Leading and trailing whitespaces trimmed before comparing length.
+     *    <br>examples:<pre>
+     *       hasLessThanOrEqualLength("hello world", 5) == false
+     *       hasLessThanOrEqualLength("hi", 5) == true
+     *       hasLessThanOrEqualLength("hello", 5) == true
+     *       hasLessThanOrEqualLength("  hello  ", 5) == true
+     *       </pre>
+     * @param s cannot be null
+     * @param length cannot be null
+     */
+    public static boolean hasLessThanOrEqualLength(String s, int length) {
+        requireNonNull(s);
+
+        return s.trim().length() <= length;
+    }
 }

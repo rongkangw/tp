@@ -2,6 +2,7 @@ package seedu.club.model.name;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.club.commons.util.AppUtil.checkArgument;
+import static seedu.club.commons.util.StringUtil.hasLessThanOrEqualLength;
 
 /**
  * Represents the name of a {@code NamedEntity}.
@@ -9,8 +10,10 @@ import static seedu.club.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
+    public static final int FIELD_LENGTH = 50;
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, "
+                    + "be within 50 characters, and should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -35,9 +38,8 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && hasLessThanOrEqualLength(test, FIELD_LENGTH);
     }
-
 
     @Override
     public String toString() {
@@ -56,7 +58,7 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        return fullName.equalsIgnoreCase(otherName.fullName);
     }
 
     @Override
