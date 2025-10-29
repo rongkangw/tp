@@ -195,11 +195,12 @@ Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]â€¦â
 
 * Adds an event to the club book.
 * The new event can be found at the end of the list.
+* `DATE_TIME` must be in the following format: `DDMMYY HHMM` (24 hour)
 * If multiple `EVENTROLE`s are specified, the app displays them in alphabetical order.
 
 Examples:
-* `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
-* `addEvent n/Movie Night r/FoodIC f/20/10/2025 1800 t/20/10/2025 2000`
+* `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
+* `addEvent n/Movie Night r/FoodIC f/051025 1800 t/051025 2000`
 
 #### Deleting an event : `deleteEvent`
 

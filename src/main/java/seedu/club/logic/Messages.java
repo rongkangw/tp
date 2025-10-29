@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.Prefix;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
@@ -28,14 +29,16 @@ public class Messages {
     public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
 
     public static final String MESSAGE_NOT_EVENT_STATE =
-            "The current list is not an event list! Switch to event list first using \"listEvents\"";
+            "The current page is not an event list! Switch to event list first using \"listEvents\"";
     public static final String MESSAGE_NOT_MEMBER_STATE =
-            "The current list is not a member list! Switch to member list first using \"listMembers\"";
+            "The current page is not a member list! Switch to member list first using \"listMembers\"";
 
     public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "The event with the name provided does not exist: %1$s";
     public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "The member with the name provided does not exist: %1$s";
     public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "The event role with the name(s) "
             + "provided does not exist: %1$s";
+
+    public static final String MESSAGE_END_BEFORE_START_DATE = "Starting date/time should be before ending date/time";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -78,12 +81,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(event.getName())
                 .append("; From: ")
-                .append(event.getFrom());
-
-        String to = event.getTo();
-        if (to != null && !to.isEmpty()) {
-            builder.append("; To: ").append(to);
-        }
+                .append(ParserUtil.formatDate(event.getFrom()))
+                .append("; To: ")
+                .append(ParserUtil.formatDate(event.getTo()));
 
         String detail = event.getDetail();
         if (detail != null && !detail.isEmpty()) {
