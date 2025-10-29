@@ -6,7 +6,6 @@ import static seedu.club.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.club.commons.util.ToStringBuilder;
@@ -27,7 +26,7 @@ public class Event extends NamedEntity {
 
     // Identity fields
     private final DateTime from;
-    private final Optional<DateTime> to;
+    private final DateTime to;
     private final String detail;
 
     // Data fields
@@ -38,13 +37,13 @@ public class Event extends NamedEntity {
      * Creates an Event containing no participating members
      * Every field must be present and not null.
      */
-    public Event(Name name, DateTime from, Optional<DateTime> to,
+    public Event(Name name, DateTime from, DateTime to,
                  String detail, Set<EventRole> roles) {
         super(name);
 
         requireAllNonNull(from, to, detail, roles);
         // Starting date/time must be before ending date/time
-        checkArgument(from.isBefore(to.orElse(null)), MESSAGE_CONSTRAINTS);
+        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS);
 
         this.from = from;
         this.to = to;
@@ -61,13 +60,13 @@ public class Event extends NamedEntity {
      * Creates an Event with the given roster
      * Every field must be present and not null.
      */
-    public Event(Name name, DateTime from, Optional<DateTime> to,
+    public Event(Name name, DateTime from, DateTime to,
                  String detail, Set<EventRole> roles, Set<Member> roster) {
         super(name);
 
         requireAllNonNull(from, to, detail, roles, roster);
         // Starting date/time must be before ending date/time
-        checkArgument(from.isBefore(to.orElse(null)), MESSAGE_CONSTRAINTS);
+        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS);
 
         this.from = from;
         this.to = to;
@@ -88,7 +87,7 @@ public class Event extends NamedEntity {
     }
 
     public DateTime getTo() {
-        return to.orElse(null);
+        return to;
     }
 
     public String getDetail() {
@@ -181,7 +180,7 @@ public class Event extends NamedEntity {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("from", from)
-                .add("to", to.get())
+                .add("to", to)
                 .add("detail", detail)
                 .add("roles", roles)
                 .add("roster", roster)

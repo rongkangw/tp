@@ -27,7 +27,7 @@ public class AddEventCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_FROM + "FROM "
-            + "[" + PREFIX_TO + "TO] "
+            + PREFIX_TO + "TO "
             + "[" + PREFIX_DETAIL + "DETAILS] "
             + "[" + PREFIX_ROLE + "ROLE]...\n"
             + "Example: " + COMMAND_WORD + " "

@@ -1,7 +1,6 @@
 package seedu.club.model.util;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -40,13 +39,13 @@ public class SampleDataUtil {
     public static Event[] getSampleEvents() {
         return new Event[] {
             new Event(new Name("Orientation"), new DateTime("151025 1200"),
-                    Optional.of(new DateTime("171025 1500")), "For freshmen",
+                    new DateTime("171025 1500"), "For freshmen",
                     getEventRoleSet("facilitator", "gamemaster")),
             new Event(new Name("Movie Night"), new DateTime("201025 1800"),
-                    Optional.of(new DateTime("201025 2000")), "Showing The Shining",
+                    new DateTime("201025 2000"), "Showing The Shining",
                     getEventRoleSet("FoodIC", "OIC")),
             new Event(new Name("Beach Day"), new DateTime("251025 0900"),
-                    Optional.of(new DateTime("251025 1300")), "At Sentosa",
+                    new DateTime("251025 1300"), "At Sentosa",
                     getEventRoleSet("Gamemaster", "SafetyOfficer"))
         };
     }

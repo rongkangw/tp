@@ -3,7 +3,6 @@ package seedu.club.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -57,9 +56,7 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         from = source.getFrom().value;
-        to = Optional.ofNullable(source.getTo())
-                .map(dt -> dt.value)
-                .orElse("");
+        to = source.getTo().value;
         details = source.getDetail();
         roles.addAll(source.getRoles().stream()
                 .map(JsonAdaptedEventRole::new)
@@ -100,17 +97,17 @@ class JsonAdaptedEvent {
         try {
             modelFrom = new DateTime(from);
         } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(e.getMessage());
         }
 
         if (to == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
-        final Optional<DateTime> modelTo;
+        final DateTime modelTo;
         try {
-            modelTo = Optional.of(new DateTime(to));
+            modelTo = new DateTime(to);
         } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(e.getMessage());
         }
 
         if (details == null) {

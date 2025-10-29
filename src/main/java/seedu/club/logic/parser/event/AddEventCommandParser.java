@@ -9,7 +9,6 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.club.logic.commands.event.AddEventCommand;
@@ -36,7 +35,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FROM, PREFIX_TO, PREFIX_DETAIL, PREFIX_ROLE);
 
-        if (!argMultimap.arePrefixesPresent(PREFIX_NAME, PREFIX_FROM)
+        if (!argMultimap.arePrefixesPresent(PREFIX_NAME, PREFIX_FROM, PREFIX_TO)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
@@ -44,8 +43,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_FROM, PREFIX_TO, PREFIX_DETAIL);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         DateTime from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
-        Optional<DateTime> to = Optional.of(ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).orElse("")));
-        if (!from.isBefore(to.orElse(null))) {
+        DateTime to = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get());
+        if (!from.isBefore(to)) {
             throw new ParseException(String.format(MESSAGE_END_BEFORE_START_DATE));
         }
 

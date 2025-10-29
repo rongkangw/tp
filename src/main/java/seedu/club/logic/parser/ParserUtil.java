@@ -143,9 +143,6 @@ public class ParserUtil {
      */
     public static DateTime parseDate(String datetime) throws ParseException {
         requireNonNull(datetime);
-        if (datetime.isEmpty()) {
-            return new DateTime(datetime);
-        }
 
         String trimmedDateTime = datetime.trim();
         if (!DateTime.isValidFormat(trimmedDateTime)) {

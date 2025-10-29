@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.Prefix;
-import seedu.club.model.event.DateTime;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.role.EventRole;
@@ -72,12 +71,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(event.getName())
                 .append("; From: ")
-                .append(ParserUtil.formatDate(event.getFrom()));
-
-        DateTime to = event.getTo();
-        if (to != null && !to.value.isEmpty()) {
-            builder.append("; To: ").append(ParserUtil.formatDate(to));
-        }
+                .append(ParserUtil.formatDate(event.getFrom()))
+                .append("; To: ")
+                .append(ParserUtil.formatDate(event.getTo()));
 
         String detail = event.getDetail();
         if (detail != null && !detail.isEmpty()) {

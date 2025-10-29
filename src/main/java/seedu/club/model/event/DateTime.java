@@ -38,10 +38,8 @@ public class DateTime {
      */
     public DateTime(String datetime) {
         requireNonNull(datetime);
-        if (!datetime.isEmpty()) {
-            checkArgument(isValidFormat(datetime), MESSAGE_CONSTRAINTS);
-            checkArgument(isValidDateTime(datetime), MESSAGE_INVALID_VALUES);
-        }
+        checkArgument(isValidFormat(datetime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateTime(datetime), MESSAGE_INVALID_VALUES);
         value = datetime;
     }
 
@@ -82,9 +80,6 @@ public class DateTime {
 
     @Override
     public String toString() {
-        if (value.isEmpty()) {
-            return value;
-        }
         return LocalDateTime.parse(value, DATETIME_FORMAT)
                 .format(DateTimeFormatter.ofPattern("d MMM yyyy h:mma"));
     }
