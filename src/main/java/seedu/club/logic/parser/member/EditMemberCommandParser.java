@@ -26,7 +26,6 @@ import seedu.club.model.role.MemberRole;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditMemberCommandParser implements Parser<EditMemberCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -82,5 +81,4 @@ public class EditMemberCommandParser implements Parser<EditMemberCommand> {
         Collection<String> memberRoleSet = roles.size() == 1 && roles.contains("") ? Collections.emptySet() : roles;
         return Optional.of(ParserUtil.parseMemberRoles(memberRoleSet));
     }
-
 }

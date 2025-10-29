@@ -24,7 +24,6 @@ import seedu.club.model.role.MemberRole;
  * Parses input arguments and creates a new AddMemberCommand object
  */
 public class AddMemberCommandParser implements Parser<AddMemberCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddMemberCommand
      * and returns an AddMemberCommand object for execution.
