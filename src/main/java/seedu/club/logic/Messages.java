@@ -21,13 +21,17 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX = "The member index provided is invalid";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
-    public static final String MESSAGE_MEMBERS_LISTED_OVERVIEW = "%1$d members listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+
+    public static final String MESSAGE_MEMBERS_LISTED_OVERVIEW = "%1$d members listed!";
+    public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
+
     public static final String MESSAGE_NOT_EVENT_STATE =
             "The current list is not an event list! Switch to event list first using \"listEvents\"";
     public static final String MESSAGE_NOT_MEMBER_STATE =
             "The current list is not a member list! Switch to member list first using \"listMembers\"";
+
     public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "The event with the name provided does not exist: %1$s";
     public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "The member with the name provided does not exist: %1$s";
     public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "The event role with the name(s) "
@@ -54,11 +58,16 @@ public class Messages {
                 .append("; Phone: ")
                 .append(member.getPhone())
                 .append("; Email: ")
-                .append(member.getEmail())
-                .append("; Member Roles: ");
-        String result = member.getMemberRoles().stream().map(MemberRole::toString).sorted()
-                .collect(joining(", "));
-        builder.append(result);
+                .append(member.getEmail());
+
+        Set<MemberRole> roles = member.getMemberRoles();
+        if (roles != null && !roles.isEmpty()) {
+            builder.append("; Member Roles: ");
+            String result = roles.stream().map(MemberRole::toString).sorted()
+                    .collect(joining(", "));
+            builder.append(result);
+        }
+
         return builder.toString();
     }
 

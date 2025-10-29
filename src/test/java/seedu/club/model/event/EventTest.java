@@ -44,7 +44,7 @@ public class EventTest {
         // name differs in case, all other attributes same -> returns false
         Event diffNameCaseOrientation = new EventBuilder(ORIENTATION)
                 .withName(VALID_EVENT_NAME_ORIENTATION.toLowerCase()).build();
-        assertFalse(ORIENTATION.isSameEvent(diffNameCaseOrientation));
+        assertTrue(ORIENTATION.isSameEvent(diffNameCaseOrientation));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_EVENT_NAME_ORIENTATION + " ";

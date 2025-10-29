@@ -1,6 +1,7 @@
 package seedu.club.logic.commands.member;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.club.model.event.Event.updateMemberInAllEvents;
 
 import java.util.List;
 
@@ -57,6 +58,9 @@ public class DeleteMemberCommand extends Command {
         // but is there as a safety measure.
         model.setViewState(ViewState.MEMBER);
         model.deleteMember(memberToDelete);
+
+        updateMemberInAllEvents(model.getFullEventList(), memberToDelete, null);
+
         return new CommandResult(String.format(MESSAGE_DELETE_MEMBER_SUCCESS, Messages.format(memberToDelete)));
     }
 

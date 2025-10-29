@@ -6,6 +6,7 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
+import static seedu.club.model.event.Event.updateMemberInAllEvents;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -91,11 +92,17 @@ public class EditMemberCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
+        // Copy over member's event roles to edited member
+        editedMember.addEventRoles(new HashSet<>(memberToEdit.getEventRoles()));
+
         // The following line is technically not necessary since already guaranteed to be on member list,
         // but is there as a safety measure.
         model.setViewState(ViewState.MEMBER);
         model.setMember(memberToEdit, editedMember);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
+
+        updateMemberInAllEvents(model.getClubBook().getEventList(), memberToEdit, editedMember);
+
         return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));
     }
 

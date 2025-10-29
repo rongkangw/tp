@@ -1,7 +1,7 @@
 {
   "members": [ {
     "name": "Valid Member",
-    "phone": "9482424",
+    "phone": "94842424",
     "email": "hans@example.com"
   }, {
     "name": "Member With Invalid Phone Field",

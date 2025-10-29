@@ -13,7 +13,6 @@ import seedu.club.model.name.NameContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindMemberCommand object
  */
 public class FindMemberCommandParser implements Parser<FindMemberCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindMemberCommand
      * and returns a FindMemberCommand object for execution.
@@ -30,5 +29,4 @@ public class FindMemberCommandParser implements Parser<FindMemberCommand> {
 
         return new FindMemberCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)));
     }
-
 }

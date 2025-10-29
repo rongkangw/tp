@@ -105,6 +105,13 @@ public interface Model {
     void deleteEvent(Event target);
 
     /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the club book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the club book.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /**
      * Returns an unmodifiable view of the filtered member list
      */
     ObservableList<Member> getFilteredMemberList();

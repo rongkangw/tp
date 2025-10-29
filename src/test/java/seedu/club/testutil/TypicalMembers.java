@@ -31,17 +31,17 @@ public class TypicalMembers {
             .withEmail("heinz@example.com").build();
     public static final Member DANIEL = new MemberBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withMemberRoles("friends").build();
-    public static final Member ELLE = new MemberBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Member ELLE = new MemberBuilder().withName("Elle Meyer").withPhone("94822244")
             .withEmail("werner@example.com").build();
-    public static final Member FIONA = new MemberBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Member FIONA = new MemberBuilder().withName("Fiona Kunz").withPhone("94824271")
             .withEmail("lydia@example.com").build();
-    public static final Member GEORGE = new MemberBuilder().withName("George Best").withPhone("9482442")
+    public static final Member GEORGE = new MemberBuilder().withName("George Best").withPhone("94824425")
             .withEmail("anna@example.com").build();
 
     // Manually added
-    public static final Member HOON = new MemberBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Member HOON = new MemberBuilder().withName("Hoon Meier").withPhone("84824241")
             .withEmail("stefan@example.com").build();
-    public static final Member IDA = new MemberBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Member IDA = new MemberBuilder().withName("Ida Mueller").withPhone("84821311")
             .withEmail("hans@example.com").build();
 
     // Manually added - Member's details found in {@code CommandTestUtil}

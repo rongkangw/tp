@@ -3,10 +3,6 @@ package seedu.club.logic.parser.event;
 import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
-import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
-
-import java.util.Collections;
-import java.util.Set;
 
 import seedu.club.logic.commands.event.UnassignEventCommand;
 import seedu.club.logic.parser.ArgumentMultimap;
@@ -15,12 +11,6 @@ import seedu.club.logic.parser.Parser;
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.name.Name;
-import seedu.club.model.role.EventRole;
-
-
-
-
-
 
 /**
  * Parses input arguments and creates a new UnassignEventCommand object
@@ -33,7 +23,7 @@ public class UnassignEventCommandParser implements Parser<UnassignEventCommand> 
      */
     public UnassignEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENT, PREFIX_MEMBER, PREFIX_ROLE);
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENT, PREFIX_MEMBER);
         if (!argMultimap.arePrefixesPresent(PREFIX_EVENT, PREFIX_MEMBER)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -44,11 +34,8 @@ public class UnassignEventCommandParser implements Parser<UnassignEventCommand> 
         try {
             Name event = ParserUtil.parseName(argMultimap.getValue(PREFIX_EVENT).get());
             Name member = ParserUtil.parseName(argMultimap.getValue(PREFIX_MEMBER).get());
-            Set<EventRole> roles = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
-                    ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE))
-                    : Collections.emptySet();
 
-            return new UnassignEventCommand(event, member, roles);
+            return new UnassignEventCommand(event, member);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignEventCommand.MESSAGE_USAGE), pe);
