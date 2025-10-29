@@ -61,11 +61,11 @@ public class DisplayEventCommandTest {
         model.setViewState(ViewState.EVENT);
         assertCommandFailure(displayEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
-    
+
     @Test
     public void execute_validIndexFilteredList_success() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
-        
+
         Event eventToDisplay = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         model.setViewState(ViewState.EVENT);
         expectedModel.setViewState(ViewState.SINGLE_EVENT);
