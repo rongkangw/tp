@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
@@ -34,7 +35,7 @@ public class Event extends NamedEntity {
     private final Set<Member> roster = new HashSet<>();
 
     /**
-     * Creates an Event containing no participating members
+     * Creates an Event containing no participating members.
      * Every field must be present and not null.
      */
     public Event(Name name, DateTime from, DateTime to,
@@ -57,7 +58,7 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Creates an Event with the given roster
+     * Creates an Event with the given roster.
      * Every field must be present and not null.
      */
     public Event(Name name, DateTime from, DateTime to,
@@ -114,7 +115,7 @@ public class Event extends NamedEntity {
      * Removes specified member from the event's roster
      */
     public void removeMemberFromRoster(Member member) {
-        roster.remove(member);
+        roster.removeIf(m -> m.isSameMember(member));
     }
 
     /**
@@ -142,6 +143,37 @@ public class Event extends NamedEntity {
 
         return otherEvent != null
                 && otherEvent.getName().equals(getName());
+    }
+
+    /**
+     * Updates a member reference in all event rosters when it is deleted or edited
+     * in EASync's {@code UniqueMemberList}.
+     * @param originalMember The member to be replaced or removed.
+     * @param replacementMember The new member to replace with. If {@code null}, the original member is removed.
+     */
+    public static void updateMemberInAllEvents(ObservableList<Event> eventList,
+                                               Member originalMember, Member replacementMember) {
+        for (Event event : eventList) {
+            event.updateMemberInEvent(originalMember, replacementMember);
+        }
+    }
+
+    /**
+     * Updates a member reference in a single event roster.
+     *
+     * @param originalMember    The member to be replaced or removed
+     * @param replacementMember the new member to replace with; if {@code null}, the original member is removed
+     */
+    private void updateMemberInEvent(Member originalMember, Member replacementMember) {
+        if (!hasMember(originalMember)) {
+            return;
+        }
+
+        removeMemberFromRoster(originalMember);
+
+        if (replacementMember != null) {
+            addMember(replacementMember);
+        }
     }
 
     /**

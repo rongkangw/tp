@@ -77,7 +77,6 @@ public class Member extends NamedEntity {
      */
     public void removeEventRole(Set<EventRole> roleSet) {
         eventRoles.removeAll(roleSet);
-
     }
 
     /**
@@ -133,7 +132,6 @@ public class Member extends NamedEntity {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        // does not include eventRoles as it is mutable
         return Objects.hash(name, phone, email, memberRoles);
     }
 
