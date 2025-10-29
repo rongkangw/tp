@@ -14,27 +14,31 @@ import seedu.club.logic.commands.event.AssignEventCommand;
 import seedu.club.logic.commands.event.DeleteEventCommand;
 import seedu.club.logic.commands.event.DisplayEventCommand;
 import seedu.club.logic.commands.event.EditEventCommand;
+import seedu.club.logic.commands.event.FindEventCommand;
 import seedu.club.logic.commands.event.ListEventCommand;
 import seedu.club.logic.commands.event.UnassignEventCommand;
+import seedu.club.logic.commands.event.UnassignEventRoleCommand;
 import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.general.ExitCommand;
 import seedu.club.logic.commands.general.HelpCommand;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.DeleteMemberCommand;
 import seedu.club.logic.commands.member.EditMemberCommand;
-import seedu.club.logic.commands.member.FindCommand;
+import seedu.club.logic.commands.member.FindMemberCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.event.AddEventCommandParser;
 import seedu.club.logic.parser.event.AssignEventCommandParser;
 import seedu.club.logic.parser.event.DeleteEventCommandParser;
 import seedu.club.logic.parser.event.DisplayEventCommandParser;
 import seedu.club.logic.parser.event.EditEventCommandParser;
+import seedu.club.logic.parser.event.FindEventCommandParser;
 import seedu.club.logic.parser.event.UnassignEventCommandParser;
+import seedu.club.logic.parser.event.UnassignEventRoleCommandParser;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.logic.parser.member.AddMemberCommandParser;
 import seedu.club.logic.parser.member.DeleteMemberCommandParser;
 import seedu.club.logic.parser.member.EditMemberCommandParser;
-import seedu.club.logic.parser.member.FindCommandParser;
+import seedu.club.logic.parser.member.FindMemberCommandParser;
 
 
 /**
@@ -83,8 +87,8 @@ public class ClubBookParser {
         case ListMemberCommand.COMMAND_WORD:
             return new ListMemberCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindMemberCommand.COMMAND_WORD:
+            return new FindMemberCommandParser().parse(arguments);
 
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
@@ -97,6 +101,9 @@ public class ClubBookParser {
 
         case ListEventCommand.COMMAND_WORD:
             return new ListEventCommand();
+
+        case FindEventCommand.COMMAND_WORD:
+            return new FindEventCommandParser().parse(arguments);
 
         case AssignEventCommand.COMMAND_WORD:
             return new AssignEventCommandParser().parse(arguments);
@@ -115,6 +122,9 @@ public class ClubBookParser {
 
         case UnassignEventCommand.COMMAND_WORD:
             return new UnassignEventCommandParser().parse(arguments);
+
+        case UnassignEventRoleCommand.COMMAND_WORD:
+            return new UnassignEventRoleCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

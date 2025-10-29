@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.club.commons.util.ToStringBuilder;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
@@ -29,7 +30,7 @@ public class Event extends NamedEntity {
     private final Set<Member> roster = new HashSet<>();
 
     /**
-     * Creates an Event containing no participating members
+     * Creates an Event containing no participating members.
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles) {
@@ -42,12 +43,12 @@ public class Event extends NamedEntity {
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
-            role.setAssignedTo(this);
+            role.setAssignedTo(name);
         }
     }
 
     /**
-     * Creates an Event with the given roster
+     * Creates an Event with the given roster.
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
@@ -61,7 +62,9 @@ public class Event extends NamedEntity {
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
-            role.setAssignedTo(this);
+            if (role.getAssignedTo() == null) {
+                role.setAssignedTo(name);
+            }
         }
     }
 
@@ -115,7 +118,7 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Returns true if both events have the same name, from date time and to date time.
+     * Returns true if both events have the same name.
      * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
@@ -124,9 +127,38 @@ public class Event extends NamedEntity {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName())
-                && otherEvent.getFrom().equals(getFrom())
-                && otherEvent.getTo().equals(getTo());
+                && otherEvent.getName().equals(getName());
+    }
+
+    /**
+     * Updates a member reference in all event rosters when it is deleted or edited
+     * in EASync's {@code UniqueMemberList}.
+     * @param originalMember The member to be replaced or removed.
+     * @param replacementMember The new member to replace with. If {@code null}, the original member is removed.
+     */
+    public static void updateMemberInAllEvents(ObservableList<Event> eventList,
+                                               Member originalMember, Member replacementMember) {
+        for (Event event : eventList) {
+            event.updateMemberInEvent(originalMember, replacementMember);
+        }
+    }
+
+    /**
+     * Updates a member reference in a single event roster.
+     *
+     * @param originalMember    The member to be replaced or removed
+     * @param replacementMember the new member to replace with; if {@code null}, the original member is removed
+     */
+    private void updateMemberInEvent(Member originalMember, Member replacementMember) {
+        if (!hasMember(originalMember)) {
+            return;
+        }
+
+        removeMemberFromRoster(originalMember);
+
+        if (replacementMember != null) {
+            addMember(replacementMember);
+        }
     }
 
     /**
@@ -145,18 +177,19 @@ public class Event extends NamedEntity {
         }
 
         Event otherEvent = (Event) other;
+        // does not include roster as it is mutable
         return name.equals(otherEvent.name)
                 && from.equals(otherEvent.from)
                 && to.equals(otherEvent.to)
                 && detail.equals(otherEvent.detail)
-                && roles.equals(otherEvent.roles)
-                && roster.equals(otherEvent.roster);
+                && roles.equals(otherEvent.roles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, from, to, detail, roles, roster);
+        // does not include roster as it is mutable
+        return Objects.hash(name, from, to, detail, roles);
     }
 
     @Override
@@ -170,5 +203,4 @@ public class Event extends NamedEntity {
                 .add("roster", roster)
                 .toString();
     }
-
 }
