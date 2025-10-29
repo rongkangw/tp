@@ -12,11 +12,10 @@ import seedu.club.model.ReadOnlyClubBook;
  * Represents a storage for {@link ClubBook}.
  */
 public interface ClubBookStorage {
-
     /**
-     * Returns the file path of the data file.
+     * Returns the file path of the ClubBook data file.
      */
-    Path getMemberFilePath();
+    Path getClubBookFilePath();
 
     /**
      * Returns ClubBook data as a {@link ReadOnlyClubBook}.
@@ -24,23 +23,23 @@ public interface ClubBookStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException;
+    Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException;
 
     /**
-     * @see #getMemberFilePath()
+     * @see #readClubBook()
      */
-    Optional<ReadOnlyClubBook> readMembers(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyClubBook> readClubBook(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyClubBook} to the storage.
      * @param clubBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveMembers(ReadOnlyClubBook clubBook) throws IOException;
+    void saveClubBook(ReadOnlyClubBook clubBook) throws IOException;
 
     /**
-     * @see #saveMembers(ReadOnlyClubBook)
+     * @see #saveClubBook(ReadOnlyClubBook)
      */
-    void saveMembers(ReadOnlyClubBook clubBook, Path filePath) throws IOException;
+    void saveClubBook(ReadOnlyClubBook clubBook, Path filePath) throws IOException;
 
 }

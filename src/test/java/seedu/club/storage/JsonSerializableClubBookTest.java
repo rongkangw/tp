@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.commons.util.JsonUtil;
 import seedu.club.model.ClubBook;
+import seedu.club.testutil.TypicalEvents;
 import seedu.club.testutil.TypicalMembers;
 
 public class JsonSerializableClubBookTest {
@@ -19,6 +20,33 @@ public class JsonSerializableClubBookTest {
     private static final Path TYPICAL_MEMBERS_FILE = TEST_DATA_FOLDER.resolve("typicalMembersClubBook.json");
     private static final Path INVALID_MEMBER_FILE = TEST_DATA_FOLDER.resolve("invalidMemberClubBook.json");
     private static final Path DUPLICATE_MEMBER_FILE = TEST_DATA_FOLDER.resolve("duplicateMemberClubBook.json");
+    private static final Path TYPICAL_EVENTS_FILE = TEST_DATA_FOLDER.resolve("typicalEvents.json");
+    private static final Path INVALID_EVENTS_FILE = TEST_DATA_FOLDER.resolve("invalidEvent.json");
+    private static final Path DUPLICATE_EVENT_FILE = TEST_DATA_FOLDER.resolve("duplicateEvents.json");
+
+    @Test
+    public void toModelType_typicalEventsFile_success() throws Exception {
+        JsonSerializableClubBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_EVENTS_FILE,
+                JsonSerializableClubBook.class).get();
+        ClubBook clubBookFromFile = dataFromFile.toModelType();
+        ClubBook typicalEventsClubBook = TypicalEvents.getTypicalClubBookWithEvents();
+        assertEquals(clubBookFromFile, typicalEventsClubBook);
+    }
+
+    @Test
+    public void toModelType_invalidEventFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableClubBook dataFromFile = JsonUtil.readJsonFile(INVALID_EVENTS_FILE,
+                JsonSerializableClubBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateEvents_throwsIllegalValueException() throws Exception {
+        JsonSerializableClubBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EVENT_FILE,
+                JsonSerializableClubBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableClubBook.MESSAGE_DUPLICATE_EVENT,
+                dataFromFile::toModelType);
+    }
 
     @Test
     public void toModelType_typicalMembersFile_success() throws Exception {

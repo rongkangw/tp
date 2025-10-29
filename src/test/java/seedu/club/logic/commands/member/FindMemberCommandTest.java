@@ -22,9 +22,9 @@ import seedu.club.model.member.Member;
 import seedu.club.model.name.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code FindMemberCommand}.
  */
-public class FindCommandTest {
+public class FindMemberCommandTest {
     private final Model model = new ModelManager(getTypicalClubBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalClubBook(), new UserPrefs());
 
@@ -35,14 +35,14 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate<Member> secondPredicate =
                 new NameContainsKeywordsPredicate<>(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindMemberCommand findFirstCommand = new FindMemberCommand(firstPredicate);
+        FindMemberCommand findSecondCommand = new FindMemberCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindMemberCommand findFirstCommandCopy = new FindMemberCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -59,7 +59,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noMemberFound() {
         String expectedMessage = String.format(MESSAGE_MEMBERS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate<Member> predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FindMemberCommand command = new FindMemberCommand(predicate);
         expectedModel.updateFilteredMemberList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredMemberList());
@@ -69,7 +69,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleMembersFound() {
         String expectedMessage = String.format(MESSAGE_MEMBERS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate<Member> predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        FindMemberCommand command = new FindMemberCommand(predicate);
         expectedModel.updateFilteredMemberList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredMemberList());
@@ -78,9 +78,9 @@ public class FindCommandTest {
     @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate<Member> predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("keyword"));
-        FindCommand findCommand = new FindCommand(predicate);
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
-        assertEquals(expected, findCommand.toString());
+        FindMemberCommand findMemberCommand = new FindMemberCommand(predicate);
+        String expected = FindMemberCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        assertEquals(expected, findMemberCommand.toString());
     }
 
     /**
