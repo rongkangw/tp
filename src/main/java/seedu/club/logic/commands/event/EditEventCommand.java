@@ -90,20 +90,20 @@ public class EditEventCommand extends Command {
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
-
         // The following line is technically not necessary since already guaranteed to be on event list,
         // but is there as a safety measure.
         model.setViewState(ViewState.EVENT);
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
-
         // Update eventRoles list of members in roster with new eventRole objects
         Set<Member> roster = editedEvent.getRoster();
         Set<EventRole> eventRoles = editedEvent.getRoles();
         for (Member member: roster) {
-            member.updateEditedEventRolesList(eventRoles);
+            Member updatedMember = member.updateEditedEventRolesList(eventRoles);
+            model.setMember(member, updatedMember);
         }
+
 
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent)));
     }
@@ -120,7 +120,7 @@ public class EditEventCommand extends Command {
         DateTime updatedFrom = editEventDescriptor.getFrom().orElse(eventToEdit.getFrom());
         DateTime updatedTo = editEventDescriptor.getTo().orElse(eventToEdit.getTo());
         String updatedDetails = editEventDescriptor.getDetails().orElse(eventToEdit.getDetail());
-        Set<EventRole> eventRoles = eventToEdit.getRoles();
+        Set<EventRole> eventRoles = eventToEdit.updateEventRolesAssignedTo(updatedName);
         Set<Member> roster = eventToEdit.getRoster();
 
         return new Event(updatedName, updatedFrom, updatedTo, updatedDetails, eventRoles, roster);

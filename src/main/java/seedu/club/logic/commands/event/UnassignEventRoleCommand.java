@@ -25,16 +25,17 @@ import seedu.club.model.role.EventRole;
 public class UnassignEventRoleCommand extends Command {
     public static final String COMMAND_WORD = "unassignEventRole";
     public static final String MESSAGE_SUCCESS_EVENT_ROLE =
-            "The event role has been unassigned from the member successfully";
+            "The event role(s) has/have been unassigned from the member successfully.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the event roles from the specified member\n"
+            + ": Removes the event role(s) from the specified member\n"
             + "Parameters: "
             + PREFIX_EVENT + "EVENT "
             + PREFIX_MEMBER + "MEMBER "
             + PREFIX_ROLE + "EVENT ROLE...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT + "Meeting "
+            + PREFIX_MEMBER + "John Doe "
             + PREFIX_ROLE + "Facilitator";
     public static final String MESSAGE_NAME_DOES_NOT_EXIST = "The event or member does not exist.\n";
     public static final String MESSAGE_ROLE_DOES_NOT_EXIST_IN_MEMBER =
