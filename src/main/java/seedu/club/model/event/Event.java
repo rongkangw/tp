@@ -100,7 +100,7 @@ public class Event extends NamedEntity {
      * Removes specified member from the event's roster
      */
     public void removeMemberFromRoster(Member member) {
-        roster.remove(member);
+        roster.removeIf(m -> m.isSameMember(member));
     }
 
     /**
