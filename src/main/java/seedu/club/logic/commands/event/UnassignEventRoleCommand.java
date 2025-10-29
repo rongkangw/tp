@@ -82,7 +82,7 @@ public class UnassignEventRoleCommand extends Command {
 
 
         if (!member.getEventRoles().containsAll(roles)) {
-            throw new CommandException(String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, roles.toString()));
+            throw new CommandException(String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, event.getName(), roles));
         }
         member.removeEventRole(roles);
         model.updateFilteredEventList(e -> e.equals(event));
