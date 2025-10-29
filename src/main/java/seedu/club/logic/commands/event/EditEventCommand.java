@@ -90,11 +90,7 @@ public class EditEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        // The following line is technically not necessary since already guaranteed to be on event list,
-        // but is there as a safety measure.
-        model.setViewState(ViewState.EVENT);
-        model.setEvent(eventToEdit, editedEvent);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+
 
 
         //update eventRoles list of members in roster with new eventRole objects
@@ -103,6 +99,11 @@ public class EditEventCommand extends Command {
         for (Member member: roster) {
             member.updateEditedEventRolesList(eventRoles);
         }
+        // The following line is technically not necessary since already guaranteed to be on event list,
+        // but is there as a safety measure.
+        model.setViewState(ViewState.EVENT);
+        model.setEvent(eventToEdit, editedEvent);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent)));
     }
