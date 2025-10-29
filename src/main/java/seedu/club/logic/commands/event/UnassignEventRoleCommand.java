@@ -25,7 +25,7 @@ import seedu.club.model.role.EventRole;
 public class UnassignEventRoleCommand extends Command {
     public static final String COMMAND_WORD = "unassignEventRole";
     public static final String MESSAGE_SUCCESS_EVENT_ROLE =
-            "The event role has been unassigned from the member successfully.";
+            "The event role has been unassigned from the member successfully";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the event roles from the specified member\n"
@@ -37,6 +37,9 @@ public class UnassignEventRoleCommand extends Command {
             + PREFIX_EVENT + "Meeting "
             + PREFIX_ROLE + "Facilitator";
     public static final String MESSAGE_NAME_DOES_NOT_EXIST = "The event or member does not exist.\n";
+    public static final String MESSAGE_ROLE_DOES_NOT_EXIST_IN_MEMBER =
+            "The specified member does not have that role\n";
+
 
     private final Name eventName;
     private final Name memberName;
@@ -80,10 +83,17 @@ public class UnassignEventRoleCommand extends Command {
         Member member = model.getFullMemberList().get(memberIndex);
         Event event = model.getFullEventList().get(eventIndex);
 
+        if (!event.getRoles().containsAll(roles)) {
+            throw new CommandException(String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST,
+                    event.getName(), roles));
+        }
 
         if (!member.getEventRoles().containsAll(roles)) {
-            throw new CommandException(String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, event.getName(), roles));
+            throw new CommandException(String.format(MESSAGE_ROLE_DOES_NOT_EXIST_IN_MEMBER,
+                    event.getName(), roles));
         }
+
+
         member.removeEventRole(roles);
         model.updateFilteredEventList(e -> e.equals(event));
         model.updateFilteredMemberList(m -> true);
