@@ -38,7 +38,7 @@ public class DisplayEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         /* Ensure that event list is displaying first*/
-        if (model.getViewState() == ViewState.MEMBER || model.getViewState() == ViewState.SINGLE_EVENT) {
+        if (model.getViewState() != ViewState.EVENT) {
             throw new CommandException(Messages.MESSAGE_NOT_EVENT_STATE);
         }
         List<Event> filteredEventList = model.getFilteredEventList();
