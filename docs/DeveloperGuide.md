@@ -12,10 +12,18 @@
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+We would like to acknowledge the contributions of the following projects, 
+libraries, and communities that made EASync possible.
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+### Ideas, Code, Documentation
+The **SE-EDU Initiative** and the developers of [AddressBook-Level 3 (AB3)](https://se-education.org/addressbook-level3/), whose codebase and documentation provided the 
+foundation for EASync. Both the architecture and the graphical user interface of EASync were adapted from 
+the original **AddressBook** project.
 
---------------------------------------------------------------------------------------------------------------------
+### Third-Party Libraries
+1. [JavaFX](https://openjfx.io) - For the Graphical User Interface (GUI).
+2. [JUnit5](https://junit.org) - For unit testing and integration testing.
+3. [Jackson](https://github.com/FasterXML/jackson) - For JSON parsing and serialization.
 
 ## **Setting up, getting started**
 
@@ -814,8 +822,16 @@ handle multiple entity types consistently.
 ### Challenges Faced and Efforts
 
 
+
 ###
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
+
+Team Size: 5
+
+##### 1. Allow users to use event command consecutively
+Currently, after running the `event <INDEX>` command, users must return to the event list before executing the command 
+again. We plan to remove this restriction by storing the filtered event list, 
+enabling users to re-run the command directly from the single event display page.
