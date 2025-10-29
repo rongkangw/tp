@@ -104,6 +104,7 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 * The new member can be found at the end of the list.
 * The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only. A single whitespace is allowed in between the first and last 4 digits.
 * The `EMAIL` must be of the format `local-part@domain`
+* If multiple `ROLE`s are specified, the app sorts them in lexographical order.
 
 <box type="info" seamless>
 
@@ -195,6 +196,7 @@ Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…�
 
 * Adds an event to the club book.
 * The new event can be found at the end of the list.
+* If multiple `EVENTROLE`s are specified, the app sorts them in lexographical order.
 
 Examples:
 * `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`

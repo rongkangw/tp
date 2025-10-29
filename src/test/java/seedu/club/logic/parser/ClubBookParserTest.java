@@ -22,7 +22,7 @@ import seedu.club.logic.commands.general.HelpCommand;
 import seedu.club.logic.commands.member.AddMemberCommand;
 import seedu.club.logic.commands.member.DeleteMemberCommand;
 import seedu.club.logic.commands.member.EditMemberCommand;
-import seedu.club.logic.commands.member.FindCommand;
+import seedu.club.logic.commands.member.FindMemberCommand;
 import seedu.club.logic.commands.member.ListMemberCommand;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.event.Event;
@@ -46,12 +46,6 @@ public class ClubBookParserTest {
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
-
-    @Test
     public void parseCommand_deleteMember() throws Exception {
         DeleteMemberCommand command = (DeleteMemberCommand) parser.parseCommand(
                 DeleteMemberCommand.COMMAND_WORD + " " + INDEX_FIRST_MEMBER.getOneBased());
@@ -59,14 +53,7 @@ public class ClubBookParserTest {
     }
 
     @Test
-    public void parseCommand_deleteEvent() throws Exception {
-        DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
-                DeleteEventCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
-        assertEquals(new DeleteEventCommand(INDEX_FIRST_EVENT), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_editMember() throws Exception {
         Member member = new MemberBuilder().build();
         EditMemberCommand.EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder(member).build();
         EditMemberCommand command = (EditMemberCommand) parser.parseCommand(EditMemberCommand.COMMAND_WORD + " "
@@ -82,29 +69,42 @@ public class ClubBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteEvent() throws Exception {
+        DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
+                DeleteEventCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
+        assertEquals(new DeleteEventCommand(INDEX_FIRST_EVENT), command);
+    }
+
+    @Test
+    public void parseCommand_findMember() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindMemberCommand command = (FindMemberCommand) parser.parseCommand(
+                FindMemberCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindMemberCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_listMember() throws Exception {
+        assertTrue(parser.parseCommand(ListMemberCommand.COMMAND_WORD) instanceof ListMemberCommand);
+        assertTrue(parser.parseCommand(ListMemberCommand.COMMAND_WORD + " 3") instanceof ListMemberCommand);
+    }
+
+    @Test
+    public void parseCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
-    }
-
-    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
-    }
-
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListMemberCommand.COMMAND_WORD) instanceof ListMemberCommand);
-        assertTrue(parser.parseCommand(ListMemberCommand.COMMAND_WORD + " 3") instanceof ListMemberCommand);
     }
 
     @Test

@@ -56,7 +56,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(member.getEmail())
                 .append("; Member Roles: ");
-        String result = member.getMemberRoles().stream().map(MemberRole::toString)
+        String result = member.getMemberRoles().stream().map(MemberRole::toString).sorted()
                 .collect(joining(", "));
         builder.append(result);
         return builder.toString();
@@ -84,7 +84,7 @@ public class Messages {
         Set<EventRole> roles = event.getRoles();
         if (roles != null && !roles.isEmpty()) {
             builder.append("; Roles: ");
-            String result = roles.stream().map(EventRole::toString)
+            String result = roles.stream().map(EventRole::toString).sorted()
                     .collect(joining(", "));
             builder.append(result);
         }

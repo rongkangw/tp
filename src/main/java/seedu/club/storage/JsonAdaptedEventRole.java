@@ -1,9 +1,10 @@
 package seedu.club.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.club.commons.exceptions.IllegalValueException;
+import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
 
 /**
@@ -12,13 +13,16 @@ import seedu.club.model.role.EventRole;
 class JsonAdaptedEventRole {
 
     private final String roleName;
+    private final String eventName;
 
     /**
      * Constructs a {@code JsonAdaptedEventRole} with the given {@code roleName}.
      */
     @JsonCreator
-    public JsonAdaptedEventRole(String roleName) {
+    public JsonAdaptedEventRole(@JsonProperty("roleName") String roleName,
+                                @JsonProperty("eventName") String eventName) {
         this.roleName = roleName;
+        this.eventName = eventName;
     }
 
     /**
@@ -26,11 +30,7 @@ class JsonAdaptedEventRole {
      */
     public JsonAdaptedEventRole(EventRole source) {
         roleName = source.roleName;
-    }
-
-    @JsonValue
-    public String getRoleName() {
-        return roleName;
+        eventName = source.getAssignedTo().toString();
     }
 
     /**
@@ -42,7 +42,8 @@ class JsonAdaptedEventRole {
         if (!EventRole.isValidRoleName(roleName)) {
             throw new IllegalValueException(EventRole.MESSAGE_CONSTRAINTS);
         }
-        return new EventRole(roleName);
+        EventRole eventRole = new EventRole(roleName);
+        eventRole.setAssignedTo(new Name(eventName));
+        return eventRole;
     }
-
 }
