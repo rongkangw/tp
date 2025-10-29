@@ -5,13 +5,14 @@ import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.Arrays;
 
 import seedu.club.logic.commands.event.FindEventCommand;
+import seedu.club.logic.parser.Parser;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.name.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindEventCommand object
  */
-public class FindEventCommandParser {
+public class FindEventCommandParser implements Parser<FindEventCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindEventCommand
      * and returns a FindEventCommand object for execution.
