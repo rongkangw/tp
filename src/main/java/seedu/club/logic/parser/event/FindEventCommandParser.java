@@ -11,7 +11,7 @@ import seedu.club.model.name.NameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindEventCommand object
  */
-public class FindEventCommandParser {
+public class FindEventCommandParser implements Parser<FindEventCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindEventCommand
      * and returns a FindEventCommand object for execution.
