@@ -30,7 +30,8 @@ public class JsonAdaptedEventTest {
                             .collect(Collectors.toList());
     private static final List<String> VALID_EVENT_ROSTER = TypicalMembers.getTypicalMembers()
             .stream().map(m -> m.getName().toString()).toList();
-    private static final ObservableList<Member> VALID_EVENT_MEMBERS = TypicalMembers.getTypicalClubBook().getMemberList();
+    private static final ObservableList<Member> VALID_EVENT_MEMBERS = TypicalMembers.getTypicalClubBook()
+            .getMemberList();
 
     @Test
     public void toModelType_validEvent_returnsEvent() throws Exception {
