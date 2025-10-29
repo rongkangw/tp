@@ -15,7 +15,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.club.commons.core.index.Index;
 import seedu.club.commons.util.CollectionUtil;
 import seedu.club.commons.util.ToStringBuilder;
@@ -25,7 +24,6 @@ import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
 import seedu.club.model.ViewState;
-import seedu.club.model.event.Event;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;

@@ -30,7 +30,7 @@ public class Event extends NamedEntity {
     private final Set<Member> roster = new HashSet<>();
 
     /**
-     * Creates an Event containing no participating members
+     * Creates an Event containing no participating members.
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles) {
@@ -48,7 +48,7 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Creates an Event with the given roster
+     * Creates an Event with the given roster.
      * Every field must be present and not null.
      */
     public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
@@ -131,7 +131,8 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Updates a member reference in all event rosters when it is deleted or edited in EASync's {@code UniqueMemberList}.
+     * Updates a member reference in all event rosters when it is deleted or edited
+     * in EASync's {@code UniqueMemberList}.
      * @param originalMember The member to be replaced or removed.
      * @param replacementMember The new member to replace with. If {@code null}, the original member is removed.
      */
