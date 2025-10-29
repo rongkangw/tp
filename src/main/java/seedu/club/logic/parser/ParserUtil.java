@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.club.commons.core.index.Index;
 import seedu.club.commons.util.StringUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
+import seedu.club.model.event.DateTime;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
@@ -138,12 +139,29 @@ public class ParserUtil {
      * Parses a {@code String date}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code datetime} is invalid.
      */
-    public static String parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        return trimmedDate;
+    public static DateTime parseDate(String datetime) throws ParseException {
+        requireNonNull(datetime);
+
+        String trimmedDateTime = datetime.trim();
+        if (!DateTime.isValidFormat(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_INVALID_VALUES);
+        }
+        return new DateTime(trimmedDateTime);
+    }
+
+    /**
+     * Formats the {@code DateTime} into a readable string.
+     */
+    public static String formatDate(DateTime date) {
+        if (date == null) {
+            return "";
+        }
+        return date.toString();
     }
 
     /**

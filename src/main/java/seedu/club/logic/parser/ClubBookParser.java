@@ -13,9 +13,11 @@ import seedu.club.logic.commands.event.AddEventCommand;
 import seedu.club.logic.commands.event.AssignEventCommand;
 import seedu.club.logic.commands.event.DeleteEventCommand;
 import seedu.club.logic.commands.event.DisplayEventCommand;
+import seedu.club.logic.commands.event.EditEventCommand;
 import seedu.club.logic.commands.event.FindEventCommand;
 import seedu.club.logic.commands.event.ListEventCommand;
 import seedu.club.logic.commands.event.UnassignEventCommand;
+import seedu.club.logic.commands.event.UnassignEventRoleCommand;
 import seedu.club.logic.commands.general.ClearCommand;
 import seedu.club.logic.commands.general.ExitCommand;
 import seedu.club.logic.commands.general.HelpCommand;
@@ -28,8 +30,10 @@ import seedu.club.logic.parser.event.AddEventCommandParser;
 import seedu.club.logic.parser.event.AssignEventCommandParser;
 import seedu.club.logic.parser.event.DeleteEventCommandParser;
 import seedu.club.logic.parser.event.DisplayEventCommandParser;
+import seedu.club.logic.parser.event.EditEventCommandParser;
 import seedu.club.logic.parser.event.FindEventCommandParser;
 import seedu.club.logic.parser.event.UnassignEventCommandParser;
+import seedu.club.logic.parser.event.UnassignEventRoleCommandParser;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.logic.parser.member.AddMemberCommandParser;
 import seedu.club.logic.parser.member.DeleteMemberCommandParser;
@@ -92,6 +96,9 @@ public class ClubBookParser {
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
+        case EditEventCommand.COMMAND_WORD:
+            return new EditEventCommandParser().parse(arguments);
+
         case ListEventCommand.COMMAND_WORD:
             return new ListEventCommand();
 
@@ -115,6 +122,9 @@ public class ClubBookParser {
 
         case UnassignEventCommand.COMMAND_WORD:
             return new UnassignEventCommandParser().parse(arguments);
+
+        case UnassignEventRoleCommand.COMMAND_WORD:
+            return new UnassignEventRoleCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

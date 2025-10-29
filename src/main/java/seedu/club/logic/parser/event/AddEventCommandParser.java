@@ -1,5 +1,6 @@
 package seedu.club.logic.parser.event;
 
+import static seedu.club.logic.Messages.MESSAGE_END_BEFORE_START_DATE;
 import static seedu.club.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_DETAIL;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
@@ -16,6 +17,7 @@ import seedu.club.logic.parser.ArgumentTokenizer;
 import seedu.club.logic.parser.Parser;
 import seedu.club.logic.parser.ParserUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
+import seedu.club.model.event.DateTime;
 import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
 import seedu.club.model.role.EventRole;
@@ -33,17 +35,19 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FROM, PREFIX_TO, PREFIX_DETAIL, PREFIX_ROLE);
 
-        if (!argMultimap.arePrefixesPresent(PREFIX_NAME, PREFIX_FROM)
+        if (!argMultimap.arePrefixesPresent(PREFIX_NAME, PREFIX_FROM, PREFIX_TO)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_FROM, PREFIX_TO, PREFIX_DETAIL);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        String from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
-        String to = argMultimap.getValue(PREFIX_TO).isPresent()
-                    ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get())
-                    : "";
+        DateTime from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
+        DateTime to = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get());
+        if (!from.isBefore(to)) {
+            throw new ParseException(String.format(MESSAGE_END_BEFORE_START_DATE));
+        }
+
         String detail = argMultimap.getValue(PREFIX_DETAIL).isPresent()
                         ? ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).get())
                         : "";

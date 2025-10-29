@@ -616,7 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1d. Event role is specified in user request and event role exists under the event
 
-    * 1d1. System displays success message 
+    * 1d1. System displays success message
     * 1d2. System displays event’s roster with the assigned member, with the event role added to the member
 
         Use case ends
@@ -669,8 +669,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **UC11: Unassigning an event role from a member**
 
 **Preconditions**
-* The member and event must exist 
-* The member must have already been assigned to the event 
+* The member and event must exist
+* The member must have already been assigned to the event
 * The member must have an event role related to that event
 
 **Guarantees**
