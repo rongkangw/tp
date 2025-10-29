@@ -84,7 +84,7 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_invalidEventRoles_throwsIllegalValueException() {
         List<JsonAdaptedEventRole> invalidEventRoles = new ArrayList<>(VALID_EVENT_ROLES);
-        invalidEventRoles.add(new JsonAdaptedEventRole(INVALID_EVENT_ROLE));
+        invalidEventRoles.add(new JsonAdaptedEventRole(INVALID_EVENT_ROLE, ""));
         JsonAdaptedEvent event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_FROM, VALID_TO, VALID_DETAILS, invalidEventRoles, VALID_EVENT_ROSTER
         );
