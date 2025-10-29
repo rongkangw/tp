@@ -25,10 +25,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonClubBookStorage clubBookStorage = new JsonClubBookStorage(getTempFilePath("ab"),
-                getTempFilePath("bc"));
+        JsonClubBookStorage clubBookStorage = new JsonClubBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(clubBookStorage, userPrefsStorage, clubBookStorage);
+        storageManager = new StorageManager(clubBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -57,8 +56,8 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonClubBookStorageTest} class.
          */
         ClubBook original = getTypicalClubBook();
-        storageManager.saveMembers(original);
-        ReadOnlyClubBook retrieved = storageManager.readMembers().get();
+        storageManager.saveClubBook(original);
+        ReadOnlyClubBook retrieved = storageManager.readClubBook().get();
         assertEquals(original, new ClubBook(retrieved));
     }
 
@@ -70,19 +69,19 @@ public class StorageManagerTest {
     @Test
     public void clubBookReadSaveEvents() throws Exception {
         ClubBook original = getTypicalClubBookWithEvents();
-        storageManager.saveEvents(original);
-        ReadOnlyClubBook retrieved = storageManager.readEvents().get();
+        storageManager.saveClubBook(original);
+        ReadOnlyClubBook retrieved = storageManager.readClubBook().get();
         assertEquals(original, new ClubBook(retrieved));
     }
 
     @Test
     public void getClubBookFilePath() {
-        assertNotNull(storageManager.getMemberFilePath());
+        assertNotNull(storageManager.getClubBookFilePath());
     }
 
     @Test
     public void getClubBookEventFilePath() {
-        assertNotNull(storageManager.getEventFilePath());
+        assertNotNull(storageManager.getClubBookFilePath());
     }
 
 }

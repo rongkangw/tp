@@ -12,7 +12,7 @@ import seedu.club.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends ClubBookStorage, UserPrefsStorage, EventStorage {
+public interface Storage extends ClubBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
@@ -21,20 +21,11 @@ public interface Storage extends ClubBookStorage, UserPrefsStorage, EventStorage
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getMemberFilePath();
+    Path getClubBookFilePath();
 
     @Override
-    Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException;
+    Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException;
 
     @Override
-    void saveMembers(ReadOnlyClubBook clubBook) throws IOException;
-
-    @Override
-    Path getEventFilePath();
-
-    @Override
-    Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException;
-
-    @Override
-    void saveEvents(ReadOnlyClubBook clubBook) throws IOException;
+    void saveClubBook(ReadOnlyClubBook clubBook) throws IOException;
 }

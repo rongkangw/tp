@@ -50,10 +50,9 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonClubBookStorage clubBookStorage =
-                new JsonClubBookStorage(temporaryFolder.resolve("members.json"),
-                        temporaryFolder.resolve("events.json"));
+                new JsonClubBookStorage(temporaryFolder.resolve("clubbook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage, clubBookStorage);
+        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -169,9 +168,9 @@ public class LogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an ClubBookStorage that throws the IOException e when saving
-        JsonClubBookStorage clubBookStorage = new JsonClubBookStorage(prefPath, prefPath) {
+        JsonClubBookStorage clubBookStorage = new JsonClubBookStorage(prefPath) {
             @Override
-            public void saveMembers(ReadOnlyClubBook clubBook, Path filePath)
+            public void saveClubBook(ReadOnlyClubBook clubBook, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -179,7 +178,7 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage, clubBookStorage);
+        StorageManager storage = new StorageManager(clubBookStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 

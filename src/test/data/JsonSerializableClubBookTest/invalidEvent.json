@@ -1,9 +1,13 @@
 {
+  "members": [],
   "events": [ {
     "name": "Orientation*",
     "from": "151025",
     "to": "171025",
     "details": "For freshmen",
-    "roles": [ "Game Master" ]
+    "roles": [ {
+      "roleName" : "Game Master",
+      "eventName" : "Orientation"
+    } ]
   } ]
 }

@@ -53,7 +53,7 @@ public class Event extends NamedEntity {
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
-            role.setAssignedTo(this);
+            role.setAssignedTo(name);
         }
     }
 
@@ -77,7 +77,9 @@ public class Event extends NamedEntity {
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
-            role.setAssignedTo(this);
+            if (role.getAssignedTo() == null) {
+                role.setAssignedTo(name);
+            }
         }
     }
 
@@ -131,7 +133,7 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Returns true if both events have the same name, from date time and to date time.
+     * Returns true if both events have the same name.
      * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
@@ -140,9 +142,7 @@ public class Event extends NamedEntity {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName())
-                && otherEvent.getFrom().equals(getFrom())
-                && otherEvent.getTo().equals(getTo());
+                && otherEvent.getName().equals(getName());
     }
 
     /**
@@ -161,18 +161,19 @@ public class Event extends NamedEntity {
         }
 
         Event otherEvent = (Event) other;
+        // does not include roster as it is mutable
         return name.equals(otherEvent.name)
                 && from.equals(otherEvent.from)
                 && to.equals(otherEvent.to)
                 && detail.equals(otherEvent.detail)
-                && roles.equals(otherEvent.roles)
-                && roster.equals(otherEvent.roster);
+                && roles.equals(otherEvent.roles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, from, to, detail, roles, roster);
+        // does not include roster as it is mutable
+        return Objects.hash(name, from, to, detail, roles);
     }
 
     @Override

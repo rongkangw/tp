@@ -51,6 +51,9 @@ class JsonAdaptedEvent {
         }
     }
 
+    /**
+     * Converts a given {@code Event} into this class for Jackson use.
+     */
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         from = source.getFrom().value;

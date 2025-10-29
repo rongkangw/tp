@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "memberStorageFilePath" : "members.json"
+  "clubBookStorageFilePath" : "clubBook.json"
 }
