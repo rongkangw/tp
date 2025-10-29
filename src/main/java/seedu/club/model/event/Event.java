@@ -42,7 +42,7 @@ public class Event extends NamedEntity {
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
-            role.setAssignedTo(this);
+            role.setAssignedTo(name);
         }
     }
 
@@ -61,7 +61,9 @@ public class Event extends NamedEntity {
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
-            role.setAssignedTo(this);
+            if (role.getAssignedTo() == null) {
+                role.setAssignedTo(name);
+            }
         }
     }
 
@@ -169,5 +171,4 @@ public class Event extends NamedEntity {
                 .add("roster", roster)
                 .toString();
     }
-
 }

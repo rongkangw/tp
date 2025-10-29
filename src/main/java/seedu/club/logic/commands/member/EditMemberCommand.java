@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.club.commons.core.index.Index;
 import seedu.club.commons.util.CollectionUtil;
 import seedu.club.commons.util.ToStringBuilder;
@@ -23,6 +24,7 @@ import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
 import seedu.club.model.ViewState;
+import seedu.club.model.event.Event;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
@@ -96,6 +98,18 @@ public class EditMemberCommand extends Command {
         model.setViewState(ViewState.MEMBER);
         model.setMember(memberToEdit, editedMember);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
+
+        //iterate through all events' rosters to check if they have a reference to the original member
+        // if they do, update it to the new member
+        ObservableList<Event> eventList = model.getClubBook().getEventList();
+        for (Event event: eventList) {
+            if (event.hasMember(memberToEdit)) {
+                event.removeMemberFromRoster(memberToEdit);
+                event.addMember(editedMember);
+            }
+        }
+
+
         return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));
     }
 

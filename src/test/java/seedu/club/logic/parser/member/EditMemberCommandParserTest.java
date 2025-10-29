@@ -39,7 +39,7 @@ import seedu.club.model.name.Name;
 import seedu.club.model.role.MemberRole;
 import seedu.club.testutil.EditMemberDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditMemberCommandParserTest {
 
     private static final String MEMBER_ROLE_EMPTY = " " + PREFIX_ROLE;
 
