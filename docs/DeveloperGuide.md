@@ -801,3 +801,21 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+EASync was developed based on the AddressBook Level 3 (AB3) codebase. While AB3 was designed to manage a single entity 
+type (`Person`), EASync extends the architecture to support two distinct entity types: `Member` and `Event`. 
+2 entity types `Member` and `Event`. This required us to refactor core components (Model, Storage, Logic and UI) to 
+handle multiple entity types consistently. 
+
+### Challenges Faced and Efforts
+
+
+###
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
