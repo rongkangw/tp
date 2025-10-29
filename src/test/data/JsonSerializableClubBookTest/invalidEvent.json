@@ -2,8 +2,8 @@
   "members": [],
   "events": [ {
     "name": "Orientation*",
-    "from": "15/10/2025",
-    "to": "17/10/2025",
+    "from": "151025",
+    "to": "171025",
     "details": "For freshmen",
     "roles": [ {
       "roleName" : "Game Master",
