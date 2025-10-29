@@ -38,16 +38,16 @@ public class DisplayEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         /* Ensure that event list is displaying first*/
-        if (model.getViewState() == ViewState.MEMBER) {
+        if (model.getViewState() != ViewState.EVENT) {
             throw new CommandException(Messages.MESSAGE_NOT_EVENT_STATE);
         }
-        List<Event> fullEventList = model.getFullEventList();
+        List<Event> filteredEventList = model.getFilteredEventList();
 
-        if (targetIndex.getZeroBased() >= fullEventList.size()) {
+        if (targetIndex.getZeroBased() >= filteredEventList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event eventToBeDisplayed = fullEventList.get(targetIndex.getZeroBased());
+        Event eventToBeDisplayed = filteredEventList.get(targetIndex.getZeroBased());
         model.setViewState(ViewState.SINGLE_EVENT);
         model.updateFilteredEventList(e -> e.equals(eventToBeDisplayed));
         model.updateFilteredMemberList(m -> eventToBeDisplayed.getRoster().contains(m));

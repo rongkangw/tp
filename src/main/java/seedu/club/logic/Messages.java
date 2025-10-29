@@ -29,9 +29,9 @@ public class Messages {
     public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
 
     public static final String MESSAGE_NOT_EVENT_STATE =
-            "The current list is not an event list! Switch to event list first using \"listEvents\"";
+            "The current page is not an event list! Switch to event list first using \"listEvents\"";
     public static final String MESSAGE_NOT_MEMBER_STATE =
-            "The current list is not a member list! Switch to member list first using \"listMembers\"";
+            "The current page is not a member list! Switch to member list first using \"listMembers\"";
 
     public static final String MESSAGE_EVENT_NAME_NOT_EXIST = "The event with the name provided does not exist: %1$s";
     public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "The member with the name provided does not exist: %1$s";
