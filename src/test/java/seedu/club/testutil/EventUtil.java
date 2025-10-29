@@ -27,8 +27,8 @@ public class EventUtil {
     public static String getEventDetails(Event event) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + event.getName().fullName + " ");
-        sb.append(PREFIX_FROM + event.getFrom() + " ");
-        sb.append(PREFIX_TO + event.getTo() + " ");
+        sb.append(PREFIX_FROM + event.getFrom().value + " ");
+        sb.append(PREFIX_TO + event.getTo().value + " ");
         sb.append(PREFIX_DETAIL + event.getDetail() + " ");
         event.getRoles().stream().forEach(
             s -> sb.append(PREFIX_ROLE + s.roleName + " ")

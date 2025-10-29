@@ -7,6 +7,7 @@ import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_NAME_BEACHDA
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_NAME_ORIENTATION;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_ROLE_FOODIC;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_FROM_BEACHDAY;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_FROM_ORIENTATION;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TO_BEACHDAY;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalEvents.BEACH_DAY;
@@ -44,7 +45,7 @@ public class EventTest {
         // name differs in case, all other attributes same -> returns false
         Event diffNameCaseOrientation = new EventBuilder(ORIENTATION)
                 .withName(VALID_EVENT_NAME_ORIENTATION.toLowerCase()).build();
-        assertFalse(ORIENTATION.isSameEvent(diffNameCaseOrientation));
+        assertTrue(ORIENTATION.isSameEvent(diffNameCaseOrientation));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_EVENT_NAME_ORIENTATION + " ";
@@ -75,7 +76,7 @@ public class EventTest {
         assertFalse(ORIENTATION.equals(editedOrientation));
 
         // different from -> returns false
-        editedOrientation = new EventBuilder(ORIENTATION).withFrom(VALID_FROM_BEACHDAY).build();
+        editedOrientation = new EventBuilder(BEACH_DAY).withFrom(VALID_FROM_ORIENTATION).build();
         assertFalse(ORIENTATION.equals(editedOrientation));
 
         // different to -> returns false

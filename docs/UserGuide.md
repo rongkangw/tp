@@ -102,11 +102,21 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 * Adds a member to the club book.
 * The new member can be found at the end of the list.
-* * If multiple `ROLE`s are specified, the app sorts them in lexographical order.
+* The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only. A single whitespace is allowed in between the first and last 4 digits.
+* The `EMAIL` must be of the format `local-part@domain`
+* If multiple `ROLE`s are specified, the app displays them in alphabetical order.
+
+<box type="info" seamless>
+
+**Still unclear about `EMAIL` requirements?** <br>
+1. The `local-part` can only consist of letters, digits and the following special characters **(+_.-)**. It **cannot** start or end with a special character.
+2. The `domain` consists of one or more domain labels separated by periods (.). The `domain` must meet the following rules:
+   * It must end with a domain label that is at least 2 characters long
+   * Each domain label may contain letters and/or digits, optionally separated by hyphens (-).
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
-* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/98765432 r/friends`
+* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/9876 5432 r/friends`
 
 #### Deleting a member : `deleteMember`
 
@@ -185,11 +195,12 @@ Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…�
 
 * Adds an event to the club book.
 * The new event can be found at the end of the list.
-* If multiple `EVENTROLE`s are specified, the app sorts them in lexographical order.
+* `DATE_TIME` must be in the following format: `DDMMYY HHMM` (24 hour)
+* If multiple `EVENTROLE`s are specified, the app displays them in alphabetical order.
 
 Examples:
-* `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
-* `addEvent n/Movie Night r/FoodIC f/20/10/2025 1800 t/20/10/2025 2000`
+* `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
+* `addEvent n/Movie Night r/FoodIC f/051025 1800 t/051025 2000`
 
 #### Deleting an event : `deleteEvent`
 
@@ -323,6 +334,7 @@ Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (
 | **List Events**    | `listEvents`                                                                                                    |
 | **Add Event**      | `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…​`                                         |
 | **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                  |
+| **Display Event**  | `event INDEX` <br/> e.g., `event 2`                                                                             |
 | **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                  |
 | **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                |
 | **Clear**          | `clear`                                                                                                         |

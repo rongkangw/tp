@@ -32,8 +32,8 @@ public class CommandTestUtil {
 
     public static final String VALID_MEMBER_NAME_AMY = "Amy Bee";
     public static final String VALID_MEMBER_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_AMY = "91111111";
+    public static final String VALID_PHONE_BOB = "92222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_MEMBER_ROLE_PRESIDENT = "president";
@@ -41,10 +41,10 @@ public class CommandTestUtil {
 
     public static final String VALID_EVENT_NAME_BEACHDAY = "Beach Day";
     public static final String VALID_EVENT_NAME_ORIENTATION = "Orientation";
-    public static final String VALID_FROM_BEACHDAY = "25/10/2025";
-    public static final String VALID_FROM_ORIENTATION = "15/10/2025";
-    public static final String VALID_TO_BEACHDAY = "25/10/2025";
-    public static final String VALID_TO_ORIENTATION = "17/10/2025";
+    public static final String VALID_FROM_BEACHDAY = "251025 0900";
+    public static final String VALID_FROM_ORIENTATION = "151025 1200";
+    public static final String VALID_TO_BEACHDAY = "251025 2000";
+    public static final String VALID_TO_ORIENTATION = "171025 1800";
     public static final String VALID_EVENT_ROLE_FACILITATOR = "facilitator";
     public static final String VALID_EVENT_ROLE_FOODIC = "FoodIC";
 

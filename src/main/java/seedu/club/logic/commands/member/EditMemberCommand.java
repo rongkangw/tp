@@ -6,6 +6,7 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.club.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
+import static seedu.club.model.event.Event.updateMemberInAllEvents;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,7 +15,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.club.commons.core.index.Index;
 import seedu.club.commons.util.CollectionUtil;
 import seedu.club.commons.util.ToStringBuilder;
@@ -24,7 +24,6 @@ import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
 import seedu.club.model.ViewState;
-import seedu.club.model.event.Event;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Member;
 import seedu.club.model.member.Phone;
@@ -93,22 +92,16 @@ public class EditMemberCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
+        // Copy over member's event roles to edited member
+        editedMember.addEventRoles(new HashSet<>(memberToEdit.getEventRoles()));
+
         // The following line is technically not necessary since already guaranteed to be on member list,
         // but is there as a safety measure.
         model.setViewState(ViewState.MEMBER);
         model.setMember(memberToEdit, editedMember);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
 
-        //iterate through all events' rosters to check if they have a reference to the original member
-        // if they do, update it to the new member
-        ObservableList<Event> eventList = model.getClubBook().getEventList();
-        for (Event event: eventList) {
-            if (event.hasMember(memberToEdit)) {
-                event.removeMemberFromRoster(memberToEdit);
-                event.addMember(editedMember);
-            }
-        }
-
+        updateMemberInAllEvents(model.getClubBook().getEventList(), memberToEdit, editedMember);
 
         return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));
     }

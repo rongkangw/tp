@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javafx.collections.ObservableList;
 import seedu.club.commons.exceptions.IllegalValueException;
+import seedu.club.model.event.DateTime;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
@@ -56,8 +57,8 @@ class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
-        from = source.getFrom();
-        to = source.getTo();
+        from = source.getFrom().value;
+        to = source.getTo().value;
         details = source.getDetail();
         roles.addAll(source.getRoles().stream()
                 .map(JsonAdaptedEventRole::new)
@@ -103,12 +104,22 @@ class JsonAdaptedEvent {
         if (from == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
-        final String modelFrom = this.from;
+        final DateTime modelFrom;
+        try {
+            modelFrom = new DateTime(from);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
 
         if (to == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
-        final String modelTo = this.to;
+        final DateTime modelTo;
+        try {
+            modelTo = new DateTime(to);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
 
         if (details == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));

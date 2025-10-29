@@ -204,6 +204,13 @@ public class ModelManager implements Model {
         return -1;
     }
 
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        clubBook.setEvent(target, editedEvent);
+    }
+
 
     //=========== Full Event List Accessors =============================================================
 
