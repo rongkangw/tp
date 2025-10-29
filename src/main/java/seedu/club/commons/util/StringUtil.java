@@ -67,14 +67,14 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if {@code s} has length less than or equal {@code length}
-     * {@code s} will have leading and trailing whitespaces trimmed before comparing length.
-     * <br>examples:<pre>
-     *      *       hasLessThanOrEqualLength("hello world", 10) == true
-     *      *       hasLessThanOrEqualLength("hello", 3) == true
-     *      *       hasLessThanOrEqualLength("hello  ", 6) == false
-     *      *       hasLessThanOrEqualLength("hello", 6) == false
-     *      *       </pre>
+     * Returns true if {@code s} has length less than or equal {@code length}.
+     *    Leading and trailing whitespaces trimmed before comparing length.
+     *    <br>examples:<pre>
+     *       hasLessThanOrEqualLength("hello world", 5) == false
+     *       hasLessThanOrEqualLength("hi", 5) == true
+     *       hasLessThanOrEqualLength("hello", 5) == true
+     *       hasLessThanOrEqualLength("  hello  ", 5) == true
+     *       </pre>
      * @param s cannot be null
      * @param length cannot be null
      */
