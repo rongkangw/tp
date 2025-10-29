@@ -102,11 +102,21 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 * Adds a member to the club book.
 * The new member can be found at the end of the list.
-* * If multiple `ROLE`s are specified, the app sorts them in lexographical order.
+* The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only. A single whitespace is allowed in between the first and last 4 digits.
+* The `EMAIL` must be of the format `local-part@domain`
+* If multiple `ROLE`s are specified, the app displays them in alphabetical order.
+
+<box type="info" seamless>
+
+**Still unclear about `EMAIL` requirements?** <br>
+1. The `local-part` can only consist of letters, digits and the following special characters **(+_.-)**. It **cannot** start or end with a special character.
+2. The `domain` consists of one or more domain labels separated by periods (.). The `domain` must meet the following rules:
+   * It must end with a domain label that is at least 2 characters long
+   * Each domain label may contain letters and/or digits, optionally separated by hyphens (-).
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
-* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/98765432 r/friends`
+* `addMember n/Benson Meier r/owesMoney e/benson@example.com p/9876 5432 r/friends`
 
 #### Deleting a member : `deleteMember`
 
@@ -185,7 +195,7 @@ Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…�
 
 * Adds an event to the club book.
 * The new event can be found at the end of the list.
-* If multiple `EVENTROLE`s are specified, the app sorts them in lexographical order.
+* If multiple `EVENTROLE`s are specified, the app displays them in alphabetical order.
 
 Examples:
 * `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`

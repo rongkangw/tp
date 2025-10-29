@@ -30,13 +30,13 @@ public class TypicalEventsWithEventRoles {
             .withRoles("participant", "facilitator").build();
     public static final Member JOHN = new MemberBuilder()
             .withName("John")
-            .withPhone("9482449")
+            .withPhone("94824491")
             .withEmail("John@example.com")
             .withEventRoles(ORIENTATION.getRoles())
             .build();
     public static final Member JANE = new MemberBuilder()
             .withName("Jane")
-            .withPhone("9483449")
+            .withPhone("94834491")
             .withEmail("Jane@example.com")
             .withEventRoles(MOVIE_NIGHT.getRoles())
             .build();
