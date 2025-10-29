@@ -6,7 +6,7 @@
 
 # EASync User Guide
 
-EASync is a desktop app designed to help student club managers stay organized with ease. Whether you are coordinating events, tracking member roles, or updating contact lists, EASync makes it easy to manage everything from one place.
+EASync is a desktop app designed to help student club managers stay organized with ease. Whether you are coordinating events, tracking member roles, or updating contact lists, EASync makes it easy to manage everything from one club book.
 
 You do not need to be a programmer or technical expert. Using EASync is like sending a text: simple, fast, and intuitive. It’s designed to be visual and beginner-friendly, so you can focus on running your club, not figuring out complicated software or clicking through menus.
 
@@ -30,14 +30,14 @@ You do not need to be a programmer or technical expert. Using EASync is like sen
 3. **Choose a Folder for EASync** <br>
    * Create or pick a folder where you’d like to keep your EASync files. 
    * Then, move the `EASync.jar` file you just downloaded into that folder. <br>
-   📁 Example: You could create a folder on your Desktop called `ClubBook`.
+   📁 Example: You could create a folder on your Desktop called `EASync`.
 
-4. **Run the app** <br>
+4. **Run EASync** <br>
    Open a command terminal, navigate into the folder you put the jar file in, and use the `java -jar EASync.jar` command to run the application. <br>
-    Tip: You can navigate between folders using the `cd path/to/your/folder` command in the terminal. For example, `cd C:/Users/<your username>/Desktop/ClubBook`.
+    Tip: You can navigate between folders using the `cd path/to/your/folder` command in the terminal. For example, `cd C:/Users/<your username>/Desktop/EASync`.
    After a few seconds, EASync will open, and you should see a window like this:<br>
    ![Ui](images/Ui.png)
-   ✨ The app starts with some sample data so you can explore its features right away!
+   ✨ EASync starts with some sample data so you can explore its features right away!
 
 5. **Try out some commands** <br>
    You can control EASync by typing into the `Enter command here...` command box and pressing *Enter*. <br>
@@ -45,19 +45,19 @@ You do not need to be a programmer or technical expert. Using EASync is like sen
 
    💡 Commands for getting started:
 
-   * `listEvents` : Shows all the events currently in your Club Book.
+   * `listEvents` : Shows all the events currently in your club book.
 
-   * `addMember n/John Doe p/98765432 e/johnd@example.com` : Adds a member named `John Doe` to the Club Book. <br> Notice that the Club Book switches to display the member list.
+   * `addMember n/John Doe p/98765432 e/johnd@example.com` : Adds a member named `John Doe` to the club book. <br> Notice that EASync switches to display the member list.
 
    * `deleteMember 3` : Deletes the 3rd member shown in the current list.
 
-   * `addEvent n/Team Bonding f/15/10/2025 t/16/10/2025` : Adds an event named `Team Bonding` to the Club Book. <br> Notice that the Club Book switches to display the event list.
+   * `addEvent n/Team Bonding f/15/10/2025 t/16/10/2025` : Adds an event named `Team Bonding` to the club book. <br> Notice that EASync switches to display the event list.
 
-   * `assignEvent e/Team Bonding m/John Doe r/Logistics` : Assigns `John Doe` to handle `Logistics` in the `Team Bonding` event. <br> Notice that the Club Book switches to display the details of the single event Team Bonding.
+   * `assignEvent e/Team Bonding m/John Doe r/Logistics` : Assigns `John Doe` to handle `Logistics` in the `Team Bonding` event. <br> Notice that EASync switches to display the details of the single event Team Bonding.
 
-   * `clear` : Delete all members and events from the ClubBook to create your own. Note that this is irreversible!
+   * `clear` : Delete all members and events from the club book to create your own. Note that this is irreversible!
 
-   * `exit` : Exits the app.
+   * `exit` : Closes the window and exits the program.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -129,6 +129,8 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 2. The `domain` consists of one or more domain labels separated by periods (.). The `domain` must meet the following rules:
    * It must end with a domain label that is at least 2 characters long
    * Each domain label may contain letters and/or digits, optionally separated by hyphens (-).
+
+</box>
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
@@ -211,8 +213,9 @@ Format: `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​
 
 * Adds an event to the club book.
 * The new event can be found at the end of the list.
+* `f/` (from) represents the start date time and `t/` (to) the end date time of the event.
 * `DATE_TIME` must be in the following format: `DDMMYY HHMM` (24 hour)
-* If multiple `EVENTROLE`s are specified, the app displays them in alphabetical order.
+* If multiple `EVENTROLE`s are specified, EASync displays them in alphabetical order.
 
 Examples:
 * `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
@@ -321,7 +324,7 @@ Format: `exit`
 
 ### Saving the data
 
-ClubBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EASync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -332,8 +335,8 @@ Advanced users are welcome to update data directly by editing that data file.
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, ClubBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the ClubBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, EASync will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause EASync to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
