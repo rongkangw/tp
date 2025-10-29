@@ -62,8 +62,9 @@ public class Event extends NamedEntity {
 
         // assign each eventRole to this event
         for (EventRole role : this.roles) {
-            role.setAssignedTo(name);
-
+            if (role.getAssignedTo() == null) {
+                role.setAssignedTo(name);
+            }
         }
     }
 
