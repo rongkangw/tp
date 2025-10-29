@@ -123,6 +123,7 @@ public class Member extends NamedEntity {
         }
 
         Member otherMember = (Member) other;
+        // does not include eventRoles as it is mutable
         return name.equals(otherMember.name)
                 && phone.equals(otherMember.phone)
                 && email.equals(otherMember.email)

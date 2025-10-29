@@ -102,6 +102,7 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
 * Adds a member to the club book.
 * The new member can be found at the end of the list.
+* * If multiple `ROLE`s are specified, the app sorts them in lexographical order.
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
@@ -184,6 +185,7 @@ Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…�
 
 * Adds an event to the club book.
 * The new event can be found at the end of the list.
+* If multiple `EVENTROLE`s are specified, the app sorts them in lexographical order.
 
 Examples:
 * `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`

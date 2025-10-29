@@ -17,18 +17,15 @@ import seedu.club.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private ClubBookStorage membersStorage;
-    private UserPrefsStorage userPrefsStorage;
-    private EventStorage eventStorage;
+    private final ClubBookStorage clubBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code ClubBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ClubBookStorage membersStorage, UserPrefsStorage userPrefsStorage,
-                          EventStorage eventStorage) {
-        this.membersStorage = membersStorage;
+    public StorageManager(ClubBookStorage clubBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.clubBookStorage = clubBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.eventStorage = eventStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -48,62 +45,31 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ Members methods ==============================
-
+    // ================ ClubBook methods ==============================
     @Override
-    public Path getMemberFilePath() {
-        return membersStorage.getMemberFilePath();
+    public Path getClubBookFilePath() {
+        return clubBookStorage.getClubBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyClubBook> readMembers() throws DataLoadingException {
-        return readMembers(membersStorage.getMemberFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyClubBook> readMembers(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyClubBook> readClubBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return membersStorage.readMembers(filePath);
+        return clubBookStorage.readClubBook(filePath);
     }
 
     @Override
-    public void saveMembers(ReadOnlyClubBook clubBook) throws IOException {
-        saveMembers(clubBook, membersStorage.getMemberFilePath());
+    public Optional<ReadOnlyClubBook> readClubBook() throws DataLoadingException {
+        return readClubBook(clubBookStorage.getClubBookFilePath());
     }
 
     @Override
-    public void saveMembers(ReadOnlyClubBook clubBook, Path filePath) throws IOException {
+    public void saveClubBook(ReadOnlyClubBook clubBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        membersStorage.saveMembers(clubBook, filePath);
-    }
-
-    // ================ Event methods ==============================
-
-    @Override
-    public Path getEventFilePath() {
-        return eventStorage.getEventFilePath();
+        clubBookStorage.saveClubBook(clubBook, filePath);
     }
 
     @Override
-    public Optional<ReadOnlyClubBook> readEvents() throws DataLoadingException {
-        return readEvents(eventStorage.getEventFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyClubBook> readEvents(Path filePath) throws DataLoadingException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return eventStorage.readEvents(filePath);
-    }
-
-    @Override
-    public void saveEvents(ReadOnlyClubBook clubBook) throws IOException {
-        saveEvents(clubBook, eventStorage.getEventFilePath());
-    }
-
-    @Override
-    public void saveEvents(ReadOnlyClubBook clubBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        eventStorage.saveEvents(clubBook, filePath);
+    public void saveClubBook(ReadOnlyClubBook clubBook) throws IOException {
+        saveClubBook(clubBook, clubBookStorage.getClubBookFilePath());
     }
 }

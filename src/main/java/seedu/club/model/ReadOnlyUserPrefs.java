@@ -11,8 +11,6 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    Path getMemberStorageFilePath();
-
-    Path getEventStorageFilePath();
+    Path getClubBookStorageFilePath();
 
 }
