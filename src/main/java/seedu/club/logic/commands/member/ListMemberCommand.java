@@ -16,6 +16,7 @@ public class ListMemberCommand extends Command {
     public static final String COMMAND_WORD = "listMembers";
 
     public static final String MESSAGE_SUCCESS = "Listed all members";
+    public static final String MESSAGE_EMPTY_LIST = "There are currently no members in the club";
 
 
     @Override
@@ -23,6 +24,11 @@ public class ListMemberCommand extends Command {
         requireNonNull(model);
         model.setViewState(ViewState.MEMBER);
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        if (!model.getFilteredMemberList().isEmpty()) {
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            return new CommandResult(MESSAGE_EMPTY_LIST);
+        }
     }
 }

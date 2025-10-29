@@ -1,5 +1,6 @@
 package seedu.club.logic.commands.event;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
@@ -11,6 +12,7 @@ import seedu.club.logic.commands.CommandTestUtil;
 import seedu.club.model.Model;
 import seedu.club.model.ModelManager;
 import seedu.club.model.UserPrefs;
+import seedu.club.testutil.ClubBookBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ListMemberCommand}.
@@ -37,5 +39,13 @@ public class ListEventCommandTest {
         showEventAtIndex(model, INDEX_FIRST_MEMBER);
         CommandTestUtil.assertCommandSuccess(
                 new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyClubBook_showsEmptyListMessage() {
+        model = new ModelManager(new ClubBookBuilder().build(), new UserPrefs());
+        expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
+        CommandTestUtil.assertCommandSuccess(
+                new ListEventCommand(), model, ListEventCommand.MESSAGE_EMPTY_LIST, expectedModel);
     }
 }
