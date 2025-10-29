@@ -113,6 +113,7 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 2. The `domain` consists of one or more domain labels separated by periods (.). The `domain` must meet the following rules:
    * It must end with a domain label that is at least 2 characters long
    * Each domain label may contain letters and/or digits, optionally separated by hyphens (-).
+</box>
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
