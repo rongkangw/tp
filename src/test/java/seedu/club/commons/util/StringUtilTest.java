@@ -140,4 +140,41 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    //---------------- Tests for hasLessThanOrEqualLength--------------------------------------
+
+    @Test
+    public void hasLessThanOrEqualLength_invalidInputs_throwsException() {
+        // Null string
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.hasLessThanOrEqualLength(null, 5));
+    }
+
+    @Test
+    public void hasLessThanOrEqualLength_validInputs_correctResult() {
+
+        // Empty string
+        assertTrue(StringUtil.hasLessThanOrEqualLength("", 0)); // equal to length
+        assertTrue(StringUtil.hasLessThanOrEqualLength("", 5)); // less than length
+        assertFalse(StringUtil.hasLessThanOrEqualLength("", -1)); // negative length
+
+        // String shorter than length
+        assertTrue(StringUtil.hasLessThanOrEqualLength("abc", 5));
+
+        // String equal to length
+        assertTrue(StringUtil.hasLessThanOrEqualLength("hello", 5));
+
+        // String longer than length
+        assertFalse(StringUtil.hasLessThanOrEqualLength("hello world", 5));
+
+        // String with extra spaces
+        assertTrue(StringUtil.hasLessThanOrEqualLength("  hi  ", 2)); // trims to "hi"
+        assertFalse(StringUtil.hasLessThanOrEqualLength("  hello  ", 4)); // trims to "hello"
+
+        // String with only spaces
+        assertTrue(StringUtil.hasLessThanOrEqualLength("     ", 0));
+
+        // Boundary cases
+        assertTrue(StringUtil.hasLessThanOrEqualLength("a", 1)); // equal
+        assertFalse(StringUtil.hasLessThanOrEqualLength("ab", 1)); // longer
+    }
 }

@@ -59,7 +59,7 @@ public class UnassignEventRoleCommandTest {
         Set<EventRole> roles = Set.of(new EventRole("Publicity"));
         UnassignEventRoleCommand unassignEventCommand = new UnassignEventRoleCommand(eventName, memberName, roles);
         assertCommandFailure(unassignEventCommand, model,
-                String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, roles.toString()));
+                String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, eventName, roles));
     }
 
     @Test
