@@ -104,16 +104,15 @@ Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 * The new member can be found at the end of the list.
 * The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only. A single whitespace is allowed in between the first and last 4 digits.
 * The `EMAIL` must be of the format `local-part@domain`
-* If multiple `ROLE`s are specified, the app sorts them in lexographical order.
+* If multiple `ROLE`s are specified, the app displays them in lexographical order.
 
 <box type="info" seamless>
 
 **Still unclear about `EMAIL` requirements?** <br>
-1. `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, **(+_.-)**. `local-part` **may not** start or end with any special characters.
-2. `domain` can be made up of several domain labels separated by periods. `domain` must
-   * end with a domain label that has at least 2 characters long
-   * have each domain label start and end with alphanumeric characters
-   * have each domain label consist of alphanumeric characters, separated only by hyphens, if any
+1. The `local-part` can only consist of letters, digits and the following special characters **(+_.-)**. It **cannot** start or end with a special character.
+2. The `domain` consists of one or more domain labels separated by periods (.). The `domain` must meet the following rules:
+   * It must end with a domain label that is at least 2 characters long
+   * Each domain label may contain alphanumeric characters, optionally separated by hyphens (-).
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
@@ -196,7 +195,7 @@ Format: `addEvent n/NAME f/DATE_TIME [t/DATE_TIME] [d/DETAILS] [r/EVENTROLE]…�
 
 * Adds an event to the club book.
 * The new event can be found at the end of the list.
-* If multiple `EVENTROLE`s are specified, the app sorts them in lexographical order.
+* If multiple `EVENTROLE`s are specified, the app displays them in lexographical order.
 
 Examples:
 * `addEvent n/Orientation f/15/10/2025 d/For freshmen r/facilitator r/gamemaster`
