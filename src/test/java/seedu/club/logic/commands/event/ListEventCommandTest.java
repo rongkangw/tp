@@ -1,6 +1,5 @@
 package seedu.club.logic.commands.event;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
