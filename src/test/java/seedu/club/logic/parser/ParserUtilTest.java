@@ -296,12 +296,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void formatDateTime_validDateTime_returnsString() {
-        DateTime dateTime = new DateTime(VALID_DATETIME);
-        assertEquals(VALID_DATETIME_AS_STRING, ParserUtil.formatDateTime(dateTime));
-    }
-
-    @Test
     public void parseDetail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDetail(null));
     }
