@@ -181,7 +181,7 @@ public class ParserUtil {
     public static String parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = normalizeAndTrimWhitespace(detail);
-        if (!hasLessThanOrEqualLength(detail, 500)) {
+        if (!hasLessThanOrEqualLength(trimmedDetail, 500)) {
             throw new ParseException("Detail should be 500 characters or less");
         }
         return trimmedDetail;
