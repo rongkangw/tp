@@ -56,7 +56,7 @@ public class UnassignEventRoleCommandTest {
     public void execute_eventRoleDoesNotExist_throwsCommandException() {
         Name memberName = new Name("John");
         Name eventName = new Name("Orientation");
-        Set<EventRole> roles = Set.of(new EventRole("Publicity"));
+        Set<EventRole> roles = Set.of(new EventRole("Publicity", eventName));
         UnassignEventRoleCommand unassignEventCommand = new UnassignEventRoleCommand(eventName, memberName, roles);
         assertCommandFailure(unassignEventCommand, model,
                 String.format(MESSAGE_EVENTROLE_NAME_NOT_EXIST, eventName, roles));
@@ -66,8 +66,8 @@ public class UnassignEventRoleCommandTest {
     public void equals_sameNameEventAndRoles_success() {
         Name memberName = new Name("Jane");
         Name eventName = new Name("Orientation");
-        Set<EventRole> eventRoles = Set.of(new EventRole("Facilitator"),
-                new EventRole("SafetyOfficer"));
+        Set<EventRole> eventRoles = Set.of(new EventRole("Facilitator", eventName),
+                new EventRole("SafetyOfficer", eventName));
         UnassignEventRoleCommand unassignEventRoleCommandOne = new UnassignEventRoleCommand(eventName, memberName,
                 eventRoles);
         UnassignEventRoleCommand unassignEventRoleCommandTwo = new UnassignEventRoleCommand(eventName, memberName,
@@ -88,9 +88,6 @@ public class UnassignEventRoleCommandTest {
 
         UnassignEventRoleCommand unassignEventRoleCommand = new UnassignEventRoleCommand(eventName, memberName,
                 Set.of(roleToDelete));
-        boolean bool = model
-                .getFilteredMemberList()
-                .get(INDEX_FIRST_MEMBER.getZeroBased()).getEventRoles().containsAll(Set.of(roleToDelete));
         ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
         String result = unassignEventRoleCommand.execute(model).getFeedbackToUser();
         expectedModel.getClubBook().getMemberList()

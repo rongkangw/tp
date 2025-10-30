@@ -42,8 +42,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_FROM, PREFIX_TO, PREFIX_DETAIL);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        DateTime from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
-        DateTime to = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get());
+        DateTime from = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_FROM).get());
+        DateTime to = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_TO).get());
         if (!from.isBefore(to)) {
             throw new ParseException(String.format(MESSAGE_END_BEFORE_START_DATE));
         }
@@ -52,7 +52,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
                         ? ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).get())
                         : "";
         Set<EventRole> eventRoleList = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
-                            ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE))
+                            ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE), name)
                             : Collections.emptySet();
 
         Event event = new Event(name, from, to, detail, eventRoleList);

@@ -14,12 +14,13 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
-     *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
-     *       </pre>
+     * Ignores case, but a full word match is required.
+     * <br>examples:<pre>
+     *     containsWordIgnoreCase("ABc def", "abc") == true
+     *     containsWordIgnoreCase("ABc def", "DEF") == true
+     *     containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *     </pre>
+     *
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
@@ -68,7 +69,7 @@ public class StringUtil {
 
     /**
      * Returns true if {@code s} has length less than or equal {@code length}.
-     *    Leading and trailing whitespaces trimmed before comparing length.
+     *    Leading and trailing whitespaces are removed before comparing length.
      *    <br>examples:<pre>
      *       hasLessThanOrEqualLength("hello world", 5) == false
      *       hasLessThanOrEqualLength("hi", 5) == true
@@ -82,5 +83,23 @@ public class StringUtil {
         requireNonNull(s);
 
         return s.trim().length() <= length;
+    }
+
+    /**
+     * Returns a copy of {@code s} with all consecutive whitespace characters replaced by a single space.
+     * Leading and trailing whitespaces are removed.
+     * <br>examples:<pre>
+     *     normalizeAndTrimWhitespace("hello    world") == "hello world"
+     *     normalizeAndTrimWhitespace("   hello   world   ") == "hello world"
+     *     normalizeAndTrimWhitespace("   ") == ""
+     *     normalizeAndTrimWhitespace("   x   ") == "x"
+     * </pre>
+     * @param s cannot be null
+     * @return A normalized string with single spaces between words and no leading or trailing spaces
+     */
+    public static String normalizeAndTrimWhitespace(String s) {
+        requireNonNull(s);
+
+        return s.replaceAll(" +", " ").trim();
     }
 }

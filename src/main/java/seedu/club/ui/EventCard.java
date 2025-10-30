@@ -53,8 +53,8 @@ public class EventCard extends UiPart<Region> {
             id.setText("");
         }
         name.setText(event.getName().fullName);
-        from.setText("From: " + ParserUtil.formatDate(event.getFrom()));
-        to.setText("To: " + ParserUtil.formatDate(event.getTo()));
+        from.setText("From: " + ParserUtil.formatDateTime(event.getFrom()));
+        to.setText("To: " + ParserUtil.formatDateTime(event.getTo()));
         details.setText("Details: " + event.getDetail());
         event.getRoles().stream()
                 .sorted(Comparator.comparing(eventRole -> eventRole.roleName))

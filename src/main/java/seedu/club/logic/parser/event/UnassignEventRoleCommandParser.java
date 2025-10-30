@@ -38,7 +38,7 @@ public class UnassignEventRoleCommandParser implements Parser<UnassignEventRoleC
         try {
             Name event = ParserUtil.parseName(argMultimap.getValue(PREFIX_EVENT).get());
             Name member = ParserUtil.parseName(argMultimap.getValue(PREFIX_MEMBER).get());
-            Set<EventRole> roles = ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE));
+            Set<EventRole> roles = ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE), event);
 
             return new UnassignEventRoleCommand(event, member, roles);
         } catch (ParseException pe) {

@@ -81,9 +81,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(event.getName())
                 .append("; From: ")
-                .append(ParserUtil.formatDate(event.getFrom()))
+                .append(ParserUtil.formatDateTime(event.getFrom()))
                 .append("; To: ")
-                .append(ParserUtil.formatDate(event.getTo()));
+                .append(ParserUtil.formatDateTime(event.getTo()));
 
         String detail = event.getDetail();
         if (detail != null && !detail.isEmpty()) {
@@ -102,6 +102,26 @@ public class Messages {
         if (roster != null && !roster.isEmpty()) {
             builder.append("; Members Assigned: ");
             String result = roster.stream().map(x -> x.getName().toString())
+                    .collect(joining(", "));
+            builder.append(result);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Formats the assigning of a {@code Member} to an {@code EventRole} in the {@code Event}
+     */
+    public static String formatAssignRole(Member member, Event event, Set<EventRole> roles) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Assigned ")
+                .append(member.getName())
+                .append(" to ")
+                .append(event.getName());
+
+        if (roles != null && !roles.isEmpty()) {
+            builder.append(" with event role(s): ");
+            String result = roles.stream().map(r -> r.roleName).sorted()
                     .collect(joining(", "));
             builder.append(result);
         }

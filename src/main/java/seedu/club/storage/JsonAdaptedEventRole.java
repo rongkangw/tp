@@ -42,8 +42,7 @@ class JsonAdaptedEventRole {
         if (!EventRole.isValidRoleName(roleName)) {
             throw new IllegalValueException(EventRole.MESSAGE_CONSTRAINTS);
         }
-        EventRole eventRole = new EventRole(roleName);
-        eventRole.setAssignedTo(new Name(eventName));
+        EventRole eventRole = new EventRole(roleName, new Name(eventName));
         return eventRole;
     }
 }
