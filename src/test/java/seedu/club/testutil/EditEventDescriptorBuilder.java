@@ -6,7 +6,7 @@ import seedu.club.model.event.Event;
 import seedu.club.model.name.Name;
 
 /**
- * A utility class to help with building EditMemberDescriptor objects.
+ * A utility class to help with building EditEventDescriptor objects.
  */
 public class EditEventDescriptorBuilder {
 
@@ -21,7 +21,7 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditMemberDescriptor} with fields containing {@code member}'s details
+     * Returns an {@code EditEventDescriptor} with fields containing {@code event}'s details
      */
     public EditEventDescriptorBuilder(Event event) {
         descriptor = new EditEventCommand.EditEventDescriptor();
@@ -32,7 +32,7 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditMemberDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -56,7 +56,7 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code roles} into a {@code Set<MemberRole>} and set it to the {@code EditMemberDescriptor}
+     * Parses the {@code details} and sets it to the {@code EditEventDescriptor}
      * that we are building.
      */
     public EditEventDescriptorBuilder withDetail(String details) {
