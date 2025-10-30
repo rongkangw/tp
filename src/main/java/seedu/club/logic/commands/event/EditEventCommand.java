@@ -120,7 +120,8 @@ public class EditEventCommand extends Command {
      * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) throws ParseException {
+    private static Event createEditedEvent(
+            Event eventToEdit, EditEventDescriptor editEventDescriptor) throws ParseException {
         assert eventToEdit != null;
 
 
