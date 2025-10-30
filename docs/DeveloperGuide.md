@@ -158,98 +158,20 @@ Classes used by multiple components are in the `seedu.club.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Display event feature
 
-#### Proposed Implementation
+### Implementation 
 
-The proposed undo/redo mechanism is facilitated by `VersionedClubBook`. It extends `ClubBook` with an undo/redo history, stored internally as an `clubBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The implementation of the event command follows the standard command parsing workflow. When the user enters `event <INDEX>`,
+`ClubBookParser` will parse the input string into an executable command. `ClubBookParser` will 
+first create `DisplayEventCommandParser` to parse the input string. If an error is encountered during parsing, `ClubBookParser`
+will throw a `ParseException`. Otherwise, `DisplayEventCommandParser` will obtain the index from 
+the user's input and create a new instance of `DisplayEventCommand`. `DisplayEventCommand` includes a `targetIndex` 
+which is the zero based index of the event to be displayed in the filtered event list. 
 
-* `VersionedClubBook#commit()` — Saves the current club book state in its history.
-* `VersionedClubBook#undo()` — Restores the previous club book state from its history.
-* `VersionedClubBook#redo()` — Restores a previously undone club book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitClubBook()`, `Model#undoClubBook()` and `Model#redoClubBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedClubBook` will be initialized with the initial club book state, and the `currentStatePointer` pointing to that single club book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th member in the club book. The `delete` command calls `Model#commitClubBook()`, causing the modified state of the club book after the `delete 5` command executes to be saved in the `clubBookStateList`, and the `currentStatePointer` is shifted to the newly inserted club book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new member. The `add` command also calls `Model#commitClubBook()`, causing another modified club book state to be saved into the `clubBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitClubBook()`, so the club book state will not be saved into the `clubBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the member was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoClubBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous club book state, and restores the club book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial ClubBook state, then there are no previous ClubBook states to restore. The `undo` command uses `Model#canUndoClubBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoClubBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the club book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `clubBookStateList.size() - 1`, pointing to the latest club book state, then there are no undone ClubBook states to restore. The `redo` command uses `Model#canRedoClubBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the club book, such as `list`, will usually not call `Model#commitClubBook()`, `Model#undoClubBook()` or `Model#redoClubBook()`. Thus, the `clubBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitClubBook()`. Since the `currentStatePointer` is not pointing at the end of the `clubBookStateList`, all club book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire club book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the member being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+Executing `DisplayEventCommand` will update the model's view state to be `SINGLE_EVENT`, filter the event list to only
+include the selected event and filter the member list to only include the event's member roster. 
+The two lists are then shown.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -284,49 +206,49 @@ EASync provides a student club manager with a centralised system to efficiently 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                |
-|----------|-------------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                              |
-| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                 |
-| `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                      |
-| `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                           |
-| `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                           |
-| `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
-| `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                     |
-| `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews              |
-| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                             |
-| `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
-| `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
-| `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
-| `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
-| `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                       |
-| `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                  |
-| `* *`    | club manager                  | edit members' memberal details                                                     | update them when information changes                           |
-| `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                  |
-| `* *`    | club manager                  | validate contact fields (e.g., missing email, malformed tags)                      | catch errors before they affect workflows                      |
-| `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                              |
-| `* *`    | club manager                  | check the attendance of the club’s members                                         | keep track of their overall club participation                 |
-| `* *`    | club manager                  | bulk edit members details (eg. membership status)                                  | update records efficiently                                     |
-| `* *`    | club manager                  | archive members who are no longer active                                           | keep my workspace focused on current contributors.             |
-| `* *`    | club manager                  | view current role distribution across events                                       | identify over- or under-utilized members                       |
-| `* *`    | club manager                  | attach notes to a member profile                                                   | remember preferences, strengths, or past issues                |
-| `* *`    | club manager                  | be informed of duplicate events or members when adding new ones                    | keep member/event lists clean                                  |
-| `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                      |
-| `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                        |
-| `* *`    | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app           |
-| `* * *`  | club manager                  | add a new member’s memberal details such as name, phone number, and email address  | keep track of member information                               |
-| `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                  |
-| `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                          |
-| `* * *`  | club manager                  | tag members with appointed roles                                                   | identify and keep track of key appointment holders             |
-| `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                      |
-| `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed        |
-| `* * *`  | club manager                  | backup my club book                                                             | avoid losing data when I leave the app                         |
+| Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                 |
+|----------|-------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                               |
+| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                  |
+| `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                       |
+| `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                            |
+| `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                            |
+| `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups              |
+| `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                      |
+| `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews               |
+| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                              |
+| `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                       |
+| `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping             |
+| `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address  |
+| `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                               |
+| `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                        |
+| `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                   |
+| `* *`    | club manager                  | edit members' memberal details                                                     | update them when information changes                            |
+| `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                   |
+| `* *`    | club manager                  | validate contact fields (e.g., missing email, malformed tags)                      | catch errors before they affect workflows                       |
+| `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                               |
+| `* *`    | club manager                  | check the attendance of the club’s members                                         | keep track of their overall club participation                  |
+| `* *`    | club manager                  | bulk edit members details (eg. membership status)                                  | update records efficiently                                      |
+| `* *`    | club manager                  | archive members who are no longer active                                           | keep my workspace focused on current contributors.              |
+| `* *`    | club manager                  | view current role distribution across events                                       | identify over- or under-utilized members                        |
+| `* *`    | club manager                  | attach notes to a member profile                                                   | remember preferences, strengths, or past issues                 |
+| `* *`    | club manager                  | be informed of duplicate events or members when adding new ones                    | keep member/event lists clean                                   |
+| `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                       |
+| `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                         |
+| `* *`    | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app            |
+| `* * *`  | club manager                  | add a new member’s memberal details such as name, phone number, and email address  | keep track of member information                                |
+| `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                   |
+| `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                           |
+| `* * *`  | club manager                  | tag members with appointed roles                                                   | identify and keep track of key appointment holders              |
+| `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                       |
+| `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed         |
+| `* * *`  | club manager                  | backup my club book                                                             | avoid losing data when I leave the app                          |
 
 ### Use cases
 
 (For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01: Add a new Event**
+**UC01: Adding a new Event**
 
 **Preconditions**
 * App is open
@@ -416,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends
 
-**UC04: Tag Member with Event Role**
+**UC04: Tagging Member with Event Role**
 
 **Preconditions**
 
@@ -453,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends
 
-**UC05: Tag Member with Club Role**
+**UC05: Tagging Member with Club Role**
 
 **Preconditions**
 
@@ -487,17 +409,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Preconditions**
 * Member to be removed must exist in the list of members
+* User has to be on the member list.
 
 **Guarantees**
 * Member will be removed from the list of members
 * Updated member list will be displayed
 
 **MSS**
-1.  User requests to list members
-2.  System shows a list of members
-3.  User requests to remove a member
-4.  System deletes the member
-5.  System displays success message and member list without the removed member
+1. User requests to remove a member
+2. System deletes the member
+3. System displays success message and member list without the removed member
 
     Use case ends
 
@@ -518,6 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Preconditions**
 
 * The event to be removed to must exist in the list of events
+* User has to be on the event list.
 
 **Guarantees**
 
@@ -548,6 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Preconditions**
 
 * The event must exist
+* User has to be on the event list.
 
 **Guarantees**
 
@@ -766,37 +689,95 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file 
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+### Adding a member and an event
+1. Adding a member to the member list
+
+    1. Prerequisites: A member with the same name should not exist in the member list.
+   
+    2. Test case: `addMember n/John Doe p/98765432 e/johnd@example.com`<br>
+       Expected: Member is added to the member list. Details of the added member are shown in the status message. 
+                 Member list is shown.
+
+2. Adding a member with a member role to the member list
+
+    1. Prerequisites: A member with the same name should not exist in the member list.
+    
+    2. Test case: `addMember n/Jane Doe p/98765432 e/janed@example.com r/President`<br>
+       Expected: Member is added to the member list. Details of the added member are shown in the status message. Member list is shown.
+       
+3. Adding a duplicate member to the member list
+
+    1. Prerequisites: A member with the same name should exist in the member list.
+    
+    2. Test case: `addMember n/Jane Doe p/98766432 e/janed@example.com r/President`<br>
+       Expected: Member is not added to the member list. Error details shown in the status message. 
+
+4. Adding an event to the event list
+    
+    1. Prerequisites: An event with the same name should not exist in the event list. 
+   
+    2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
+       Expected: Event is added to the event list. Details of the added event are shown in the status message. Event list is shown.
+    
+5. Adding an event with an event role to the event list
+   
+    1. Prerequisites: An event with the same name should not exist in the event list.
+
+    2. Test case: `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/gamemaster`<br>
+       Expected: Event is added to the event list. Details of the added event are shown in the status message. Event list is shown.
+
+6. Adding a duplicate event to the event list
+    
+    1. Prerequisites: An event with the same name should exist in the event list.
+    
+    2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500` <br>
+       Expected: Event is not added to the event list. Error details shown in the status message.
+
+### Listing members and events
+
+### Displaying an event
+
+1. Displaying an event with its member roster
+
+    1. Prerequisites: List all events using the `listEvents` command. Multiple events in the list.
+
+    2. Test case: `event 1` <br>
+       Expected: First event and event's member roster is shown. Success message is shown in the status message.
+
+    3. Test case: `event -1` <br>
+       Expected: No event is displayed. Error details shown in the status message.
+
+    4. Other incorrect event commands to try: `event`, `event x`, `...` (where x is larger than the list size) <br>
+
 
 ### Deleting a member
 
 1. Deleting a member while all members are being shown
 
-   1. Prerequisites: List all members using the `list` command. Multiple members in the list.
+   1. Prerequisites: List all members using the `listMembers` command. Multiple members in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `deleteMember 1`<br>
+      Expected: First member is deleted from the member list. Details of the deleted member shown in the status message. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No member is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `deleteMember 0`<br>
+      Expected: No member is deleted. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. Displaying an event
-
-    1. 
-
-3. _{ more test cases …​ }_
+4. _{ more test cases …​ }_
 
 ### Saving data
 
