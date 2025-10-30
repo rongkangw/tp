@@ -93,38 +93,28 @@ public class Member extends NamedEntity {
         eventRoles.addAll(roles);
     }
 
-
-    /**
-     * Removes an event role from the member's roles given its name
-     */
-    private void removeEventRoleByName(String eventName) {
-        eventRoles.removeIf(eventRole -> eventRole.roleName.equals(eventName));
-    }
-
-    /**
-     * Returns if the member's roles contain the specified event name
-     */
-    private boolean hasEvent(String eventName) {
-        for (EventRole eventRole: eventRoles) {
-            if (Objects.equals(eventRole.roleName, eventName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * Iterate through the given set of event roles. Removes existing event roles containing
      * the same name in the member's event list and replaces them.
      */
-    public Member updateEditedEventRolesList(Set<EventRole> updatedRoles) {
-        for (EventRole eventRole: updatedRoles) {
-            if (this.hasEvent(eventRole.roleName)) {
-                this.removeEventRoleByName(eventRole.roleName);
-                this.addEventRoles(Set.of(eventRole));
-            }
+    public Member updateEditedEventRolesList(Set<EventRole> updatedRoles, Name oldName) {
+        assert(this.eventRoles.stream().map(EventRole::getAssignedTo).anyMatch(name -> name.equals(oldName)));
 
+        Set<EventRole> newRoles = new HashSet<>();
+        for (EventRole role : eventRoles) {
+            if (role.getAssignedTo().equals(oldName)) {
+                updatedRoles.stream()
+                        .filter(r -> r.roleName.equals(role.roleName))
+                        .findFirst()
+                        .ifPresent(newRoles::add);
+            } else {
+                newRoles.add(role);
+            }
         }
+
+        eventRoles.clear();
+        eventRoles.addAll(newRoles);
+
         return this;
     }
 

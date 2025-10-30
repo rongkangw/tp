@@ -3,30 +3,21 @@ package seedu.club.model.role;
 import java.util.Objects;
 
 import seedu.club.model.name.Name;
-import seedu.club.model.role.exceptions.DuplicateRoleAssignmentException;
 
 /**
  * Represents the role of a member in a specific event for which that member is assigned to.
  */
 public class EventRole extends Role {
-    private Name assignedTo = null;
+    private Name assignedTo;
 
     /**
      * Constructs an {@code EventRole} with the specified role name and event assignment.
      *
      * @param roleName A valid role name.
      */
-    public EventRole(String roleName) {
+    public EventRole(String roleName, Name assignedTo) {
         super(roleName);
-    }
-
-    public void setAssignedTo(Name name) {
-        // ensures assignedTo can only be set once
-        if (assignedTo != null && assignedTo.equals(name)) {
-            throw new DuplicateRoleAssignmentException();
-        }
-
-        assignedTo = name;
+        this.assignedTo = assignedTo;
     }
 
     public Name getAssignedTo() {
@@ -45,12 +36,13 @@ public class EventRole extends Role {
         }
 
         EventRole otherRole = (EventRole) other;
-        return roleName.equals(otherRole.roleName);
+        return roleName.equals(otherRole.roleName)
+                && assignedTo.equals(otherRole.assignedTo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleName);
+        return Objects.hash(roleName, assignedTo);
     }
 
     @Override

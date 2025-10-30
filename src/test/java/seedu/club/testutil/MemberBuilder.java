@@ -65,14 +65,6 @@ public class MemberBuilder {
     }
 
     /**
-     * Parses the {@code roles} into a {@code Set<EventRole>} and set it to the {@code Member} that we are building.
-     */
-    public MemberBuilder withEventRoles(String ... roles) {
-        this.eventRoles = SampleDataUtil.getEventRoleSet(roles);
-        return this;
-    }
-
-    /**
      * Sets the {@code eventRoles} of the {@code Member} that we are building.
      */
     public MemberBuilder withEventRoles(Set<EventRole> eventRoles) {

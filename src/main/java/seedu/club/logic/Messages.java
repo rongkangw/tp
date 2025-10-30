@@ -126,6 +126,6 @@ public class Messages {
             builder.append(result);
         }
 
-        return  builder.toString();
+        return builder.toString();
     }
 }
