@@ -27,7 +27,7 @@ public class EventRole extends Role {
      * @param eventName The name of the event to be assigned to
      */
     public static EventRole unassigned(Name eventName) {
-        EventRole role = new EventRole("Unassigned",  eventName);
+        EventRole role = new EventRole("Unassigned", eventName);
         role.isUnassigned = true;
         return role;
     }
