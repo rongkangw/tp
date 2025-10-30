@@ -37,7 +37,7 @@ public class UnassignEventRoleCommand extends Command {
             + PREFIX_EVENT + "Meeting "
             + PREFIX_MEMBER + "John Doe "
             + PREFIX_ROLE + "Facilitator";
-    public static final String MESSAGE_NAME_DOES_NOT_EXIST = "The event or member does not exist.\n";
+
     public static final String MESSAGE_ROLE_DOES_NOT_EXIST_IN_MEMBER =
             "The specified member does not have that role\n";
 

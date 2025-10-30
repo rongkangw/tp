@@ -102,22 +102,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses an {@code String event} with a {@code String eventRole} into a {@code EventRole}.
-     * Leading and trailing whitespaces will be trimmed.
-     * Multiple internal whitespaces will be normalized into a single whitespace.
-     *
-     * @throws ParseException if the given {@code role} is invalid.
-     */
-    public static EventRole parseEventRole(String eventRole) throws ParseException {
-        requireNonNull(eventRole);
-        String trimmedRole = normalizeAndTrimWhitespace(eventRole);
-        if (!EventRole.isValidRoleName(trimmedRole)) {
-            throw new ParseException(EventRole.MESSAGE_CONSTRAINTS);
-        }
-        return new EventRole(trimmedRole);
-    }
-
-    /**
      * Parses {@code Collection<String> member roles} into a {@code Set<MemberRole>}.
      */
     public static Set<MemberRole> parseMemberRoles(Collection<String> roles) throws ParseException {
@@ -130,13 +114,32 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String event} with {@code Collection<String> event roles} into a {@code Set<EventRole>}.
+     * Parses a {@code String eventRole} into an {@code EventRole} for the {@code Event}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Multiple internal whitespaces will be normalized into a single whitespace.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
      */
-    public static Set<EventRole> parseEventRoles(Collection<String> roles) throws ParseException {
+    public static EventRole parseEventRole(String eventRole, Name assignedTo) throws ParseException {
+        requireNonNull(eventRole);
+        String trimmedRole = normalizeAndTrimWhitespace(eventRole);
+        if (!EventRole.isValidRoleName(trimmedRole)) {
+            throw new ParseException(EventRole.MESSAGE_CONSTRAINTS);
+        }
+
+        // The checking of whether the event name exists is done in the command itself, thus no need to
+        // check/validate assignedTo
+        return new EventRole(trimmedRole, assignedTo);
+    }
+
+    /**
+     * Parses a {@code Collection<String> event roles} into a {@code Set<EventRole>}.
+     */
+    public static Set<EventRole> parseEventRoles(Collection<String> roles, Name eventName) throws ParseException {
         requireNonNull(roles);
         final Set<EventRole> eventRoleSet = new HashSet<>();
         for (String roleName : roles) {
-            eventRoleSet.add(parseEventRole(roleName));
+            eventRoleSet.add(parseEventRole(roleName, eventName));
         }
         return eventRoleSet;
     }

@@ -21,11 +21,12 @@ public class UnassignEventRoleCommandParserTest {
 
     @Test
     public void parse_validArgsWithEventRoles_returnsUnassignEventRoleCommand() {
+        Name eventName = new Name("Meeting");
         assertParseSuccess(parser,
                 " e/Meeting m/John r/Facilitator r/SafetyOfficer",
-                new UnassignEventRoleCommand(new Name("Meeting"), new Name("John"),
-                        Set.of(new EventRole("Facilitator"),
-                                new EventRole("SafetyOfficer"))));
+                new UnassignEventRoleCommand(eventName, new Name("John"),
+                        Set.of(new EventRole("Facilitator", eventName),
+                                new EventRole("SafetyOfficer", eventName))));
     }
 
 

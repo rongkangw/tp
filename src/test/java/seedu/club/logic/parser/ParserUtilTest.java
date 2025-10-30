@@ -30,9 +30,10 @@ public class ParserUtilTest {
     private static final String INVALID_DATETIME = "010325 210s";
     private static final String INVALID_DETAIL = "a".repeat(501); // 501 characters
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_MEMBER_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "62123456";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_EVENT_NAME = "Coding Workshop";
     private static final String VALID_MEMBER_ROLE_1 = "friend";
     private static final String VALID_MEMBER_ROLE_2 = "vice president";
     private static final String VALID_MEMBER_ROLE_2_WITH_SPACES = "vice    president";
@@ -81,14 +82,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Name expectedName = new Name(VALID_MEMBER_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_MEMBER_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
+        String nameWithWhitespace = WHITESPACE + VALID_MEMBER_NAME + WHITESPACE;
+        Name expectedName = new Name(VALID_MEMBER_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
@@ -145,7 +146,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseEventRole_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventRole(null));
+        assertThrows(NullPointerException.class, () ->
+                ParserUtil.parseEventRole(null, new Name(VALID_EVENT_NAME)));
     }
 
     @Test
@@ -155,7 +157,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseEventRole_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEventRole(INVALID_EVENT_ROLE));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseEventRole(INVALID_EVENT_ROLE, new Name(VALID_EVENT_NAME)));
     }
 
     @Test
@@ -166,8 +169,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseEventRole_validValueWithoutWhitespace_returnsEventRole() throws Exception {
-        EventRole expectedRole = new EventRole(VALID_EVENT_ROLE_1);
-        assertEquals(expectedRole, ParserUtil.parseEventRole(VALID_EVENT_ROLE_1));
+        EventRole expectedRole = new EventRole(VALID_EVENT_ROLE_1, new Name(VALID_EVENT_NAME));
+        assertEquals(expectedRole, ParserUtil.parseEventRole(VALID_EVENT_ROLE_1, new Name(VALID_EVENT_NAME)));
     }
 
     @Test
@@ -180,8 +183,8 @@ public class ParserUtilTest {
     @Test
     public void parseEventRole_validValueWithWhitespace_returnsTrimmedEventRole() throws Exception {
         String roleWithWhitespace = WHITESPACE + VALID_EVENT_ROLE_1 + WHITESPACE;
-        EventRole expectedRole = new EventRole(VALID_EVENT_ROLE_1);
-        assertEquals(expectedRole, ParserUtil.parseEventRole(roleWithWhitespace));
+        EventRole expectedRole = new EventRole(VALID_EVENT_ROLE_1, new Name(VALID_EVENT_NAME));
+        assertEquals(expectedRole, ParserUtil.parseEventRole(roleWithWhitespace, new Name(VALID_EVENT_NAME)));
     }
 
     @Test
@@ -216,7 +219,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEventRoles_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventRoles(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventRoles(null, null));
     }
 
     @Test
@@ -229,7 +232,7 @@ public class ParserUtilTest {
     @Test
     public void parseEventRoles_collectionWithInvalidRoles_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseEventRoles(
-                Arrays.asList(VALID_EVENT_ROLE_1, INVALID_EVENT_ROLE))
+                Arrays.asList(VALID_EVENT_ROLE_1, INVALID_EVENT_ROLE), new Name(VALID_EVENT_NAME))
         );
     }
 
@@ -240,7 +243,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEventRoles_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseEventRoles(Collections.emptyList()).isEmpty());
+        assertTrue(ParserUtil.parseEventRoles(Collections.emptyList(), new Name(VALID_EVENT_NAME)).isEmpty());
     }
 
     @Test
@@ -258,10 +261,11 @@ public class ParserUtilTest {
     @Test
     public void parseEventRoles_collectionWithValidEventRoles_returnsEventRoleSet() throws Exception {
         Set<EventRole> actualRoleSet = ParserUtil.parseEventRoles(
-                Arrays.asList(VALID_EVENT_ROLE_1, VALID_EVENT_ROLE_2)
+                Arrays.asList(VALID_EVENT_ROLE_1, VALID_EVENT_ROLE_2), new Name(VALID_EVENT_NAME)
         );
         Set<EventRole> expectedRoleSet = new HashSet<EventRole>(
-                Arrays.asList(new EventRole(VALID_EVENT_ROLE_1), new EventRole(VALID_EVENT_ROLE_2))
+                Arrays.asList(new EventRole(VALID_EVENT_ROLE_1, new Name(VALID_EVENT_NAME)),
+                        new EventRole(VALID_EVENT_ROLE_2, new Name(VALID_EVENT_NAME)))
         );
 
         assertEquals(expectedRoleSet, actualRoleSet);

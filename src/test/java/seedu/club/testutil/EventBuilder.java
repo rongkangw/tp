@@ -50,12 +50,6 @@ public class EventBuilder {
         detail = eventToCopy.getDetail();
         roles = new HashSet<>(eventToCopy.getRoles());
         roster = new HashSet<>(eventToCopy.getRoster());
-
-        // prevents DuplicateRoleAssignmentException from being thrown due to the event being copied
-        // only for testing, as in practice duplicate events cannot exist
-        for (EventRole role: roles) {
-            role.setAssignedTo(null);
-        }
     }
 
     /**
@@ -76,7 +70,7 @@ public class EventBuilder {
      * @return EventBuilder
      */
     public EventBuilder withRoles(String ... roles) {
-        this.roles = SampleDataUtil.getEventRoleSet(roles);
+        this.roles = SampleDataUtil.getEventRoleSet(this.name, roles);
         return this;
     }
 

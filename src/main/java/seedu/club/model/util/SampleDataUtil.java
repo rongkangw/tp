@@ -40,13 +40,13 @@ public class SampleDataUtil {
         return new Event[] {
             new Event(new Name("Orientation"), new DateTime("151025 1200"),
                     new DateTime("171025 1500"), "For freshmen",
-                    getEventRoleSet("facilitator", "game master")),
+                    getEventRoleSet(new Name("Orientation"), "facilitator", "game master")),
             new Event(new Name("Movie Night"), new DateTime("201025 1800"),
                     new DateTime("201025 2000"), "Showing The Shining",
-                    getEventRoleSet("FoodIC", "OIC")),
+                    getEventRoleSet(new Name("Movie Night"), "FoodIC", "OIC")),
             new Event(new Name("Beach Day"), new DateTime("251025 0900"),
                     new DateTime("251025 1300"), "At Sentosa",
-                    getEventRoleSet("Game Master", "Safety Officer"))
+                    getEventRoleSet(new Name("Beach Day"), "Game Master", "Safety Officer"))
         };
     }
 
@@ -73,9 +73,9 @@ public class SampleDataUtil {
     /**
      * Returns an event role set containing the list of strings given.
      */
-    public static Set<EventRole> getEventRoleSet(String... strings) {
+    public static Set<EventRole> getEventRoleSet(Name eventName, String... strings) {
         return Arrays.stream(strings)
-                .map(EventRole::new)
+                .map(s -> new EventRole(s, eventName))
                 .collect(Collectors.toSet());
     }
 }
