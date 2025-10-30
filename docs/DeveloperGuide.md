@@ -811,11 +811,12 @@ type (`Person`), EASync extends the architecture to support two distinct entity 
 2 entity types `Member` and `Event`. This required us to refactor core components (Model, Storage, Logic and UI) to 
 handle multiple entity types consistently. 
 
-### Challenges Faced and Efforts
+### Challenges Faced 
 
 
 
-###
+
+### Achievements
 
 --------------------------------------------------------------------------------------------------------------------
 
