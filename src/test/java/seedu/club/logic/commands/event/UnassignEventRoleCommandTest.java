@@ -88,9 +88,6 @@ public class UnassignEventRoleCommandTest {
 
         UnassignEventRoleCommand unassignEventRoleCommand = new UnassignEventRoleCommand(eventName, memberName,
                 Set.of(roleToDelete));
-        boolean bool = model
-                .getFilteredMemberList()
-                .get(INDEX_FIRST_MEMBER.getZeroBased()).getEventRoles().containsAll(Set.of(roleToDelete));
         ModelManager expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
         String result = unassignEventRoleCommand.execute(model).getFeedbackToUser();
         expectedModel.getClubBook().getMemberList()
