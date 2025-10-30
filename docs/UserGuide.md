@@ -313,7 +313,7 @@ Examples:
 
 <box type="important" seamless>
 
-**Note:** To edit a member's event roles, you must first remove the member from the event using `unassignEvent` and assign the updated event roles with `assignEvent`.
+**Note:** After a member has been assigned, no more roles can be added. To add additional event roles to a member, you must first remove the member from the event using `unassignEvent` and assign the updated event roles with `assignEvent`.
 </box>
 
 #### Unassigning a Member from an Event : `unassignEvent`
@@ -404,22 +404,22 @@ Furthermore, certain edits can cause EASync to behave in unexpected ways (e.g., 
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                       |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------|
-| **List Members**        | `listMembers`                                                                                                          |
-| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                          |
-| **Delete Member**       | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                        |
-| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                       |
-| **List Events**         | `listEvents`                                                                                                           |
-| **Add Event**           | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`                                                  |
-| **Delete Event**        | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                         |
-| **Edit Event**          | `editMember INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`<br> e.g.,`edit 1 n/Meeting t/171025 0000`          |
-| **Find Events**         | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvent orientation workshop`                                         |
-| **Display Event**       | `event INDEX` <br/> e.g., `event 2`                                                                                    |
-| **Assign Event**        | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                         |
-| **Unassign Event**      | `unassignEvent e/EVENT m/MEMBER`                                                                                       |
-| **Unassign Event Role** | `unassignEvent e/EVENT m/MEMBER r/EVENTROLE…​`                                                                         |
-| **Clear**               | `clear`                                                                                                                |
-| **Help**                | `help`                                                                                                                 |
-| **Exit**                | `exit`                                                                                                                 |
+| Action                  | Format, Examples                                                                                                                                    |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List Members**        | `listMembers`                                                                                                                                       |
+| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​` <br> e.g, `addMember n/John Doe p/94824271 e/john@example.com`                                        |
+| **Delete Member**       | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                                                     |
+| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROLE]…​`<br> e.g.,`editMember 2 n/James Lee e/jameslee@example.com`                        |
+| **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                    |
+| **List Events**         | `listEvents`                                                                                                                                        |
+| **Add Event**           | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`  <br> e.g., `addEvent n/Orientation f/151025 1200 t/171025 1800 r/gamemaster` |
+| **Delete Event**        | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                                                      |
+| **Edit Event**          | `editEvent INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`<br> e.g.,`editEvent 1 n/Meeting t/171025 0000`                                   |
+| **Find Events**         | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvent orientation workshop`                                                                      |
+| **Display Event**       | `event INDEX` <br/> e.g., `event 2`                                                                                                                 |
+| **Assign Event**        | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​` <br> e.g., `assignEvent e/Orientation m/John Doe r/gamemaster`                                       |
+| **Unassign Event**      | `unassignEvent e/EVENT m/MEMBER` <br> e.g., `unassignEvent e/Orientation m/John Doe`                                                                |
+| **Unassign Event Role** | `unassignEventRole e/EVENT m/MEMBER r/EVENTROLE…​` <br> e.g. `unassignEventRole e/Orientation m/John Doe r/gamemaster`                              |
+| **Clear**               | `clear`                                                                                                                                             |
+| **Help**                | `help`                                                                                                                                              |
+| **Exit**                | `exit`                                                                                                                                              |
