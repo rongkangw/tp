@@ -93,26 +93,6 @@ public class Member extends NamedEntity {
         eventRoles.addAll(roles);
     }
 
-
-    /**
-     * Removes an event role from the member's roles given its name
-     */
-    private void removeEventRoleByName(Name eventName) {
-        eventRoles.removeIf(eventRole -> eventRole.roleName.equals(eventName));
-    }
-
-    /**
-     * Returns if the member's roles contain the specified event name
-     */
-    private boolean hasEvent(String eventName) {
-        for (EventRole eventRole: eventRoles) {
-            if (Objects.equals(eventRole.roleName, eventName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * Iterate through the given set of event roles. Removes existing event roles containing
      * the same name in the member's event list and replaces them.
