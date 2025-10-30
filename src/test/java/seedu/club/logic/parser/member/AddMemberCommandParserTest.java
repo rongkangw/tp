@@ -39,10 +39,6 @@ import seedu.club.model.name.Name;
 import seedu.club.model.role.MemberRole;
 import seedu.club.testutil.MemberBuilder;
 
-
-
-
-
 public class AddMemberCommandParserTest {
     private final AddMemberCommandParser parser = new AddMemberCommandParser();
 
