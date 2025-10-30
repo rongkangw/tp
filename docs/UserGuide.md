@@ -116,11 +116,13 @@ Format: `listMembers`
 
 Format: `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`
 
-* Adds a member to the club book.
 * The new member can be found at the end of the list.
+* The `NAME` should be 50 characters or fewer.
 * The `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only. A single whitespace is allowed in between the first and last 4 digits.
 * The `EMAIL` must be of the format `local-part@domain`
 * If multiple `ROLE`s are specified, the app displays them in alphabetical order.
+* The `ROLE`s should be 30 characters or fewer.
+
 
 <box type="info" seamless>
 
@@ -212,11 +214,14 @@ Format: `listEvents`
 
 Format: `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`
 
-* Adds an event to the club book.
 * The new event can be found at the end of the list.
+* The `NAME` should be 50 characters or fewer.
 * `f/` (from) represents the start date time and `t/` (to) the end date time of the event.
 * `DATE_TIME` must be in the following format: `DDMMYY HHMM` (24 hour)
+* The `DETAILS` should be 500 characters or fewer.
 * If multiple `EVENTROLE`s are specified, EASync displays them in alphabetical order.
+* The `EVENTROLE` should be 30 characters or fewer.
+
 
 Examples:
 * `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
@@ -237,6 +242,23 @@ Examples:
 
 **Note:** You should run `listEvents` first, then look for the index of the event you want to delete. Otherwise, you might accidentally delete the wrong event.
 </box>
+
+#### Editing a member : `editEvent`
+
+Format: `editMember INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`
+
+* Edits the details of the event at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed member list.
+* `INDEX` **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values for the provided field will be updated to the input values.
+* Fields not provided will remain **unchanged**.
+
+
+Examples:
+*  `editEvent 1 n/Movie Night t/171025 1800` Edits the name and end date time of the 1st event to be `Movie Night` and `171025 1800` respectively.
+
+
 
 #### Locating events by name: `findEvent`
 
@@ -289,27 +311,42 @@ Examples:
 * `assignEvent e/Orientation m/Alice Pauline`
 * `assignEvent e/Movie Night m/Benson Meier r/FoodIC`
 
+<box type="important" seamless>
+
+**Note:** To edit a member's event roles, you must first remove the member from the event using `unassignEvent` and assign the updated event roles with `assignEvent`.
+</box>
+
 #### Unassigning a Member from an Event : `unassignEvent`
 
-Format: `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+Format: `unassignEvent e/EVENT m/MEMBER`
+
+* Removes the specified member from the event 
+* All associated event roles in the member's event roles list are removed, if any.
+
+Examples:
+*  `unassignEvent e/Workshop m/Jane`
+
+#### Unassigning an Event Role from a Member : `unassignEventRole`
+
+Format: `unassignEventRole e/EVENT m/MEMBER [r/EVENTROLE]…​`
 
 * Removes an event role from the specified member.
 * Multiple event roles can be specified.
-* If `EVENTROLE` is not specified, the member is unassigned from the event and all associated event roles are removed, if any.
 
 Examples:
-*  `unassignEvent e/Meeting m/Bob r/Logistics`
-*  `unassignEvent e/Workshop m/Jane`
+*  `unassignEventRole e/Meeting m/Bob r/Logistics`
 
 ### Miscellaneous
 #### Clearing all entries : `clear`
 
-<box type="warning" theme="danger" seamless>
 
 <box type="tip" seamless>
+
 **Tip:**
 If you would like to get the sample data to show again, you could remove the `clubBook.json` file from the `data` folder that is in the folder `EASync.jar` is in. Ensure that you truly want to clear your **entire club book** before proceeding.
 </box>
+
+<box type="warning" theme="danger" seamless>
 
 **Caution:**
 This action is **irreversible**! Ensure that you truly want to clear your **entire club book** before proceeding.
@@ -331,7 +368,7 @@ EASync data is saved in the hard disk automatically after any command that chang
 
 Member and Event data are saved automatically as a JSON file in `[JAR file location]/data/members.json` and `[JAR file location]/data/events.json` respectively.
 
-Advanced users are welcome to update data directly by editing that data file.
+**Advanced users** are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
@@ -367,20 +404,22 @@ Furthermore, certain edits can cause EASync to behave in unexpected ways (e.g., 
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                       |
-|--------------------|------------------------------------------------------------------------------------------------------------------------|
-| **List Members**   | `listMembers`                                                                                                          |
-| **Add Member**     | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                          |
-| **Delete Member**  | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                        |
-| **Edit Member**    | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find Members**   | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                       |
-| **List Events**    | `listEvents`                                                                                                           |
-| **Add Event**      | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`                                                  |
-| **Delete Event**   | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                         |
-| **Find Events**    | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvent orientation workshop`                                         |
-| **Display Event**  | `event INDEX` <br/> e.g., `event 2`                                                                                    |
-| **Assign Event**   | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                         |
-| **Unassign Event** | `unassignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                       |
-| **Clear**          | `clear`                                                                                                                |
-| **Help**           | `help`                                                                                                                 |
-| **Exit**           | `exit`                                                                                                                 |
+| Action                  | Format, Examples                                                                                                       |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------|
+| **List Members**        | `listMembers`                                                                                                          |
+| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/ROLE]…​`                                                                          |
+| **Delete Member**       | `deleteMember INDEX`<br> e.g., `deleteMember 3`                                                                        |
+| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                       |
+| **List Events**         | `listEvents`                                                                                                           |
+| **Add Event**           | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`                                                  |
+| **Delete Event**        | `deleteEvent INDEX` <br> e.g., `deleteEvent 3`                                                                         |
+| **Edit Event**          | `editMember INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`<br> e.g.,`edit 1 n/Meeting t/171025 0000`          |
+| **Find Events**         | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvent orientation workshop`                                         |
+| **Display Event**       | `event INDEX` <br/> e.g., `event 2`                                                                                    |
+| **Assign Event**        | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`                                                                         |
+| **Unassign Event**      | `unassignEvent e/EVENT m/MEMBER`                                                                                       |
+| **Unassign Event Role** | `unassignEvent e/EVENT m/MEMBER r/EVENTROLE…​`                                                                         |
+| **Clear**               | `clear`                                                                                                                |
+| **Help**                | `help`                                                                                                                 |
+| **Exit**                | `exit`                                                                                                                 |
