@@ -689,17 +689,15 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file 
+   2. Run `java -jar EASync.jar` in a terminal.<br>
       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
+   2. Re-launch the app by running `java -jar EASync.jar` in a terminal. <br>
+      Expected: The most recent window size and location is retained.
 
 ### Adding a member and an event
 1. Adding a member to the member list
@@ -709,43 +707,75 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `addMember n/John Doe p/98765432 e/johnd@example.com`<br>
        Expected: Member is added to the member list. Details of the added member are shown in the status message. 
                  Member list is shown.
-
-2. Adding a member with a member role to the member list
-
-    1. Prerequisites: A member with the same name should not exist in the member list.
     
-    2. Test case: `addMember n/Jane Doe p/98765432 e/janed@example.com r/President`<br>
-       Expected: Member is added to the member list. Details of the added member are shown in the status message. Member list is shown.
+    3. Test case: `addMember n/Jane Doe p/98765432 e/janed@example.com r/President`<br>
+       Expected: Similar to previous.
+
+    4. Test case: `addMember n/James Doe p/78765432 e/jamesd@example.com`<br>
+       Expected: Member is not added to the member list. Error details shown in the status message.
        
-3. Adding a duplicate member to the member list
+2. Adding a duplicate member to the member list
 
     1. Prerequisites: A member with the same name should exist in the member list.
     
     2. Test case: `addMember n/Jane Doe p/98766432 e/janed@example.com r/President`<br>
        Expected: Member is not added to the member list. Error details shown in the status message. 
 
-4. Adding an event to the event list
+3. Adding an event to the event list
     
     1. Prerequisites: An event with the same name should not exist in the event list. 
    
     2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
        Expected: Event is added to the event list. Details of the added event are shown in the status message. Event list is shown.
-    
-5. Adding an event with an event role to the event list
-   
-    1. Prerequisites: An event with the same name should not exist in the event list.
 
-    2. Test case: `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/gamemaster`<br>
-       Expected: Event is added to the event list. Details of the added event are shown in the status message. Event list is shown.
+    3. Test case: `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/gamemaster`<br>
+       Expected: Similar to previous.
 
-6. Adding a duplicate event to the event list
+    4. Test case: `addEvent n/Movie Night f/151025 2:00pm t/161025 3:00pm`<br>
+       Expected: Event is not added to the event list. Error details shown in the status message. 
+
+4. Adding a duplicate event to the event list
     
     1. Prerequisites: An event with the same name should exist in the event list.
     
-    2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500` <br>
+    2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
        Expected: Event is not added to the event list. Error details shown in the status message.
 
 ### Listing members and events
+
+1. Listing a non-empty member list
+
+    1. Prerequisites: Member list must not be empty.
+   
+    2. Test case: `listMembers`<br>
+       Expected: Member list is shown. Success message is shown in the status message.
+   
+    3. Test case: `list Members`<br>
+       Expected: Member list is not shown. Error details shown in the status message.
+
+2. Listing an empty member list
+   
+    1. Prerequisites: Member list must be empty.
+    
+    2. Test case: `listMembers`<br>
+       Expected: No members are shown in member list. Status message indicates there are no members.
+
+3. Listing a non-empty event list
+
+    1. Prerequisites: Event list must not be empty.
+    
+    2. Test case: `listEvents`<br>
+       Expected: Event list is shown. Success message is shown in the status message.
+    
+    3. Test case: `list Events`<br>
+       Expected: No event list is shown. Error details are shown in the status message.
+
+4. Listing an empty event list
+    
+    1. Prerequisites: Event list must be empty.
+       
+    2. Test case: `listEvents`<br>
+       Expected: No events are shown in event list. Status message indicates there are no events.  
 
 ### Displaying an event
 
@@ -756,17 +786,16 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `event 1` <br>
        Expected: First event and event's member roster is shown. Success message is shown in the status message.
 
-    3. Test case: `event -1` <br>
+    3. Test case: `event 0` <br>
        Expected: No event is displayed. Error details shown in the status message.
 
-    4. Other incorrect event commands to try: `event`, `event x`, `...` (where x is larger than the list size) <br>
+    4. Other incorrect event commands to try: `event`, `event x`, `...` (where x is negative or larger than the list size) <br>
 
+### Deleting a member and an event
 
-### Deleting a member
+1. Deleting a member 
 
-1. Deleting a member while all members are being shown
-
-   1. Prerequisites: List all members using the `listMembers` command. Multiple members in the list.
+   1. Prerequisites: List all members using the `listMembers` command. Multiple members in the member list.
 
    2. Test case: `deleteMember 1`<br>
       Expected: First member is deleted from the member list. Details of the deleted member shown in the status message. 
@@ -774,10 +803,21 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `deleteMember 0`<br>
       Expected: No member is deleted. Error details shown in the status message. 
 
-   4. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is negative or larger than the list size)<br>
       Expected: Similar to previous.
 
-4. _{ more test cases …​ }_
+2. Deleting a event 
+   
+    1. Prerequisites: List all events using the `listEvents` command. Multiple events in the event list.
+       
+    2. Test case: `deleteEvent 1`<br>
+       Expected: First event is deleted from the event list. Details of the deleted event shown in the status message.
+    
+    3. Test case: `deleteEvent 0`<br>
+       Expected: No event is deleted. Error details shown in the status message.
+    
+    4. Other incorrect delete commands to try: `deleteEvent`, `deleteEvent x`, `...` (where x is negative or larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 
