@@ -39,7 +39,7 @@ public class AssignEventCommandParser implements Parser<AssignEventCommand> {
         Name eventName = ParserUtil.parseName(argMultimap.getValue(PREFIX_EVENT).get());
         Name memberName = ParserUtil.parseName(argMultimap.getValue(PREFIX_MEMBER).get());
         Set<EventRole> eventRoleList = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
-                ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE))
+                ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE), eventName)
                 : Collections.emptySet();
 
         return new AssignEventCommand(eventName, memberName, eventRoleList);

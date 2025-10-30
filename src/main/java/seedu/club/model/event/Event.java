@@ -50,11 +50,6 @@ public class Event extends NamedEntity {
         this.to = to;
         this.detail = detail;
         this.roles.addAll(roles);
-
-        // assign each eventRole to this event
-        for (EventRole role : this.roles) {
-            role.setAssignedTo(name);
-        }
     }
 
     /**
@@ -74,13 +69,6 @@ public class Event extends NamedEntity {
         this.detail = detail;
         this.roles.addAll(roles);
         this.roster.addAll(roster);
-
-        // assign each eventRole to this event
-        for (EventRole role : this.roles) {
-            if (role.getAssignedTo() == null) {
-                role.setAssignedTo(name);
-            }
-        }
     }
 
     public DateTime getFrom() {

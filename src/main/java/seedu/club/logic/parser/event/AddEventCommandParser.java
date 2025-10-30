@@ -52,7 +52,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
                         ? ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).get())
                         : "";
         Set<EventRole> eventRoleList = !argMultimap.getAllValues(PREFIX_ROLE).isEmpty()
-                            ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE))
+                            ? ParserUtil.parseEventRoles(argMultimap.getAllValues(PREFIX_ROLE), name)
                             : Collections.emptySet();
 
         Event event = new Event(name, from, to, detail, eventRoleList);

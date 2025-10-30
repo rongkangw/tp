@@ -102,13 +102,16 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
-    public static EventRole parseEventRole(String role) throws ParseException {
+    public static EventRole parseEventRole(String role, Name assignedTo) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
         if (!EventRole.isValidRoleName(trimmedRole)) {
             throw new ParseException(EventRole.MESSAGE_CONSTRAINTS);
         }
-        return new EventRole(trimmedRole);
+
+        // The checking of whether the event name exists is done in the command itself, thus no need to
+        // check/validate assignedTo
+        return new EventRole(trimmedRole, assignedTo);
     }
 
     /**
@@ -126,11 +129,11 @@ public class ParserUtil {
     /**
      * Parses a {@code String event} with {@code Collection<String> event roles} into a {@code Set<EventRole>}.
      */
-    public static Set<EventRole> parseEventRoles(Collection<String> roles) throws ParseException {
+    public static Set<EventRole> parseEventRoles(Collection<String> roles, Name eventName) throws ParseException {
         requireNonNull(roles);
         final Set<EventRole> eventRoleSet = new HashSet<>();
         for (String roleName : roles) {
-            eventRoleSet.add(parseEventRole(roleName));
+            eventRoleSet.add(parseEventRole(roleName, eventName));
         }
         return eventRoleSet;
     }
