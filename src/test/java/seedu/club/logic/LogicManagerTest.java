@@ -10,7 +10,7 @@ import static seedu.club.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.club.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalMembers.AMY;
+import static seedu.club.testutil.TypicalClubBook.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;

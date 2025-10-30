@@ -1,6 +1,6 @@
 package seedu.club.logic.commands.general;
 
-import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 
 import org.junit.jupiter.api.Test;
 

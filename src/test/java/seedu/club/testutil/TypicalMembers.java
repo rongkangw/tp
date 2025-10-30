@@ -67,6 +67,6 @@ public class TypicalMembers {
     }
 
     public static List<Member> getTypicalMembers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList());
     }
 }

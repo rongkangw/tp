@@ -35,7 +35,7 @@ public class EventTest {
 
         // same name, all other attributes different -> returns true
         Event sameOrientationName = new EventBuilder(ORIENTATION).withFrom(VALID_FROM_BEACHDAY)
-                .withTo(VALID_TO_BEACHDAY).withDetail("aa").withRoles(VALID_EVENT_ROLE_FOODIC).build();
+                .withTo(VALID_TO_BEACHDAY).withDetail("aa").withEventRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertTrue(ORIENTATION.isSameEvent(sameOrientationName));
 
         // different name, all other attributes same -> returns false
@@ -84,7 +84,7 @@ public class EventTest {
         assertFalse(ORIENTATION.equals(editedOrientation));
 
         // different roles -> returns false
-        editedOrientation = new EventBuilder(ORIENTATION).withRoles(VALID_EVENT_ROLE_FOODIC).build();
+        editedOrientation = new EventBuilder(ORIENTATION).withEventRoles(VALID_EVENT_ROLE_FOODIC).build();
         assertFalse(ORIENTATION.equals(editedOrientation));
     }
 

@@ -42,7 +42,7 @@ public class EditEventCommandTest {
                 .withFrom("251025 1600")
                 .withTo("251025 1800")
                 .withDetail("Bring extra clothes")
-                .withRoles("facilitator", "gamemaster")
+                .withEventRoles("facilitator", "gamemaster")
                 .build();
         EditEventCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedEvent).build();
         descriptor.setName(new Name("Orientation Day"));
@@ -69,7 +69,7 @@ public class EditEventCommandTest {
                 .withFrom("251025 1600")
                 .withTo("251025 1800")
                 .withDetail("Bring extra clothes")
-                .withRoles("facilitator", "gamemaster")
+                .withEventRoles("facilitator", "gamemaster")
                 .build();
         EditEventCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedEvent).build();
         descriptor.setName(new Name("Orientation Day"));

@@ -1,7 +1,7 @@
 package seedu.club.logic.commands.member;
 
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

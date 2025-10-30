@@ -25,8 +25,8 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.club.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.club.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.club.testutil.TypicalMembers.AMY;
-import static seedu.club.testutil.TypicalMembers.BOB;
+import static seedu.club.testutil.TypicalClubBook.AMY;
+import static seedu.club.testutil.TypicalClubBook.BOB;
 
 import org.junit.jupiter.api.Test;
 
