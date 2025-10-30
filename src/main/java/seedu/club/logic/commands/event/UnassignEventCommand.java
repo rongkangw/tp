@@ -76,7 +76,7 @@ public class UnassignEventCommand extends Command {
         event.removeMemberFromRoster(member);
         model.updateFilteredEventList(e -> e.equals(event));
         model.updateFilteredMemberList(m -> event.getRoster().contains(m));
-        model.setViewState(ViewState.EVENT);
+        model.setViewState(ViewState.SINGLE_EVENT);
         return new CommandResult(String.format(MESSAGE_SUCCESS_EVENT),
                 false, false);
 
