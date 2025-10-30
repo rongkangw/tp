@@ -19,7 +19,7 @@ import seedu.club.model.role.EventRole;
 import seedu.club.model.role.MemberRole;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 
@@ -41,7 +41,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
-     * Multiple internal whitespaces will be normalised into a single whitespace.
+     * Multiple internal whitespaces will be normalized into a single whitespace.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
@@ -87,7 +87,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String memberRole} into a {@code MemberRole}.
      * Leading and trailing whitespaces will be trimmed.
-     * Multiple internal whitespaces will be normalised into a single whitespace.
+     * Multiple internal whitespaces will be normalized into a single whitespace.
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
@@ -103,7 +103,7 @@ public class ParserUtil {
     /**
      * Parses an {@code String event} with a {@code String eventRole} into a {@code EventRole}.
      * Leading and trailing whitespaces will be trimmed.
-     * Multiple internal whitespaces will be normalised into a single whitespace.
+     * Multiple internal whitespaces will be normalized into a single whitespace.
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
@@ -143,7 +143,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String date}.
      * Leading and trailing whitespaces will be trimmed.
-     * Multiple internal whitespaces will be normalised into a single whitespace.
+     * Multiple internal whitespaces will be normalized into a single whitespace.
      *
      * @throws ParseException if the given {@code datetime} is invalid.
      */
@@ -173,7 +173,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String detail}.
      * Leading and trailing whitespaces will be trimmed.
-     * Multiple internal whitespaces will be normalised into a single whitespace.
+     * Multiple internal whitespaces will be normalized into a single whitespace.
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
