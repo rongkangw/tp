@@ -102,7 +102,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses an {@code String event} with a {@code String eventRole} into a {@code EventRole}.
+     * Parses a {@code String eventRole} into an {@code EventRole} for the {@code Event}.
      * Leading and trailing whitespaces will be trimmed.
      * Multiple internal whitespaces will be normalized into a single whitespace.
      *
@@ -133,7 +133,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String event} with {@code Collection<String> event roles} into a {@code Set<EventRole>}.
+     * Parses a {@code Collection<String> event roles} into a {@code Set<EventRole>}.
      */
     public static Set<EventRole> parseEventRoles(Collection<String> roles, Name eventName) throws ParseException {
         requireNonNull(roles);

@@ -165,7 +165,7 @@ public class Event extends NamedEntity {
     }
 
     /**
-     * Updates the assigned name in event roles under roles list to new name
+     * Updates the assigned event name in event roles under roles list to new name
      *
      * @param updatedName   New name reference for event roles
      */

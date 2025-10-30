@@ -110,7 +110,7 @@ public class Messages {
     }
 
     /**
-     *
+     * Formats the assigning of a {@code Member} to an {@code EventRole} in the {@code Event}
      */
     public static String formatAssignRole(Member member, Event event, Set<EventRole> roles) {
         final StringBuilder builder = new StringBuilder();

@@ -94,8 +94,8 @@ public class Member extends NamedEntity {
     }
 
     /**
-     * Iterate through the given set of event roles. Removes existing event roles containing
-     * the same name in the member's event list and replaces them.
+     * Iterate through the given set of event roles. Removes event roles that belong to
+     * the old event name in the member's event list and replaces them.
      */
     public Member updateEditedEventRolesList(Set<EventRole> updatedRoles, Name oldName) {
         assert(this.eventRoles.stream().map(EventRole::getAssignedTo).anyMatch(name -> name.equals(oldName)));
@@ -117,8 +117,6 @@ public class Member extends NamedEntity {
 
         return this;
     }
-
-
 
     /**
      * Returns true if both members have the same name.
