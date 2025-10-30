@@ -835,4 +835,10 @@ Team Size: 5
 ##### 1. Allow users to use event command consecutively
 Currently, after running the `event <INDEX>` command, users must return to the event list before executing the command 
 again. We plan to remove this restriction by storing the filtered event list, 
-enabling users to re-run the command directly from the single event display page.
+enabling users to re-run the command directly from the single event display page, allowing for more efficient lookup for events.
+
+#### 2. Adding an `assignEventRole` command
+Currently, if users want to change a member's event role in an event after they have already been assigned, they must first
+unassign the member and then run `assignEvent` again with the new role(s). We plan to add an `assignEventRole` command to allow 
+updating of the member's event role directly if they are already assigned to the event. This will reduce repetitive command usage
+and streamline the event role changing process.
