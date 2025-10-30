@@ -9,27 +9,29 @@ import seedu.club.model.name.Name;
  */
 public class EventRole extends Role {
     private Name assignedTo;
-    private boolean isParticipant = false;
+    private boolean isParticipant;
 
     /**
      * Constructs an {@code EventRole} with the specified role name and event assignment.
      *
      * @param roleName A valid role name.
+     * @param assignedTo The event that the {@code EventRole} belongs to
      */
     public EventRole(String roleName, Name assignedTo) {
         super(roleName);
         this.assignedTo = assignedTo;
+        this.isParticipant = false;
     }
 
     /**
-     * Factory method for empty {@code EventRole}
+     * Constructs an {@code EventRole} that is a "Participant"
      *
-     * @param eventName The name of the event to be assigned to
+     * @param assignedTo The event that the {@code EventRole} belongs to
      */
-    public static EventRole unassigned(Name eventName) {
-        EventRole role = new EventRole("Unassigned", eventName);
-        role.isParticipant = true;
-        return role;
+    public EventRole(Name assignedTo) {
+        super("Participant");
+        this.assignedTo = assignedTo;
+        this.isParticipant = true;
     }
 
     public Name getAssignedTo() {
