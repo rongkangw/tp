@@ -98,9 +98,6 @@ public class Member extends NamedEntity {
      * the old event name in the member's event list and replaces them.
      */
     public Member updateEditedEventRolesList(Set<EventRole> updatedRoles, Name oldName) {
-        assert this.eventRoles.stream().map(EventRole::getAssignedTo).anyMatch(name -> name.equals(oldName))
-                : "The member does not have a reference to the event that is being changed";
-
         Set<EventRole> newRoles = new HashSet<>();
         for (EventRole role : eventRoles) {
             if (role.getAssignedTo().equals(oldName)) {
