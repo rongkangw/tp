@@ -328,7 +328,7 @@ Examples:
 
 #### Unassigning an Event Role from a Member : `unassignEventRole`
 
-Format: `unassignEventRole e/EVENT m/MEMBER [r/EVENTROLE]…​`
+Format: `unassignEventRole e/EVENT m/MEMBER r/EVENTROLE…​`
 
 * Removes an event role from the specified member.
 * Multiple event roles can be specified.
