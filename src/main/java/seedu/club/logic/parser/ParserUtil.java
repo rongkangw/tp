@@ -142,13 +142,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date}.
+     * Parses a {@code String datetime}.
      * Leading and trailing whitespaces will be trimmed.
-     * Multiple internal whitespaces will be normalized into a single whitespace.
      *
      * @throws ParseException if the given {@code datetime} is invalid.
      */
-    public static DateTime parseDate(String datetime) throws ParseException {
+    public static DateTime parseDateTime(String datetime) throws ParseException {
         requireNonNull(datetime);
 
         String trimmedDateTime = normalizeAndTrimWhitespace(datetime);
@@ -164,7 +163,7 @@ public class ParserUtil {
     /**
      * Formats the {@code DateTime} into a readable string.
      */
-    public static String formatDate(DateTime date) {
+    public static String formatDateTime(DateTime date) {
         if (date == null) {
             return "";
         }
