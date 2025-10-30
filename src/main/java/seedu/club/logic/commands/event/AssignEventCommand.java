@@ -58,14 +58,15 @@ public class AssignEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        // Check if event exists
         int eventIndex = model.eventNameIndex(eventName);
         if (eventIndex == -1) {
             return new CommandResult(String.format(Messages.MESSAGE_EVENT_NAME_NOT_EXIST, eventName),
                     false, false);
         }
-
         Event event = model.getFullEventList().get(eventIndex);
 
+        // Check if role exists, no role specified vacuously passes
         Set<EventRole> missingRoles = new HashSet<>(roles);
         missingRoles.removeAll(event.getRoles());
         if (!missingRoles.isEmpty()) {
@@ -73,6 +74,7 @@ public class AssignEventCommand extends Command {
                     Messages.MESSAGE_EVENTROLE_NAME_NOT_EXIST, event.getName(), missingRoles));
         }
 
+        // Check if member exists
         int memberIndex = model.memberNameIndex(memberName);
         if (memberIndex == -1) {
             return new CommandResult(String.format(Messages.MESSAGE_MEMBER_NAME_NOT_EXIST, memberName),
@@ -80,11 +82,20 @@ public class AssignEventCommand extends Command {
         }
         Member member = model.getFullMemberList().get(memberIndex);
 
+        // Check if member already exists
         if (event.hasMember(member)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEMBER);
         }
 
-        member.addEventRoles(roles);
+        Set<EventRole> rolesToAssign = new HashSet<>(roles);
+
+        // Handle no role provided, roles is empty so add an "unassigned" role
+        if (rolesToAssign.isEmpty()) {
+            EventRole unassignedRole = new EventRole(event.getName());
+            rolesToAssign.add(unassignedRole);
+        }
+
+        member.addEventRoles(rolesToAssign);
         event.addMember(member);
 
         model.setViewState(ViewState.SINGLE_EVENT);

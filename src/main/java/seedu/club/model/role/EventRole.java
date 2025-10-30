@@ -9,15 +9,29 @@ import seedu.club.model.name.Name;
  */
 public class EventRole extends Role {
     private Name assignedTo;
+    private boolean isParticipant;
 
     /**
      * Constructs an {@code EventRole} with the specified role name and event assignment.
      *
      * @param roleName A valid role name.
+     * @param assignedTo The event that the {@code EventRole} belongs to
      */
     public EventRole(String roleName, Name assignedTo) {
         super(roleName);
         this.assignedTo = assignedTo;
+        this.isParticipant = false;
+    }
+
+    /**
+     * Constructs an {@code EventRole} that is a "Participant"
+     *
+     * @param assignedTo The event that the {@code EventRole} belongs to
+     */
+    public EventRole(Name assignedTo) {
+        super("Participant");
+        this.assignedTo = assignedTo;
+        this.isParticipant = true;
     }
 
     public Name getAssignedTo() {
@@ -37,16 +51,20 @@ public class EventRole extends Role {
 
         EventRole otherRole = (EventRole) other;
         return roleName.equals(otherRole.roleName)
-                && assignedTo.equals(otherRole.assignedTo);
+                && assignedTo.equals(otherRole.assignedTo)
+                && isParticipant == otherRole.isParticipant;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleName, assignedTo);
+        return Objects.hash(roleName, assignedTo, isParticipant);
     }
 
     @Override
     public String toString() {
+        if (isParticipant) {
+            return assignedTo.toString(); // Just the event name since no role name
+        }
         return assignedTo + ">" + roleName;
     }
 }
