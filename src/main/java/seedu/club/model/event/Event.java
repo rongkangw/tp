@@ -1,5 +1,6 @@
 package seedu.club.model.event;
 
+import static seedu.club.commons.util.AppUtil.checkArgument;
 import static seedu.club.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -20,9 +21,13 @@ import seedu.club.model.role.EventRole;
  */
 public class Event extends NamedEntity {
 
+    // DateTime constraints
+    public static final String MESSAGE_CONSTRAINTS =
+            "Starting date/time should be before ending date/time";
+
     // Identity fields
-    private final String from; // MVP: Store as string for now
-    private final String to; // MVP: Store as string for now
+    private final DateTime from;
+    private final DateTime to;
     private final String detail;
 
     // Data fields
@@ -33,9 +38,14 @@ public class Event extends NamedEntity {
      * Creates an Event containing no participating members.
      * Every field must be present and not null.
      */
-    public Event(Name name, String from, String to, String detail, Set<EventRole> roles) {
+    public Event(Name name, DateTime from, DateTime to,
+                 String detail, Set<EventRole> roles) {
         super(name);
+
         requireAllNonNull(from, to, detail, roles);
+        // Starting date/time must be before ending date/time
+        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS);
+
         this.from = from;
         this.to = to;
         this.detail = detail;
@@ -51,9 +61,14 @@ public class Event extends NamedEntity {
      * Creates an Event with the given roster.
      * Every field must be present and not null.
      */
-    public Event(Name name, String from, String to, String detail, Set<EventRole> roles, Set<Member> roster) {
+    public Event(Name name, DateTime from, DateTime to,
+                 String detail, Set<EventRole> roles, Set<Member> roster) {
         super(name);
+
         requireAllNonNull(from, to, detail, roles, roster);
+        // Starting date/time must be before ending date/time
+        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS);
+
         this.from = from;
         this.to = to;
         this.detail = detail;
@@ -68,11 +83,11 @@ public class Event extends NamedEntity {
         }
     }
 
-    public String getFrom() {
+    public DateTime getFrom() {
         return from;
     }
 
-    public String getTo() {
+    public DateTime getTo() {
         return to;
     }
 
@@ -159,6 +174,18 @@ public class Event extends NamedEntity {
         if (replacementMember != null) {
             addMember(replacementMember);
         }
+    }
+
+    /**
+     * Updates the assigned name in event roles under roles list to new name
+     *
+     * @param updatedName   New name reference for event roles
+     */
+    public Set<EventRole> updateEventRolesAssignedTo(Name updatedName) {
+        for (EventRole eventRole: roles) {
+            eventRole.setAssignedTo(updatedName);
+        }
+        return this.roles;
     }
 
     /**

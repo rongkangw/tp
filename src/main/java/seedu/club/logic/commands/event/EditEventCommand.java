@@ -21,6 +21,7 @@ import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
 import seedu.club.model.Model;
 import seedu.club.model.ViewState;
+import seedu.club.model.event.DateTime;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
@@ -43,8 +44,8 @@ public class EditEventCommand extends Command {
             + "[" + PREFIX_DETAIL + "DETAILS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Meeting "
-            + PREFIX_FROM + "2025-11-29T20:30 "
-            + PREFIX_TO + "2025-11-29T22:30 "
+            + PREFIX_FROM + "291125 2030 "
+            + PREFIX_TO + "291125 2230 "
             + PREFIX_DETAIL + "Bring writing materials ";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
@@ -89,20 +90,20 @@ public class EditEventCommand extends Command {
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
-
         // The following line is technically not necessary since already guaranteed to be on event list,
         // but is there as a safety measure.
         model.setViewState(ViewState.EVENT);
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
-
-        //update eventRoles list of members in roster with new eventRole objects
+        // Update eventRoles list of members in roster with new eventRole objects
         Set<Member> roster = editedEvent.getRoster();
         Set<EventRole> eventRoles = editedEvent.getRoles();
         for (Member member: roster) {
-            member.updateEditedEventRolesList(eventRoles);
+            Member updatedMember = member.updateEditedEventRolesList(eventRoles);
+            model.setMember(member, updatedMember);
         }
+
 
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent)));
     }
@@ -116,10 +117,10 @@ public class EditEventCommand extends Command {
 
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
-        String updatedFrom = editEventDescriptor.getFrom().orElse(eventToEdit.getFrom());
-        String updatedTo = editEventDescriptor.getTo().orElse(eventToEdit.getTo());
+        DateTime updatedFrom = editEventDescriptor.getFrom().orElse(eventToEdit.getFrom());
+        DateTime updatedTo = editEventDescriptor.getTo().orElse(eventToEdit.getTo());
         String updatedDetails = editEventDescriptor.getDetails().orElse(eventToEdit.getDetail());
-        Set<EventRole> eventRoles = eventToEdit.getRoles();
+        Set<EventRole> eventRoles = eventToEdit.updateEventRolesAssignedTo(updatedName);
         Set<Member> roster = eventToEdit.getRoster();
 
         return new Event(updatedName, updatedFrom, updatedTo, updatedDetails, eventRoles, roster);
@@ -155,8 +156,8 @@ public class EditEventCommand extends Command {
      */
     public static class EditEventDescriptor {
         private Name name;
-        private String from;
-        private String to;
+        private DateTime from;
+        private DateTime to;
         private String details;
 
         public EditEventDescriptor() {}
@@ -187,19 +188,19 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setFrom(String from) {
+        public void setFrom(DateTime from) {
             this.from = from;
         }
 
-        public Optional<String> getFrom() {
+        public Optional<DateTime> getFrom() {
             return Optional.ofNullable(from);
         }
 
-        public void setTo(String to) {
+        public void setTo(DateTime to) {
             this.to = to;
         }
 
-        public Optional<String> getTo() {
+        public Optional<DateTime> getTo() {
             return Optional.ofNullable(to);
         }
 

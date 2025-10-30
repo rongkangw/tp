@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.ListView?>
 
-<?import javafx.scene.layout.StackPane?>
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
-    <StackPane fx:id="eventCard"  />
-    <ListView fx:id="memberListView" VBox.vgrow="ALWAYS" styleClass="singleEventPanelMemberList" />
+<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <StackPane fx:id="eventCard" minHeight="-Infinity" />
+    <ListView fx:id="memberListView" prefHeight="340.0" styleClass="singleEventPanelMemberList" VBox.vgrow="ALWAYS" />
 </VBox>

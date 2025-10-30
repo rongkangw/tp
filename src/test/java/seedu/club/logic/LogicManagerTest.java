@@ -79,8 +79,8 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         String listMemberCommand = ListMemberCommand.COMMAND_WORD;
         String listEventCommand = ListEventCommand.COMMAND_WORD;
-        assertCommandSuccess(listMemberCommand, ListMemberCommand.MESSAGE_SUCCESS, model);
-        assertCommandSuccess(listEventCommand, ListEventCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listMemberCommand, ListMemberCommand.MESSAGE_EMPTY_LIST, model);
+        assertCommandSuccess(listEventCommand, ListEventCommand.MESSAGE_EMPTY_LIST, model);
     }
 
     @Test
