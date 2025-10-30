@@ -792,7 +792,11 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Displaying an event
+
+    1. 
+
+3. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -803,23 +807,6 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Effort**
-
-EASync was developed based on the AddressBook Level 3 (AB3) codebase. While AB3 was designed to manage a single entity 
-type (`Person`), EASync extends the architecture to support two distinct entity types: `Member` and `Event`. 
-2 entity types `Member` and `Event`. This required us to refactor core components (Model, Storage, Logic and UI) to 
-handle multiple entity types consistently. 
-
-### Challenges Faced 
-
-
-
-
-### Achievements
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Planned Enhancements**
 
 Team Size: 5
