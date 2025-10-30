@@ -158,6 +158,19 @@ Classes used by multiple components are in the `seedu.club.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Assigning a member to an event
+The implementation of the event command follows the standard command parsing workflow, where ClubBookParser will parse the input string into an executable command.
+When the user enters `assignEvent m/<MEMBERNAME> e/<EVENTNAME> [r/<EVENTROLE>]... ClubBookParser will first create an AssignEventCommandParser, which will then obtain the values corresponding to the prefixes `m/`, `e/`, and if applicable, `r/`  . If an error is encountered during parsing, a ParseException will be thrown.
+
+
+Otherwise, AssignEventCommandParser will obtain the values as a Name object for Member name and Event name, and the roles as a Set of Event Role objects. It then creates a new instance of AssignEventCommand using these objects as parameters.
+
+Upon execution, AssignEventCommand will check if the Event Role set is empty or not. If it is, it will only add the Member to the Event’s roster. If Event Roles are specified, it will add the Member to the Event’s roster and add a corresponding Event Role object to the Member’s event roles list.
+
+The Event’s entry is then shown.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
