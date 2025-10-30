@@ -146,7 +146,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseEventRole_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventRole(null, null));
+        assertThrows(NullPointerException.class, () ->
+                ParserUtil.parseEventRole(null, new Name(VALID_EVENT_NAME)));
     }
 
     @Test

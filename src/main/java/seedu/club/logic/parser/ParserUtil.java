@@ -102,6 +102,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> member roles} into a {@code Set<MemberRole>}.
+     */
+    public static Set<MemberRole> parseMemberRoles(Collection<String> roles) throws ParseException {
+        requireNonNull(roles);
+        final Set<MemberRole> memberRoleSet = new HashSet<>();
+        for (String roleName : roles) {
+            memberRoleSet.add(parseMemberRole(roleName));
+        }
+        return memberRoleSet;
+    }
+
+    /**
      * Parses a {@code String eventRole} into an {@code EventRole} for the {@code Event}.
      * Leading and trailing whitespaces will be trimmed.
      * Multiple internal whitespaces will be normalized into a single whitespace.
@@ -118,18 +130,6 @@ public class ParserUtil {
         // The checking of whether the event name exists is done in the command itself, thus no need to
         // check/validate assignedTo
         return new EventRole(trimmedRole, assignedTo);
-    }
-
-    /**
-     * Parses {@code Collection<String> member roles} into a {@code Set<MemberRole>}.
-     */
-    public static Set<MemberRole> parseMemberRoles(Collection<String> roles) throws ParseException {
-        requireNonNull(roles);
-        final Set<MemberRole> memberRoleSet = new HashSet<>();
-        for (String roleName : roles) {
-            memberRoleSet.add(parseMemberRole(roleName));
-        }
-        return memberRoleSet;
     }
 
     /**
