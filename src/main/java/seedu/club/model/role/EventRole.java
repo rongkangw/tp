@@ -9,7 +9,7 @@ import seedu.club.model.name.Name;
  */
 public class EventRole extends Role {
     private Name assignedTo;
-    private boolean isUnassigned = false;
+    private boolean isParticipant = false;
 
     /**
      * Constructs an {@code EventRole} with the specified role name and event assignment.
@@ -28,7 +28,7 @@ public class EventRole extends Role {
      */
     public static EventRole unassigned(Name eventName) {
         EventRole role = new EventRole("Unassigned", eventName);
-        role.isUnassigned = true;
+        role.isParticipant = true;
         return role;
     }
 
@@ -50,17 +50,17 @@ public class EventRole extends Role {
         EventRole otherRole = (EventRole) other;
         return roleName.equals(otherRole.roleName)
                 && assignedTo.equals(otherRole.assignedTo)
-                && isUnassigned == otherRole.isUnassigned;
+                && isParticipant == otherRole.isParticipant;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleName, assignedTo, isUnassigned);
+        return Objects.hash(roleName, assignedTo, isParticipant);
     }
 
     @Override
     public String toString() {
-        if (isUnassigned) {
+        if (isParticipant) {
             return assignedTo.toString(); // Just the event name since no role name
         }
         return assignedTo + ">" + roleName;
