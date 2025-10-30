@@ -20,14 +20,6 @@ public class EventRole extends Role {
         this.assignedTo = assignedTo;
     }
 
-    /**
-     * This method should only be used when editing the event name
-     * @param name the Name of the event
-     */
-    public void setAssignedTo(Name name) {
-        assignedTo = name;
-    }
-
     public Name getAssignedTo() {
         return assignedTo;
     }

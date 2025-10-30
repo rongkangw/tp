@@ -170,10 +170,12 @@ public class Event extends NamedEntity {
      * @param updatedName   New name reference for event roles
      */
     public Set<EventRole> updateEventRolesAssignedTo(Name updatedName) {
+        Set<EventRole> updatedRoles = new HashSet<>();
+
         for (EventRole eventRole: roles) {
-            eventRole.setAssignedTo(updatedName);
+            updatedRoles.add(new EventRole(eventRole.roleName, updatedName));
         }
-        return this.roles;
+        return updatedRoles;
     }
 
     /**

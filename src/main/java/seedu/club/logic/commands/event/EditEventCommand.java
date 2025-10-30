@@ -100,7 +100,7 @@ public class EditEventCommand extends Command {
         Set<Member> roster = editedEvent.getRoster();
         Set<EventRole> eventRoles = editedEvent.getRoles();
         for (Member member: roster) {
-            Member updatedMember = member.updateEditedEventRolesList(eventRoles);
+            Member updatedMember = member.updateEditedEventRolesList(eventRoles, eventToEdit.getName());
             model.setMember(member, updatedMember);
         }
 
