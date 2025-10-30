@@ -1,5 +1,6 @@
 package seedu.club.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.testutil.Assert.assertThrows;
@@ -144,9 +145,7 @@ public class StringUtilTest {
 
     @Test
     public void hasLessThanOrEqualLength_invalidInputs_throwsException() {
-        // Null string
-        assertThrows(NullPointerException.class, () ->
-                StringUtil.hasLessThanOrEqualLength(null, 5));
+        assertThrows(NullPointerException.class, () -> StringUtil.hasLessThanOrEqualLength(null, 5));
     }
 
     @Test
@@ -176,5 +175,39 @@ public class StringUtilTest {
         // Boundary cases
         assertTrue(StringUtil.hasLessThanOrEqualLength("a", 1)); // equal
         assertFalse(StringUtil.hasLessThanOrEqualLength("ab", 1)); // longer
+    }
+
+    //---------------- Tests for normalizeAndTrimWhitespace--------------------------------------
+    @Test
+    public void normalizeAndTrimWhitespace_invalidInputs_throwsException() {
+
+    }
+
+    @Test
+    public void normalizeAndTrimWhitespace_validInputs_correctResult() {
+
+        // Empty string
+        assertEquals("", StringUtil.normalizeAndTrimWhitespace(""));
+
+        // Only spaces
+        assertEquals("", StringUtil.normalizeAndTrimWhitespace("     "));
+
+        // Leading and trailing spaces
+        assertEquals("hello world", StringUtil.normalizeAndTrimWhitespace("   hello world   "));
+
+        // Multiple consecutive spaces between words
+        assertEquals("hello world", StringUtil.normalizeAndTrimWhitespace("hello    world"));
+
+        // Single word with no extra spaces
+        assertEquals("hello", StringUtil.normalizeAndTrimWhitespace("hello"));
+
+        // Single space between words
+        assertEquals("hello world", StringUtil.normalizeAndTrimWhitespace("hello world"));
+
+        // Single character with spaces
+        assertEquals("x", StringUtil.normalizeAndTrimWhitespace("   x   "));
+
+        // Multiple words with irregular spaces
+        assertEquals("this is a test", StringUtil.normalizeAndTrimWhitespace(" this   is  a    test  "));
     }
 }

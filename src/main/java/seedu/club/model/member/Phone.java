@@ -8,12 +8,9 @@ import static seedu.club.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
-
-
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should be exactly 8 digits long, starting with either 6, 8 or 9\n"
-                    + "A single whitespace is allowed in between the first and last four digits";
-    public static final String VALIDATION_REGEX = "^[689]\\d{3} ?\\d{4}$";
+            "Phone numbers should be exactly 8 digits long, starting with either 6, 8 or 9.";
+    public static final String VALIDATION_REGEX = "^[689]\\d{7}$";
     public final String value;
 
     /**

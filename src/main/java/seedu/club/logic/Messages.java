@@ -81,9 +81,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(event.getName())
                 .append("; From: ")
-                .append(ParserUtil.formatDate(event.getFrom()))
+                .append(ParserUtil.formatDateTime(event.getFrom()))
                 .append("; To: ")
-                .append(ParserUtil.formatDate(event.getTo()));
+                .append(ParserUtil.formatDateTime(event.getTo()));
 
         String detail = event.getDetail();
         if (detail != null && !detail.isEmpty()) {
