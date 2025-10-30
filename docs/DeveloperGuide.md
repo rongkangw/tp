@@ -326,44 +326,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01: Add a new Event**
 
-**Preconditions**
-* App is open
-
-**Guarantees**
-* Addition of new event will not affect other events in existing list of events
-* If a new event is added, it will be displayed at the top of the list of events
-
-**MSS**
-1. User requests to add an event
-2. System displays a success message
-3. System creates a new event
-4. System displays the new event created in the list of events
-
-    Use case ends
-
-**Extensions**
-
-* 1a. One or more of the parameters are missing
-
-    * 1a1. System informs user of missing fields
-
-      Use case ends
-
-* 1b. One or more of the parameters are of invalid format
-
-    * 1b1. System informs user of incorrect fields
-
-      Use case ends
-
-* 1c. Event with the same name, to and from datetimes are entered in
-
-    * 1c1. System informs user of duplicated event
-
-      Use case ends
-
-**UC02: Adding a Member**
+**UC01: Adding a Member**
 
 **Preconditions**
 * App is open
@@ -392,98 +356,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends
 
-**UC03: Assigning Member to an Event**
+**UC02: Adding a new Event**
 
 **Preconditions**
-* The member to be assigned must be in the list of members
-* The event to be assigned to must exist in the list of events
+* App is open
 
 **Guarantees**
-* Member will be displayed with the assigned event tag
+* Addition of new event will not affect other events in existing list of events
+* If a new event is added, it will be displayed at the top of the list of events
+
+**MSS**
+1. User requests to add an event
+2. System displays a success message
+3. System creates a new event
+4. System displays the new event created in the list of events
+
+   Use case ends
+
+**Extensions**
+
+* 1a. One or more of the parameters are missing
+
+    * 1a1. System informs user of missing fields
+
+      Use case ends
+
+* 1b. One or more of the parameters are of invalid format
+
+    * 1b1. System informs user of incorrect fields
+
+      Use case ends
+
+* 1c. Event with the same name, to and from datetimes are entered in
+
+    * 1c1. System informs user of duplicated event
+
+      Use case ends
+
+**UC03: Editing a Member**
+
+**Preconditions**
+* The member to be edited must be in the list of members
+
+**Guarantees**
+* Member will be displayed with the updated information
 
 **MSS**
 
-1.  User requests to assign a member to a certain event
+1.  User requests to edit the specified member
 2.  System displays success message
-3.  System displays the member with the event tag
+3.  System displays the updated member
 
     Use case ends
 
 **Extensions**
 
-* 1a. Missing required parameters in command
-    * 1a1. System informs user of missing fields
+* 1a. Incorrect parameters within command (e.g. event index out of range)
+    * 1a1. System informs user of incorrect parameters
 
       Use case ends
 
-**UC04: Tag Member with Event Role**
+* 1b. No edited fields are provided 
+    * 1a1. System informs user of missing parameters
+
+      Use case ends
+
+
+**UC04: Editing an Event**
 
 **Preconditions**
-
-* The member to be tagged must exist in the list of members
-* The event must exist in the list of events
-* Member is already assigned to desired event (UC03)
+* The event to be edited must be in the list of events
 
 **Guarantees**
-
-* Member has a role for the event
+* Event will be displayed with the updated information
 
 **MSS**
 
-1. User requests to tag a member to a certain event role
-2. System displays success message
-3. System displays member with role for the event
+1.  User requests to edit the specified event
+2.  System displays success message
+3.  System displays the updated event
 
-   Use case ends
-
-**Extensions**
-
-* 1a. Missing required parameters in command (e.g. member index, event name, role name)
-    * 1a1. System informs user of missing fields
-
-      Use case ends
-
-* 1b. Incorrect parameters within command (e.g. member index out of range, event does not exist, role does not exist within the event)
-    * 1b1. System informs user of incorrect parameters
-
-      Use case ends
-
-* 1c. Member already has the role for the event tagged to him/her already
-    * 1c1. System informs user of invalid action
-
-      Use case ends
-
-**UC05: Tag Member with Club Role**
-
-**Preconditions**
-
-* The member to be tagged to must exist in the list of members
-
-**Guarantees**
-
-* Member has a club role
-
-**MSS**
-
-1. User requests to tag a member to a certain club role
-2. System displays success message
-3. System displays member updated with club role
-
-   Use case ends
+    Use case ends
 
 **Extensions**
 
-* 1a. Missing required parameters in command (e.g. member index, role name)
-    * 1a1. System informs user of missing fields
+* 1a. Incorrect parameters within command (e.g. event index out of range)
+    * 1a1. System informs user of incorrect parameters
 
       Use case ends
 
-* 1b. Incorrect parameters within command (e.g. member index out of range)
-    * 1b1. System informs user of incorrect parameters
+* 1b. No edited fields are provided
+    * 1a1. System informs user of missing parameters
 
       Use case ends
 
-**UC06: Removing a Member**
+
+**UC05: Removing a Member**
 
 **Preconditions**
 * Member to be removed must exist in the list of members
@@ -513,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
-**UC07: Removing an Event**
+**UC06: Removing an Event**
 
 **Preconditions**
 
@@ -543,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends
 
-**UC08: Displaying an event’s details**
+**UC07: Displaying an event’s details**
 
 **Preconditions**
 
@@ -575,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC09: Assigning a member to an event**
+**UC08: Assigning a member to an event**
 
 **Preconditions**
 
@@ -627,7 +595,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC10: Unassigning a member from an event**
+**UC09: Unassigning a member from an event**
 
 **Preconditions**
 
@@ -666,7 +634,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC11: Unassigning an event role from a member**
+**UC10: Unassigning an event role from a member**
 
 **Preconditions**
 * The member and event must exist
