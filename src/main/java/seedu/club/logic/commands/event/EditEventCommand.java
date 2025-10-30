@@ -1,6 +1,7 @@
 package seedu.club.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.club.logic.Messages.MESSAGE_END_BEFORE_START_DATE;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_DETAIL;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,7 @@ import seedu.club.logic.Messages;
 import seedu.club.logic.commands.Command;
 import seedu.club.logic.commands.CommandResult;
 import seedu.club.logic.commands.exceptions.CommandException;
+import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.Model;
 import seedu.club.model.ViewState;
 import seedu.club.model.event.DateTime;
@@ -85,7 +87,13 @@ public class EditEventCommand extends Command {
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
-        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
+        Event editedEvent;
+
+        try {
+            editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
+        } catch (ParseException pe) {
+            throw new CommandException(MESSAGE_END_BEFORE_START_DATE);
+        }
 
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
@@ -112,7 +120,8 @@ public class EditEventCommand extends Command {
      * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+    private static Event createEditedEvent(
+            Event eventToEdit, EditEventDescriptor editEventDescriptor) throws ParseException {
         assert eventToEdit != null;
 
 
@@ -122,6 +131,10 @@ public class EditEventCommand extends Command {
         String updatedDetails = editEventDescriptor.getDetails().orElse(eventToEdit.getDetail());
         Set<EventRole> eventRoles = eventToEdit.updateEventRolesAssignedTo(updatedName);
         Set<Member> roster = eventToEdit.getRoster();
+
+        if (!updatedFrom.isBefore(updatedTo)) {
+            throw new ParseException(String.format(MESSAGE_END_BEFORE_START_DATE));
+        }
 
         return new Event(updatedName, updatedFrom, updatedTo, updatedDetails, eventRoles, roster);
     }
