@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.club.logic.parser.exceptions.ParseException;
+import seedu.club.model.event.DateTime;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
@@ -26,14 +27,25 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MEMBER_ROLE = "#friend";
     private static final String INVALID_EVENT_ROLE = "#treasurer";
+    private static final String INVALID_DATETIME = "010325 210s";
+    private static final String INVALID_DETAIL = "a".repeat(501); // 501 characters
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "62123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_MEMBER_ROLE_1 = "friend";
-    private static final String VALID_MEMBER_ROLE_2 = "neighbour";
-    private static final String VALID_EVENT_ROLE_1 = "president";
-    private static final String VALID_EVENT_ROLE_2 = "treasurer";
+    private static final String VALID_MEMBER_ROLE_2 = "vice president";
+    private static final String VALID_MEMBER_ROLE_2_WITH_SPACES = "vice    president";
+    private static final String VALID_EVENT_ROLE_1 = "productions";
+    private static final String VALID_EVENT_ROLE_2 = "vice treasurer";
+    private static final String VALID_EVENT_ROLE_2_WITH_SPACES = "vice    treasurer";
+    private static final String VALID_DATETIME = "010325 2100";
+    private static final String VALID_DATETIME_AS_STRING = "1 Mar 2025 9:00pm";
+    private static final String VALID_DETAIL_1 = "a".repeat(500);
+    private static final String VALID_DETAIL_2 = "a".repeat(250)
+            + " " + "a".repeat(249); // 500 characters total
+    private static final String VALID_DETAIL_2_WITH_SPACES = "a".repeat(250)
+            + "    " + "a".repeat(249); // 500 characters total after whitespace normalization
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -173,6 +185,31 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseMemberRole_validValueWithInternalWhitespace_returnsMemberRole() throws Exception {
+        MemberRole expectedRole = new MemberRole(VALID_MEMBER_ROLE_2);
+        assertEquals(expectedRole, ParserUtil.parseMemberRole(VALID_MEMBER_ROLE_2));
+    }
+
+    @Test
+    public void parseEventRole_validValueWithInternalWhitespace_returnsEventRole() throws Exception {
+        MemberRole expectedRole = new MemberRole(VALID_EVENT_ROLE_2);
+        assertEquals(expectedRole, ParserUtil.parseMemberRole(VALID_EVENT_ROLE_2));
+    }
+
+
+    @Test
+    public void parseMemberRole_validValueWithMultipleInternalWhitespace_returnsTrimmedMemberRole() throws Exception {
+        MemberRole expectedRole = new MemberRole(VALID_MEMBER_ROLE_2);
+        assertEquals(expectedRole, ParserUtil.parseMemberRole(VALID_MEMBER_ROLE_2_WITH_SPACES));
+    }
+
+    @Test
+    public void parseEventRole_validValueWithMultipleInternalWhitespace_returnsTrimmedEventRole() throws Exception {
+        MemberRole expectedRole = new MemberRole(VALID_EVENT_ROLE_2);
+        assertEquals(expectedRole, ParserUtil.parseMemberRole(VALID_EVENT_ROLE_2_WITH_SPACES));
+    }
+
+    @Test
     public void parseMemberRoles_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseMemberRoles(null));
     }
@@ -228,5 +265,66 @@ public class ParserUtilTest {
         );
 
         assertEquals(expectedRoleSet, actualRoleSet);
+    }
+
+    @Test
+    public void parseDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime((String) null));
+    }
+
+    @Test
+    public void parseDateTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithoutWhitespace_returnsDateTime() throws Exception {
+        DateTime expectedDateTime = new DateTime(VALID_DATETIME);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_DATETIME));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithWhitespace_returnsTrimmedDateTime() throws Exception {
+        String dateTimeWithWhitespace = WHITESPACE + VALID_DATETIME + WHITESPACE;
+        DateTime expectedDateTime = new DateTime(VALID_DATETIME);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(dateTimeWithWhitespace));
+    }
+
+    @Test
+    public void formatDateTime_null_returnsEmptyString() {
+        assertEquals("", ParserUtil.formatDateTime(null));
+    }
+
+    @Test
+    public void formatDateTime_validDateTime_returnsString() {
+        DateTime dateTime = new DateTime(VALID_DATETIME);
+        assertEquals(VALID_DATETIME_AS_STRING, ParserUtil.formatDateTime(dateTime));
+    }
+
+    @Test
+    public void parseDetail_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDetail(null));
+    }
+
+    @Test
+    public void parseDetail_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDetail(INVALID_DETAIL));
+    }
+
+    @Test
+    public void parseDetail_validValueWithoutWhitespace_returnsDetail() throws Exception {
+        assertEquals(VALID_DETAIL_1, ParserUtil.parseDetail(VALID_DETAIL_1));
+    }
+
+    @Test
+    public void parseDetail_validValueWithWhitespace_returnsTrimmedDetail() throws Exception {
+        String detailWithWhitespace = WHITESPACE + VALID_DETAIL_1 + WHITESPACE;
+        assertEquals(VALID_DETAIL_1, ParserUtil.parseDetail(detailWithWhitespace));
+    }
+
+    @Test
+    public void parseDetail_validValueWithMultipleInternalWhitespace_returnsTrimmedDetail() throws Exception {
+        System.out.println(VALID_DETAIL_2_WITH_SPACES.length());
+        assertEquals(VALID_DETAIL_2, ParserUtil.parseDetail(VALID_DETAIL_2_WITH_SPACES));
     }
 }
