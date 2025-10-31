@@ -1,6 +1,13 @@
 package seedu.club.testutil;
 
-import static seedu.club.logic.commands.CommandTestUtil.*;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_AMY;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_TREASURER;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +17,9 @@ import seedu.club.model.ClubBook;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
 
+/**
+ * A utility class containing a list of {@code Member} and {@code Event} objects to be used in tests.
+ */
 public class TypicalClubBook {
     public static final Event ORIENTATION = new EventBuilder().withName("Orientation")
             .withFrom("151025 1200").withTo("171025 1800").withDetail("For freshmen")
@@ -38,7 +48,8 @@ public class TypicalClubBook {
     public static final Member CARL = new MemberBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
     public static final Member DANIEL = new MemberBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withMemberRoles("Secretary").withEventRoles(MOVIE_NIGHT.getRoles()).build();
+            .withEmail("cornelia@example.com").withMemberRoles("Secretary")
+            .withEventRoles(MOVIE_NIGHT.getRoles()).build();
     public static final Member ELLE = new MemberBuilder().withName("Elle Meyer").withPhone("94822244")
             .withEmail("werner@example.com").withEventRoles(MOVIE_NIGHT.getRoles()).build();
     public static final Member FIONA = new MemberBuilder().withName("Fiona Kunz").withPhone("94824271")
@@ -61,10 +72,16 @@ public class TypicalClubBook {
 
     public TypicalClubBook() {} //to prevent instantiation
 
+    /**
+     * Returns a list of typical members.
+     */
     public static List<Member> getTypicalMembers() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
+    /**
+     * Returns a list of typical events.
+     */
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
     }

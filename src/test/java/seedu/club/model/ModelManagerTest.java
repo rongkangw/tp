@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.club.model.Model.PREDICATE_SHOW_ALL_MEMBERS;
 import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalClubBook.MOVIE_NIGHT;
-import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
 import static seedu.club.testutil.TypicalClubBook.ALICE;
 import static seedu.club.testutil.TypicalClubBook.BENSON;
+import static seedu.club.testutil.TypicalClubBook.MOVIE_NIGHT;
+import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
