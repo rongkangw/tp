@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.commons.util.JsonUtil;
 import seedu.club.model.ClubBook;
+import seedu.club.testutil.TypicalClubBook;
 import seedu.club.testutil.TypicalEvents;
 import seedu.club.testutil.TypicalMembers;
 
@@ -53,7 +54,7 @@ public class JsonSerializableClubBookTest {
         JsonSerializableClubBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_MEMBERS_FILE,
                 JsonSerializableClubBook.class).get();
         ClubBook clubBookFromFile = dataFromFile.toModelType();
-        ClubBook typicalMembersClubBook = TypicalMembers.getTypicalClubBook();
+        ClubBook typicalMembersClubBook = TypicalClubBook.getTypicalClubBook();
         assertEquals(clubBookFromFile, typicalMembersClubBook);
     }
 
