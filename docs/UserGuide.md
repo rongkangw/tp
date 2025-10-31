@@ -20,15 +20,15 @@ You do not need to be a programmer or technical expert. Using EASync is like sen
 1. **Set up Java** <br>
    To run EASync, your computer needs to have Java version 17 or higher installed.
    Using the step-by-step guides [here](https://se-education.org/guides/tutorials/javaInstallation.html), you can:
-   * Check if Java is already installed on your computer. 
-   * Install the correct version if needed. 
+   * Check if Java is already installed on your computer.
+   * Install the correct version if needed.
    * Verify your installation afterward.
 
 2. **Download EASync** <br>
    Go to [our releases page on Github](https://github.com/AY2526S1-CS2103T-T11-3/tp/releases) to download the latest `EASync.jar` file.
 
 3. **Choose a Folder for EASync** <br>
-   * Create or pick a folder where you’d like to keep your EASync files. 
+   * Create or pick a folder where you’d like to keep your EASync files.
    * Then, move the `EASync.jar` file you just downloaded into that folder. <br>
    📁 Example: You could create a folder on your Desktop called `EASync`.
 
@@ -152,7 +152,7 @@ Examples:
 * `find Andy` then `deleteMember 1` removes the 1st member in the **search result**.
 
 <box type="important" seamless>
-    
+
 **Note:** You should run `listMembers` or `find` first, then look for the index of the member you want to delete. Otherwise, you might accidentally delete the wrong member.
 </box>
 
@@ -161,7 +161,7 @@ Examples:
 Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/ROLE]…​`
 
 * Edits the details of the member at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed member list. 
+* `INDEX` refers to the index number shown in the displayed member list.
 * `INDEX` **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values for the provided field will be updated to the input values.
@@ -320,7 +320,7 @@ Examples:
 
 Format: `unassignEvent e/EVENT m/MEMBER`
 
-* Removes the specified member from the event 
+* Removes the specified member from the event
 * All associated event roles in the member's event roles list are removed, if any.
 
 Examples:
@@ -388,7 +388,7 @@ Furthermore, certain edits can cause EASync to behave in unexpected ways (e.g., 
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Follow these steps:
-  1. Make a copy of the `data` folder in the **home folder of your current installation**.  
+  1. Make a copy of the `data` folder in the **home folder of your current installation**.
   2. Install EASync on another computer (follow the [Quick Start guide](#quick-start))
   3. Take the copied `data` folder and overwrite the `data` folder in the **home folder of your new installation**
   4. Run EASync on the new computer and verify that your data has been transferred successfully.

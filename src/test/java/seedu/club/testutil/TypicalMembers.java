@@ -23,14 +23,14 @@ public class TypicalMembers {
 
     public static final Member ALICE = new MemberBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withPhone("94351253")
-            .withMemberRoles("friends").build();
+            .withMemberRoles("President").build();
     public static final Member BENSON = new MemberBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withMemberRoles("owesMoney", "friends").build();
+            .withMemberRoles("VP", "Operations").build();
     public static final Member CARL = new MemberBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
     public static final Member DANIEL = new MemberBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withMemberRoles("friends").build();
+            .withEmail("cornelia@example.com").withMemberRoles("Secretary").build();
     public static final Member ELLE = new MemberBuilder().withName("Elle Meyer").withPhone("94822244")
             .withEmail("werner@example.com").build();
     public static final Member FIONA = new MemberBuilder().withName("Fiona Kunz").withPhone("94824271")
@@ -38,7 +38,7 @@ public class TypicalMembers {
     public static final Member GEORGE = new MemberBuilder().withName("George Best").withPhone("94824425")
             .withEmail("anna@example.com").build();
 
-    // Manually added
+    // Manually added members
     public static final Member HOON = new MemberBuilder().withName("Hoon Meier").withPhone("84824241")
             .withEmail("stefan@example.com").build();
     public static final Member IDA = new MemberBuilder().withName("Ida Mueller").withPhone("84821311")
@@ -51,14 +51,12 @@ public class TypicalMembers {
             .withEmail(VALID_EMAIL_BOB).withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT, VALID_MEMBER_ROLE_TREASURER)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalMembers() {} // prevents instantiation
 
     /**
      * Returns an {@code ClubBook} with all the typical members.
      */
-    public static ClubBook getTypicalClubBook() {
+    public static ClubBook getTypicalMemberOnlyClubBook() {
         ClubBook ab = new ClubBook();
         for (Member member : getTypicalMembers()) {
             ab.addMember(member);

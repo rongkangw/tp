@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.club.logic.commands.CommandTestUtil.showEventAtIndex;
-import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
+import static seedu.club.testutil.TypicalClubBook.getTypicalEventOnlyClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.club.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
@@ -28,7 +28,7 @@ public class DisplayEventCommandTest {
 
     @BeforeEach
     public void setUp() {
-        this.model = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
+        this.model = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
         this.expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
     }
 

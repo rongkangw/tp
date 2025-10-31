@@ -3,7 +3,7 @@ package seedu.club.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.club.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalEvents.ORIENTATION;
+import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.model.event.DateTime;
 import seedu.club.model.member.Member;
 import seedu.club.model.name.Name;
-import seedu.club.testutil.TypicalMembers;
+import seedu.club.testutil.TypicalClubBook;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "@orientation";
@@ -30,9 +30,9 @@ public class JsonAdaptedEventTest {
     private static final List<JsonAdaptedEventRole> VALID_EVENT_ROLES = ORIENTATION.getRoles().stream()
                             .map(JsonAdaptedEventRole::new)
                             .collect(Collectors.toList());
-    private static final List<String> VALID_EVENT_ROSTER = TypicalMembers.getTypicalMembers()
+    private static final List<String> VALID_EVENT_ROSTER = TypicalClubBook.getTypicalMembers()
             .stream().map(m -> m.getName().toString()).toList();
-    private static final ObservableList<Member> VALID_EVENT_MEMBERS = TypicalMembers.getTypicalClubBook()
+    private static final ObservableList<Member> VALID_EVENT_MEMBERS = TypicalClubBook.getTypicalClubBook()
             .getMemberList();
 
     @Test

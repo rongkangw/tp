@@ -1,8 +1,8 @@
 package seedu.club.logic.commands.member;
 
 import static seedu.club.logic.commands.CommandTestUtil.showMemberAtIndex;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
-import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

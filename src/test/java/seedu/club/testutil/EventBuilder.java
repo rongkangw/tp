@@ -69,7 +69,7 @@ public class EventBuilder {
      * @param roles to be set
      * @return EventBuilder
      */
-    public EventBuilder withRoles(String ... roles) {
+    public EventBuilder withEventRoles(String ... roles) {
         this.roles = SampleDataUtil.getEventRoleSet(this.name, roles);
         return this;
     }
