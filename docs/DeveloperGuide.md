@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends
 
 * 1b. No edited fields are provided
-    * 1a1. System informs user of missing parameters
+    * 1b1. System informs user of missing parameters
 
       Use case ends
 
