@@ -8,7 +8,6 @@ import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.club.logic.commands.event.DeleteEventCommand;
-import seedu.club.logic.commands.event.DisplayEventCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
