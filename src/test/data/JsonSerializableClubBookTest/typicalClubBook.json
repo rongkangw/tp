@@ -1,5 +1,22 @@
 {
   "_comment": "AddressBook save file which contains the same Member values as in TypicalMembers#getTypicalAddressBook()",
-  "members": [],
+  "members": [{
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "memberRoles" : [ "President" ],
+      "eventRoles": [{
+        "roleName" : "facilitator",
+        "event" : "Orientation"
+      }, {
+        "roleName" : "gamemaster",
+        "event" : "Orientation"
+      }]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "memberRoles" : [ "VP", "Operations" ]
+  }],
   "events": []
 }

@@ -19,7 +19,7 @@ public class JsonSerializableClubBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableClubBookTest");
     private static final Path TYPICAL_MEMBERS_FILE = TEST_DATA_FOLDER.resolve("typicalMembersClubBook.json");
-    private static final Path INVALID_MEMBER_FILE = TEST_DATA_FOLDER.resolve("invalidMemberClubBook.json");
+    private static final Path INVALID_MEMBER_FILE = TEST_DATA_FOLDER.resolve("invalidMemberOnlyClubBook.json");
     private static final Path DUPLICATE_MEMBER_FILE = TEST_DATA_FOLDER.resolve("duplicateMemberClubBook.json");
     private static final Path TYPICAL_EVENTS_FILE = TEST_DATA_FOLDER.resolve("typicalEvents.json");
     private static final Path INVALID_EVENTS_FILE = TEST_DATA_FOLDER.resolve("invalidEvent.json");

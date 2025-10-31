@@ -3,5 +3,6 @@
     "name": "Member with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com"
-  } ]
+  } ],
+  "events" : []
 }

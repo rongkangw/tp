@@ -6,7 +6,6 @@ import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalClubBook.MEETING;
 import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
 import static seedu.club.testutil.TypicalClubBook.WORKSHOP;
-import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
 import static seedu.club.testutil.TypicalClubBook.ALICE;
 import static seedu.club.testutil.TypicalClubBook.HOON;
 import static seedu.club.testutil.TypicalClubBook.IDA;
@@ -39,6 +38,8 @@ public class JsonClubBookStorageTest {
         storage = new JsonClubBookStorage(clubBookFile);
     }
 
+    // ================ Tests to check if JsonClubBookStorage reads events correctly ==============================
+
     @Test
     public void readEvents_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readEvents(null));
@@ -61,57 +62,15 @@ public class JsonClubBookStorageTest {
 
     @Test
     public void readEvents_invalidMemberClubBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readEvents("invalidEventClubBook.json"));
+        assertThrows(DataLoadingException.class, () -> readEvents("invalidEventOnlyClubBook.json"));
     }
 
     @Test
     public void readEvents_invalidAndValidMemberClubBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readEvents("invalidAndValidEventClubBook.json"));
+        assertThrows(DataLoadingException.class, () -> readEvents("invalidAndValidEventOnlyClubBook.json"));
     }
 
-
-    @Test
-    public void readAndSaveEvents_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempEvents.json");
-        ClubBook original = getTypicalClubBookWithEvents();
-        JsonClubBookStorage jsonClubBookStorage = new JsonClubBookStorage(filePath);
-
-        // Save in new file and read back
-        jsonClubBookStorage.saveClubBook(original, filePath);
-        ReadOnlyClubBook readBack = jsonClubBookStorage.readClubBook(filePath).get();
-        assertEquals(original, new ClubBook(readBack));
-
-        // Modify data, overwrite exiting file, and read back
-        original.addEvent(MEETING);
-        original.removeEvent(ORIENTATION);
-        jsonClubBookStorage.saveClubBook(original, filePath);
-        readBack = jsonClubBookStorage.readClubBook(filePath).get();
-        assertEquals(original, new ClubBook(readBack));
-
-        // Save and read without specifying file path
-        original.addEvent(WORKSHOP);
-        jsonClubBookStorage.saveClubBook(original); // file path not specified
-        readBack = jsonClubBookStorage.readClubBook().get(); // file path not specified
-        assertEquals(original, new ClubBook(readBack));
-
-    }
-
-    /**
-     * Saves {@code clubBook} at the specified {@code filePath}.
-     */
-    private void saveClubBookWithEvents(ReadOnlyClubBook clubBook, String filePath) {
-        try {
-            new JsonClubBookStorage(Paths.get(filePath))
-                    .saveClubBook(clubBook, addToTestDataPathIfNotNull(filePath));
-        } catch (IOException ioe) {
-            throw new AssertionError("There should not be an error writing to the file.", ioe);
-        }
-    }
-
-    @Test
-    public void saveClubBookWithEvents_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveClubBookWithEvents(new ClubBook(), null));
-    }
+    // ================ Tests to check if JsonClubBookStorage reads members correctly ==============================
 
     @Test
     public void readMembers_nullFilePath_throwsNullPointerException() {
@@ -141,16 +100,18 @@ public class JsonClubBookStorageTest {
 
     @Test
     public void readMembers_invalidMemberClubBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readMembers("invalidMemberClubBook.json"));
+        assertThrows(DataLoadingException.class, () -> readMembers("invalidMemberOnlyClubBook.json"));
     }
 
     @Test
     public void readMembers_invalidAndValidMemberClubBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readMembers("invalidAndValidMemberClubBook.json"));
+        assertThrows(DataLoadingException.class, () -> readMembers("invalidAndValidMemberOnlyClubBook.json"));
     }
 
+    // ================ Tests to check if JsonClubBookStorage reads and saves ClubBook correctly =====================
+
     @Test
-    public void readAndSaveMember_allInOrder_success() throws Exception {
+    public void readAndSaveClubBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempClubBook.json");
         ClubBook original = getTypicalClubBook();
         JsonClubBookStorage jsonClubBookStorage = new JsonClubBookStorage(filePath);
@@ -161,6 +122,8 @@ public class JsonClubBookStorageTest {
         assertEquals(original, new ClubBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
+        original.addEvent(MEETING);
+        original.removeEvent(ORIENTATION);
         original.addMember(HOON);
         original.removeMember(ALICE);
         jsonClubBookStorage.saveClubBook(original, filePath);
@@ -169,6 +132,7 @@ public class JsonClubBookStorageTest {
 
         // Save and read without specifying file path
         original.addMember(IDA);
+        original.addEvent(WORKSHOP);
         jsonClubBookStorage.saveClubBook(original); // file path not specified
         readBack = jsonClubBookStorage.readClubBook().get(); // file path not specified
         assertEquals(original, new ClubBook(readBack));

@@ -20,6 +20,8 @@ public class TypicalClubBook {
     public static final Event BEACH_DAY = new EventBuilder().withName("Beach Day")
             .withFrom("251025 0900").withTo("251025 2000").withDetail("At Sentosa")
             .withEventRoles("Gamemaster", "SafetyOfficer").build();
+
+    // Manually added
     public static final Event MEETING = new EventBuilder().withName("Meeting")
             .withFrom("151025 1500").withTo("151025 1600")
             .withEventRoles("participant").build();
@@ -38,9 +40,9 @@ public class TypicalClubBook {
     public static final Member DANIEL = new MemberBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withMemberRoles("Secretary").withEventRoles(MOVIE_NIGHT.getRoles()).build();
     public static final Member ELLE = new MemberBuilder().withName("Elle Meyer").withPhone("94822244")
-            .withEmail("werner@example.com").withEventRoles(MEETING.getRoles()).build();
+            .withEmail("werner@example.com").withEventRoles(MOVIE_NIGHT.getRoles()).build();
     public static final Member FIONA = new MemberBuilder().withName("Fiona Kunz").withPhone("94824271")
-            .withEmail("lydia@example.com").withEventRoles(WORKSHOP.getRoles()).build();
+            .withEmail("lydia@example.com").withEventRoles(BEACH_DAY.getRoles()).build();
     public static final Member GEORGE = new MemberBuilder().withName("George Best").withPhone("94824425")
             .withEmail("anna@example.com").withEventRoles(BEACH_DAY.getRoles()).build();
 
@@ -64,7 +66,23 @@ public class TypicalClubBook {
     }
 
     public static List<Event> getTypicalEvents() {
-        return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY, MEETING, WORKSHOP));
+        return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
+    }
+
+    public static ClubBook getTypicalMemberOnlyClubBook() {
+        ClubBook cb = new ClubBook();
+        for (Member member : getTypicalMembers()) {
+            cb.addMember(member);
+        }
+        return cb;
+    }
+
+    public static ClubBook getTypicalEventOnlyClubBook() {
+        ClubBook cb = new ClubBook();
+        for (Event event : getTypicalEvents()) {
+            cb.addEvent(event);
+        }
+        return cb;
     }
 
     /**

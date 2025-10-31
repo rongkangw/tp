@@ -4,7 +4,8 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "memberRoles" : [ "friends" ]
+    "memberRoles" : [ "President" ],
+    "eventRoles" : [ "Orientation"]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
