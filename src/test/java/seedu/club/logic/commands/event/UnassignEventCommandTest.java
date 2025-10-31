@@ -30,7 +30,7 @@ public class UnassignEventCommandTest {
 
     @Test
     public void execute_eventDoesNotExist_throwsCommandException() {
-        Name memberName = new Name("Alice");
+        Name memberName = new Name("Alice Pauline");
         Name eventName = new Name("Dinner");
         UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assertCommandFailure(unassignEventCommand, model,
