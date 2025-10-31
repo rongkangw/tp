@@ -10,8 +10,8 @@ import static seedu.club.logic.commands.CommandTestUtil.VALID_FROM_BEACHDAY;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_FROM_ORIENTATION;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_TO_BEACHDAY;
 import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalEvents.BEACH_DAY;
-import static seedu.club.testutil.TypicalEvents.ORIENTATION;
+import static seedu.club.testutil.TypicalClubBook.BEACH_DAY;
+import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
 
 import org.junit.jupiter.api.Test;
 

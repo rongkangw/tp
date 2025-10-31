@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.club.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.club.logic.commands.event.DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS;
-import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
+import static seedu.club.testutil.TypicalClubBook.getTypicalEventOnlyClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.club.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
@@ -27,7 +27,7 @@ import seedu.club.model.event.Event;
  */
 public class DeleteEventCommandTest {
 
-    private final Model model = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

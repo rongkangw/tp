@@ -12,25 +12,25 @@ import seedu.club.commons.exceptions.IllegalValueException;
 import seedu.club.commons.util.JsonUtil;
 import seedu.club.model.ClubBook;
 import seedu.club.testutil.TypicalClubBook;
-import seedu.club.testutil.TypicalEvents;
 import seedu.club.testutil.TypicalMembers;
 
 public class JsonSerializableClubBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableClubBookTest");
-    private static final Path TYPICAL_MEMBERS_FILE = TEST_DATA_FOLDER.resolve("typicalMembersClubBook.json");
+    private static final Path TYPICAL_MEMBERS_FILE = TEST_DATA_FOLDER.resolve("typicalMemberClubBook.json");
     private static final Path INVALID_MEMBER_FILE = TEST_DATA_FOLDER.resolve("invalidMemberOnlyClubBook.json");
-    private static final Path DUPLICATE_MEMBER_FILE = TEST_DATA_FOLDER.resolve("duplicateMemberClubBook.json");
-    private static final Path TYPICAL_EVENTS_FILE = TEST_DATA_FOLDER.resolve("typicalEvents.json");
-    private static final Path INVALID_EVENTS_FILE = TEST_DATA_FOLDER.resolve("invalidEvent.json");
-    private static final Path DUPLICATE_EVENT_FILE = TEST_DATA_FOLDER.resolve("duplicateEvents.json");
+    private static final Path DUPLICATE_MEMBER_FILE = TEST_DATA_FOLDER.resolve("duplicateMemberOnlyClubBook.json");
+    private static final Path TYPICAL_EVENTS_FILE = TEST_DATA_FOLDER.resolve("typicalEventOnlyClubBook.json");
+    private static final Path INVALID_EVENTS_FILE = TEST_DATA_FOLDER.resolve("invalidEventOnlyClubBook.json");
+    private static final Path DUPLICATE_EVENT_FILE = TEST_DATA_FOLDER.resolve("duplicateEventOnlyClubBook.json");
+    private static final Path TYPICAL_CLUBBOOK_FILE = TEST_DATA_FOLDER.resolve("typicalClubBook.json");
 
     @Test
     public void toModelType_typicalEventsFile_success() throws Exception {
         JsonSerializableClubBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_EVENTS_FILE,
                 JsonSerializableClubBook.class).get();
         ClubBook clubBookFromFile = dataFromFile.toModelType();
-        ClubBook typicalEventsClubBook = TypicalEvents.getTypicalClubBookWithEvents();
+        ClubBook typicalEventsClubBook = TypicalClubBook.getTypicalEventOnlyClubBook();
         assertEquals(clubBookFromFile, typicalEventsClubBook);
     }
 
@@ -54,7 +54,7 @@ public class JsonSerializableClubBookTest {
         JsonSerializableClubBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_MEMBERS_FILE,
                 JsonSerializableClubBook.class).get();
         ClubBook clubBookFromFile = dataFromFile.toModelType();
-        ClubBook typicalMembersClubBook = TypicalClubBook.getTypicalClubBook();
+        ClubBook typicalMembersClubBook = TypicalMembers.getTypicalMemberOnlyClubBook();
         assertEquals(clubBookFromFile, typicalMembersClubBook);
     }
 
@@ -71,6 +71,15 @@ public class JsonSerializableClubBookTest {
                 JsonSerializableClubBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableClubBook.MESSAGE_DUPLICATE_MEMBER,
                 dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_typicalClubBookFile_success() throws Exception {
+        JsonSerializableClubBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_CLUBBOOK_FILE,
+                JsonSerializableClubBook.class).get();
+        ClubBook clubBookFromFile = dataFromFile.toModelType();
+        ClubBook typicalClubBook = TypicalClubBook.getTypicalClubBook();
+        assertEquals(clubBookFromFile, typicalClubBook);
     }
 
 }

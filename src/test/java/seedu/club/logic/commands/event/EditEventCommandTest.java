@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
+import static seedu.club.testutil.TypicalClubBook.getTypicalEventOnlyClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.club.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
@@ -32,7 +32,7 @@ public class EditEventCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
+        model = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
         model.setViewState(ViewState.EVENT);
     }
 
@@ -55,7 +55,7 @@ public class EditEventCommandTest {
         String expectedMessage = String.format(
                 EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent));
 
-        Model expectedModel = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
         expectedModel.setViewState(ViewState.EVENT);
 
@@ -79,7 +79,7 @@ public class EditEventCommandTest {
 
         EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
         expectedModel.setViewState(ViewState.EVENT);
 

@@ -33,7 +33,7 @@ public class TypicalClubBook {
             .withEmail("alice@example.com").withPhone("94351253")
             .withMemberRoles("President").withEventRoles(ORIENTATION.getRoles()).build();
     public static final Member BENSON = new MemberBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withEventRoles(ORIENTATION.getRoles()).withPhone("98765432")
+            .withEmail("johnd@example.com").withEventRoles(MOVIE_NIGHT.getRoles()).withPhone("98765432")
             .withMemberRoles("VP", "Operations").build();
     public static final Member CARL = new MemberBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
@@ -69,14 +69,9 @@ public class TypicalClubBook {
         return new ArrayList<>(Arrays.asList(ORIENTATION, MOVIE_NIGHT, BEACH_DAY));
     }
 
-    public static ClubBook getTypicalMemberOnlyClubBook() {
-        ClubBook cb = new ClubBook();
-        for (Member member : getTypicalMembers()) {
-            cb.addMember(member);
-        }
-        return cb;
-    }
-
+    /**
+     * Returns an {@code ClubBook} with all the typical events only.
+     */
     public static ClubBook getTypicalEventOnlyClubBook() {
         ClubBook cb = new ClubBook();
         for (Event event : getTypicalEvents()) {

@@ -1,7 +1,7 @@
 package seedu.club.logic.commands.event;
 
 import static seedu.club.logic.commands.CommandTestUtil.showEventAtIndex;
-import static seedu.club.testutil.TypicalEvents.getTypicalClubBookWithEvents;
+import static seedu.club.testutil.TypicalClubBook.getTypicalEventOnlyClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +23,7 @@ public class ListEventCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalClubBookWithEvents(), new UserPrefs());
+        model = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getClubBook(), new UserPrefs());
     }
 

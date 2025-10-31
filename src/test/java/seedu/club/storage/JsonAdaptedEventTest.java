@@ -3,7 +3,7 @@ package seedu.club.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.club.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalEvents.ORIENTATION;
+import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.club.logic.commands.event.UnassignEventCommand.MESSAGE_SUCCESS_EVENT;
-import static seedu.club.testutil.TypicalEventsWithEventRoles.getTypicalClubBookWithEventRoles;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
 
@@ -25,12 +25,12 @@ public class UnassignEventCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalClubBookWithEventRoles(), new UserPrefs());
+        model = new ModelManager(getTypicalClubBook(), new UserPrefs());
     }
 
     @Test
     public void execute_eventDoesNotExist_throwsCommandException() {
-        Name memberName = new Name("John");
+        Name memberName = new Name("Alice");
         Name eventName = new Name("Dinner");
         UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assertCommandFailure(unassignEventCommand, model,
@@ -39,7 +39,7 @@ public class UnassignEventCommandTest {
 
     @Test
     public void execute_memberDoesNotExist_throwsCommandException() {
-        Name memberName = new Name("Johnnyn");
+        Name memberName = new Name("Alicee");
         Name eventName = new Name("Orientation");
         UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assertCommandFailure(unassignEventCommand, model,
@@ -49,7 +49,7 @@ public class UnassignEventCommandTest {
 
     @Test
     public void equals_thisObject_success() {
-        Name memberName = new Name("Jane");
+        Name memberName = new Name("Benson");
         Name eventName = new Name("Orientation");
         UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assert(unassignEventCommand.equals(unassignEventCommand));
@@ -57,7 +57,7 @@ public class UnassignEventCommandTest {
 
     @Test
     public void equals_sameNameAndEvent_success() {
-        Name memberName = new Name("Jane");
+        Name memberName = new Name("Alice");
         Name eventName = new Name("Orientation");
         UnassignEventCommand unassignEventCommandOne = new UnassignEventCommand(eventName, memberName);
         UnassignEventCommand unassignEventCommandTwo = new UnassignEventCommand(eventName, memberName);
@@ -66,7 +66,7 @@ public class UnassignEventCommandTest {
 
     @Test
     public void equals_differentType_false() {
-        Name memberName = new Name("Jane");
+        Name memberName = new Name("Alice");
         Name eventName = new Name("Orientation");
         UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         assert(!unassignEventCommand.equals("Event"));
@@ -77,10 +77,9 @@ public class UnassignEventCommandTest {
     @Test
     public void execute_unassignEventWithNoEventRoles_success() throws CommandException {
         Name eventName = new Name("Movie Night");
-        Name memberName = new Name("Jane");
+        Name memberName = new Name("Benson Meier");
 
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-
 
         UnassignEventCommand unassignEventCommand = new UnassignEventCommand(eventName, memberName);
         String result = unassignEventCommand.execute(model).getFeedbackToUser();
