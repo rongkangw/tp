@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalClubBook.ALICE;
-import static seedu.club.testutil.TypicalClubBook.BOB;
+import static seedu.club.testutil.TypicalMembers.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -9,7 +9,7 @@ import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESID
 import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.club.testutil.Assert.assertThrows;
 import static seedu.club.testutil.TypicalClubBook.ALICE;
-import static seedu.club.testutil.TypicalClubBook.BOB;
+import static seedu.club.testutil.TypicalMembers.BOB;
 
 import org.junit.jupiter.api.Test;
 

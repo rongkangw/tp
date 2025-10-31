@@ -1,14 +1,5 @@
 package seedu.club.testutil;
 
-import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_AMY;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_NAME_BOB;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_TREASURER;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.club.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +22,7 @@ public class TypicalClubBook {
             .withFrom("251025 0900").withTo("251025 2000").withDetail("At Sentosa")
             .withEventRoles("Gamemaster", "SafetyOfficer").build();
 
-    // Manually added
+    // Manually added events
     public static final Event MEETING = new EventBuilder().withName("Meeting")
             .withFrom("151025 1500").withTo("151025 1600")
             .withEventRoles("participant").build();
@@ -56,19 +47,6 @@ public class TypicalClubBook {
             .withEmail("lydia@example.com").withEventRoles(BEACH_DAY.getRoles()).build();
     public static final Member GEORGE = new MemberBuilder().withName("George Best").withPhone("94824425")
             .withEmail("anna@example.com").withEventRoles(BEACH_DAY.getRoles()).build();
-
-    // Manually added
-    public static final Member HOON = new MemberBuilder().withName("Hoon Meier").withPhone("84824241")
-            .withEmail("stefan@example.com").build();
-    public static final Member IDA = new MemberBuilder().withName("Ida Mueller").withPhone("84821311")
-            .withEmail("hans@example.com").build();
-
-    // Manually added - Member's details found in {@code CommandTestUtil}
-    public static final Member AMY = new MemberBuilder().withName(VALID_MEMBER_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withMemberRoles(VALID_MEMBER_ROLE_TREASURER).build();
-    public static final Member BOB = new MemberBuilder().withName(VALID_MEMBER_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withMemberRoles(VALID_MEMBER_ROLE_PRESIDENT, VALID_MEMBER_ROLE_TREASURER)
-            .build();
 
     public TypicalClubBook() {} //to prevent instantiation
 

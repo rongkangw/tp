@@ -3,13 +3,13 @@ package seedu.club.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalClubBook.ALICE;
-import static seedu.club.testutil.TypicalClubBook.HOON;
-import static seedu.club.testutil.TypicalClubBook.IDA;
 import static seedu.club.testutil.TypicalClubBook.MEETING;
 import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
 import static seedu.club.testutil.TypicalClubBook.WORKSHOP;
 import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
+import static seedu.club.testutil.TypicalMembers.ALICE;
+import static seedu.club.testutil.TypicalMembers.HOON;
+import static seedu.club.testutil.TypicalMembers.IDA;
 
 import java.io.IOException;
 import java.nio.file.Path;
