@@ -10,10 +10,9 @@ import static seedu.club.commons.util.StringUtil.hasLessThanOrEqualLength;
  */
 public class Name {
 
-    public static final int FIELD_LENGTH = 50;
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, "
-                    + "be within 50 characters, and should not be blank";
+                    + "and should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -38,7 +37,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX) && hasLessThanOrEqualLength(test, FIELD_LENGTH);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
