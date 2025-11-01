@@ -78,14 +78,14 @@ EASync starts with some sample data so you can explore its features right away!
   e.g. in `addMember n/NAME`, `NAME` is a parameter which can be used as `addMember n/John Doe`.
 
 * **Items in square brackets are optional**. <br>
-  e.g. `n/NAME [r/MEMBERROLE]` can be used as `n/John Doe r/Logistics` or as `n/John Doe`.
+  e.g. `n/NAME [r/MEMBER_ROLE]` can be used as `n/John Doe r/Logistics` or as `n/John Doe`.
 
 * **Items with `…`​ after them can be used multiple times, or omitted completely.**<br>
-  e.g. `[r/MEMBERROLE]…​` can be `r/Logistics`, `t/Publicity t/Logistics` or not be used at all.
+  e.g. `[r/MEMBER_ROLE]…​` can be `r/Logistics`, `t/Publicity t/Logistics` or not be used at all.
 
-* **For `NAME`, `MEMBERROLE` and `EVENTROLE` parameters, multiple spaces will be treated as single space.**<br>
-  e.g. `n/John     Doe` will be treated as `n/John Doe`.
-  </box>
+  * **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
+    e.g. `n/John     Doe` will be treated as `n/John Doe`.
+    </box>
 
 <box type="tip">
 
@@ -124,13 +124,13 @@ Format: `listMembers`
 
 #### Adding a member: `addMember`
 
-Format: `addMember n/NAME p/PHONE e/EMAIL [r/MEMBERROLE]…​`
+Format: `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​`
 
 * `NAME` should be 50 characters or fewer.
 * `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only.
 * `EMAIL` must be of the format `local-part@domain`
-* If multiple `MEMBERROLE`s are specified, the app displays them in alphabetical order.
-* Each `MEMBERROLE` should be 30 characters or fewer.
+* If multiple `MEMBER_ROLE`s are specified, the app displays them in alphabetical order.
+* Each `MEMBER_ROLE` should be 30 characters or fewer.
 * The new member will be added to the end of the list.
 
 Examples:
@@ -159,7 +159,7 @@ Examples:
 
 #### Editing a member: `editMember`
 
-Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/MEMBERROLE]…​`
+Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/MEMBER_ROLE]…​`
 
 * Edits the details of the member at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed member list.
@@ -210,14 +210,14 @@ Format: `listEvents`
 
 #### Adding an event: `addEvent`
 
-Format: `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`
+Format: `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…​`
 
 * `NAME` should be 50 characters or fewer.
 * `f/` (from) represents the start date time and `t/` (to) the end date time of the event.
 * `DATE_TIME` must be in the following format: `DDMMYY HHMM` (24 hour)
 * `DETAILS` should be 500 characters or fewer.
-* If multiple `EVENTROLE`s are specified, the app displays them in alphabetical order.
-* The `EVENTROLE` should be 30 characters or fewer.
+* If multiple `EVENT_ROLE`s are specified, the app displays them in alphabetical order.
+* `EVENT_ROLE` should be 30 characters or fewer.
 * The new event will be added to the end of the list.
 
 
@@ -295,11 +295,11 @@ Examples:
 
 #### Assigning a Member to an Event: `assignEvent`
 
-Format: `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​`
+Format: `assignEvent e/EVENT m/MEMBER [r/EVENT_ROLE]…​`
 
 * Assigns the specified member with an event role for the specified event.
 * Multiple event roles can be specified.
-* If `EVENTROLE` is not specified, they are just a participant.
+* If `EVENT_ROLE` is not specified, they are just a participant.
 
 Examples:
 * `assignEvent e/Orientation m/Alice Pauline`
@@ -324,7 +324,7 @@ Examples:
 
 #### Unassigning an Event Role from a Member: `unassignEventRole`
 
-Format: `unassignEventRole e/EVENT m/MEMBER r/EVENTROLE…​`
+Format: `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​`
 
 * Removes an event role from the specified member.
 * Multiple event roles can be specified.
@@ -404,22 +404,22 @@ Hence, it is recommended to take a backup of the file before editing it.<br>
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                                   |
-|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List Members**        | `listMembers`                                                                                                                                      |
-| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/MEMBERROLE]…​` <br> e.g, `addMember n/John Doe p/94824271 e/john@example.com`                                 |
-| **Delete Member**       | `deleteMember INDEX`<br> e.g. `deleteMember 3`                                                                                                     |
-| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/MEMBERROLE]…​`<br> e.g.`editMember 2 n/James Lee e/jameslee@example.com`                  |
-| **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g. `findMember James Jake`                                                                              |
-| **List Events**         | `listEvents`                                                                                                                                       |
-| **Add Event**           | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENTROLE]…​`  <br> e.g. `addEvent n/Orientation f/151025 1200 t/171025 1800 r/gamemaster` |
-| **Delete Event**        | `deleteEvent INDEX` <br> e.g. `deleteEvent 3`                                                                                                      |
-| **Edit Event**          | `editEvent INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`<br> e.g.`editEvent 1 n/Meeting t/171025 0000`                                   |
-| **Find Events**         | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g. `findEvent orientation workshop`                                                                      |
-| **Display Event**       | `event INDEX` <br/> e.g. `event 2`                                                                                                                 |
-| **Assign Event**        | `assignEvent e/EVENT m/MEMBER [r/EVENTROLE]…​` <br> e.g. `assignEvent e/Orientation m/John Doe r/gamemaster`                                       |
-| **Unassign Event**      | `unassignEvent e/EVENT m/MEMBER` <br> e.g. `unassignEvent e/Orientation m/John Doe`                                                                |
-| **Unassign Event Role** | `unassignEventRole e/EVENT m/MEMBER r/EVENTROLE…​` <br> e.g. `unassignEventRole e/Orientation m/John Doe r/gamemaster`                             |
-| **Clear**               | `clear`                                                                                                                                            |
-| **Help**                | `help`                                                                                                                                             |
-| **Exit**                | `exit`                                                                                                                                             |
+| Action                  | Format, Examples                                                                                                                                    |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List Members**        | `listMembers`                                                                                                                                       |
+| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​` <br> e.g, `addMember n/John Doe p/94824271 e/john@example.com`                                 |
+| **Delete Member**       | `deleteMember INDEX`<br> e.g. `deleteMember 3`                                                                                                      |
+| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/MEMBER_ROLE]…​`<br> e.g.`editMember 2 n/James Lee e/jameslee@example.com`                  |
+| **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g. `findMember James Jake`                                                                               |
+| **List Events**         | `listEvents`                                                                                                                                        |
+| **Add Event**           | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…​`  <br> e.g. `addEvent n/Orientation f/151025 1200 t/171025 1800 r/gamemaster` |
+| **Delete Event**        | `deleteEvent INDEX` <br> e.g. `deleteEvent 3`                                                                                                       |
+| **Edit Event**          | `editEvent INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`<br> e.g.`editEvent 1 n/Meeting t/171025 0000`                                    |
+| **Find Events**         | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g. `findEvent orientation workshop`                                                                       |
+| **Display Event**       | `event INDEX` <br/> e.g. `event 2`                                                                                                                  |
+| **Assign Event**        | `assignEvent e/EVENT m/MEMBER [r/EVENT_ROLE]…​` <br> e.g. `assignEvent e/Orientation m/John Doe r/gamemaster`                                       |
+| **Unassign Event**      | `unassignEvent e/EVENT m/MEMBER` <br> e.g. `unassignEvent e/Orientation m/John Doe`                                                                 |
+| **Unassign Event Role** | `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​` <br> e.g. `unassignEventRole e/Orientation m/John Doe r/gamemaster`                             |
+| **Clear**               | `clear`                                                                                                                                             |
+| **Help**                | `help`                                                                                                                                              |
+| **Exit**                | `exit`                                                                                                                                              |
