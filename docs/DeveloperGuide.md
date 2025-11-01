@@ -141,7 +141,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T11-3/tp/tree/master/src/main/java/seedu/club/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="650" />
 
 The `Storage` component,
 * can save both club book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -162,6 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 The implementation of the event command follows the standard command parsing workflow, where ClubBookParser will parse the input string into an executable command.
 When the user enters `assignEvent m/<MEMBERNAME> e/<EVENTNAME> [r/<EVENTROLE>]...`, ClubBookParser will first create an AssignEventCommandParser, which will then obtain the values corresponding to the prefixes `m/`, `e/`, and if applicable, `r/`  . If an error is encountered during parsing, a ParseException will be thrown.
 
+<puml src="diagrams/AssignMemberSequenceDiagram.puml" width="550" />
 
 Otherwise, AssignEventCommandParser will obtain the values as a Name object for Member name and Event name, and the roles as a Set of Event Role objects. It then creates a new instance of AssignEventCommand using these objects as parameters.
 
