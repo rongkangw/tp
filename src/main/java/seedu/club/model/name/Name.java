@@ -2,7 +2,6 @@ package seedu.club.model.name;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.club.commons.util.AppUtil.checkArgument;
-import static seedu.club.commons.util.StringUtil.hasLessThanOrEqualLength;
 
 /**
  * Represents the name of a {@code NamedEntity}.
