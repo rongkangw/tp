@@ -1,27 +1,21 @@
 @startuml
 |AssignEventCommand|
 start
-:Check if event exists;
 if (Event exists?) then (yes)
   :Get Event from model;
+
 else (no)
   :Return CommandResult "Event not found";
   stop
+
 endif
 
-:Check if roles are specified;
-if (Roles are specified?) then (yes)
-  :Check if roles exist in the event;
-  if (Roles exist?) then (yes)
+  if (Roles exist in event?) then (yes or no roles specified)
   else (no)
-    :             Return CommandResult
-    \n"Roles not found under specified Event";
+    :             Return CommandResult \n "Roles not found under specified Event";
     stop
   endif
-else (no)
-endif
 
-:Check if member exists;
 if (Member exists?) then (yes)
   :Get Member from model;
 else (no)
@@ -36,11 +30,10 @@ if (Member already exists?) then (yes)
 else (no)
 endif
 
-:Handle if no event roles specified;
 if (Roles are specified?) then (no)
   :Add "Participant" to member's event roles list;
   else (yes)
-  :Add specified event roles to member;
+  :Add specified event roles to member's event roles list;
 
 endif
 
