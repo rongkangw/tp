@@ -162,7 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 The implementation of the event command follows the standard command parsing workflow, where ClubBookParser will parse the input string into an executable command.
 When the user enters `assignEvent m/<MEMBERNAME> e/<EVENTNAME> [r/<EVENTROLE>]...`, ClubBookParser will first create an AssignEventCommandParser, which will then obtain the values corresponding to the prefixes `m/`, `e/`, and if applicable, `r/`  . If an error is encountered during parsing, a ParseException will be thrown.
 
-<puml src="diagrams/AssignMemberSequenceDiagram.puml" width="550" />
+<puml src="diagrams/AssignMemberActivityDiagram.puml" width="550" />
 
 Otherwise, AssignEventCommandParser will obtain the values as a Name object for Member name and Event name, and the roles as a Set of Event Role objects. It then creates a new instance of AssignEventCommand using these objects as parameters.
 
@@ -492,7 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to assign a member to an event
 2. System displays success message
 3. System updates event’s roster with the assigned member
-4. System displays event’s details(UC08)
+4. System displays event’s details(UC07)
         Use case ends
 
 **Extensions**
@@ -604,6 +604,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. System informs user that the member, event, or event role cannot be found
 
         Use case ends
+
+**UC11: Unassigning an event role from a member**
+
 
 
 ### Non-Functional Requirements
