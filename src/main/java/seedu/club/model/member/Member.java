@@ -118,7 +118,7 @@ public class Member extends NamedEntity {
     }
 
     private void handleParticipant(Set<EventRole> newRoles, Name updatedName, EventRole role) {
-        if (role.roleName.equals("Participant")) {
+        if (role.isParticipant()) {
             newRoles.add(new EventRole(updatedName));
         }
     }
