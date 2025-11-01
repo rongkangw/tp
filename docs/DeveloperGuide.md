@@ -809,7 +809,7 @@ testers are expected to do more *exploratory* testing.
 
 Team Size: 5
 
-##### 1. Allow users to use event command consecutively
+#### 1. Allow users to use event command consecutively
 Currently, after running the `event <INDEX>` command, users must return to the event list before executing the command 
 again. We plan to remove this restriction by storing the filtered event list, 
 enabling users to re-run the command directly from the single event display page, allowing for more efficient lookup for events.
