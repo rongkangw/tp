@@ -801,6 +801,31 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 ### Unassigning events and event roles
+1. Unassigning a member from an event
+
+    1. Prerequisites: The event and member must exist. Member must be in the event's roster.
+
+    2. Test case: `unassignEvent m/John Doe e/Orientation`<br>
+       Expected: The member is removed from the event's member roster. The event is displayed with an updated member roster.
+
+    3. Test case: `unassignEvent m/John Doe e/NonExistentEvent`<br>
+       Expected: Member is not unassigned from Event. Error details shown in the status message.
+
+    4. Other incorrect unassign event commands to try: `unassignEvent m/NonExistentMember e/Orientation`, `unassignEvent`<br>
+       Expected: Similar to previous.
+
+2. Unassigning an event role from a member
+
+    1. Prerequisites: The event and member must exist. Member must be in the event's roster and must have an event role associated with the event.
+
+    2. Test case: `unassignEventRole m/John Doe e/Orientation r/facilitator`<br>
+       Expected: The event role is removed from the member's event roles list. The event is displayed with an updated member roster.
+
+    3. Test case: `unassignEventRole m/John Doe e/Orientation r/NonExistentRole`<br>
+       Expected: Event role is not removed from member's event roles list. Error details shown in the status message.
+
+    4. Other incorrect unassign event commands to try: `unassignEventRole m/NonExistentMember e/Orientation r/facilitator`,`unassignEventRole m/Alex Yeoh e/NonExistentEvent r/facilitator, `unassignEventRole`<br>
+       Expected: Similar to previous.
 
 
 ### Saving data
