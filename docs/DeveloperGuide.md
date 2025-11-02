@@ -824,7 +824,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `unassignEventRole m/John Doe e/Orientation r/NonExistentRole`<br>
        Expected: Event role is not removed from member's event roles list. Error details shown in the status message.
 
-    4. Other incorrect unassign event commands to try: `unassignEventRole m/NonExistentMember e/Orientation r/facilitator`,`unassignEventRole m/Alex Yeoh e/NonExistentEvent r/facilitator, `unassignEventRole`<br>
+    4. Other incorrect unassign event commands to try: `unassignEventRole m/NonExistentMember e/Orientation r/facilitator`,`unassignEventRole m/Alex Yeoh e/NonExistentEvent r/facilitator`, `unassignEventRole`<br>
        Expected: Similar to previous.
 
 
