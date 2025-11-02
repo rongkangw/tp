@@ -70,7 +70,8 @@ public class DeleteEventCommandTest {
         expectedModel.setViewState(ViewState.EVENT);
 
         expectedModel.deleteEvent(eventToDelete);
-        showNoEvent(expectedModel);
+        expectedModel.updateFilteredMemberList(x-> true);
+        expectedModel.updateFilteredEventList(x-> true);
 
         CommandTestUtil.assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
     }
