@@ -573,10 +573,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Club Book**: The repository that stores all information related to the club's members and events.
 * **Member**: A member who is part of the club and participates in club activities and events.
-* **Event**: A scheduled activity organised by the club with a name, date/time, and optional details.
+* **Event**: A scheduled activity organised by the club.
 * **Member Role**: A responsibility or position a member can hold for the club (e.g. “President”, “Treasurer”).
 * **Event Role**: A responsibility or position a member can hold for an event (e.g. "Facilitator", "Marketing")
+* **Roster**: A list of members that are assigned to a particular event.
 * **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
 * **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
 * **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
