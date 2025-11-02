@@ -443,7 +443,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends
 
-**UC07: Displaying an event’s details**
+**UC07: Finding members by name**
+
+**Preconditions**
+
+* User has to be on the member list.
+
+**Guarantees**
+
+* Members containing any of the specified keywords in their name will be displayed
+
+**MSS**
+
+1. User requests to find members containing specified keywords
+2. System displays list of members that contain the specified keywords in their names
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The member list is empty
+
+    * 1a1. System displays an empty list
+
+     Use case ends
+
+
+* 1b. Missing required parameters in command (e.g. keywords)
+
+    * 1a1. System informs user of missing fields
+
+      Use case ends
+
+**UC08: Finding events by name**
+
+**Preconditions**
+
+* User has to be on the event list.
+
+**Guarantees**
+
+* Events containing any of the specified keywords in their name will be displayed
+
+**MSS**
+
+1. User requests to find events containing specified keywords
+2. System displays list of events that contain the specified keywords in their names
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The event list is empty
+
+    * 1a1. System displays an empty list
+
+  Use case ends
+
+
+* 1b. Missing required parameters in command (e.g. keywords)
+
+    * 1a1. System informs user of missing fields
+
+      Use case ends
+
+**UC09: Listing Members**
+
+**Preconditions**
+
+* App is open
+
+**Guarantees**
+
+* List of all members added will be specified
+
+**MSS**
+
+1. User requests to list members
+2. System displays list of all members
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The member list is empty
+
+    * 1a1. System displays an empty list
+
+  Use case ends
+
+
+**UC10: Listing Events**
+
+**Preconditions**
+
+* App is open
+
+**Guarantees**
+
+* List of all events added will be specified
+
+**MSS**
+
+1. User requests to list events
+2. System displays list of all events
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The event list is empty
+
+    * 1a1. System displays an empty list
+
+  Use case ends
+
+
+
+**UC11: Displaying an event’s details**
 
 **Preconditions**
 
@@ -476,7 +593,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC08: Assigning a member to an event**
+**UC12: Assigning a member to an event**
 
 **Preconditions**
 
@@ -492,7 +609,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to assign a member to an event
 2. System displays success message
 3. System updates event’s roster with the assigned member
-4. System displays event’s details(UC07)
+4. System displays event’s details(UC11)
         Use case ends
 
 **Extensions**
@@ -528,7 +645,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC09: Unassigning a member from an event**
+**UC13: Unassigning a member from an event**
 
 **Preconditions**
 
@@ -567,7 +684,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC10: Unassigning an event role from a member**
+**UC14: Unassigning an event role from a member**
 
 **Preconditions**
 * The member and event must exist
@@ -604,9 +721,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. System informs user that the member, event, or event role cannot be found
 
         Use case ends
-
-**UC11: Unassigning an event role from a member**
-
 
 
 ### Non-Functional Requirements
