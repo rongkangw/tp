@@ -1,7 +1,7 @@
 ---
   layout: default.md
   title: "User Guide"
-    pageNav: 4
+  pageNav: 4
 ---
 
 # EASync User Guide
@@ -198,7 +198,7 @@ Examples:
 
 <box type="warning">
 
-**Caution:** Only full words will be matched e.g. `Han` will not match `Hans`
+**Caution:** Only full words will be matched, e.g. `Han` will not match `Hans`
 </box>
 
 ### Managing Events
@@ -272,7 +272,7 @@ Examples:
 
 <box type="warning">
 
-**Caution:** Only full words will be matched e.g. `Day` will not match `Days`
+**Caution:** Only full words will be matched, e.g. `Day` will not match `Days`
 </box>
 
 
@@ -308,7 +308,10 @@ Examples:
 <box type="warning">
 
 **Caution:** **After a member has been assigned to an event, the member's assigned roles for that event cannot be edited directly.**
-To update an assigned member's event roles, unassign them from the event first (using `unassignEvent`), then reassign them with the updated roles (using `assignEvent`).<br>
+To update an assigned member's event roles:
+1. Unassign them from the event (using `unassignEvent`).
+2. Reassign them with the updated roles (using `assignEvent`).<br>
+
 Do note that this restriction applies only to event roles within the same event. Member roles and event roles in other events remain unaffected.
 </box>
 
@@ -348,7 +351,7 @@ This action is **irreversible**! Ensure that you truly want to clear your **enti
 <box type="tip">
 
 **Tip:**
-If you would like to get the sample data to show again, you could remove the `clubBook.json` file from the `data` folder that is in the folder `EASync.jar` is in. Do note the warning above still applies!
+If you would like to get the sample data to show again, you could delete the `clubBook.json` file (see [Editing the data file](#editing-the-data-file)) and re-run EASync. **Do note the warning above still applies.**
 </box>
 
 #### Exiting the program: `exit`
@@ -368,9 +371,9 @@ EASync data is saved automatically as a JSON file in `[JAR file location]/data/c
 <box type="important">
 
 **Caution:**
-**If your changes to the data file makes its format invalid (e.g. if a value entered is outside the acceptable range), EASync will show an empty club book when you open the app.** 
+**If your changes to the data file makes its format invalid** (e.g. if a value entered is outside the acceptable range), **EASync will show an empty club book when you open the app.** 
 The edited file will remain on your computer, but if you make any changes in the app after that, EASync will overwrite it, and you will lose your original data **permanently**.
-Hence, it is recommended to take a backup of the file before editing it.<br>
+Hence, it is recommended to take a backup of the file before editing it.
 </box>
 
 
@@ -380,12 +383,12 @@ Hence, it is recommended to take a backup of the file before editing it.<br>
 
 ## FAQ
 **Q**: I deleted a member/event by mistake, can I undo it? <br>
-**A**: There’s no undo feature yet, and changes save immediately. If you have a backup of clubBook.json, restore it to recover. Otherwise, re-add the item manually. It is planned for a future release however, and this guide will be updated when it’s available.
+**A**: Unfortunately, there is no undo feature implemented, and changes save immediately. If you have a backup of `clubBook.json`, restore it to recover. Otherwise, re-add the item manually.
 
 **Q**: Can I delete several members/events at once? <br>
-**A**: There’s no bulk delete feature yet. You can remove multiple items by running deleteMember or deleteEvent repeatedly. It is planned for a future release however, and this guide will be updated when it’s available.
+**A**: Unfortunately, there is no bulk delete feature implemented. However, you can remove multiple items by running `deleteMember` or `deleteEvent` repeatedly.
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer? <br>
 **A**: Follow these steps:
 1. Make a copy of the `data` folder in the **home folder of your current installation**.
 2. Install EASync on another computer (follow the [Quick Start guide](#quick-start))
