@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.Messages.MESSAGE_MEMBERS_LISTED_OVERVIEW;
-import static seedu.club.testutil.TypicalMembers.CARL;
-import static seedu.club.testutil.TypicalMembers.ELLE;
-import static seedu.club.testutil.TypicalMembers.FIONA;
-import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
+import static seedu.club.testutil.TypicalClubBook.CARL;
+import static seedu.club.testutil.TypicalClubBook.ELLE;
+import static seedu.club.testutil.TypicalClubBook.FIONA;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 
 import java.util.Arrays;
 import java.util.Collections;

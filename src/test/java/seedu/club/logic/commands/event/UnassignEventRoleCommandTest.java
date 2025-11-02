@@ -6,7 +6,7 @@ import static seedu.club.logic.Messages.MESSAGE_EVENT_NAME_NOT_EXIST;
 import static seedu.club.logic.Messages.MESSAGE_MEMBER_NAME_NOT_EXIST;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.club.logic.commands.event.UnassignEventRoleCommand.MESSAGE_SUCCESS_EVENT_ROLE;
-import static seedu.club.testutil.TypicalEventsWithEventRoles.getTypicalClubBookWithEventRoles;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_MEMBER;
 
 import java.util.Collections;
@@ -29,7 +29,7 @@ public class UnassignEventRoleCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalClubBookWithEventRoles(), new UserPrefs());
+        model = new ModelManager(getTypicalClubBook(), new UserPrefs());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class UnassignEventRoleCommandTest {
 
     @Test
     public void execute_eventRoleDoesNotExist_throwsCommandException() {
-        Name memberName = new Name("John");
+        Name memberName = new Name("Alice Pauline");
         Name eventName = new Name("Orientation");
         Set<EventRole> roles = Set.of(new EventRole("Publicity", eventName));
         UnassignEventRoleCommand unassignEventCommand = new UnassignEventRoleCommand(eventName, memberName, roles);
@@ -64,7 +64,7 @@ public class UnassignEventRoleCommandTest {
 
     @Test
     public void equals_sameNameEventAndRoles_success() {
-        Name memberName = new Name("Jane");
+        Name memberName = new Name("Alice Pauline");
         Name eventName = new Name("Orientation");
         Set<EventRole> eventRoles = Set.of(new EventRole("Facilitator", eventName),
                 new EventRole("SafetyOfficer", eventName));
@@ -84,7 +84,7 @@ public class UnassignEventRoleCommandTest {
                 .iterator().next();
 
         Name eventName = new Name("Orientation");
-        Name memberName = new Name("John");
+        Name memberName = new Name("Alice Pauline");
 
         UnassignEventRoleCommand unassignEventRoleCommand = new UnassignEventRoleCommand(eventName, memberName,
                 Set.of(roleToDelete));

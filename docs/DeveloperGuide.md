@@ -12,12 +12,12 @@
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-We would like to acknowledge the contributions of the following projects, 
+We would like to acknowledge the contributions of the following projects,
 libraries, and communities that made EASync possible.
 
 ### Ideas, Code, Documentation
-The **SE-EDU Initiative** and the developers of [AddressBook-Level 3 (AB3)](https://se-education.org/addressbook-level3/), whose codebase and documentation provided the 
-foundation for EASync. Both the architecture and the graphical user interface of EASync were adapted from 
+The **SE-EDU Initiative** and the developers of [AddressBook-Level 3 (AB3)](https://se-education.org/addressbook-level3/), whose codebase and documentation provided the
+foundation for EASync. Both the architecture and the graphical user interface of EASync were adapted from
 the original **AddressBook** project.
 
 ### Third-Party Libraries
@@ -172,16 +172,16 @@ The Event’s entry is then shown.
 ### Display event feature
 
 The implementation of the display event command follows the standard command parsing workflow. When the user enters `event <INDEX>`,
-`ClubBookParser` will parse the input string into an executable command. `ClubBookParser` will 
+`ClubBookParser` will parse the input string into an executable command. `ClubBookParser` will
 first create `DisplayEventCommandParser` to parse the input string. If an error is encountered during parsing, `ClubBookParser`
-will throw a `ParseException`. 
+will throw a `ParseException`.
 
-Otherwise, `DisplayEventCommandParser` will obtain the index from 
-the user's input and create a new instance of `DisplayEventCommand`. `DisplayEventCommand` includes a `targetIndex` 
-which is the zero based index of the event to be displayed in the filtered event list. 
+Otherwise, `DisplayEventCommandParser` will obtain the index from
+the user's input and create a new instance of `DisplayEventCommand`. `DisplayEventCommand` includes a `targetIndex`
+which is the zero based index of the event to be displayed in the filtered event list.
 
 Executing `DisplayEventCommand` will update the model's view state to be `SINGLE_EVENT`, filter the event list to only
-include the selected event and filter the member list to only include the event's member roster. 
+include the selected event and filter the member list to only include the event's member roster.
 The two lists are then shown.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -347,9 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System informs user of incorrect parameters
 
       Use case ends
-  
-* 1b. No edited fields are provided 
-    * 1a1. System informs user of missing parameters
+
+* 1b. No edited fields are provided
+    * 1b1. System informs user of missing parameters
 
       Use case ends
 
@@ -680,28 +680,28 @@ testers are expected to do more *exploratory* testing.
 1. Adding a member to the member list
 
     1. Prerequisites: A member with the same name should not exist in the member list.
-   
+
     2. Test case: `addMember n/John Doe p/98765432 e/johnd@example.com`<br>
-       Expected: Member is added to the member list. Details of the added member are shown in the status message. 
+       Expected: Member is added to the member list. Details of the added member are shown in the status message.
                  Member list is shown.
-    
+
     3. Test case: `addMember n/Jane Doe p/98765432 e/janed@example.com r/President`<br>
        Expected: Similar to previous.
 
     4. Test case: `addMember n/James Doe p/78765432 e/jamesd@example.com`<br>
        Expected: Member is not added to the member list. Error details shown in the status message.
-       
+
 2. Adding a duplicate member to the member list
 
     1. Prerequisites: A member with the same name should exist in the member list.
-    
+
     2. Test case: `addMember n/Jane Doe p/98766432 e/janed@example.com r/President`<br>
-       Expected: Member is not added to the member list. Error details shown in the status message. 
+       Expected: Member is not added to the member list. Error details shown in the status message.
 
 3. Adding an event to the event list
-    
-    1. Prerequisites: An event with the same name should not exist in the event list. 
-   
+
+    1. Prerequisites: An event with the same name should not exist in the event list.
+
     2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
        Expected: Event is added to the event list. Details of the added event are shown in the status message. Event list is shown.
 
@@ -709,12 +709,12 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
     4. Test case: `addEvent n/Movie Night f/151025 2:00pm t/161025 3:00pm`<br>
-       Expected: Event is not added to the event list. Error details shown in the status message. 
+       Expected: Event is not added to the event list. Error details shown in the status message.
 
 4. Adding a duplicate event to the event list
-    
+
     1. Prerequisites: An event with the same name should exist in the event list.
-    
+
     2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
        Expected: Event is not added to the event list. Error details shown in the status message.
 
@@ -723,36 +723,36 @@ testers are expected to do more *exploratory* testing.
 1. Listing a non-empty member list
 
     1. Prerequisites: Member list must not be empty.
-   
+
     2. Test case: `listMembers`<br>
        Expected: Member list is shown. Success message is shown in the status message.
-   
+
     3. Test case: `list Members`<br>
        Expected: Member list is not shown. Error details shown in the status message.
 
 2. Listing an empty member list
-   
+
     1. Prerequisites: Member list must be empty.
-    
+
     2. Test case: `listMembers`<br>
        Expected: No members are shown in member list. Status message indicates there are no members.
 
 3. Listing a non-empty event list
 
     1. Prerequisites: Event list must not be empty.
-    
+
     2. Test case: `listEvents`<br>
        Expected: Event list is shown. Success message is shown in the status message.
-    
+
     3. Test case: `list Events`<br>
        Expected: No event list is shown. Error details are shown in the status message.
 
 4. Listing an empty event list
-    
+
     1. Prerequisites: Event list must be empty.
-       
+
     2. Test case: `listEvents`<br>
-       Expected: No events are shown in event list. Status message indicates there are no events.  
+       Expected: No events are shown in event list. Status message indicates there are no events.
 
 ### Displaying an event
 
@@ -770,29 +770,29 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a member and an event
 
-1. Deleting a member 
+1. Deleting a member
 
    1. Prerequisites: List all members using the `listMembers` command. Multiple members in the member list.
 
    2. Test case: `deleteMember 1`<br>
-      Expected: First member is deleted from the member list. Details of the deleted member shown in the status message. 
+      Expected: First member is deleted from the member list. Details of the deleted member shown in the status message.
 
    3. Test case: `deleteMember 0`<br>
-      Expected: No member is deleted. Error details shown in the status message. 
+      Expected: No member is deleted. Error details shown in the status message.
 
    4. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is negative or larger than the list size)<br>
       Expected: Similar to previous.
 
-2. Deleting a event 
-   
+2. Deleting a event
+
     1. Prerequisites: List all events using the `listEvents` command. Multiple events in the event list.
-       
+
     2. Test case: `deleteEvent 1`<br>
        Expected: First event is deleted from the event list. Details of the deleted event shown in the status message.
-    
+
     3. Test case: `deleteEvent 0`<br>
        Expected: No event is deleted. Error details shown in the status message.
-    
+
     4. Other incorrect delete commands to try: `deleteEvent`, `deleteEvent x`, `...` (where x is negative or larger than the list size)<br>
        Expected: Similar to previous.
 
@@ -809,13 +809,13 @@ testers are expected to do more *exploratory* testing.
 
 Team Size: 5
 
-#### 1. Allow users to use event command consecutively
-Currently, after running the `event <INDEX>` command, users must return to the event list before executing the command 
-again. We plan to remove this restriction by storing the filtered event list, 
+##### 1. Allow users to use event command consecutively
+Currently, after running the `event <INDEX>` command, users must return to the event list before executing the command
+again. We plan to remove this restriction by storing the filtered event list,
 enabling users to re-run the command directly from the single event display page, allowing for more efficient lookup for events.
 
 #### 2. Adding an `assignEventRole` command
 Currently, if users want to change a member's event role in an event after they have already been assigned, they must first
-unassign the member and then run `assignEvent` again with the new role(s). We plan to add an `assignEventRole` command to allow 
+unassign the member and then run `assignEvent` again with the new role(s). We plan to add an `assignEventRole` command to allow
 updating of the member's event role directly if they are already assigned to the event. This will reduce repetitive command usage
 and streamline the event role changing process.

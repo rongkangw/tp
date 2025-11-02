@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_EVENT_ROLE_FACILITATOR;
 import static seedu.club.logic.commands.CommandTestUtil.VALID_MEMBER_ROLE_PRESIDENT;
 import static seedu.club.testutil.Assert.assertThrows;
-import static seedu.club.testutil.TypicalEvents.ORIENTATION;
-import static seedu.club.testutil.TypicalMembers.ALICE;
-import static seedu.club.testutil.TypicalMembers.getTypicalClubBook;
+import static seedu.club.testutil.TypicalClubBook.ALICE;
+import static seedu.club.testutil.TypicalClubBook.ORIENTATION;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -61,7 +61,7 @@ public class ClubBookTest {
 
     @Test
     public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
-        Event editedEvent = new EventBuilder(ORIENTATION).withRoles(VALID_EVENT_ROLE_FACILITATOR)
+        Event editedEvent = new EventBuilder(ORIENTATION).withEventRoles(VALID_EVENT_ROLE_FACILITATOR)
                 .build();
         List<Member> members = List.of(ALICE);
         List<Event> newEvents = Arrays.asList(ORIENTATION, editedEvent);
