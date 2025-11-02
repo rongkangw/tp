@@ -32,7 +32,7 @@ public class UnassignEventRoleCommand extends Command {
             + "Parameters: "
             + PREFIX_EVENT + "EVENT "
             + PREFIX_MEMBER + "MEMBER "
-            + PREFIX_ROLE + "EVENT ROLE...\n"
+            + PREFIX_ROLE + "EVENT_ROLE...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT + "Meeting "
             + PREFIX_MEMBER + "John Doe "
