@@ -31,7 +31,7 @@ public class AssignEventCommand extends Command {
             + "Parameters: "
             + PREFIX_EVENT + "EVENT "
             + PREFIX_MEMBER + "MEMBER "
-            + "[" + PREFIX_ROLE + "EVENTROLE]...\n"
+            + "[" + PREFIX_ROLE + "EVENT_ROLE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT + "Movie Night "
             + PREFIX_MEMBER + "John Doe "
