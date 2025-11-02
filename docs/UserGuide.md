@@ -83,9 +83,11 @@ EASync starts with some sample data so you can explore its features right away!
 * **Items with `…`​ after them can be used multiple times, or omitted completely.**<br>
   e.g. `[r/MEMBER_ROLE]…​` can be `r/Logistics`, `t/Publicity t/Logistics` or not be used at all.
 
-  * **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
-    e.g. `n/John     Doe` will be treated as `n/John Doe`.
-    </box>
+* **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
+  e.g. `n/John     Doe` will be treated as `n/John Doe`.
+
+* **For `NAME`**
+</box>
 
 <box type="tip">
 
@@ -126,7 +128,6 @@ Format: `listMembers`
 
 Format: `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​`
 
-* `NAME` should be 50 characters or fewer.
 * `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only.
 * `EMAIL` must be of the format `local-part@domain`
 * If multiple `MEMBER_ROLE`s are specified, the app displays them in alphabetical order.
@@ -163,7 +164,7 @@ Format: `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/MEMBER_ROLE]…​`
 
 * Edits the details of the member at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed member list.
-* At least one of the optional fields must be provided.
+* **At least one of the optional fields must be provided.**
 * Existing values for the provided field will be updated to the input values.
 * Fields not provided will remain **unchanged**.
 
@@ -212,7 +213,6 @@ Format: `listEvents`
 
 Format: `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…​`
 
-* `NAME` should be 50 characters or fewer.
 * `f/` (from) represents the start date time and `t/` (to) the end date time of the event.
 * `DATE_TIME` must be in the following format: `DDMMYY HHMM` (24 hour)
 * `DETAILS` should be 500 characters or fewer.
@@ -397,7 +397,6 @@ Hence, it is recommended to take a backup of the file before editing it.<br>
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
