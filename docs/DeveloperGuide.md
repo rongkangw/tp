@@ -141,7 +141,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T11-3/tp/tree/master/src/main/java/seedu/club/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="650" />
+<puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
 * can save both club book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -164,9 +164,10 @@ When the user enters `assignEvent m/<MEMBERNAME> e/<EVENTNAME> [r/<EVENTROLE>]..
 
 Otherwise, AssignEventCommandParser will obtain the values as a Name object for Member name and Event name, and the roles as a Set of Event Role objects. It then creates a new instance of AssignEventCommand using these objects as parameters.
 
+<puml src="diagrams/AssignEventActivityDiagram.puml" width="550" />
+
 Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. Next, it checks if the Event Role set is empty or not. If it is, it will give the Member the default “participant” event role, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
 
-<puml src="diagrams/AssignEventActivityDiagram.puml" width="550" />
 
 The Event’s entry is then shown.
 
