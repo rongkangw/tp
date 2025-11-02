@@ -162,11 +162,11 @@ This section describes some noteworthy details on how certain features are imple
 The implementation of the event command follows the standard command parsing workflow, where ClubBookParser will parse the input string into an executable command.
 When the user enters `assignEvent m/<MEMBERNAME> e/<EVENTNAME> [r/<EVENTROLE>]...`, ClubBookParser will first create an AssignEventCommandParser, which will then obtain the values corresponding to the prefixes `m/`, `e/`, and if applicable, `r/`  . If an error is encountered during parsing, a ParseException will be thrown.
 
-<puml src="diagrams/AssignMemberActivityDiagram.puml" width="550" />
-
 Otherwise, AssignEventCommandParser will obtain the values as a Name object for Member name and Event name, and the roles as a Set of Event Role objects. It then creates a new instance of AssignEventCommand using these objects as parameters.
 
-Upon execution, AssignEventCommand will check if the Event Role set is empty or not. If it is, it will only add the Member to the Event’s roster. If Event Roles are specified, it will add the Member to the Event’s roster and add a corresponding Event Role object to the Member’s event roles list.
+Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. Next, it checks if the Event Role set is empty or not. If it is, it will give the Member the default “participant” event role, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
+
+<puml src="diagrams/AssignEventActivityDiagram.puml" width="550" />
 
 The Event’s entry is then shown.
 
@@ -799,6 +799,9 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect delete commands to try: `deleteEvent`, `deleteEvent x`, `...` (where x is negative or larger than the list size)<br>
        Expected: Similar to previous.
+
+### Unassigning events and event roles
+
 
 ### Saving data
 

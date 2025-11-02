@@ -10,7 +10,7 @@ else (no)
 
 endif
 
-  if (Roles exist in event?) then (yes or no roles specified)
+  if (Specified roles exist in event?) then (yes or no roles specified)
   else (no)
     :             Return CommandResult \n "Roles not found under specified Event";
     stop
@@ -23,8 +23,7 @@ else (no)
   stop
 endif
 
-:Check if member is already in event roster;
-if (Member already exists?) then (yes)
+if (Member already exists in event roster?) then (yes)
   :Throw CommandException "Member already exists in event roster";
   stop
 else (no)
