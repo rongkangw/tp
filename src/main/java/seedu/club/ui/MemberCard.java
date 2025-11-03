@@ -49,7 +49,7 @@ public class MemberCard extends UiPart<Region> {
         super(FXML);
         this.member = member;
         id.setText(displayedIndex + ". ");
-        name.setText(member.getName().fullName);
+        name.setText(member.getName().fullName.replace('\\', '/'));
         phone.setText(member.getPhone().value);
         email.setText(member.getEmail().value);
         member.getMemberRoles().stream()

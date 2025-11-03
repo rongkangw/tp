@@ -20,8 +20,8 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX = "The member index provided is invalid";
-    public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
+    public static final String MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX = "The member index provided is out of range.";
+    public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is out of range.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
@@ -37,6 +37,8 @@ public class Messages {
     public static final String MESSAGE_MEMBER_NAME_NOT_EXIST = "The member with the name provided does not exist: %1$s";
     public static final String MESSAGE_EVENTROLE_NAME_NOT_EXIST = "The event role(s) belonging to %1$s with the name(s)"
             + " provided does not exist: %2$s";
+    public static final String MESSAGE_MEMBER_NAME_NOT_IN_EVENT_ROSTER = "The member %1$s is not "
+            + "assigned to the event: %2$s";
 
     public static final String MESSAGE_END_BEFORE_START_DATE = "Starting date/time should be before ending date/time";
 

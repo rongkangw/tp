@@ -77,11 +77,10 @@ public class UnassignEventRoleCommandTest {
 
     @Test
     public void execute_unassignEventWithEventRoles_success() throws CommandException {
-        EventRole roleToDelete = model
-                .getFilteredMemberList()
+        EventRole roleToDelete = new EventRole("facilitator", new Name("Orientation"));
+        model.getFilteredMemberList()
                 .get(INDEX_FIRST_MEMBER.getZeroBased())
-                .getEventRoles()
-                .iterator().next();
+                .addEventRoles(Set.of(roleToDelete));
 
         Name eventName = new Name("Orientation");
         Name memberName = new Name("Alice Pauline");
