@@ -129,10 +129,20 @@ class JsonAdaptedEvent {
                 throw new IllegalValueException(String.format(MISSING_MEMBER_MESSAGE_FORMAT, memberName));
             }
             // Add a participant role if member has no event role but is assigned to event
-            EventRole anyRelatedRole = member.getEventRoles().stream()
-                    .filter(r -> r.getAssignedTo().equals(modelName)).findFirst().orElse(null);
-            if (anyRelatedRole == null) {
+            List<EventRole> relatedRoles = member.getEventRoles().stream()
+                    .filter(r -> r.getAssignedTo().equals(modelName)).toList();
+            if (relatedRoles.isEmpty()) {
                 member.addEventRoles(Set.of(new EventRole(modelName)));
+            } else {
+                // Format these roles in relation to this event
+                for (EventRole memberEventRole : relatedRoles) {
+                    for (EventRole eventRole : eventRoles) {
+                        if (eventRole.equals(memberEventRole)) {
+                            member.removeEventRole(Set.of(memberEventRole));
+                            member.addEventRoles(Set.of(eventRole));
+                        }
+                    }
+                }
             }
             modelRoster.add(member);
         }

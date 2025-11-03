@@ -2,7 +2,6 @@ package seedu.club.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -73,11 +72,11 @@ class JsonSerializableClubBook {
             clubBook.addEvent(event);
         }
 
-        checkAndFormatMemberEventRoles(clubBook);
+        checkInvalidMemberEventRoles(clubBook);
         return clubBook;
     }
 
-    private static void checkAndFormatMemberEventRoles(ClubBook clubBook) throws IllegalValueException {
+    private static void checkInvalidMemberEventRoles(ClubBook clubBook) throws IllegalValueException {
         List<Event> events = clubBook.getEventList();
         for (Member member : clubBook.getMemberList()) {
             List<String> invalidRoleMessages = new ArrayList<>();
@@ -113,19 +112,6 @@ class JsonSerializableClubBook {
                 if (!isRoleInEvent) {
                     invalidRoleMessages.add(String.format(MESSAGE_INVALID_EVENT_ROLE_WITH_REASON,
                             er, "event role not defined in event"));
-                }
-
-                if (invalidRoleMessages.isEmpty()) {
-                    // Formats user-supplied roles with event's actual roles
-                    for (EventRole roleFromUser : member.getEventRoles()) {
-                        for (EventRole roleFromEvent : assignedEvent.getRoles()) {
-                            if (roleFromEvent.equals(roleFromUser)) {
-                                member.removeEventRole(Set.of(roleFromUser));
-                                member.addEventRoles(Set.of(roleFromEvent));
-                                break;
-                            }
-                        }
-                    }
                 }
             }
 
