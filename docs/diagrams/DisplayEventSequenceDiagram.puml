@@ -53,7 +53,7 @@ DisplayEventCommand -> Model : setViewState(ViewState.SINGLE_EVENT)
 activate Model
 Model --> DisplayEventCommand
 
-DisplayEventCommand -> Model : updateMemberAndEventListForSingleEvent(...)
+DisplayEventCommand -> Model : updateMemberAndEventList(...)
 
 Model --> DisplayEventCommand
 deactivate
