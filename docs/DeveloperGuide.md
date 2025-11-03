@@ -176,7 +176,7 @@ The implementation of the display event command follows the standard command par
 first create `DisplayEventCommandParser` to parse the input string. If an error is encountered during parsing, `ClubBookParser`
 will throw a `ParseException`.
 
-<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="574" />
+<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="" />
 
 <box type="info" seamless>
 
@@ -811,11 +811,11 @@ testers are expected to do more *exploratory* testing.
        Member must not have already been assigned to the event. Role(s) must exist for the event.
     
     2. Test case: `assignEvent e/Welcome Party m/John Doe`
-       Expected: Single event page is shown with the updated member list. The assigned member has a 'Participant' tag on their member card. 
+       Expected: Single event page is shown with the updated member list. The assigned member has a tag with the name of the event on their member card. 
        Success message is shown in status message.
     
     3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/gamemaster`
-       Expected: Single event page is shown with the updated member list. The assigned member has a tag with the specified role(s) on their member card.
+       Expected: Single event page is shown with the updated member list. The assigned member has a tag with the specified role on their member card.
        Success message is shown in status message.
 
 2. Assigning a member to an event they have already been assigned to
