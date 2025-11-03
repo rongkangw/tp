@@ -7,6 +7,7 @@ import static seedu.club.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.club.logic.parser.CliSyntax.PREFIX_ROLE;
 
+import java.util.List;
 import java.util.Set;
 
 import seedu.club.logic.commands.Command;
@@ -94,8 +95,14 @@ public class UnassignEventRoleCommand extends Command {
                     event.getName(), roles));
         }
 
-
         member.removeEventRole(roles);
+
+        List<EventRole> relatedRoles = member.getEventRoles().stream()
+                .filter(r -> r.getAssignedTo().equals(eventName)).toList();
+        if (relatedRoles.isEmpty()) {
+            member.addEventRoles(Set.of(new EventRole(eventName)));
+        }
+
         model.updateFilteredEventList(e -> e.equals(event));
         model.updateFilteredMemberList(m -> true);
         model.updateFilteredMemberList(m -> event.getRoster().contains(m));
