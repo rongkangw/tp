@@ -77,31 +77,36 @@ EASync starts with some sample data so you can explore its features right away!
 * **Words in `UPPER_CASE` are the parameters that you type in.**<br>
   e.g. in `addMember n/NAME`, `NAME` is a parameter which can be used as `addMember n/John Doe`.
 
+* **Parameters can be in any order.**<br>
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+
+* **Any extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 * **Items in square brackets are optional**. <br>
   e.g. `n/NAME [r/MEMBER_ROLE]` can be used as `n/John Doe r/Logistics` or as `n/John Doe`.
 
 * **Items with `…`​ after them can be used multiple times, or omitted completely.**<br>
   e.g. `[r/MEMBER_ROLE]…​` can be `r/Logistics`, `t/Publicity t/Logistics` or not be used at all.
 
-* **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
-  e.g. `n/John     Doe` will be treated as `n/John Doe`.
 
-* **The forward slash `/` is reserved for command parameters and cannot be used in any input field.**<br>
-  For `NAME` and `DETAILS` fields, you may use a backslash (`\`) instead if you still wish to include a forward slash.
-  EASync will automatically convert it to a forward slash after the command runs.<br>
-  e.g. `n/Alice\Bob` will result in the name being saved as `Alice/Bob`.
 </box>
 
-<box type="tip">
+<box type="info">
 
-**Tips for command flexibility:** <br>
+**Notes about parameters:** <br>
 
-* **Parameters can be in any order.**<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* **The forward slash `/` is reserved for command parameters and cannot be used in any input field.**<br>
+  e.g. `n/Alice\Bob` will result in the name being saved as `Alice/Bob`.
+  <box type="tip">
 
-* **Any extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  For **`NAME`** and **`DETAILS`** fields, you may input a backslash (`\`) instead if you still wish to include a forward slash.
+  EASync will automatically convert it to a forward slash after the command runs.<br>
   </box>
+
+* **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
+  e.g. <span style="white-space: pre;">`n/John    Doe`</span> will be treated as `n/John Doe`.
+</box>
 
 <box type="warning">
 
@@ -131,24 +136,15 @@ Format: `listMembers`
 
 Format: `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​`
 
-* `PHONE` number should start with **6, 8 or 9** and have exactly 8 digits only.
-* `EMAIL` must be of the format `local-part@domain`
-* If multiple `MEMBER_ROLE`s are specified, the app displays them in alphabetical order.
+* `PHONE` should be within 7–12 digits. You can add a country code in front by typing `+` followed by 1–3 digits (see [detailed requirements](#phone))
+* `EMAIL`should be of the format `local-part@domain` (see [detailed requirements](#email))
+* If multiple `MEMBER_ROLE` are specified, the app displays them in alphabetical order.
 * Each `MEMBER_ROLE` should be 30 characters or fewer.
 * The new member will be added to the end of the list.
 
 Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/member`
 * `addMember n/Benson Meier r/treasurer e/benson@example.com p/98765432 r/Publicity`
-
-<box type="info">
-
-**Still unclear about `EMAIL` requirements?** <br>
-1. The `local-part` can only consist of letters, digits and the following special characters **(+_.-)**. It **cannot** start or end with a special character.
-2. The `domain` consists of one or more domain labels separated by periods (.). The `domain` must meet the following rules:
-    * It must end with a domain label that is at least 2 characters long
-    * Each domain label may contain letters and/or digits, optionally separated by hyphens (-).
-      </box>
 
 #### Deleting a member: `deleteMember`
 
@@ -219,7 +215,7 @@ Format: `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…�
 * `f/` (from) represents the start date time and `t/` (to) the end date time of the event.
 * `DATE_TIME` must be in the following format: `DDMMYY HHMM` (24 hour)
 * `DETAILS` should be 500 characters or fewer.
-* If multiple `EVENT_ROLE`s are specified, the app displays them in alphabetical order.
+* If multiple `EVENT_ROLE` are specified, the app displays them in alphabetical order.
 * `EVENT_ROLE` should be 30 characters or fewer.
 * The new event will be added to the end of the list.
 
@@ -227,13 +223,6 @@ Format: `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…�
 Examples:
 * `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
 * `addEvent n/Movie Night r/FoodIC f/051025 1800 t/051025 2000`
-
-<box type="warning">
-
-**Caution**:
-We recommend that you avoid adding `r/` anywhere in the `DETAILS` field unless you specifically intend to create an event role. 
-This is because any text following `r/` may be interpreted as an event role rather than part of your details.
-</box>
 
 #### Deleting an event: `deleteEvent`
 
@@ -254,7 +243,6 @@ Format: `editEvent INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`
 * **At least one of the optional fields must be provided.**
 * Existing values for the provided field will be updated to the input values.
 * Fields not provided will remain **unchanged**.
-
 
 Examples:
 *  `editEvent 1 n/Movie Night t/171025 1800` edits the name and end date time of the 1st event to be `Movie Night` and `171025 1800` respectively.
@@ -379,6 +367,21 @@ The edited file will remain on your computer, but if you make any changes in the
 Hence, it is recommended to take a backup of the file before editing it.
 </box>
 
+---
+## Specific Parameter Requirements
+
+##### **`PHONE`**
+  * The optional country code must start with +, followed by 1–3 digits (no leading zeros), and comes before the main number.
+  * The main number must be 7–12 digits, with at most one leading zero.
+  * Whitespace between the country code and main number is allowed (and normalized automatically) 
+  * e.g. `+65 91234567`, `+1 2345678901`, `91234567`.
+
+##### **`EMAIL`**
+  * The `local-part` can only consist of letters, digits and any of the following special characters (`+_.-`). It cannot start or end with a special character.
+  * The `domain` consists of one or more domain labels separated by periods (`.`), and must meet the following rules:
+    * It must end with a domain label that is at least 2 characters long
+    * Each domain label may contain letters and/or digits, optionally separated by hyphens (-).
+  * e.g. `alice.smith@example.com`, `john_doe+club@mail-server.co`, `user123@domain.org`
 
 
 
@@ -391,12 +394,15 @@ Hence, it is recommended to take a backup of the file before editing it.
 **Q**: Can I delete several members/events at once? <br>
 **A**: Unfortunately, there is no bulk delete feature implemented. However, you can remove multiple items by running `deleteMember` or `deleteEvent` repeatedly.
 
+**Q**: Why does the `unassignEventRole` command exist, but there’s no `assignEventRole` command? <br>
+**A**: Event roles are already assigned as part of the `assignEvent` command, thus there is no `assignEventRole` command. However, `unassignEventRole` exists to allow you to remove roles from a member without unassigning them entirely from the event. If you want to update a member’s roles for an event, refer to the [caution box](#assigning-a-member-to-an-event-assignevent) under the `assignEvent` command.
+
 **Q**: How do I transfer my data to another Computer? <br>
 **A**: Follow these steps:
-1. Make a copy of the `data` folder in the **home folder of your current installation**.
-2. Install EASync on another computer (follow the [Quick Start guide](#quick-start))
-3. Take the copied `data` folder and overwrite the `data` folder in the **home folder of your new installation**
-4. Run EASync on the new computer and verify that your data has been transferred successfully.
+  1. Make a copy of the `data` folder in the **home folder of your current installation**.
+  2. Install EASync on another computer (follow the [Quick Start guide](#quick-start))
+  3. Take the copied `data` folder and overwrite the `data` folder in the **home folder of your new installation**
+  4. Run EASync on the new computer and verify that your data has been transferred successfully.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -414,7 +420,7 @@ Hence, it is recommended to take a backup of the file before editing it.
 | **List Members**        | `listMembers`                                                                                                                                       |
 | **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​` <br> e.g, `addMember n/John Doe p/94824271 e/john@example.com`                                 |
 | **Delete Member**       | `deleteMember INDEX`<br> e.g. `deleteMember 3`                                                                                                      |
-| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/MEMBER_ROLE]…​`<br> e.g.`editMember 2 n/James Lee e/jameslee@example.com`                  |
+| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/MEMBER_ROLE]…​`<br> e.g.`editMember 2 n/James Lee e/jameslee@example.com`                         |
 | **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g. `findMember James Jake`                                                                               |
 | **List Events**         | `listEvents`                                                                                                                                        |
 | **Add Event**           | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…​`  <br> e.g. `addEvent n/Orientation f/151025 1200 t/171025 1800 r/gamemaster` |
