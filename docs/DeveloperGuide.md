@@ -813,10 +813,10 @@ testers are expected to do more *exploratory* testing.
 1. Finding a member
 
     1. Prerequisites: List all members using the `listMembers` command. The default sample club book data is used.
-    
+
     2. Test case: `findMember Alex`<br>
        Expected: Only `Alex Yeoh` is shown. Status message box indicates one member listed.
-   
+
     3. Test case: `findMember NonExistentName`<br>
        Expected: No members are listed. Status message box indicates there are no members that match the keyword.
 
@@ -849,7 +849,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Achievements
 
-We successfully extended AB3 to support multiple inter-related entity types (e.g. members, events and roles). This required a substantial redesign of the underlying logic and storage management to ensure data consistency and seamless interaction between different model components. 
+We successfully extended AB3 to support multiple inter-related entity types (e.g. members, events and roles). This required a substantial redesign of the underlying logic and storage management to ensure data consistency and seamless interaction between different model components.
 <br>
 
 #### 1. Bidirectional references
@@ -890,7 +890,7 @@ and streamline the event role changing process.
 #### 3. UI to show both lists simultaneously
 Currently, users are only able to view one list at a time, either the members list or the events list. This may make entering
 commands that require information from both lists, such as `assignEvent` or  `unassignEventRole` to be tedious and difficult,
-possibly requiring users to check both lists for member/event names. We plan enhance the UI such that it shows both lists at the same time, 
+possibly requiring users to check both lists for member/event names. We plan enhance the UI such that it shows both lists at the same time,
 and a collapsible third panel that shows an event's details when using the `event` command. A mock-up for this feature can be
 seen below:
 
@@ -907,10 +907,10 @@ is to delete the entire event and add a new one containing the updated event rol
 and streamline event roles management.
 
 #### 6. Adding more date time and phone formats
-Currently, the date time format for events follows a strict `DDMMYY HHMM` (24 hour) format, which may reduce the app's 
+Currently, the date time format for events follows a strict `DDMMYY HHMM` (24 hour) format, which may reduce the app's
 flexibility for users. We plan to accept more date time formats, for example 12 hour formats.
-Additionally, the app currently only accept phone numbers that consist of numbers, excluding the country code. We plan to 
-accept more flexible formats, allowing for more special characters and even words, such as `+65 6123 4567 (Office)` 
+Additionally, the app currently only accept phone numbers that consist of numbers, excluding the country code. We plan to
+accept more flexible formats, allowing for more special characters and even words, such as `+65 6123 4567 (Office)`
 , and `(555) 555–5555`.
 
 #### 7. Improve `findMember` and `findEvent` commands
@@ -918,5 +918,6 @@ The `findMember` and `findEvent` commands are only able to search for members an
 We plan to expand upon this to support searching by other fields as well, such as roles, date and times, and details.
 
 #### 8. Prevent events with overlapping times from being assigned to the same member
-Currently, assigning two or more events with overlapping dates and times to the same member is possible. To improve  
+Currently, assigning two or more events with overlapping dates and times to the same member is possible. To improve
 overall event management, we plan to implement a restriction that prevents assigning overlapping events to a single member.
+
