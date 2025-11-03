@@ -243,7 +243,7 @@ public class ModelManager implements Model {
     //=========== Single Event Accessors =============================================================
 
     @Override
-    public void updateMemberAndEventListForSingleEvent(Event eventToBeDisplayed) {
+    public void updateMemberAndEventList(Event eventToBeDisplayed) {
         updateFilteredEventList(e -> e.equals(eventToBeDisplayed));
         updateFilteredMemberList(m -> eventToBeDisplayed.getRoster().contains(m));
     }
