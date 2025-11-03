@@ -169,19 +169,26 @@ Upon execution, AssignEventCommand will check if the Event Role set is empty or 
 
 The Event’s entry is then shown.
 
-### Display event feature
+### Displaying a single event
 
 The implementation of the display event command follows the standard command parsing workflow. When the user enters `event <INDEX>`,
 `ClubBookParser` will parse the input string into an executable command. `ClubBookParser` will
 first create `DisplayEventCommandParser` to parse the input string. If an error is encountered during parsing, `ClubBookParser`
 will throw a `ParseException`.
 
+<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="574" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `DisplayEventCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
+
 Otherwise, `DisplayEventCommandParser` will obtain the index from
 the user's input and create a new instance of `DisplayEventCommand`. `DisplayEventCommand` includes a `targetIndex`
 which is the zero based index of the event to be displayed in the filtered event list.
 
-Executing `DisplayEventCommand` will update the model's view state to be `SINGLE_EVENT`, filter the event list to only
-include the selected event and filter the member list to only include the event's member roster.
+Executing `DisplayEventCommand` will update the model's view state to `SINGLE_EVENT`, call `m::updateMemberAndEventList` to update the event list to only
+include the selected event and the member list to only include the event's member roster.
 The two lists are then shown.
 
 --------------------------------------------------------------------------------------------------------------------
