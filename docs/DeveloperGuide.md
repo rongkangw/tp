@@ -176,7 +176,7 @@ The implementation of the display event command follows the standard command par
 first create `DisplayEventCommandParser` to parse the input string. If an error is encountered during parsing, `ClubBookParser`
 will throw a `ParseException`.
 
-<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="" />
+<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="650" />
 
 <box type="info" seamless>
 
