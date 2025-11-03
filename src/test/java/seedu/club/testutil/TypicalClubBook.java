@@ -82,10 +82,10 @@ public class TypicalClubBook {
     public static ClubBook getTypicalClubBook() {
         ClubBook cb = new ClubBook();
         for (Event event : getTypicalEvents()) {
-            cb.addEvent(event);
+            cb.addEvent(new EventBuilder(event).build());
         }
         for (Member member : getTypicalMembers()) {
-            cb.addMember(member);
+            cb.addMember(new MemberBuilder(member).build());
         }
         return cb;
     }
