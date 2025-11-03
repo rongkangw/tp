@@ -2,6 +2,7 @@ package seedu.club.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -72,11 +73,11 @@ class JsonSerializableClubBook {
             clubBook.addEvent(event);
         }
 
-        checkInvalidMember(clubBook);
+        checkAndFormatMemberEventRoles(clubBook);
         return clubBook;
     }
 
-    private static void checkInvalidMember(ClubBook clubBook) throws IllegalValueException {
+    private static void checkAndFormatMemberEventRoles(ClubBook clubBook) throws IllegalValueException {
         List<Event> events = clubBook.getEventList();
         for (Member member : clubBook.getMemberList()) {
             List<String> invalidRoleMessages = new ArrayList<>();
@@ -85,10 +86,8 @@ class JsonSerializableClubBook {
                 Name assignedEventName = er.getAssignedTo();
 
                 // Check 1: Event does not exist
-                Event assignedEvent = events.stream()
-                        .filter(e -> e.getName().equals(assignedEventName))
-                        .findFirst()
-                        .orElse(null);
+                Event assignedEvent = events.stream().filter(e -> e.getName().equals(assignedEventName))
+                        .findFirst().orElse(null);
 
                 if (assignedEvent == null) {
                     invalidRoleMessages.add(String.format(MESSAGE_INVALID_EVENT_ROLE_WITH_REASON,
@@ -109,12 +108,24 @@ class JsonSerializableClubBook {
                 if (er.isParticipant()) {
                     continue;
                 }
-                boolean isRoleInEvent = assignedEvent.getRoles().stream()
-                        .anyMatch(role -> role.equals(er));
+                boolean isRoleInEvent = assignedEvent.getRoles().stream().anyMatch(role -> role.equals(er));
 
                 if (!isRoleInEvent) {
                     invalidRoleMessages.add(String.format(MESSAGE_INVALID_EVENT_ROLE_WITH_REASON,
                             er, "event role not defined in event"));
+                }
+
+                if (invalidRoleMessages.isEmpty()) {
+                    // Formats user-supplied roles with event's actual roles
+                    for (EventRole roleFromUser : member.getEventRoles()) {
+                        for (EventRole roleFromEvent : assignedEvent.getRoles()) {
+                            if (roleFromEvent.equals(roleFromUser)) {
+                                member.removeEventRole(Set.of(roleFromUser));
+                                member.addEventRoles(Set.of(roleFromEvent));
+                                break;
+                            }
+                        }
+                    }
                 }
             }
 
