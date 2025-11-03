@@ -58,7 +58,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deleteMember 1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -131,7 +131,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the club book data i.e., all `Member` objects (which are contained in a `UniqueMemberList` object).
+* stores the club book data i.e., all `Member` and `Event` objects (which are contained in `UniqueMemberList` and `UniqueEventList` objects).
 * stores the currently 'selected' `Member`/`Event` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Member>`/`ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -141,7 +141,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T11-3/tp/tree/master/src/main/java/seedu/club/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="650" />
 
 The `Storage` component,
 * can save both club book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -162,16 +162,13 @@ This section describes some noteworthy details on how certain features are imple
 The implementation of the `assignEvent` command follows the standard command parsing workflow, where ClubBookParser will parse the input string into an executable command.
 When the user enters `assignEvent m/<MEMBERNAME> e/<EVENTNAME> [r/<EVENTROLE>]...`, ClubBookParser will first create an AssignEventCommandParser, which will then obtain the values corresponding to the prefixes `m/`, `e/`, and if applicable, `r/`  . If an error is encountered during parsing, a ParseException will be thrown.
 
-Otherwise, AssignEventCommandParser will obtain the values as a Name object for Member name and Event name, and the roles as a Set of Event Role objects. It then creates a new instance of AssignEventCommand using these objects as parameters.
+Otherwise, `AssignEventCommandParser` will obtain the values as a `Name` object for Member name and Event name, and the roles as a `Set<EventRole>`. It then creates a new instance of `AssignEventCommand` using these objects as parameters.
 
-<puml src="diagrams/AssignEventActivityDiagram.puml" width="550" />
+Here's an activity diagram to demonstrate what `AssignEventCommand` does upon execution.
 
-Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. 
-It also checks whether the Member already exists on the Event's roster, and will return an error if it does.
-Next, it checks if the Event Role set is empty or not. If it is, it will give the Member a default role which only contains the name of the event, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
+<puml src="diagrams/AssignEventActivityDiagram.puml" height="800" />
 
-
-The Event’s entry is then shown.
+Executing `AssignEventCommand` will update the model's view state to `SINGLE_EVENT`.
 
 ### Displaying a single event
 
@@ -180,7 +177,7 @@ The implementation of the display event command follows the standard command par
 first create `DisplayEventCommandParser` to parse the input string. If an error is encountered during parsing, `ClubBookParser`
 will throw a `ParseException`.
 
-<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="650" />
+<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="850" />
 
 <box type="info" seamless>
 
@@ -229,21 +226,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                |
 |----------|-------------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------|
 | `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                              |
-| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                 |
+| `*`      | club manager                  | detect duplicate entries                                                           | keep my contact lists accurate                                 |
 | `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                      |
 | `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                           |
 | `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                           |
 | `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
 | `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                     |
 | `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews              |
-| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                             |
+| `*`      | experienced club manager      | chain commands                                                                     | execute multiple actions in one go                             |
 | `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
 | `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
 | `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
 | `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
 | `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                       |
 | `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                  |
-| `* *`    | club manager                  | edit members' memberal details                                                     | update them when information changes                           |
+| `* *`    | club manager                  | edit member details                                                                | update them when information changes                           |
 | `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                  |
 | `* *`    | club manager                  | validate contact fields (e.g. missing email, malformed tags)                       | catch errors before they affect workflows                      |
 | `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                              |
@@ -256,7 +253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                      |
 | `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                        |
 | `* *`    | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app           |
-| `* * *`  | club manager                  | add a new member’s memberal details such as name, phone number, and email address  | keep track of member information                               |
+| `* * *`  | club manager                  | add a new member’s details such as name, phone number, and email address           | keep track of member information                               |
 | `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                  |
 | `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                          |
 | `* * *`  | club manager                  | tag members with appointed roles                                                   | identify and keep track of key appointment holders             |
@@ -364,6 +361,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. System shows an error message
 
+      Use case ends
+
 **UC04: Finding Members/Events by name**
 
 **Preconditions**
@@ -387,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. System displays an empty list
 
-  Use case ends
+      Use case ends
 
 
 * 1b. Missing required parameters in command (e.g. keywords)
@@ -420,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. System displays an empty list
 
-  Use case ends
+       Use case ends
 
 
 **UC06: Displaying an event’s details**
@@ -474,7 +473,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System displays success message
 3. System updates event’s roster with the assigned member
 4. System displays event’s details (UC06)
-        Use case ends
+
+    Use case ends
 
 **Extensions**
 
@@ -484,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-* 1b. Invalid parameters within command (e.g. blank or non-alphanumeric characters)
+* 1b. Invalid parameters within command (e.g. blank or non-existent names)
 
     * 1b1. System informs user of invalid parameters
 
@@ -538,7 +538,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-* 1b. Invalid parameters within command (e.g. blank or non-alphanumeric characters)
+* 1b. Invalid parameters within command (e.g. blank or non-existent names)
 
     * 1b1. System informs user of invalid parameters
 
@@ -615,7 +615,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    3. All user commands (e.g. addEvent, deleteMember) should be processed within 1 second under normal usage.
    4. Assets (e.g. images, libraries) must not be unnecessarily large or included unless strictly required
 6. Usability
-   1. Command parameters should only be defined format (e.g. n/, f/, dt/) for consistency.
+   1. Command parameters should only be defined format (e.g. n/, f/, t/) for consistency.
    2. All commands must be able to be completed by the user using only typed commands.
       GUI interaction  must be secondary, rather than being the primary input mode.
 7. Single-User Model
@@ -795,11 +795,11 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Member to be assigned must exist in the member list. Event to be assigned to must exist in the event list.
        Member must not have already been assigned to the event. Role(s) must exist for the event.
 
-    2. Test case: `assignEvent e/Welcome Party m/John Doe`
+    2. Test case: `assignEvent e/Welcome Party m/John Doe`<br>
        Expected: Single event page is shown with the updated member list. The assigned member has a tag with the name of the event on their member card.
        Success message is shown in status message.
 
-    3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/gamemaster`
+    3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/gamemaster`<br>
        Expected: Single event page is shown with the updated member list. The assigned member has a tag with the specified role on their member card.
        Success message is shown in status message.
 
@@ -808,10 +808,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites:  Member to be assigned must exist in the member list. Event to be assigned to must exist in the event list.
        Member must have been assigned to the event. Role(s) must exist in the event.
 
-    2. Test case: `assignEvent e/Welcome Party m/John Doe`
+    2. Test case: `assignEvent e/Welcome Party m/John Doe`<br>
        Expected: No assignment occurs. Current page remains the same. Error details shown in status message.
 
-    3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/facilitator`
+    3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/facilitator`<br>
        Expected: No assignment occurs. Current page remains the same. Error details shown in status message.
 
 ### Unassigning events and event roles
@@ -877,20 +877,20 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Open the `clubBook.json` file containing the default sample data.
 
-    2. Test case: Manually change the first member's phone number to `96791234`, and launch the app.
+    2. Test case: Manually change the first member's phone number to `96791234`, and launch the app.<br>
        Expected: The first member in the member list now has the phone number `96791234`.
 
-    3. Test case: Manually change the second event's starting date time to `010125 1200`, and launch the app.
+    3. Test case: Manually change the second event's starting date time to `010125 1200`, and launch the app.<br>
        Expected: The second event in the event list now has its starting date `1 Jan 2025 12:00pm`.
 
 2. Corrupting the data file
 
     1. Prerequisites: Open the `clubBook.json` file containing the default sample data.
 
-    2. Test case: Manually change the first member's phone number to `87438807#` to include letters. Launch the app<br>
+    2. Test case: Manually change the first member's phone number to `87438807#`. Launch the app<br>
        Expected: The app will show empty lists, but `clubBook.json` will still contain the invalid data.
 
-    3. Test case: Manually change the second event's starting date time to `311225 2359`, and launch the app.
+    3. Test case: Manually change the second event's starting date time to `311225 2359`, and launch the app.<br>
        Expected: The app will show empty lists, but `clubBook.json` will still contain the invalid data.
 
     4. Test case: Manually change any field to an invalid format. Launch the app and do `exit`<br>
@@ -916,10 +916,10 @@ We needed to support switching between displaying events and members separately,
 However, this is not to say that these achievements came easily. Throughout development, we explored multiple designs to handle these highly complex relationships. Many early implementations failed due to various issues like data inconsistency and mutability conflicts, resulting in significant part of our time being spent on refinement and refactoring, rather than improving and implementing more features.
 
 #### 1. Immutability of events and members
-Both `Member` and `Event` objects maintain references to each other via hash sets. When the details of either one are modified e.g. through `editMember`/`editEvent` or multiple role assignments, the hash sets are unable to find the correct key as the object's `hashcode` changes. These objects thus seemed to disappear when in fact they were just hidden in the hash set, never to be found again.
+Both `Member` and `Event` objects maintain references to each other via hash sets. When the details of either one are modified e.g. through `editMember`/`editEvent` or multiple role assignments, the hash sets are unable to find the correct key as the object's `hashcode` changes. These objects thus seemed to disappear when in fact they were just hidden in the hash set.
 
-#### 2. Handling both events and members
-Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. In addition, it occasionally led to infinite loops, causing the application to crash.
+#### 2. Storing both events and members
+Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. Also, it was further complicated by events and members holding bidirectional references, resulting in duplicate members upon app restart.
 
 #### 3. Assigning members to an event without a role (i.e. participant)
 A unique challenge arose when supporting members assigned to an event **without** a specific role. As our design enforces that role names must be non-empty (to prevent users from creating blank roles), participants lacked a natural representation in storage. This made it difficult to efficiently check or update a member's participant status, especially when performing operations like `editEvent` or `editMember`.
@@ -943,12 +943,16 @@ and streamline the event role changing process.
 #### 3. UI to show both lists simultaneously
 Currently, users are only able to view one list at a time, either the members list or the events list. This may make entering
 commands that require information from both lists, such as `assignEvent` or  `unassignEventRole` to be tedious and difficult,
-possibly requiring users to check both lists for member/event names. We plan to enhance the UI such that it shows both lists at the same time,
+possibly requiring users to check both lists for member/event names. 
+
+We plan to enhance the UI such that it shows both lists at the same time,
 and a collapsible third panel that shows an event's details when using the `event` command.
+
 This has the added benefit of streamlining other commands as well, since users do not have to run `listEvents` or `listMembers` first anymore.
 Furthermore, with both lists being displayed at the same time, commands that use member/event names can now be run using indices instead, for example, `e/1` and `m/3`.
-This allows multiple events and members with the same name to be added, so that the `isSameMember`, `isSameEvent` methods 
+This also means multiple events and members with the same name can now exist, and so the `isSameMember`, `isSameEvent` methods 
 can be enhanced to check based on other fields such as duplicate phone numbers and emails.
+
 A mock-up for this feature can be seen below:
 
 ![splitListMockup.jpg](images/splitListMockup.jpg)
@@ -963,14 +967,14 @@ is to delete the entire event and add a new one containing the updated event rol
 `editEvent` command such that it is able to edit the event's roles list as well. This will reduce repetitive command usage
 and streamline event roles management.
 
-#### 6. Adding more date time and phone formats
+#### 6. Allow for more flexible field format recognition
 Currently, the date time format for events follows a strict `DDMMYY HHMM` (24 hour) format, which may reduce the app's
 flexibility for users. We plan to accept more date time formats, for example 12 hour formats.
 The app also has a very strict format for phone numbers, preventing words or special characters like hyphens. We plan to
 accept more flexible formats, allowing for more special characters and even words, such as `+65 6123 4567 (Office)`
 , and `(555) 555–5555`.
 
-#### 7. Improve `findMember` and `findEvent` commands
+#### 7. Improve the `find` commands
 The `findMember` and `findEvent` commands are only able to search for members and events by their names at the moment.
 We plan to expand upon this to support searching by other fields as well, such as roles, date and times, and details.
 
