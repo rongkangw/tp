@@ -212,6 +212,10 @@ public class AddMemberCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateMemberAndEventList(Event eventToBeDisplayed) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public int eventNameIndex(Name name) {
