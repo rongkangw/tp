@@ -76,24 +76,6 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in adapted event.
      */
     public Event toModelType(ObservableList<Member> memberList) throws IllegalValueException {
-        final List<EventRole> eventRoles = new ArrayList<>();
-        for (JsonAdaptedEventRole role : roles) {
-            eventRoles.add(role.toModelType());
-        }
-
-        // Map the roster names to existing members
-        final Set<Member> modelRoster = new HashSet<>();
-        for (String name : roster) {
-            Member member = memberList.stream()
-                    .filter(m -> m.getName().toString().equals(name))
-                    .findFirst()
-                    .orElse(null);
-            if (member == null) {
-                throw new IllegalValueException(String.format(MISSING_MEMBER_MESSAGE_FORMAT, name));
-            }
-            modelRoster.add(member);
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -131,6 +113,29 @@ class JsonAdaptedEvent {
         }
         final String modelDetails = this.details;
 
+        final List<EventRole> eventRoles = new ArrayList<>();
+        for (JsonAdaptedEventRole role : roles) {
+            eventRoles.add(role.toModelType());
+        }
+
+        // Map the roster names to existing members
+        final Set<Member> modelRoster = new HashSet<>();
+        for (String memberName : roster) {
+            Member member = memberList.stream()
+                    .filter(m -> m.getName().toString().equals(memberName))
+                    .findFirst()
+                    .orElse(null);
+            if (member == null) {
+                throw new IllegalValueException(String.format(MISSING_MEMBER_MESSAGE_FORMAT, memberName));
+            }
+            // Add a participant role if member has no event role but is assigned to event
+            EventRole anyRelatedRole = member.getEventRoles().stream()
+                    .filter(r -> r.getAssignedTo().equals(modelName)).findFirst().orElse(null);
+            if (anyRelatedRole == null) {
+                member.addEventRoles(Set.of(new EventRole(modelName)));
+            }
+            modelRoster.add(member);
+        }
         final Set<EventRole> modelRoles = new HashSet<>(eventRoles);
         return new Event(modelName, modelFrom, modelTo, modelDetails, modelRoles, modelRoster);
     }

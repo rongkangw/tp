@@ -119,7 +119,7 @@ public class Messages {
                 .append(" to ")
                 .append(event.getName());
 
-        if (roles != null && !roles.isEmpty()) {
+        if (roles != null && !roles.isEmpty() && !roles.contains(new EventRole(event.getName()))) {
             builder.append(" with event role(s): ");
             String result = roles.stream().map(r -> r.roleName).sorted()
                     .collect(joining(", "));
