@@ -169,20 +169,25 @@ Upon execution, AssignEventCommand will check if the Event Role set is empty or 
 
 The Event’s entry is then shown.
 
-### Display event feature
+### Displaying a single event
 
 The implementation of the display event command follows the standard command parsing workflow. When the user enters `event <INDEX>`,
 `ClubBookParser` will parse the input string into an executable command. `ClubBookParser` will
 first create `DisplayEventCommandParser` to parse the input string. If an error is encountered during parsing, `ClubBookParser`
 will throw a `ParseException`.
 
+<puml src="diagrams/DisplayEventSequenceDiagram.puml" width="650" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `DisplayEventCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
+
 Otherwise, `DisplayEventCommandParser` will obtain the index from
 the user's input and create a new instance of `DisplayEventCommand`. `DisplayEventCommand` includes a `targetIndex`
 which is the zero based index of the event to be displayed in the filtered event list.
 
-Executing `DisplayEventCommand` will update the model's view state to be `SINGLE_EVENT`, filter the event list to only
-include the selected event and filter the member list to only include the event's member roster.
-The two lists are then shown.
+Executing `DisplayEventCommand` will update the model's view state to `SINGLE_EVENT` and update the event and member list to only include the selected event and its member roster.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -641,11 +646,11 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
        Expected: Event is added to the event list. Details of the added event are shown in the status message box. Event list is shown.
 
-    3. Test case: `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/gamemaster`<br>
+    3. Test case: `addEvent n/Welcome Party f/151025 1200 t/171025 1800 d/For freshmen r/gamemaster r/facilitator`<br>
        Expected: Similar to previous.
 
-    4. Test case: `addEvent n/Movie Night f/151025 2:00pm t/161025 3:00pm`<br>
-       Expected: Event is not added to the event list. Error details shown in the status message box.
+    4. Test case: `addEvent n/Dinner Party f/151025 2:00pm t/161025 3:00pm`<br>
+       Expected: Event is not added to the event list. Error details shown in the status message.
 
 4. Adding a duplicate event to the event list
 
@@ -732,7 +737,37 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `deleteEvent`, `deleteEvent x`, `...` (where x is negative or larger than the list size)<br>
        Expected: Similar to previous.
 
+<<<<<<< HEAD
+### Assigning a member to an event
+
+1. Assigning a member to an event
+   
+    1. Prerequisites: Member to be assigned must exist in the member list. Event to be assigned to must exist in the event list.
+       Member must not have already been assigned to the event. Role(s) must exist for the event.
+    
+    2. Test case: `assignEvent e/Welcome Party m/John Doe`
+       Expected: Single event page is shown with the updated member list. The assigned member has a tag with the name of the event on their member card. 
+       Success message is shown in status message.
+    
+    3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/gamemaster`
+       Expected: Single event page is shown with the updated member list. The assigned member has a tag with the specified role on their member card.
+       Success message is shown in status message.
+
+2. Assigning a member to an event they have already been assigned to
+    
+    1. Prerequisites:  Member to be assigned must exist in the member list. Event to be assigned to must exist in the event list.
+       Member must have been assigned to the event. Role(s) must exist in the event.
+    
+    2. Test case: `assignEvent e/Welcome Party m/John Doe`
+       Expected: No assignment occurs. Current page remains the same. Error details shown in status message.
+    
+    3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/facilitator`
+       Expected: No assignment occurs. Current page remains the same. Error details shown in status message.
+
+### Saving data
+=======
 ### Finding a member and an event
+>>>>>>> 076a869d2677b5f61bbaccf94d4c7475a059ce5d
 
 1. Finding a member
 
