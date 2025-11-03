@@ -58,7 +58,7 @@ public class AddMemberCommand extends Command {
 
         model.setViewState(ViewState.MEMBER);
         model.addMember(toAdd);
-        String formattedMember = Messages.format(toAdd).replace('\\','/');
+        String formattedMember = Messages.format(toAdd).replace('\\', '/');
         return new CommandResult(String.format(MESSAGE_SUCCESS, formattedMember));
     }
 

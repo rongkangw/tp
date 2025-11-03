@@ -10,10 +10,10 @@ import static seedu.club.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should not be blank and can only contain alphanumeric characters, spaces, " +
-                    "and these special characters: \n" +
-                    "comma(,), parentheses(()), at sign(@), hyphen(-), period(.), apostrophe(') and backslash(\\).\n" +
-                    "For '/', please use '\\'.\n"
+            "Names should not be blank and can only contain alphanumeric characters, spaces, "
+                    + "and these special characters: \n"
+                    + "comma(,), parentheses(()), at sign(@), hyphen(-), period(.), apostrophe(') and backslash(\\).\n"
+                    + "For '/', please use '\\'.\n"
                     + "The first and last characters should be alphanumeric.\n";
     /*
      * The first character of the name must not be a whitespace,
