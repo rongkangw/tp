@@ -166,7 +166,7 @@ Otherwise, AssignEventCommandParser will obtain the values as a Name object for 
 
 <puml src="diagrams/AssignEventActivityDiagram.puml" width="550" />
 
-Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. Next, it checks if the Event Role set is empty or not. If it is, it will give the Member the default “participant” event role, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
+Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. Next, it checks if the Event Role set is empty or not. If it is, it will give the Member a default role which only contains the name of the event, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
 
 
 The Event’s entry is then shown.
@@ -891,8 +891,12 @@ and streamline the event role changing process.
 Currently, users are only able to view one list at a time, either the members list or the events list. This may make entering
 commands that require information from both lists, such as `assignEvent` or  `unassignEventRole` to be tedious and difficult,
 possibly requiring users to check both lists for member/event names. We plan enhance the UI such that it shows both lists at the same time,
-and a collapsible third panel that shows an event's details when using the `event` command. A mock-up for this feature can be
-seen below:
+and a collapsible third panel that shows an event's details when using the `event` command.
+This has the added benefit of streamlining other commands as well, since users do not have to run listEvents or listMembers first anymore.
+Furthermore, with both lists being displayed at the same time, commands that used member/event names before can now be run
+with indices instead. This allows multiple events and members with the same name to be added, and the duplicate checker 
+can be enhanced to check based on other fields such as phone numbers and emails.
+A mock-up for this feature can be seen below:
 
 ![splitListMockup.jpg](images/splitListMockup.jpg)
 
@@ -909,7 +913,7 @@ and streamline event roles management.
 #### 6. Adding more date time and phone formats
 Currently, the date time format for events follows a strict `DDMMYY HHMM` (24 hour) format, which may reduce the app's
 flexibility for users. We plan to accept more date time formats, for example 12 hour formats.
-Additionally, the app currently only accept phone numbers that consist of numbers, excluding the country code. We plan to
+The app also has a very strict format for phone numbers, preventing words or special characters like hyphens. We plan to
 accept more flexible formats, allowing for more special characters and even words, such as `+65 6123 4567 (Office)`
 , and `(555) 555–5555`.
 
