@@ -34,14 +34,6 @@ public class FindEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        /* Ensure that event list is displaying first, so that the ClubBook does not unintentionally show no
-           results if the user is on member list instead.
-         */
-        if (model.getViewState() != ViewState.EVENT) {
-            throw new CommandException(Messages.MESSAGE_NOT_EVENT_STATE);
-        }
-
-        // The following line is there as a safety measure.
         model.setViewState(ViewState.EVENT);
         model.updateFilteredEventList(predicate);
         return new CommandResult(

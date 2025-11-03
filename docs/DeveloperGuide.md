@@ -736,7 +736,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a member
 
-    1. Prerequisites: List all members using the `listMembers` command. The default sample club book data is used.
+    1. Prerequisites: The default sample club book data is used.
     
     2. Test case: `findMember Alex`<br>
        Expected: Only `Alex Yeoh` is shown. Status message box indicates one member listed.
@@ -749,7 +749,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Finding an event
 
-   1. Prerequisites: List all events using the `listEvents` command. The default sample club book data is used.
+   1. Prerequisites: The default sample club book data is used.
 
    2. Test case: `findEvent Orientation`<br>
       Expected: Only `Orientation` is shown. Status message box indicates one event listed.
