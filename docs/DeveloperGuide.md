@@ -233,14 +233,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
 | `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                     |
 | `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews              |
-| `*`      | experienced club manager      | chain commands (e.g. addMember && assignEvent)                                     | execute multiple actions in one go                             |
+| `*`      | experienced club manager      | chain commands                                                                     | execute multiple actions in one go                             |
 | `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
 | `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
 | `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
 | `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
 | `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                       |
 | `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                  |
-| `* *`    | club manager                  | edit members' details                                                              | update them when information changes                           |
+| `* *`    | club manager                  | edit member details                                                                | update them when information changes                           |
 | `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                  |
 | `* *`    | club manager                  | validate contact fields (e.g. missing email, malformed tags)                       | catch errors before they affect workflows                      |
 | `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                              |
@@ -919,7 +919,7 @@ However, this is not to say that these achievements came easily. Throughout deve
 Both `Member` and `Event` objects maintain references to each other via hash sets. When the details of either one are modified e.g. through `editMember`/`editEvent` or multiple role assignments, the hash sets are unable to find the correct key as the object's `hashcode` changes. These objects thus seemed to disappear when in fact they were just hidden in the hash set.
 
 #### 2. Storing both events and members
-Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. Also, it was further complicated by events and members holding bidirectional references, resulting in duplicate members.
+Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. Also, it was further complicated by events and members holding bidirectional references, resulting in duplicate members upon app restart.
 
 #### 3. Assigning members to an event without a role (i.e. participant)
 A unique challenge arose when supporting members assigned to an event **without** a specific role. As our design enforces that role names must be non-empty (to prevent users from creating blank roles), participants lacked a natural representation in storage. This made it difficult to efficiently check or update a member's participant status, especially when performing operations like `editEvent` or `editMember`.
