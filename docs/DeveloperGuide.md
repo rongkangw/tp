@@ -843,11 +843,6 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 
-
-
-### Saving data
-
-
 ### Finding a member and an event
 
 1. Finding a member
