@@ -210,7 +210,8 @@ Examples:
 * `findMember John` returns `john` and `John Doe`
 * `findMember alex david` returns `Alex Yeoh`, `David Li`<br>
 
-![finMember](images/findMember.png)
+![findMember](images/findMember.png)
+![findMemberResult](images/findMemberResult.png)
 
 <box type="warning">
 
@@ -312,6 +313,8 @@ Format: `event INDEX`
 Examples:
 * `listEvents` then `event 2` displays the full content of the 2nd event in the displayed event list.
 
+![eventCommand](images/eventCommand.png)
+
 <ins>[To command summary](#command-summary)</ins>
 
 ### Managing Event Participants
@@ -333,6 +336,9 @@ Examples:
 * `assignEvent e/Orientation m/Alice Pauline`
 * `assignEvent e/Movie Night m/Benson Meier r/FoodIC`
 
+![assignEvent](images/assignEvent.png)
+![assignEventResult](images/assignEventResult.png)
+
 <box type="warning">
 
 **Caution:** **Once a member has been assigned to an event, their roles for that event cannot be edited directly.**
@@ -353,7 +359,9 @@ Format: `unassignEvent e/EVENT m/MEMBER`
 * All associated event roles in the member's event roles list are removed, if any.
 
 Examples:
-*  `unassignEvent e/Workshop m/Jane`
+*  `unassignEvent e/Orientation m/Alice Pauline`
+
+![unassignEvent](images/unassignEvent.png)
 
 <ins>[To command summary](#command-summary)</ins>
 
@@ -365,7 +373,9 @@ Format: `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​`
 * Multiple event roles can be specified.
 
 Examples:
-*  `unassignEventRole e/Meeting m/Bob r/Logistics r/Publicity`
+*  `unassignEventRole e/Beach Day m/Alex Yeoh r/Game Master`
+
+![unassignEventRole](images/unassignEventRole.png)
 
 <ins>[To command summary](#command-summary)</ins>
 
@@ -375,6 +385,8 @@ Examples:
 Format: `clear`
 
 * Clears **all members and events** from the club book.
+
+![clear](images/clear.png)
 
 <box type="warning">
 
