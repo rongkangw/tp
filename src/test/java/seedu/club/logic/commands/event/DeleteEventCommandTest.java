@@ -120,15 +120,5 @@ public class DeleteEventCommandTest {
         assertEquals(expected, deleteEventCommand.toString());
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no event.
-     */
-    private void showNoEvent(Model model) {
-        model.updateFilteredEventList(p -> false);
-
-        assertTrue(model.getFilteredEventList().isEmpty());
-    }
-
-
 
 }
