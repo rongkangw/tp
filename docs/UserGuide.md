@@ -124,6 +124,8 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
+<ins>[To command summary](#command-summary)</ins>
+
 ### Managing Members
 
 #### Listing all members: `listMembers`
@@ -131,6 +133,8 @@ Shows a message explaining how to access the help page.
 Format: `listMembers`
 
 * Displays a list of all members in the club book.
+
+<ins>[To command summary](#command-summary)</ins>
 
 #### Adding a member: `addMember`
 
@@ -146,6 +150,8 @@ Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/member`
 * `addMember n/Benson Meier r/treasurer e/benson@example.com p/98765432 r/Publicity`
 
+<ins>[To command summary](#command-summary)</ins>
+
 #### Deleting a member: `deleteMember`
 
 
@@ -157,6 +163,8 @@ Format: `deleteMember INDEX`
 Examples:
 * `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
 * `findMember Andy` then `deleteMember 1` removes the 1st member in the **search result** for members containing the keyword `Andy`.
+
+<ins>[To command summary](#command-summary)</ins>
 
 #### Editing a member: `editMember`
 
@@ -184,6 +192,8 @@ Examples:
 
 ![editMember](images/editMember.png)
 
+<ins>[To command summary](#command-summary)</ins>
+
 #### Locating members by name: `findMember`
 
 Format: `findMember KEYWORD [MORE_KEYWORDS]`
@@ -205,6 +215,7 @@ Examples:
 **Caution:** Only full words will be matched, e.g. `Han` will not match `Hans`.
 </box>
 
+<ins>[To command summary](#command-summary)</ins>
 
 ### Managing Events
 
@@ -213,6 +224,8 @@ Examples:
 Format: `listEvents`
 
 * Displays a list of all events in the club book.
+
+<ins>[To command summary](#command-summary)</ins>
 
 #### Adding an event: `addEvent`
 
@@ -230,6 +243,8 @@ Examples:
 * `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
 * `addEvent n/Movie Night r/FoodIC f/051025 1800 t/051025 2000`
 
+<ins>[To command summary](#command-summary)</ins>
+
 #### Deleting an event: `deleteEvent`
 
 Format: `deleteEvent INDEX`
@@ -239,6 +254,8 @@ Format: `deleteEvent INDEX`
 
 Examples:
 * `listEvents` then `deleteEvent 2` removes the 2nd event in the displayed event list.
+
+<ins>[To command summary](#command-summary)</ins>
 
 #### Editing an event: `editEvent`
 
@@ -259,6 +276,8 @@ Examples:
 If you would like to update the list of roles (e.g. add new or rename existing ones), you need to delete the event and create it again using `addEvent` with the updated roles.
 </box>
 
+<ins>[To command summary](#command-summary)</ins>
+
 #### Locating events by name: `findEvent`
 
 Format: `findEvent KEYWORD [MORE_KEYWORDS]`
@@ -278,6 +297,8 @@ Examples:
 **Caution:** Only full words will be matched, e.g. `Day` will not match `Days`
 </box>
 
+<ins>[To command summary](#command-summary)</ins>
+
 
 #### Displaying an event: `event`
 
@@ -288,6 +309,8 @@ Format: `event INDEX`
 
 Examples:
 * `listEvents` then `event 2` displays the full content of the 2nd event in the displayed event list.
+
+<ins>[To command summary](#command-summary)</ins>
 
 ### Managing Event Participants
 
@@ -318,6 +341,8 @@ To update an assigned member's event roles:
 Do note that this restriction applies only to event roles within the same event. Member roles and event roles in other events remain unaffected.
 </box>
 
+<ins>[To command summary](#command-summary)</ins>
+
 #### Unassigning a Member from an Event: `unassignEvent`
 
 Format: `unassignEvent e/EVENT m/MEMBER`
@@ -328,6 +353,8 @@ Format: `unassignEvent e/EVENT m/MEMBER`
 Examples:
 *  `unassignEvent e/Workshop m/Jane`
 
+<ins>[To command summary](#command-summary)</ins>
+
 #### Unassigning an Event Role from a Member: `unassignEventRole`
 
 Format: `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​`
@@ -337,6 +364,8 @@ Format: `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​`
 
 Examples:
 *  `unassignEventRole e/Meeting m/Bob r/Logistics r/Publicity`
+
+<ins>[To command summary](#command-summary)</ins>
 
 ### Miscellaneous
 #### Clearing all entries: `clear`
@@ -360,6 +389,8 @@ If you would like to get the sample data to show again, you could delete the `cl
 #### Exiting the program: `exit`
 
 Format: `exit`
+
+<ins>[To command summary](#command-summary)</ins>
 
 ### Saving the data
 
@@ -423,24 +454,26 @@ Hence, it is recommended to take a backup of the file before editing it.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+[edit member](#exiting-the-program-exit)
+
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                                    |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List Members**        | `listMembers`                                                                                                                                       |
-| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​` <br> e.g. `addMember n/John Doe p/94824271 e/john@example.com`                                 |
-| **Delete Member**       | `deleteMember INDEX`<br> e.g. `deleteMember 3`                                                                                                      |
-| **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/MEMBER_ROLE]…​`<br> e.g.`editMember 2 n/James Lee e/jameslee@example.com`                         |
-| **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g. `findMember James Jake`                                                                               |
-| **List Events**         | `listEvents`                                                                                                                                        |
-| **Add Event**           | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…​`  <br> e.g. `addEvent n/Orientation f/151025 1200 t/171025 1800 r/gamemaster` |
-| **Delete Event**        | `deleteEvent INDEX` <br> e.g. `deleteEvent 3`                                                                                                       |
-| **Edit Event**          | `editEvent INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`<br> e.g.`editEvent 1 n/Meeting t/171025 0000`                                    |
-| **Find Events**         | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g. `findEvent orientation workshop`                                                                       |
-| **Display Event**       | `event INDEX` <br/> e.g. `event 2`                                                                                                                  |
-| **Assign Event**        | `assignEvent e/EVENT m/MEMBER [r/EVENT_ROLE]…​` <br> e.g. `assignEvent e/Orientation m/John Doe r/gamemaster`                                       |
-| **Unassign Event**      | `unassignEvent e/EVENT m/MEMBER` <br> e.g. `unassignEvent e/Orientation m/John Doe`                                                                 |
-| **Unassign Event Role** | `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​` <br> e.g. `unassignEventRole e/Orientation m/John Doe r/gamemaster`                             |
-| **Clear**               | `clear`                                                                                                                                             |
-| **Help**                | `help`                                                                                                                                              |
-| **Exit**                | `exit`                                                                                                                                              |
+| Action                                                                                 | Format, Examples                                                                                                                                    |
+|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**List Members**](#listing-all-members-listmembers)                                   | `listMembers`                                                                                                                                       |
+| [**Add Member**](#adding-a-member-addmember)                                           | `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​` <br> e.g. `addMember n/John Doe p/94824271 e/john@example.com`                                 |
+| [**Delete Member**](#deleting-a-member-deletemember)                                   | `deleteMember INDEX`<br> e.g. `deleteMember 3`                                                                                                      |
+| [**Edit Member**](#editing-a-member-editmember)                                        | `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/MEMBER_ROLE]…​`<br> e.g.`editMember 2 n/James Lee e/jameslee@example.com`                         |
+| [**Find Members**](#locating-members-by-name-findmember)                               | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g. `findMember James Jake`                                                                               |
+| [**List Events**](#listing-all-events-listevents)                                      | `listEvents`                                                                                                                                        |
+| [**Add Event**](#adding-an-event-addevent)                                             | `addEvent n/NAME f/DATE_TIME t/DATE_TIME [d/DETAILS] [r/EVENT_ROLE]…​`  <br> e.g. `addEvent n/Orientation f/151025 1200 t/171025 1800 r/gamemaster` |
+| [**Delete Event**](#deleting-an-event-deleteevent)                                     | `deleteEvent INDEX` <br> e.g. `deleteEvent 3`                                                                                                       |
+| [**Edit Event**](#editing-an-event-editevent)                                          | `editEvent INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`<br> e.g.`editEvent 1 n/Meeting t/171025 0000`                                    |
+| [**Find Events**](#locating-events-by-name-findevent)                                  | `findEvent KEYWORD [MORE_KEYWORDS]`<br> e.g. `findEvent orientation workshop`                                                                       |
+| [**Display Event**](#displaying-an-event-event)                                        | `event INDEX` <br/> e.g. `event 2`                                                                                                                  |
+| [**Assign Event**](#assigning-a-member-to-an-event-assignevent)                        | `assignEvent e/EVENT m/MEMBER [r/EVENT_ROLE]…​` <br> e.g. `assignEvent e/Orientation m/John Doe r/gamemaster`                                       |
+| [**Unassign Event**](#unassigning-a-member-from-an-event-unassignevent)                | `unassignEvent e/EVENT m/MEMBER` <br> e.g. `unassignEvent e/Orientation m/John Doe`                                                                 |
+| [**Unassign Event Role**](#unassigning-an-event-role-from-a-member-unassigneventrole)  | `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​` <br> e.g. `unassignEventRole e/Orientation m/John Doe r/gamemaster`                             |
+| [**Clear**](#clearing-all-entries-clear)                                               | `clear`                                                                                                                                             |
+| [**Help**](#viewing-help--help)                                                        | `help`                                                                                                                                              |
+| [**Exit**](#exiting-the-program-exit)                                                  | `exit`                                                                                                                                              |
