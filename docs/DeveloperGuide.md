@@ -760,13 +760,31 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `findEvent Orientation Movie`<br>
       Expected: Two events `Orientation` and `Movie Night` are shown. Status message box indicates two events listed.
 
-### Saving data
+### Manually changing data
 
-1. Dealing with missing/corrupted data files
+1. Manually editing the data file with valid inputs
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: Open the `clubBook.json` file containing the default sample data.
 
-1. _{ more test cases …​ }_
+    2. Test case: Manually change the first member's phone number to `96791234`, and launch the app.
+       Expected: The first member in the member list now has the phone number `96791234`.
+
+    3. Test case: Manually change the second event's starting date time to `010125 1200`, and launch the app.
+       Expected: The second event in the event list now has its starting date `1 Jan 2025 12:00pm`.
+
+2. Corrupting the data file
+
+    1. Prerequisites: Open the `clubBook.json` file containing the default sample data.
+
+    2. Test case: Manually change the first member's phone number to `87438807#` to include letters. Launch the app<br>
+       Expected: The app will show empty lists, but `clubBook.json` will still contain the invalid data.
+
+    3. Test case: Manually change the second event's starting date time to `311225 2359`, and launch the app.
+       Expected: The app will show empty lists, but `clubBook.json` will still contain the invalid data.
+
+    4. Test case: Manually change any field to an invalid format. Launch the app and do `exit`<br>
+       Expected: `clubBook.json` will irreversibly delete all data and become empty.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
