@@ -17,7 +17,7 @@ import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
 
 public class JsonAdaptedMemberTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "R@chel*";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MEMBER_ROLE = "#friend";

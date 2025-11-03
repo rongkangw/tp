@@ -12,6 +12,7 @@ import seedu.club.commons.core.index.Index;
 import seedu.club.commons.util.StringUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.event.DateTime;
+import seedu.club.model.event.Event;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
@@ -183,6 +184,9 @@ public class ParserUtil {
     public static String parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = normalizeAndTrimWhitespace(detail);
+        if (!Event.isValidDetails(detail)) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS_DETAILS);
+        }
         if (!hasLessThanOrEqualLength(trimmedDetail, 500)) {
             throw new ParseException("Detail should be 500 characters or less");
         }

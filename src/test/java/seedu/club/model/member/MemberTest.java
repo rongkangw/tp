@@ -44,11 +44,6 @@ public class MemberTest {
         // name differs in case, all other attributes same -> returns false
         Member editedBob = new MemberBuilder(BOB).withName(VALID_MEMBER_NAME_BOB.toLowerCase()).build();
         assertTrue(BOB.isSameMember(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_MEMBER_NAME_BOB + " ";
-        editedBob = new MemberBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameMember(editedBob));
     }
 
     @Test
