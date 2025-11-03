@@ -159,13 +159,17 @@ Classes used by multiple components are in the `seedu.club.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Assigning a member to an event
-The implementation of the event command follows the standard command parsing workflow, where ClubBookParser will parse the input string into an executable command.
+The implementation of the `assignEvent` command follows the standard command parsing workflow, where ClubBookParser will parse the input string into an executable command.
 When the user enters `assignEvent m/<MEMBERNAME> e/<EVENTNAME> [r/<EVENTROLE>]...`, ClubBookParser will first create an AssignEventCommandParser, which will then obtain the values corresponding to the prefixes `m/`, `e/`, and if applicable, `r/`  . If an error is encountered during parsing, a ParseException will be thrown.
-
 
 Otherwise, AssignEventCommandParser will obtain the values as a Name object for Member name and Event name, and the roles as a Set of Event Role objects. It then creates a new instance of AssignEventCommand using these objects as parameters.
 
-Upon execution, AssignEventCommand will check if the Event Role set is empty or not. If it is, it will only add the Member to the Event’s roster. If Event Roles are specified, it will add the Member to the Event’s roster and add a corresponding Event Role object to the Member’s event roles list.
+<puml src="diagrams/AssignEventActivityDiagram.puml" width="550" />
+
+Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. 
+It also checks whether the Member already exists on the Event's roster, and will return an error if it does.
+Next, it checks if the Event Role set is empty or not. If it is, it will give the Member a default role which only contains the name of the event, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
+
 
 The Event’s entry is then shown.
 
@@ -284,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Missing required parameters in member/event description (e.g. name)
 
-    * 1a1. System informs user of missing field(s)
+    * 1a1. System informs user of missing fields
 
       Use case ends
 
@@ -360,21 +364,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. System shows an error message
 
-**UC06: Removing an Event**
+**UC04: Finding Members/Events by name**
 
-* 2a. (Deleting member) The member is assigned to some events
+**Preconditions**
 
-    * 2a1. Every event's roster is updated to remove the member
+* Members/Events to be found must exist in the list of members/events
+
+**Guarantees**
+
+* Members/Events containing any of the specified keywords in their name will be displayed
+
+**MSS**
+
+1. User requests to find members/events containing specified keywords
+2. System displays list of members/events that contain the specified keywords in their names
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The members/events list is empty
+
+    * 1a1. System displays an empty list
+
+  Use case ends
+
+
+* 1b. Missing required parameters in command (e.g. keywords)
+
+    * 1b1. System informs user of missing fields
 
       Use case ends
 
-* 2b. (Deleting event) The event has members assigned to it
 
-    * 2b1. Every member's reference to the event is removed
+**UC05: Listing Members/Events**
 
-      Use case ends
+**Preconditions**
 
-**UC04: Displaying an event’s details**
+* App is open
+
+**Guarantees**
+
+* List of all members/events added will be displayed
+
+**MSS**
+
+1. User requests to list members/events
+2. System displays list of all members/events
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The members/events list is empty
+
+    * 1a1. System displays an empty list
+
+  Use case ends
+
+
+**UC06: Displaying an event’s details**
 
 **Preconditions**
 
@@ -407,7 +456,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC05: Assigning a member to an event**
+
+**UC07: Assigning a member to an event**
 
 **Preconditions**
 
@@ -423,9 +473,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to assign a member to an event
 2. System displays success message
 3. System updates event’s roster with the assigned member
-4. System displays event’s details (UC08)
-
-    Use case ends
+4. System displays event’s details (UC06)
+        Use case ends
 
 **Extensions**
 
@@ -460,7 +509,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC06: Unassigning a member from an event**
+
+**UC08: Unassigning a member from an event**
 
 **Preconditions**
 
@@ -500,7 +550,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC07: Unassigning an event role from a member**
+
+**UC09: Unassigning an event role from a member**
 
 **Preconditions**
 * The member and event must exist
@@ -737,37 +788,62 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `deleteEvent`, `deleteEvent x`, `...` (where x is negative or larger than the list size)<br>
        Expected: Similar to previous.
 
-<<<<<<< HEAD
 ### Assigning a member to an event
 
 1. Assigning a member to an event
-   
+
     1. Prerequisites: Member to be assigned must exist in the member list. Event to be assigned to must exist in the event list.
        Member must not have already been assigned to the event. Role(s) must exist for the event.
-    
+
     2. Test case: `assignEvent e/Welcome Party m/John Doe`
-       Expected: Single event page is shown with the updated member list. The assigned member has a tag with the name of the event on their member card. 
+       Expected: Single event page is shown with the updated member list. The assigned member has a tag with the name of the event on their member card.
        Success message is shown in status message.
-    
+
     3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/gamemaster`
        Expected: Single event page is shown with the updated member list. The assigned member has a tag with the specified role on their member card.
        Success message is shown in status message.
 
 2. Assigning a member to an event they have already been assigned to
-    
+
     1. Prerequisites:  Member to be assigned must exist in the member list. Event to be assigned to must exist in the event list.
        Member must have been assigned to the event. Role(s) must exist in the event.
-    
+
     2. Test case: `assignEvent e/Welcome Party m/John Doe`
        Expected: No assignment occurs. Current page remains the same. Error details shown in status message.
-    
+
     3. Test case: `assignEvent e/Welcome Party m/Jane Doe r/facilitator`
        Expected: No assignment occurs. Current page remains the same. Error details shown in status message.
 
-### Saving data
-=======
+### Unassigning events and event roles
+
+1. Unassigning a member from an event
+
+    1. Prerequisites: The event and member must exist. Member must be in the event's roster.
+
+    2. Test case: `unassignEvent m/John Doe e/Orientation`<br>
+       Expected: The member is removed from the event's member roster. The event is displayed with an updated member roster.
+
+    3. Test case: `unassignEvent m/John Doe e/NonExistentEvent`<br>
+       Expected: Member is not unassigned from Event. Error details shown in the status message.
+
+    4. Other incorrect unassign event commands to try: `unassignEvent m/NonExistentMember e/Orientation`, `unassignEvent`<br>
+       Expected: Similar to previous.
+
+2. Unassigning an event role from a member
+
+    1. Prerequisites: The event and member must exist. Member must be in the event's roster and must have an event role associated with the event.
+
+    2. Test case: `unassignEventRole m/John Doe e/Orientation r/facilitator`<br>
+       Expected: The event role is removed from the member's event roles list. The event is displayed with an updated member roster.
+
+    3. Test case: `unassignEventRole m/John Doe e/Orientation r/NonExistentRole`<br>
+       Expected: Event role is not removed from member's event roles list. Error details shown in the status message.
+
+    4. Other incorrect unassign event commands to try: `unassignEventRole m/NonExistentMember e/Orientation r/facilitator`,`unassignEventRole m/Alex Yeoh e/NonExistentEvent r/facilitator`, `unassignEventRole`<br>
+       Expected: Similar to previous.
+
+
 ### Finding a member and an event
->>>>>>> 076a869d2677b5f61bbaccf94d4c7475a059ce5d
 
 1. Finding a member
 
@@ -775,7 +851,7 @@ testers are expected to do more *exploratory* testing.
     
     2. Test case: `findMember Alex`<br>
        Expected: Only `Alex Yeoh` is shown. Status message box indicates one member listed.
-   
+
     3. Test case: `findMember NonExistentName`<br>
        Expected: No members are listed. Status message box indicates there are no members that match the keyword.
 
@@ -826,7 +902,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Achievements
 
-We successfully extended AB3 to support multiple inter-related entity types (e.g. members, events and roles). This required a substantial redesign of the underlying logic and storage management to ensure data consistency and seamless interaction between different model components. 
+We successfully extended AB3 to support multiple inter-related entity types (e.g. members, events and roles). This required a substantial redesign of the underlying logic and storage management to ensure data consistency and seamless interaction between different model components.
 <br>
 
 #### 1. Bidirectional references
@@ -863,3 +939,42 @@ Currently, if users want to change a member's event role in an event after they 
 unassign the member and then run `assignEvent` again with the new role(s). We plan to add an `assignEventRole` command to allow
 updating of the member's event role directly if they are already assigned to the event. This will reduce repetitive command usage
 and streamline the event role changing process.
+
+#### 3. UI to show both lists simultaneously
+Currently, users are only able to view one list at a time, either the members list or the events list. This may make entering
+commands that require information from both lists, such as `assignEvent` or  `unassignEventRole` to be tedious and difficult,
+possibly requiring users to check both lists for member/event names. We plan to enhance the UI such that it shows both lists at the same time,
+and a collapsible third panel that shows an event's details when using the `event` command.
+This has the added benefit of streamlining other commands as well, since users do not have to run `listEvents` or `listMembers` first anymore.
+Furthermore, with both lists being displayed at the same time, commands that use member/event names can now be run using indices instead, for example, `e/1` and `m/3`.
+This allows multiple events and members with the same name to be added, so that the `isSameMember`, `isSameEvent` methods 
+can be enhanced to check based on other fields such as duplicate phone numbers and emails.
+A mock-up for this feature can be seen below:
+
+![splitListMockup.jpg](images/splitListMockup.jpg)
+
+#### 4. Allow users to create aliases for commands
+Some of the existing command words are long, with commands like `unassignEventRole` taking 17 characters, which may possibly
+slow down users. We plan to allow users to define their own aliases for such commands to improve usability.
+
+#### 5. Allow `editEvent` command to edit event roles on existing events
+Currently, the `editEvent` command cannot add, delete, or edit event roles on existing events. The only way to do so
+is to delete the entire event and add a new one containing the updated event roles. We plan to improve the
+`editEvent` command such that it is able to edit the event's roles list as well. This will reduce repetitive command usage
+and streamline event roles management.
+
+#### 6. Adding more date time and phone formats
+Currently, the date time format for events follows a strict `DDMMYY HHMM` (24 hour) format, which may reduce the app's
+flexibility for users. We plan to accept more date time formats, for example 12 hour formats.
+The app also has a very strict format for phone numbers, preventing words or special characters like hyphens. We plan to
+accept more flexible formats, allowing for more special characters and even words, such as `+65 6123 4567 (Office)`
+, and `(555) 555–5555`.
+
+#### 7. Improve `findMember` and `findEvent` commands
+The `findMember` and `findEvent` commands are only able to search for members and events by their names at the moment.
+We plan to expand upon this to support searching by other fields as well, such as roles, date and times, and details.
+
+#### 8. Prevent events with overlapping times from being assigned to the same member
+Currently, assigning two or more events with overlapping dates and times to the same member is possible. To improve
+overall event management, we plan to implement a restriction that prevents assigning overlapping events to a single member.
+
