@@ -1,8 +1,10 @@
 package seedu.club.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.club.commons.util.AppUtil.checkArgument;
 import static seedu.club.commons.util.StringUtil.hasLessThanOrEqualLength;
 import static seedu.club.commons.util.StringUtil.normalizeAndTrimWhitespace;
+import static seedu.club.model.event.Event.isValidDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -184,8 +186,8 @@ public class ParserUtil {
     public static String parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = normalizeAndTrimWhitespace(detail);
-        if (!Event.isValidDetails(detail)) {
-            throw new ParseException(Event.MESSAGE_CONSTRAINTS_DETAILS);
+        if (!trimmedDetail.isEmpty()) {
+            checkArgument(isValidDetails(trimmedDetail), Event.MESSAGE_CONSTRAINTS_DETAILS);
         }
         if (!hasLessThanOrEqualLength(trimmedDetail, 500)) {
             throw new ParseException("Detail should be 500 characters or less");

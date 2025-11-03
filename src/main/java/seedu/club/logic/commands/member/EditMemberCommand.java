@@ -102,8 +102,9 @@ public class EditMemberCommand extends Command {
         model.updateFilteredMemberList(PREDICATE_SHOW_ALL_MEMBERS);
 
         updateMemberInAllEvents(model.getClubBook().getEventList(), memberToEdit, editedMember);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember)));
+        return new CommandResult(String.format(
+                MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedMember).replace('\\', '/'))
+        );
     }
 
     /**

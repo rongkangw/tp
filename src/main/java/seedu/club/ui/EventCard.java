@@ -52,7 +52,7 @@ public class EventCard extends UiPart<Region> {
         if (displayedIndex == -1) {
             id.setText("");
         }
-        name.setText(event.getName().fullName);
+        name.setText(event.getName().fullName.replace('\\', '/'));
         from.setText("From: " + ParserUtil.formatDateTime(event.getFrom()));
         to.setText("To: " + ParserUtil.formatDateTime(event.getTo()));
         details.setText("Details: " + event.getDetail().replaceAll("\\\\", "/"));

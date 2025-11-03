@@ -61,7 +61,9 @@ public class AddEventCommand extends Command {
 
         model.setViewState(ViewState.EVENT);
         model.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(
+                MESSAGE_SUCCESS, Messages.format(toAdd).replace('\\', '/'))
+        );
     }
 
     @Override

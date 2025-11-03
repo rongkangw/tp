@@ -112,9 +112,10 @@ public class EditEventCommand extends Command {
                     editedEvent.getName());
             model.setMember(member, updatedMember);
         }
-
-
-        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent)));
+        return new CommandResult(String.format(
+                MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent).replace('\\', '/')
+        )
+        );
     }
 
     /**
