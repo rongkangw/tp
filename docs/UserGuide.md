@@ -22,7 +22,7 @@ You do not need to be a programmer or technical expert. Using EASync is like sen
    To run EASync, your computer needs to have Java version 17 or higher installed. Using the step-by-step guides [here](https://se-education.org/guides/tutorials/javaInstallation.html), you can:
     * Check if Java is already installed on your computer.
     * Install the correct version if needed.
-    * Verify your installation afterward.
+    * Verify your installation afterwards.
 
 2. **Download EASync** <br>
    Go to [our releases page on GitHub](https://github.com/AY2526S1-CS2103T-T11-3/tp/releases) to download the latest `EASync.jar` file.
@@ -99,11 +99,12 @@ EASync starts with some sample data so you can explore its features right away!
 **Notes about parameters:** <br>
 
 * **The forward slash `/` is reserved for command parameters and cannot be used in any input field.**<br>
-  e.g. `n/Alice\Bob` will result in the name being saved as `Alice/Bob`.
   <box type="tip">
 
   For **`NAME`** and **`DETAILS`** fields, you may type a backslash (`\`) instead if you still wish to include a forward slash.
   EASync will automatically convert it to a forward slash after the command runs.<br>
+
+  e.g. `n/Alice\Bob` will result in the name being saved as `Alice/Bob`.
   </box>
 
 * **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
@@ -126,7 +127,6 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-[To command summary](#command-summary)
 
 ### Managing Members
 
@@ -136,7 +136,6 @@ Format: `listMembers`
 
 * Displays a list of all members in the club book.
 
-[To command summary](#command-summary)
 
 #### Adding a member: `addMember`
 
@@ -152,7 +151,6 @@ Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/member`
 * `addMember n/Benson Meier r/treasurer e/benson@example.com p/98765432 r/Publicity`
 
-[To command summary](#command-summary)
 
 #### Deleting a member: `deleteMember`
 
@@ -166,7 +164,6 @@ Examples:
 * `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
 * `findMember Andy` then `deleteMember 1` removes the 1st member in the **search result** for members containing the keyword `Andy`.
 
-[To command summary](#command-summary)
 
 #### Editing a member: `editMember`
 
@@ -194,7 +191,6 @@ Examples:
 
 ![editMember](images/editMember.png)
 
-[To command summary](#command-summary)
 
 #### Locating members by name: `findMember`
 
@@ -218,8 +214,6 @@ Examples:
 **Caution:** Only full words will be matched, e.g. `Han` will not match `Hans`.
 </box>
 
-[To command summary](#command-summary)
-
 ### Managing Events
 
 #### Listing all events: `listEvents`
@@ -227,8 +221,6 @@ Examples:
 Format: `listEvents`
 
 * Displays a list of all events in the club book.
-
-[To command summary](#command-summary)
 
 #### Adding an event: `addEvent`
 
@@ -246,7 +238,6 @@ Examples:
 * `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
 * `addEvent n/Movie Night r/FoodIC f/051025 1800 t/051025 2000`
 
-[To command summary](#command-summary)
 
 #### Deleting an event: `deleteEvent`
 
@@ -257,8 +248,6 @@ Format: `deleteEvent INDEX`
 
 Examples:
 * `listEvents` then `deleteEvent 2` removes the 2nd event in the displayed event list.
-
-[To command summary](#command-summary)
 
 #### Editing an event: `editEvent`
 
@@ -279,7 +268,6 @@ Examples:
 If you would like to update the list of roles (e.g. add new or rename existing ones), you need to delete the event and create it again using `addEvent` with the updated roles.
 </box>
 
-[To command summary](#command-summary)
 
 #### Locating events by name: `findEvent`
 
@@ -300,7 +288,6 @@ Examples:
 **Caution:** Only full words will be matched, e.g. `Day` will not match `Days`
 </box>
 
-[To command summary](#command-summary)
 
 
 #### Displaying an event: `event`
@@ -315,13 +302,12 @@ Examples:
 
 ![eventCommand](images/eventCommand.png)
 
-[To command summary](#command-summary)
 
 ### Managing Event Participants
 
 <box type="important">
 
-**Note:** Unlike previous commands, you should specify the names for `e/EVENT` and `m/MEMBER` instead of their indices for the following set of commands.
+**Note:** Unlike previous commands, you should specify the full names for `e/EVENT` and `m/MEMBER` instead of their indices for the following set of commands.
 </box>
 
 #### Assigning a Member to an Event: `assignEvent`
@@ -349,7 +335,6 @@ To update an assigned member's event roles:
 Do note that this restriction applies only to event roles within the same event. Member roles and event roles in other events remain unaffected.
 </box>
 
-[To command summary](#command-summary)
 
 #### Unassigning a Member from an Event: `unassignEvent`
 
@@ -363,7 +348,6 @@ Examples:
 
 ![unassignEvent](images/unassignEvent.png)
 
-[To command summary](#command-summary)
 
 #### Unassigning an Event Role from a Member: `unassignEventRole`
 
@@ -377,7 +361,6 @@ Examples:
 
 ![unassignEventRole](images/unassignEventRole.png)
 
-[To command summary](#command-summary)
 
 ### Miscellaneous
 #### Clearing all entries: `clear`
@@ -404,7 +387,6 @@ If you would like to get the sample data to show again, you could delete the `cl
 
 Format: `exit`
 
-[To command summary](#command-summary)
 
 ### Saving the data
 
@@ -464,6 +446,8 @@ Hence, it is recommended to take a backup of the file before editing it.
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+2. **For events with very long descriptions**, the app may autoscroll when you click on the different events, but this is purely a visual issue, your data remains intact.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
