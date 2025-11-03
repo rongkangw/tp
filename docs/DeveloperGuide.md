@@ -280,7 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Missing required parameters in member description (e.g. name, phone)
 
-    * 1a1. System informs user of missing field(s)
+    * 1a1. System informs user of missing fields
 
       Use case ends
 
