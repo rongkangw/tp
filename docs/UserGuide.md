@@ -139,6 +139,7 @@ Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/friends`
 * `addMember n/Benson Meier r/owesMoney e/benson@example.com p/9876 5432 r/friends`
 
+
 #### Deleting a member : `deleteMember`
 
 Format: `deleteMember INDEX`
@@ -181,6 +182,8 @@ Examples:
 *  `editMember 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
 *  `editMember 2 n/Betsy Crower r/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing roles.
 
+![editMember](images/editMember.png)
+
 #### Locating members by name: `findMember`
 
 Format: `findMember KEYWORD [MORE_KEYWORDS]`
@@ -200,7 +203,7 @@ Format: `findMember KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findMember John` returns `john` and `John Doe`
 * `findMember alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![finMember](images/findMember.png)
 
 ### Managing Events
 
