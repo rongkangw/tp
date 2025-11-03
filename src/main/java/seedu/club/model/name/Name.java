@@ -12,7 +12,7 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should not be blank and can only contain alphanumeric characters, spaces, " +
                     "and these special characters: \n" +
-                    "comma(,), parentheses(()), at sign(@), hyphen(-), period(.) and apostrophe(').\n" +
+                    "comma(,), parentheses(()), at sign(@), hyphen(-), period(.), apostrophe(') and backslash(\\).\n" +
                     "For '/', please use '\\'.\n"
                     + "The first and last characters should be alphanumeric.\n";
     /*
