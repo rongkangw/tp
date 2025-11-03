@@ -12,9 +12,9 @@ public class Name {
 
     public static final int FIELD_LENGTH = 50;
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, "
-                    + "be within 50 characters, and should not be blank";
-
+            "Names should not be blank and only contain alphanumeric characters, spaces, and these special characters:" +
+                    ",().@-'.\n For '/', please use '\\'.\n "
+                    + "The first and last characters should be alphanumeric.\n";
     /*
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
