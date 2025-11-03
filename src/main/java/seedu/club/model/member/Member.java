@@ -102,8 +102,7 @@ public class Member extends NamedEntity {
         for (EventRole role : eventRoles) {
             if (role.isParticipant() && role.getAssignedTo().equals(oldName)) {
                 newRoles.add(new EventRole(updatedName));
-            }
-            else if (role.getAssignedTo().equals(oldName)) {
+            } else if (role.getAssignedTo().equals(oldName)) {
                 updatedRoles.stream()
                         .filter(r -> r.roleName.equals(role.roleName))
                         .findFirst()
