@@ -22,8 +22,11 @@ import seedu.club.model.role.EventRole;
 public class Event extends NamedEntity {
 
     // DateTime constraints
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS_DATE =
             "Starting date/time should be before ending date/time";
+
+    public static final String MESSAGE_CONSTRAINTS_DETAILS =
+            "Details cannot contain forward slash('/'), all back slash('\\') will be converted to '/' automatically";
 
     public static final String VALIDATION_REGEX = "^[^/]+$";
 
@@ -46,8 +49,8 @@ public class Event extends NamedEntity {
 
         requireAllNonNull(from, to, detail, roles);
         // Starting date/time must be before ending date/time
-        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidDetails(detail), MESSAGE_CONSTRAINTS);
+        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS_DATE);
+        checkArgument(isValidDetails(detail), MESSAGE_CONSTRAINTS_DETAILS);
 
         this.from = from;
         this.to = to;
@@ -65,7 +68,8 @@ public class Event extends NamedEntity {
 
         requireAllNonNull(from, to, detail, roles, roster);
         // Starting date/time must be before ending date/time
-        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS);
+        checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS_DATE);
+        checkArgument(isValidDetails(detail), MESSAGE_CONSTRAINTS_DETAILS);
 
         this.from = from;
         this.to = to;
