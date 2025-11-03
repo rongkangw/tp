@@ -91,6 +91,9 @@ EASync starts with some sample data so you can explore its features right away!
 * **Items with `…`​ after them can be used multiple times, or omitted completely.**<br>
   e.g. `[r/MEMBER_ROLE]…​` can be `r/Logistics`, `t/Publicity t/Logistics` or not be used at all.
 
+* **Command words are case-insensitive.**<br>
+  e.g. `listMembers`, `listmembers`, and `LISTMEMBERS` are all valid.
+
 
 </box>
 
