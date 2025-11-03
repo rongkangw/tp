@@ -86,7 +86,10 @@ EASync starts with some sample data so you can explore its features right away!
 * **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
   e.g. `n/John     Doe` will be treated as `n/John Doe`.
 
-* **For `NAME`**
+* **The forward slash `/` is reserved for command parameters and cannot be used in any input field.**<br>
+  For `NAME` and `DETAILS` fields, you may use a backslash (`\`) instead if you still wish to include a forward slash.
+  EASync will automatically convert it to a forward slash after the command runs.<br>
+  e.g. `n/Alice\Bob` will result in the name being saved as `Alice/Bob`.
 </box>
 
 <box type="tip">
