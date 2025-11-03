@@ -51,7 +51,9 @@ public class Event extends NamedEntity {
         requireAllNonNull(from, to, detail, roles);
         // Starting date/time must be before ending date/time
         checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS_DATE);
-        checkArgument(isValidDetails(detail), MESSAGE_CONSTRAINTS_DETAILS);
+        if (!detail.isEmpty()) {
+            checkArgument(isValidDetails(detail), MESSAGE_CONSTRAINTS_DETAILS);
+        }
 
         this.from = from;
         this.to = to;
