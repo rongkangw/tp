@@ -890,11 +890,11 @@ and streamline the event role changing process.
 #### 3. UI to show both lists simultaneously
 Currently, users are only able to view one list at a time, either the members list or the events list. This may make entering
 commands that require information from both lists, such as `assignEvent` or  `unassignEventRole` to be tedious and difficult,
-possibly requiring users to check both lists for member/event names. We plan enhance the UI such that it shows both lists at the same time,
+possibly requiring users to check both lists for member/event names. We plan to enhance the UI such that it shows both lists at the same time,
 and a collapsible third panel that shows an event's details when using the `event` command.
 This has the added benefit of streamlining other commands as well, since users do not have to run listEvents or listMembers first anymore.
-Furthermore, with both lists being displayed at the same time, commands that used member/event names before can now be run
-with indices instead. This allows multiple events and members with the same name to be added, and the duplicate checker 
+Furthermore, with both lists being displayed at the same time, commands that previously required member/event names can now be run using indices. 
+This allows multiple events and members with the same name to be added, and the duplicate checker 
 can be enhanced to check based on other fields such as phone numbers and emails.
 A mock-up for this feature can be seen below:
 
