@@ -126,7 +126,7 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 ### Managing Members
 
@@ -136,7 +136,7 @@ Format: `listMembers`
 
 * Displays a list of all members in the club book.
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Adding a member: `addMember`
 
@@ -152,7 +152,7 @@ Examples:
 * `addMember n/Alice Pauline p/94351253 e/alice@example.com r/member`
 * `addMember n/Benson Meier r/treasurer e/benson@example.com p/98765432 r/Publicity`
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Deleting a member: `deleteMember`
 
@@ -166,7 +166,7 @@ Examples:
 * `listMembers` then `deleteMember 2` removes the 2nd member in the displayed member list.
 * `findMember Andy` then `deleteMember 1` removes the 1st member in the **search result** for members containing the keyword `Andy`.
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Editing a member: `editMember`
 
@@ -194,7 +194,7 @@ Examples:
 
 ![editMember](images/editMember.png)
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Locating members by name: `findMember`
 
@@ -218,7 +218,7 @@ Examples:
 **Caution:** Only full words will be matched, e.g. `Han` will not match `Hans`.
 </box>
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 ### Managing Events
 
@@ -228,7 +228,7 @@ Format: `listEvents`
 
 * Displays a list of all events in the club book.
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Adding an event: `addEvent`
 
@@ -246,7 +246,7 @@ Examples:
 * `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/facilitator r/gamemaster`
 * `addEvent n/Movie Night r/FoodIC f/051025 1800 t/051025 2000`
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Deleting an event: `deleteEvent`
 
@@ -258,7 +258,7 @@ Format: `deleteEvent INDEX`
 Examples:
 * `listEvents` then `deleteEvent 2` removes the 2nd event in the displayed event list.
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Editing an event: `editEvent`
 
@@ -279,7 +279,7 @@ Examples:
 If you would like to update the list of roles (e.g. add new or rename existing ones), you need to delete the event and create it again using `addEvent` with the updated roles.
 </box>
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Locating events by name: `findEvent`
 
@@ -300,7 +300,7 @@ Examples:
 **Caution:** Only full words will be matched, e.g. `Day` will not match `Days`
 </box>
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 
 #### Displaying an event: `event`
@@ -315,7 +315,7 @@ Examples:
 
 ![eventCommand](images/eventCommand.png)
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 ### Managing Event Participants
 
@@ -349,7 +349,7 @@ To update an assigned member's event roles:
 Do note that this restriction applies only to event roles within the same event. Member roles and event roles in other events remain unaffected.
 </box>
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Unassigning a Member from an Event: `unassignEvent`
 
@@ -363,7 +363,7 @@ Examples:
 
 ![unassignEvent](images/unassignEvent.png)
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 #### Unassigning an Event Role from a Member: `unassignEventRole`
 
@@ -377,7 +377,7 @@ Examples:
 
 ![unassignEventRole](images/unassignEventRole.png)
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 ### Miscellaneous
 #### Clearing all entries: `clear`
@@ -404,7 +404,7 @@ If you would like to get the sample data to show again, you could delete the `cl
 
 Format: `exit`
 
-<ins>[To command summary](#command-summary)</ins>
+[To command summary](#command-summary)
 
 ### Saving the data
 
@@ -468,7 +468,6 @@ Hence, it is recommended to take a backup of the file before editing it.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-[edit member](#exiting-the-program-exit)
 
 ## Command summary
 
@@ -489,5 +488,5 @@ Hence, it is recommended to take a backup of the file before editing it.
 | [**Unassign Event**](#unassigning-a-member-from-an-event-unassignevent)                | `unassignEvent e/EVENT m/MEMBER` <br> e.g. `unassignEvent e/Orientation m/John Doe`                                                                 |
 | [**Unassign Event Role**](#unassigning-an-event-role-from-a-member-unassigneventrole)  | `unassignEventRole e/EVENT m/MEMBER r/EVENT_ROLE…​` <br> e.g. `unassignEventRole e/Orientation m/John Doe r/gamemaster`                             |
 | [**Clear**](#clearing-all-entries-clear)                                               | `clear`                                                                                                                                             |
-| [**Help**](#viewing-help--help)                                                        | `help`                                                                                                                                              |
+| [**Help**](#viewing-help-help)                                                         | `help`                                                                                                                                              |
 | [**Exit**](#exiting-the-program-exit)                                                  | `exit`                                                                                                                                              |
