@@ -66,6 +66,8 @@ EASync starts with some sample data so you can explore its features right away!
 
 6. Refer to the [Features](#features) below for details of each command.
 
+7. For a quick overview of all available commands, see [Command Summary](#command-summary) below.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
