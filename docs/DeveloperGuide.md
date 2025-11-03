@@ -109,8 +109,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `ClubBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteMemberCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteMemberCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it is passed to an `ClubBookParser` object which in turn creates a parser that matches the command (e.g. `DeleteMemberCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `DeleteMemberCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a member).<br>
    Although this is shown as a single step in the diagram above (for simplicity), it can take several interactions (between the command object and the `Model`) to complete.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -120,8 +120,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ClubBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddMemberCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddMemberCommand`) which the `ClubBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddMemberCommandParser`, `DeleteMemberCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible, such as during testing.
+* When called upon to parse a user command, the `ClubBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g. `AddMemberCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g. `AddMemberCommand`) which the `ClubBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddMemberCommandParser`, `DeleteMemberCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible, such as during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-T11-3/tp/tree/master/src/main/java/seedu/club/model/Model.java)
@@ -132,7 +132,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the club book data i.e., all `Member` objects (which are contained in a `UniqueMemberList` object).
-* stores the currently 'selected' `Member`/`Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Member>`/`ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Member`/`Event` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Member>`/`ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -217,232 +217,159 @@ EASync provides a student club manager with a centralised system to efficiently 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                 |
-|----------|-------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                               |
-| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                  |
-| `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                       |
-| `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                            |
-| `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                            |
-| `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups              |
-| `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                      |
-| `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews               |
-| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                              |
-| `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                       |
-| `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping             |
-| `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address  |
-| `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                               |
-| `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                        |
-| `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                   |
-| `* *`    | club manager                  | edit members' memberal details                                                     | update them when information changes                            |
-| `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                   |
-| `* *`    | club manager                  | validate contact fields (e.g., missing email, malformed tags)                      | catch errors before they affect workflows                       |
-| `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                               |
-| `* *`    | club manager                  | check the attendance of the club’s members                                         | keep track of their overall club participation                  |
-| `* *`    | club manager                  | bulk edit members details (eg. membership status)                                  | update records efficiently                                      |
-| `* *`    | club manager                  | archive members who are no longer active                                           | keep my workspace focused on current contributors.              |
-| `* *`    | club manager                  | view current role distribution across events                                       | identify over- or under-utilized members                        |
-| `* *`    | club manager                  | attach notes to a member profile                                                   | remember preferences, strengths, or past issues                 |
-| `* *`    | club manager                  | be informed of duplicate events or members when adding new ones                    | keep member/event lists clean                                   |
-| `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                       |
-| `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                         |
-| `* *`    | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app            |
-| `* * *`  | club manager                  | add a new member’s memberal details such as name, phone number, and email address  | keep track of member information                                |
-| `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                   |
-| `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                           |
-| `* * *`  | club manager                  | tag members with appointed roles                                                   | identify and keep track of key appointment holders              |
-| `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                       |
-| `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed         |
-| `* * *`  | club manager                  | backup my club book                                                             | avoid losing data when I leave the app                          |
+| Priority | As a …​                       | I want to …​                                                                       | So that I can…​                                                |
+|----------|-------------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| `*`      | new club manager              | easily purge sample data                                                           | start fresh with my own club info                              |
+| `*`      | club manager                  | detect duplicate entries (based on name, email, missing fields)                    | keep my contact lists accurate                                 |
+| `*`      | club manager                  | separate clubs by tabs                                                             | clubs do not get mixed up                                      |
+| `*`      | club manager                  | view a summary of contact health (e.g. duplicates, missing fields)                 | clean up when needed                                           |
+| `*`      | club manager                  | add additional notes to specific members (e.g. dietary restrictions/photo consent) | plan events smoother                                           |
+| `*`      | club manager                  | simulate role reassignments before committing                                      | plan transitions without disrupting current setups             |
+| `*`      | club manager                  | export an event's participant list with roles                                      | share it with my committee                                     |
+| `*`      | club manager                  | export a member's timeline and role history                                        | prepare handover documents or performance reviews              |
+| `*`      | experienced club manager      | chain commands (e.g. addMember && assignRole)                                      | execute multiple actions in one go                             |
+| `*`      | experienced/lazy club manager | use keyboard shortcuts for repetitive tasks                                        | save time                                                      |
+| `*`      | experienced/lazy manager      | look at my command history                                                         | quickly reuse the previous command without retyping            |
+| `*`      | lazy club manager             | press on a member's email address to create a new email                            | send emails quickly without having to copy their email address |
+| `*`      | impatient club manager        | press tab to autocomplete commands                                                 | complete what i need to do faster                              |
+| `*`      | club manager                  | undo the last command                                                              | recover from any mistake                                       |
+| `* *`    | new club manager              | explore sample data                                                                | understand how EASync works before committing                  |
+| `* *`    | club manager                  | edit members' memberal details                                                     | update them when information changes                           |
+| `* *`    | club manager                  | restore archived members                                                           | re-engage them if they return                                  |
+| `* *`    | club manager                  | validate contact fields (e.g. missing email, malformed tags)                       | catch errors before they affect workflows                      |
+| `* *`    | club manager                  | search for members by their name, email, role, or by events                        | find them quickly                                              |
+| `* *`    | club manager                  | check the attendance of the club’s members                                         | keep track of their overall club participation                 |
+| `* *`    | club manager                  | bulk edit members details (eg. membership status)                                  | update records efficiently                                     |
+| `* *`    | club manager                  | archive members who are no longer active                                           | keep my workspace focused on current contributors.             |
+| `* *`    | club manager                  | view current role distribution across events                                       | identify over- or under-utilized members                       |
+| `* *`    | club manager                  | attach notes to a member profile                                                   | remember preferences, strengths, or past issues                |
+| `* *`    | club manager                  | be informed of duplicate events or members when adding new ones                    | keep member/event lists clean                                  |
+| `* *`    | busy/forgetful club manager   | be highlighted to important or upcoming events                                     | keep track of my schedule                                      |
+| `* *`    | club manager                  | check upcoming events/list events chronologically                                  | remember what events are happening when                        |
+| `* *`    | new club manager              | see a list of all possible commands                                                | know how to carry out what I want to do with the app           |
+| `* * *`  | club manager                  | add a new member’s memberal details such as name, phone number, and email address  | keep track of member information                               |
+| `* * *`  | club manager                  | view a list of all members                                                         | check who is part of the club                                  |
+| `* * *`  | club manager                  | delete members                                                                     | remove members who have left the club                          |
+| `* * *`  | club manager                  | tag members with appointed roles                                                   | identify and keep track of key appointment holders             |
+| `* * *`  | club manager                  | create events with dates, participant lists, and details                           | easily manage club events                                      |
+| `* * *`  | club manager                  | delete events                                                                      | remove events that are cancelled or have already passed        |
+| `* * *`  | club manager                  | backup my club book                                                                | avoid losing data when I leave the app                         |
 
 ### Use cases
 
 (For all use cases below, the **System** is `EASync` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01: Adding a new Member**
+**UC01: Adding a new Member/Event**
 
 **Preconditions**
 * App is open
 
 **Guarantees**
-* Addition of new member will not affect other members in existing list of members
+* Addition of new member/event will not affect other members/events in existing list of members/events respectively
+* The new member/event will be added to be bottom of the list
 
 **MSS**
-1. User requests to add member
+1. User requests to add member/event
 2. System displays success message
-3. System displays the new member in the member list
+3. System displays the new member/event in the member/event list
 
    Use case ends
 
 **Extensions**
 
-* 1a. Missing required parameters in member description (e.g. name, phone)
+* 1a. Missing required parameters in member/event description (e.g. name)
 
     * 1a1. System informs user of missing field(s)
 
       Use case ends
 
-* 1b. Member with the same name, email address, and phone number as an existing member entry is entered in
+* 1b. Incorrect parameters within command (e.g. name contains unaccepted characters)
 
-    * 1b1. System informs user of duplicated member
-
-      Use case ends
-
-**UC02: Adding a new Event**
-
-**Preconditions**
-* App is open
-
-**Guarantees**
-* Addition of new event will not affect other events in existing list of events
-* If a new event is added, it will be displayed at the top of the list of events
-
-**MSS**
-1. User requests to add an event
-2. System displays a success message
-3. System creates a new event
-4. System displays the new event created in the list of events
-
-   Use case ends
-
-**Extensions**
-
-* 1a. One or more of the parameters are missing
-
-    * 1a1. System informs user of missing fields
-
-      Use case ends
-
-* 1b. One or more of the parameters are of invalid format
-
-    * 1b1. System informs user of incorrect fields
-
-      Use case ends
-
-* 1c. Event with the same name, to and from datetimes are entered in
-
-    * 1c1. System informs user of duplicated event
-
-      Use case ends
-
-**UC03: Editing a Member**
-
-**Preconditions**
-* The member to be edited must be in the list of members
-
-**Guarantees**
-* Member will be displayed with the updated information
-
-**MSS**
-
-1.  User requests to edit the specified member
-2.  System displays success message
-3.  System displays the updated member
-
-    Use case ends
-
-**Extensions**
-
-* 1a. Incorrect parameters within command (e.g. event index out of range)
-    * 1a1. System informs user of incorrect parameters
-
-      Use case ends
-
-* 1b. No edited fields are provided
-    * 1b1. System informs user of missing parameters
-
-      Use case ends
-
-
-**UC04: Editing an Event**
-
-**Preconditions**
-* The event to be edited must be in the list of events
-
-**Guarantees**
-* Event will be displayed with the updated information
-
-**MSS**
-
-1.  User requests to edit the specified event
-2.  System displays success message
-3.  System displays the updated event
-
-    Use case ends
-
-**Extensions**
-
-* 1a. Incorrect parameters within command (e.g. event index out of range)
-    * 1a1. System informs user of incorrect parameters
-
-      Use case ends
-
-* 1b. No edited fields are provided
-    * 1a1. System informs user of missing parameters
-
-      Use case ends
-
-**UC05: Removing a Member**
-
-**Preconditions**
-* Member to be removed must exist in the list of members
-* User has to be on the member list.
-
-**Guarantees**
-* Member will be removed from the list of members
-* Updated member list will be displayed
-
-**MSS**
-1. User requests to remove a member
-2. System deletes the member
-3. System displays success message and member list without the removed member
-
-    Use case ends
-
-**Extensions**
-
-* 2a. The list is empty
-
-  Use case ends
-
-* 3a. System detects an error in the command (e.g., missing or incorrect fields)
-
-    * 3a1. System shows an error message
-
-      Use case resumes at step 2
-
-**UC06: Removing an Event**
-
-**Preconditions**
-
-* The event to be removed to must exist in the list of events
-* User has to be on the event list.
-
-**Guarantees**
-
-* The event is removed from the list of events
-
-**MSS**
-
-1. User requests to remove an event
-2. System displays success message
-3. System displays event list without the removed event
-
-    Use case ends
-
-**Extensions**
-
-* 1a. Missing required parameters in command (e.g. event index)
-    * 1a1. System informs user of missing fields
-
-      Use case ends
-
-* 1b. Incorrect parameters within command (e.g. event index out of range)
     * 1b1. System informs user of incorrect parameters
 
       Use case ends
 
-**UC07: Displaying an event’s details**
+* 1c. Member/Event with the same name as an existing member/event entry is entered in
+
+    * 1c1. System informs user of duplicated member/event
+
+      Use case ends
+
+**UC02: Editing a Member/Event**
+
+**Preconditions**
+* The member/event to be edited must be in the list of members/events
+* User has to be on the corresponding list (e.g. member list if editing member)
+
+**Guarantees**
+* Member/Event will be displayed with the updated information
+
+**MSS**
+
+1.  User requests to edit the specified member/event
+2.  System displays success message
+3.  System displays the updated member/event
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Incorrect parameters within command (e.g. index out of range)
+
+    * 1a1. System informs user of incorrect parameters
+
+      Use case ends
+
+* 1b. Missing required parameters (e.g. index or no edited fields provided)
+
+    * 1b1. System informs user of missing parameters
+
+      Use case ends
+
+**UC03: Removing a Member/Event**
+
+**Preconditions**
+* Member/Event to be removed must exist in the list of members/events
+* User has to be on the corresponding list (e.g. member list if deleting member)
+
+**Guarantees**
+* Member/Event will be removed from the list of members/events
+* Corresponding updated member/event list will be displayed
+
+**MSS**
+1. User requests to remove a member/event
+2. System deletes the member/event
+3. System displays success message and updated member/event list without the removed member/event
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The list is empty
+
+    * 1a1. System shows an error message
+
+      Use case ends
+
+* 1b. System detects an error in the command (e.g. missing or incorrect fields)
+
+    * 1b1. System shows an error message
+
+**UC06: Removing an Event**
+
+* 2a. (Deleting member) The member is assigned to some events
+
+    * 2a1. Every event's roster is updated to remove the member
+
+      Use case ends
+
+* 2b. (Deleting event) The event has members assigned to it
+
+    * 2b1. Every member's reference to the event is removed
+
+      Use case ends
+
+**UC04: Displaying an event’s details**
 
 **Preconditions**
 
@@ -475,7 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC08: Assigning a member to an event**
+**UC05: Assigning a member to an event**
 
 **Preconditions**
 
@@ -491,8 +418,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to assign a member to an event
 2. System displays success message
 3. System updates event’s roster with the assigned member
-4. System displays event’s details(UC08)
-        Use case ends
+4. System displays event’s details (UC08)
+
+    Use case ends
 
 **Extensions**
 
@@ -527,7 +455,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC09: Unassigning a member from an event**
+**UC06: Unassigning a member from an event**
 
 **Preconditions**
 
@@ -544,7 +472,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to unassign a member from an event
 2. System displays success message
 3. System displays event’s roster with the unassigned member removed
-        Use case ends
+
+    Use case ends
 
 **Extensions**
 
@@ -566,7 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
-**UC10: Unassigning an event role from a member**
+**UC07: Unassigning an event role from a member**
 
 **Preconditions**
 * The member and event must exist
@@ -582,7 +511,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to unassign an event role from a member
 2. System displays success message
 3. System displays member list with the member’s event role removed
-        Use case ends
+
+    Use case ends
 
 **Extensions**
 
@@ -604,6 +534,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends
 
+* 1d. Member no longer has a role to the event
+
+    * 1d1. System labels the member as just a participant for the event
+
+        Use case ends
 
 ### Non-Functional Requirements
 
@@ -613,16 +548,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    1. The system must be able to run on Windows, macOS, and Linux as long as Java 17 is installed.
    2. The system must run without requiring a separate installer. A single distributable JAR must be sufficient to run the program.
 3. Reliability
-   1.  The system shall remain operational without unexpected termination under all valid user operations and shall provide descriptive error messages for at least 90% invalid inputs tested.
+   1.  The system shall handle valid user operations without crashing, and recover gracefully from unexpected errors.
 4. Data Integrity
    1. The system must automatically save to local storage after each successful command by the user to prevent data loss to a maximum of 30 seconds of user activity in the event of an application crash or unexpected closure.
    2. Data must be stored locally in a human-readable and editable text file format, as JSON.
    3. The application must function without relying on any remote server to operate.
 5. Performance
-   1. All user commands (e.g., addEvent, deleteMember) should be processed within 1 second under normal usage.
-   2. The system should complete data loading from local storage within 2 seconds on startup.
-   3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g., with 100 events and 50 members).
-   4. Assets (e.g., images, libraries) must not be unnecessarily large or included unless strictly required
+   1. The system should complete data loading from local storage within 2 seconds on startup.
+   2. The executable JAR should operate using less than 100MB of memory under normal usage (e.g. with 100 events and 50 members).
+   3. All user commands (e.g. addEvent, deleteMember) should be processed within 1 second under normal usage.
+   4. Assets (e.g. images, libraries) must not be unnecessarily large or included unless strictly required
 6. Usability
    1. Command parameters should only be defined format (e.g. n/, f/, dt/) for consistency.
    2. All commands must be able to be completed by the user using only typed commands.
@@ -638,14 +573,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Club Book**: The repository that stores all information related to the club's members and events.
 * **Member**: A member who is part of the club and participates in club activities and events.
-* **Event**: A scheduled activity organised by the club with a name, date/time, and optional details.
-* **Role**: A responsibility or position a member can hold for the club or an event (e.g., “Logistics”, “Treasurer”, "MC").
+* **Event**: A scheduled activity organised by the club.
+* **Member Role**: A responsibility or position a member can hold for the club (e.g. “President”, “Treasurer”).
+* **Event Role**: A temporary responsibility or position a member can hold for an event (e.g. "Facilitator", "Marketing")
+* **Roster**: A list of members that are assigned to a particular event.
 * **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
-* **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
 * **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
-* **Parameter**: A short identifier placed before input in a command to indicate the information type (e.g., n/ for name,  f/ for from-date).
-* **JAR (Java Archive)**: The file format used to package and deliver the application, containing everything needed for it to run.
+* **Parameter**: A short identifier placed before input in a command to indicate the information type (e.g. n/ for name,  f/ for from-date).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -682,41 +618,41 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: A member with the same name should not exist in the member list.
 
     2. Test case: `addMember n/John Doe p/98765432 e/johnd@example.com`<br>
-       Expected: Member is added to the member list. Details of the added member are shown in the status message.
+       Expected: Member is added to the member list. Details of the added member are shown in the status message box.
                  Member list is shown.
 
     3. Test case: `addMember n/Jane Doe p/98765432 e/janed@example.com r/President`<br>
        Expected: Similar to previous.
 
     4. Test case: `addMember n/James Doe p/78765432 e/jamesd@example.com`<br>
-       Expected: Member is not added to the member list. Error details shown in the status message.
+       Expected: Member is not added to the member list. Error details shown in the status message box.
 
 2. Adding a duplicate member to the member list
 
     1. Prerequisites: A member with the same name should exist in the member list.
 
     2. Test case: `addMember n/Jane Doe p/98766432 e/janed@example.com r/President`<br>
-       Expected: Member is not added to the member list. Error details shown in the status message.
+       Expected: Member is not added to the member list. Error details shown in the status message box.
 
 3. Adding an event to the event list
 
     1. Prerequisites: An event with the same name should not exist in the event list.
 
     2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
-       Expected: Event is added to the event list. Details of the added event are shown in the status message. Event list is shown.
+       Expected: Event is added to the event list. Details of the added event are shown in the status message box. Event list is shown.
 
     3. Test case: `addEvent n/Orientation f/151025 1200 t/171025 1800 d/For freshmen r/gamemaster`<br>
        Expected: Similar to previous.
 
     4. Test case: `addEvent n/Movie Night f/151025 2:00pm t/161025 3:00pm`<br>
-       Expected: Event is not added to the event list. Error details shown in the status message.
+       Expected: Event is not added to the event list. Error details shown in the status message box.
 
 4. Adding a duplicate event to the event list
 
     1. Prerequisites: An event with the same name should exist in the event list.
 
     2. Test case: `addEvent n/Team Bonding f/151025 1300 t/161025 1500`<br>
-       Expected: Event is not added to the event list. Error details shown in the status message.
+       Expected: Event is not added to the event list. Error details shown in the status message box.
 
 ### Listing members and events
 
@@ -725,34 +661,34 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Member list must not be empty.
 
     2. Test case: `listMembers`<br>
-       Expected: Member list is shown. Success message is shown in the status message.
+       Expected: Member list is shown. Success message is shown in the status message box.
 
     3. Test case: `list Members`<br>
-       Expected: Member list is not shown. Error details shown in the status message.
+       Expected: Member list is not shown. Error details shown in the status message box.
 
 2. Listing an empty member list
 
     1. Prerequisites: Member list must be empty.
 
     2. Test case: `listMembers`<br>
-       Expected: No members are shown in member list. Status message indicates there are no members.
+       Expected: No members are shown in member list. Status message box indicates there are no members.
 
 3. Listing a non-empty event list
 
     1. Prerequisites: Event list must not be empty.
 
     2. Test case: `listEvents`<br>
-       Expected: Event list is shown. Success message is shown in the status message.
+       Expected: Event list is shown. Success message is shown in the status message box.
 
     3. Test case: `list Events`<br>
-       Expected: No event list is shown. Error details are shown in the status message.
+       Expected: No event list is shown. Error details are shown in the status message box.
 
 4. Listing an empty event list
 
     1. Prerequisites: Event list must be empty.
 
     2. Test case: `listEvents`<br>
-       Expected: No events are shown in event list. Status message indicates there are no events.
+       Expected: No events are shown in event list. Status message box indicates there are no events.
 
 ### Displaying an event
 
@@ -761,10 +697,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all events using the `listEvents` command. Multiple events in the list.
 
     2. Test case: `event 1` <br>
-       Expected: First event and event's member roster is shown. Success message is shown in the status message.
+       Expected: First event and event's member roster is shown. Success message is shown in the status message box.
 
     3. Test case: `event 0` <br>
-       Expected: No event is displayed. Error details shown in the status message.
+       Expected: No event is displayed. Error details shown in the status message box.
 
     4. Other incorrect event commands to try: `event`, `event x`, `...` (where x is negative or larger than the list size) <br>
 
@@ -772,29 +708,57 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a member
 
-   1. Prerequisites: List all members using the `listMembers` command. Multiple members in the member list.
+    1. Prerequisites: List all members using the `listMembers` command. Multiple members in the member list.
 
-   2. Test case: `deleteMember 1`<br>
-      Expected: First member is deleted from the member list. Details of the deleted member shown in the status message.
+    2. Test case: `deleteMember 1`<br>
+       Expected: First member is deleted from the member list. Details of the deleted member shown in the status message box.
 
-   3. Test case: `deleteMember 0`<br>
-      Expected: No member is deleted. Error details shown in the status message.
+    3. Test case: `deleteMember 0`<br>
+       Expected: No member is deleted. Error details shown in the status message box.
 
    4. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is negative or larger than the list size)<br>
       Expected: Similar to previous.
 
-2. Deleting a event
+2. Deleting an event
 
     1. Prerequisites: List all events using the `listEvents` command. Multiple events in the event list.
 
     2. Test case: `deleteEvent 1`<br>
-       Expected: First event is deleted from the event list. Details of the deleted event shown in the status message.
+       Expected: First event is deleted from the event list. Details of the deleted event shown in the status message box.
 
     3. Test case: `deleteEvent 0`<br>
-       Expected: No event is deleted. Error details shown in the status message.
+       Expected: No event is deleted. Error details shown in the status message box.
 
     4. Other incorrect delete commands to try: `deleteEvent`, `deleteEvent x`, `...` (where x is negative or larger than the list size)<br>
        Expected: Similar to previous.
+
+### Finding a member and an event
+
+1. Finding a member
+
+    1. Prerequisites: List all members using the `listMembers` command. The default sample club book data is used.
+    
+    2. Test case: `findMember Alex`<br>
+       Expected: Only `Alex Yeoh` is shown. Status message box indicates one member listed.
+   
+    3. Test case: `findMember NonExistentName`<br>
+       Expected: No members are listed. Status message box indicates there are no members that match the keyword.
+
+    4. Test case: `findMember Alex Bernice`<br>
+       Expected: Two members `Alex Yeoh` and `Bernice Yu` are shown. Status message box indicates two members listed.
+
+2. Finding an event
+
+   1. Prerequisites: List all events using the `listEvents` command. The default sample club book data is used.
+
+   2. Test case: `findEvent Orientation`<br>
+      Expected: Only `Orientation` is shown. Status message box indicates one event listed.
+
+   3. Test case: `findEvent NonExistentName`<br>
+      Expected: No events are listed. Status message box indicates there are no events that match the keyword.
+
+   4. Test case: `findEvent Orientation Movie`<br>
+      Expected: Two events `Orientation` and `Movie Night` are shown. Status message box indicates two events listed.
 
 ### Saving data
 
@@ -803,6 +767,33 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+### Achievements
+
+We successfully extended AB3 to support multiple inter-related entity types (e.g. members, events and roles). This required a substantial redesign of the underlying logic and storage management to ensure data consistency and seamless interaction between different model components. 
+<br>
+
+#### 1. Bidirectional references
+In EASync, members and events are "connected" via event roles. Managing this data integrity required careful handling of  bidirectional references. For instance, deleting an event should remove all associated event roles and correctly unlink all affected members. Similarly, deleting a member requires updating every event they were assigned to, ensuring no dangling references.
+
+#### 2. View States
+We needed to support switching between displaying events and members separately, something AB3 did not require since there was only one entity type. We introduced a `ViewState` `enum` to manage these transitions. Depending on the current state, the visibility of `EventListPanel`, `MemberListPanel` and `SingleEventPanel` is alternated, ensuring that only one is visible at a time.
+
+### Struggles
+
+However, this is not to say that these achievements came easily. Throughout development, we explored multiple designs to handle these highly complex relationships. Many early implementations failed due to various issues like data inconsistency and mutability conflicts, resulting in significant part of our time being spent on refinement and refactoring, rather than improving and implementing more features.
+
+#### 1. Immutability of events and members
+Both `Member` and `Event` objects maintain references to each other via hash sets. When the details of either one are modified e.g. through `editMember`/`editEvent` or multiple role assignments, the hash sets are unable to find the correct key as the object's `hashcode` changes. These objects thus seemed to disappear when in fact they were just hidden in the hash set, never to be found again.
+
+#### 2. Handling both events and members
+Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. In addition, it occasionally led to infinite loops, causing the application to crash.
+
+#### 3. Assigning members to an event without a role (i.e. participant)
+A unique challenge arose when supporting members assigned to an event **without** a specific role. As our design enforces that role names must be non-empty (to prevent users from creating blank roles), participants lacked a natural representation in storage. This made it difficult to efficiently check or update a member's participant status, especially when performing operations like `editEvent` or `editMember`.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
