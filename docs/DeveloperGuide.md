@@ -886,3 +886,19 @@ Currently, if users want to change a member's event role in an event after they 
 unassign the member and then run `assignEvent` again with the new role(s). We plan to add an `assignEventRole` command to allow
 updating of the member's event role directly if they are already assigned to the event. This will reduce repetitive command usage
 and streamline the event role changing process.
+
+#### 3. UI to show both lists simultaneously
+Currently, users are only able to view one list at a time, either the members list or the events list. This may make entering
+commands that require information from both lists, such as `assignEvent` or  `unassignEventRole` to be tedious and difficult,
+possibly requiring users to check both lists for member/event names. We plan enhance the UI such that it shows both lists at the same time, 
+and a collapsible third panel that shows an event's details when using the `event` command. A mock-up for this feature can be
+seen below:
+
+![splitListMockup.jpg](images/splitListMockup.jpg)
+
+#### 4. Allow users to create aliases for commands
+Some of the existing command words are long, with commands like `unassignEventRole` taking 17 characters, which may possibly
+slow down users. We plan to allow users to define their own aliases for such commands to improve usability.
+
+#### 5. Allow `editEvent` command to edit event roles on existing events
+Currently, the `editEvent` command is not able to add, d
