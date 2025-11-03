@@ -901,4 +901,22 @@ Some of the existing command words are long, with commands like `unassignEventRo
 slow down users. We plan to allow users to define their own aliases for such commands to improve usability.
 
 #### 5. Allow `editEvent` command to edit event roles on existing events
-Currently, the `editEvent` command is not able to add, d
+Currently, the `editEvent` command cannot add, delete, or edit event roles on existing events. The only way to do so
+is to delete the entire event and add a new one containing the updated event roles. We plan to improve the
+`editEvent` command such that it is able to edit the event's roles list as well. This will reduce repetitive command usage
+and streamline event roles management.
+
+#### 6. Adding more date time and phone formats
+Currently, the date time format for events follows a strict `DDMMYY HHMM` (24 hour) format, which may reduce the app's 
+flexibility for users. We plan to accept more date time formats, for example 12 hour formats.
+Additionally, the app currently only accept phone numbers that consist of numbers, excluding the country code. We plan to 
+accept more flexible formats, allowing for more special characters and even words, such as `+65 6123 4567 (Office)` 
+, and `(555) 555–5555`.
+
+#### 7. Improve `findMember` and `findEvent` commands
+The `findMember` and `findEvent` commands are only able to search for members and events by their names at the moment.
+We plan to expand upon this to support searching by other fields as well, such as roles, date and times, and details.
+
+#### 8. Prevent events with overlapping times from being assigned to the same member
+Currently, assigning two or more events with overlapping dates and times to the same member is possible. To improve  
+overall event management, we plan to implement a restriction that prevents assigning overlapping events to a single member.
