@@ -25,6 +25,8 @@ public class Event extends NamedEntity {
     public static final String MESSAGE_CONSTRAINTS =
             "Starting date/time should be before ending date/time";
 
+    public static final String VALIDATION_REGEX = "^[^/]+$";
+
     // Identity fields
     private final DateTime from;
     private final DateTime to;
@@ -45,6 +47,7 @@ public class Event extends NamedEntity {
         requireAllNonNull(from, to, detail, roles);
         // Starting date/time must be before ending date/time
         checkArgument(from.isBefore(to), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDetails(detail), MESSAGE_CONSTRAINTS);
 
         this.from = from;
         this.to = to;
@@ -118,6 +121,10 @@ public class Event extends NamedEntity {
      */
     public void addMember(Member member) {
         roster.add(member);
+    }
+
+    public static boolean isValidDetails(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
