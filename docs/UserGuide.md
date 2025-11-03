@@ -247,6 +247,12 @@ Format: `editEvent INDEX [n/NAME] [f/DATE_TIME] [t/DATE_TIME] [d/DETAILS]`
 Examples:
 *  `editEvent 1 n/Movie Night t/171025 1800` edits the name and end date time of the 1st event to be `Movie Night` and `171025 1800` respectively.
 
+<box type="warning">
+
+**Caution:** Event roles cannot be changed once the event is created (see [planned enhancements](DeveloperGuide.md#appendix-planned-enhancements)).
+If you would like to update the list of roles (e.g. add new or rename existing ones), you need to delete the event and create it again using `addEvent` with the updated roles.
+</box>
+
 #### Locating events by name: `findEvent`
 
 Format: `findEvent KEYWORD [MORE_KEYWORDS]`
@@ -361,8 +367,8 @@ EASync data is saved automatically as a JSON file in `[JAR file location]/data/c
 
 <box type="important">
 
-**Caution:**
-**If your changes to the data file makes its format invalid** (e.g. if a value entered is outside the acceptable range), **EASync will show an empty club book when you open the app.** 
+**Warning:**
+If your changes to the data file makes its format invalid (e.g. if a value entered is outside the acceptable range), **EASync will show an empty club book when you open the app.** 
 The edited file will remain on your computer, but if you make any changes in the app after that, EASync will overwrite it, and you will lose your original data **permanently**.
 Hence, it is recommended to take a backup of the file before editing it.
 </box>
@@ -382,8 +388,6 @@ Hence, it is recommended to take a backup of the file before editing it.
     * It must end with a domain label that is at least 2 characters long
     * Each domain label may contain letters and/or digits, optionally separated by hyphens (-).
   * e.g. `alice.smith@example.com`, `john_doe+club@mail-server.co`, `user123@domain.org`
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -418,7 +422,7 @@ Hence, it is recommended to take a backup of the file before editing it.
 | Action                  | Format, Examples                                                                                                                                    |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **List Members**        | `listMembers`                                                                                                                                       |
-| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​` <br> e.g, `addMember n/John Doe p/94824271 e/john@example.com`                                 |
+| **Add Member**          | `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​` <br> e.g. `addMember n/John Doe p/94824271 e/john@example.com`                                 |
 | **Delete Member**       | `deleteMember INDEX`<br> e.g. `deleteMember 3`                                                                                                      |
 | **Edit Member**         | `editMember INDEX [n/NAME] [p/PHONE] [e/EMAIL] [r/MEMBER_ROLE]…​`<br> e.g.`editMember 2 n/James Lee e/jameslee@example.com`                         |
 | **Find Members**        | `findMember KEYWORD [MORE_KEYWORDS]`<br> e.g. `findMember James Jake`                                                                               |
