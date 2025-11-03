@@ -141,6 +141,12 @@ public interface Model {
     void updateFilteredEventList(Predicate<Event> predicate);
 
     /**
+     * Updates the filter of both filtered member list and filtered event list to display all event and member details
+     * related to the {@code eventToBeDisplayed}
+     */
+    void updateMemberAndEventList(Event eventToBeDisplayed);
+
+    /**
      * Returns index if there exists a member with the same name as {@code name} and -1 otherwise
      */
     int memberNameIndex(Name name);
