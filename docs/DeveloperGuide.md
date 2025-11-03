@@ -554,9 +554,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    2. Data must be stored locally in a human-readable and editable text file format, as JSON.
    3. The application must function without relying on any remote server to operate.
 5. Performance
-   1. All user commands (e.g. addEvent, deleteMember) should be processed within 1 second under normal usage.
-   2. The system should complete data loading from local storage within 2 seconds on startup.
-   3. The executable JAR should operate using less than 100MB of memory under normal usage (e.g. with 100 events and 50 members).
+   1. The system should complete data loading from local storage within 2 seconds on startup.
+   2. The executable JAR should operate using less than 100MB of memory under normal usage (e.g. with 100 events and 50 members).
+   3. All user commands (e.g. addEvent, deleteMember) should be processed within 1 second under normal usage.
    4. Assets (e.g. images, libraries) must not be unnecessarily large or included unless strictly required
 6. Usability
    1. Command parameters should only be defined format (e.g. n/, f/, dt/) for consistency.
@@ -580,10 +580,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Event Role**: A temporary responsibility or position a member can hold for an event (e.g. "Facilitator", "Marketing")
 * **Roster**: A list of members that are assigned to a particular event.
 * **Command**: A structured text instruction typed by the user following the app’s syntax (e.g. addEvent, deleteMember).
-* **Command Line**: A space for typing text commands, serving as the main way for the user to interact with the application.
 * **Index**: A unique number representing the position of a member or event in the displayed list. It is 1-based (starts from 1).
 * **Parameter**: A short identifier placed before input in a command to indicate the information type (e.g. n/ for name,  f/ for from-date).
-* **JAR (Java Archive)**: The file format used to package and deliver the application, containing everything needed for it to run.
 
 --------------------------------------------------------------------------------------------------------------------
 
