@@ -26,8 +26,8 @@ public class Event extends NamedEntity {
             "Starting date/time should be before ending date/time";
 
     public static final String MESSAGE_CONSTRAINTS_DETAILS =
-            "Details cannot contain forward slash(/), "
-                    + "all back slash(\\) will be converted to forward slash(/) automatically";
+            "Details cannot contain forward slash(/).\n"
+                    + "All back slash(\\) will be converted to forward slash(/) automatically.";
 
     public static final String VALIDATION_REGEX = "^[^/]+$";
 
