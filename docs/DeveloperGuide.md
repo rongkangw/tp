@@ -466,7 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to assign a member to an event
 2. System displays success message
 3. System updates event’s roster with the assigned member
-4. System displays event’s details(UC06)
+4. System displays event’s details (UC06)
         Use case ends
 
 **Extensions**
