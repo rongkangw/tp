@@ -240,6 +240,13 @@ public class ModelManager implements Model {
         filteredEvents.setPredicate(predicate);
     }
 
+    //=========== Single Event Accessors =============================================================
+
+    @Override
+    public void updateMemberAndEventList(Event eventToBeDisplayed) {
+        updateFilteredEventList(e -> e.equals(eventToBeDisplayed));
+        updateFilteredMemberList(m -> eventToBeDisplayed.getRoster().contains(m));
+    }
 
     //=========== State =============================================================
 
