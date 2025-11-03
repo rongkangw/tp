@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javafx.collections.ObservableList;
 import seedu.club.commons.exceptions.IllegalValueException;
+import seedu.club.logic.Messages;
 import seedu.club.model.event.DateTime;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
@@ -75,24 +76,6 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in adapted event.
      */
     public Event toModelType(ObservableList<Member> memberList) throws IllegalValueException {
-        final List<EventRole> eventRoles = new ArrayList<>();
-        for (JsonAdaptedEventRole role : roles) {
-            eventRoles.add(role.toModelType());
-        }
-
-        // Map the roster names to existing members
-        final Set<Member> modelRoster = new HashSet<>();
-        for (String name : roster) {
-            Member member = memberList.stream()
-                    .filter(m -> m.getName().toString().equals(name))
-                    .findFirst()
-                    .orElse(null);
-            if (member == null) {
-                throw new IllegalValueException(String.format(MISSING_MEMBER_MESSAGE_FORMAT, name));
-            }
-            modelRoster.add(member);
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -121,11 +104,48 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(e.getMessage());
         }
 
+        if (!modelFrom.isBefore(modelTo)) {
+            throw new IllegalValueException(Messages.MESSAGE_END_BEFORE_START_DATE);
+        }
+
         if (details == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
         final String modelDetails = this.details;
 
+        final List<EventRole> eventRoles = new ArrayList<>();
+        for (JsonAdaptedEventRole role : roles) {
+            eventRoles.add(role.toModelType());
+        }
+
+        // Map the roster names to existing members
+        final Set<Member> modelRoster = new HashSet<>();
+        for (String memberName : roster) {
+            Member member = memberList.stream()
+                    .filter(m -> m.getName().toString().equals(memberName))
+                    .findFirst()
+                    .orElse(null);
+            if (member == null) {
+                throw new IllegalValueException(String.format(MISSING_MEMBER_MESSAGE_FORMAT, memberName));
+            }
+            // Add a participant role if member has no event role but is assigned to event
+            List<EventRole> relatedRoles = member.getEventRoles().stream()
+                    .filter(r -> r.getAssignedTo().equals(modelName)).toList();
+            if (relatedRoles.isEmpty()) {
+                member.addEventRoles(Set.of(new EventRole(modelName)));
+            } else {
+                // Format these roles in relation to this event
+                for (EventRole memberEventRole : relatedRoles) {
+                    for (EventRole eventRole : eventRoles) {
+                        if (eventRole.equals(memberEventRole)) {
+                            member.removeEventRole(Set.of(memberEventRole));
+                            member.addEventRoles(Set.of(eventRole));
+                        }
+                    }
+                }
+            }
+            modelRoster.add(member);
+        }
         final Set<EventRole> modelRoles = new HashSet<>(eventRoles);
         return new Event(modelName, modelFrom, modelTo, modelDetails, modelRoles, modelRoster);
     }

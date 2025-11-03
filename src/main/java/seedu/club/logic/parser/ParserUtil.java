@@ -12,6 +12,7 @@ import seedu.club.commons.core.index.Index;
 import seedu.club.commons.util.StringUtil;
 import seedu.club.logic.parser.exceptions.ParseException;
 import seedu.club.model.event.DateTime;
+import seedu.club.model.event.Event;
 import seedu.club.model.member.Email;
 import seedu.club.model.member.Phone;
 import seedu.club.model.name.Name;
@@ -63,7 +64,7 @@ public class ParserUtil {
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String trimmedPhone = normalizeAndTrimWhitespace(phone);
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -153,7 +154,7 @@ public class ParserUtil {
     public static DateTime parseDateTime(String datetime) throws ParseException {
         requireNonNull(datetime);
 
-        String trimmedDateTime = datetime.trim();
+        String trimmedDateTime = normalizeAndTrimWhitespace(datetime);
         if (!DateTime.isValidFormat(trimmedDateTime)) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
@@ -183,6 +184,9 @@ public class ParserUtil {
     public static String parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = normalizeAndTrimWhitespace(detail);
+        if (!Event.isValidDetails(detail)) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS_DETAILS);
+        }
         if (!hasLessThanOrEqualLength(trimmedDetail, 500)) {
             throw new ParseException("Detail should be 500 characters or less");
         }

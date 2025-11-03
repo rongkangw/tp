@@ -29,7 +29,7 @@ public class AddEventCommand extends Command {
             + PREFIX_FROM + "FROM "
             + PREFIX_TO + "TO "
             + "[" + PREFIX_DETAIL + "DETAILS] "
-            + "[" + PREFIX_ROLE + "ROLE]...\n"
+            + "[" + PREFIX_ROLE + "EVENT_ROLE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Coding Workshop "
             + PREFIX_FROM + "300925 1300 "

@@ -55,7 +55,7 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName().fullName);
         from.setText("From: " + ParserUtil.formatDateTime(event.getFrom()));
         to.setText("To: " + ParserUtil.formatDateTime(event.getTo()));
-        details.setText("Details: " + event.getDetail());
+        details.setText("Details: " + event.getDetail().replaceAll("\\\\", "/"));
         event.getRoles().stream()
                 .sorted(Comparator.comparing(eventRole -> eventRole.roleName))
                 .forEach(eventRole -> eventRoles.getChildren().add(new Label(eventRole.roleName)));

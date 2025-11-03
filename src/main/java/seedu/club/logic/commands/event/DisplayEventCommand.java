@@ -22,7 +22,8 @@ public class DisplayEventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays an event with the participating members.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays an event, identified "
+            + "by the index number used in the displayed events list, with its member roster.\n"
             + "Parameters : INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -49,8 +50,7 @@ public class DisplayEventCommand extends Command {
 
         Event eventToBeDisplayed = filteredEventList.get(targetIndex.getZeroBased());
         model.setViewState(ViewState.SINGLE_EVENT);
-        model.updateFilteredEventList(e -> e.equals(eventToBeDisplayed));
-        model.updateFilteredMemberList(m -> eventToBeDisplayed.getRoster().contains(m));
+        model.updateMemberAndEventList(eventToBeDisplayed);
         return new CommandResult(String.format(MESSAGE_DISPLAY_EVENT_SUCCESS,
                 eventToBeDisplayed.getName()), false, false);
     }

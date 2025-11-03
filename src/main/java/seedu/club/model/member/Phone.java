@@ -9,8 +9,10 @@ import static seedu.club.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should be exactly 8 digits long, starting with either 6, 8 or 9.";
-    public static final String VALIDATION_REGEX = "^[689]\\d{7}$";
+            "Phone numbers must be 7-12 digits long with at most one leading zero and cannot be all zeros.\n"
+            + "An optional country code (+1 to +999, no leading zeros) may precede the phone number, "
+            + "separated with a space.\nNo other spaces are allowed.";
+    public static final String VALIDATION_REGEX = "^(?:\\+[1-9]\\d{0,2}\\s)?(?:0[1-9]\\d{5,10}|[1-9]\\d{6,11})$";
     public final String value;
 
     /**

@@ -27,7 +27,7 @@ public class AddMemberCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + "[" + PREFIX_ROLE + "ROLE]...\n"
+            + "[" + PREFIX_ROLE + "MEMBER_ROLE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -58,7 +58,8 @@ public class AddMemberCommand extends Command {
 
         model.setViewState(ViewState.MEMBER);
         model.addMember(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        String formattedMember = Messages.format(toAdd).replace('\\', '/');
+        return new CommandResult(String.format(MESSAGE_SUCCESS, formattedMember));
     }
 
     @Override

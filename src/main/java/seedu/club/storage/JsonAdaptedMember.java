@@ -59,6 +59,7 @@ class JsonAdaptedMember {
                 .map(JsonAdaptedMemberRole::new)
                 .collect(Collectors.toList()));
         eventRoles.addAll(source.getEventRoles().stream()
+                .filter(r -> !r.isParticipant())
                 .map(JsonAdaptedEventRole::new)
                 .collect(Collectors.toList()));
     }

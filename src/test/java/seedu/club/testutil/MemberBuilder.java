@@ -67,8 +67,9 @@ public class MemberBuilder {
     /**
      * Sets the {@code eventRoles} of the {@code Member} that we are building.
      */
-    public MemberBuilder withEventRoles(Set<EventRole> eventRoles) {
-        this.eventRoles.addAll(eventRoles);
+    public MemberBuilder withEventRoles(String event, String ... roles) {
+        Name eventName = new Name(event);
+        this.eventRoles.addAll(SampleDataUtil.getEventRoleSet(eventName, roles));
         return this;
     }
 

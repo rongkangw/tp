@@ -4,9 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.club.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.club.testutil.TypicalClubBook.ALICE;
+import static seedu.club.testutil.TypicalClubBook.getTypicalClubBook;
 import static seedu.club.testutil.TypicalClubBook.getTypicalEventOnlyClubBook;
 import static seedu.club.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.club.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,15 +28,12 @@ import seedu.club.model.name.Name;
 import seedu.club.testutil.EditEventDescriptorBuilder;
 import seedu.club.testutil.EventBuilder;
 
-
-
-
 public class EditEventCommandTest {
     private Model model;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
+        model = new ModelManager(getTypicalClubBook(), new UserPrefs());
         model.setViewState(ViewState.EVENT);
     }
 
@@ -43,6 +44,7 @@ public class EditEventCommandTest {
                 .withTo("251025 1800")
                 .withDetail("Bring extra clothes")
                 .withEventRoles("facilitator", "gamemaster")
+                .withRoster(Set.of(ALICE))
                 .build();
         EditEventCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedEvent).build();
         descriptor.setName(new Name("Orientation Day"));
@@ -55,7 +57,7 @@ public class EditEventCommandTest {
         String expectedMessage = String.format(
                 EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent));
 
-        Model expectedModel = new ModelManager(getTypicalEventOnlyClubBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalClubBook(), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
         expectedModel.setViewState(ViewState.EVENT);
 
