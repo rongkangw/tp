@@ -65,7 +65,7 @@ public class ClubBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
@@ -73,60 +73,41 @@ public class ClubBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        switch (commandWord) {
-
-        case AddMemberCommand.COMMAND_WORD:
+        if (commandWord.equalsIgnoreCase(AddMemberCommand.COMMAND_WORD)) {
             return new AddMemberCommandParser().parse(arguments);
-
-        case DeleteMemberCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(DeleteMemberCommand.COMMAND_WORD)) {
             return new DeleteMemberCommandParser().parse(arguments);
-
-        case EditMemberCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(EditMemberCommand.COMMAND_WORD)) {
             return new EditMemberCommandParser().parse(arguments);
-
-        case ListMemberCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(ListMemberCommand.COMMAND_WORD)) {
             return new ListMemberCommand();
-
-        case FindMemberCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(FindMemberCommand.COMMAND_WORD)) {
             return new FindMemberCommandParser().parse(arguments);
-
-        case AddEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(AddEventCommand.COMMAND_WORD)) {
             return new AddEventCommandParser().parse(arguments);
-
-        case DeleteEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(DeleteEventCommand.COMMAND_WORD)) {
             return new DeleteEventCommandParser().parse(arguments);
-
-        case EditEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(EditEventCommand.COMMAND_WORD)) {
             return new EditEventCommandParser().parse(arguments);
-
-        case ListEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(ListEventCommand.COMMAND_WORD)) {
             return new ListEventCommand();
-
-        case FindEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(FindEventCommand.COMMAND_WORD)) {
             return new FindEventCommandParser().parse(arguments);
-
-        case AssignEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(AssignEventCommand.COMMAND_WORD)) {
             return new AssignEventCommandParser().parse(arguments);
-
-        case DisplayEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(DisplayEventCommand.COMMAND_WORD)) {
             return new DisplayEventCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(ClearCommand.COMMAND_WORD)) {
             return new ClearCommand();
-
-        case HelpCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(HelpCommand.COMMAND_WORD)) {
             return new HelpCommand();
-
-        case ExitCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(ExitCommand.COMMAND_WORD)) {
             return new ExitCommand();
-
-        case UnassignEventCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(UnassignEventCommand.COMMAND_WORD)) {
             return new UnassignEventCommandParser().parse(arguments);
-
-        case UnassignEventRoleCommand.COMMAND_WORD:
+        } else if (commandWord.equalsIgnoreCase(UnassignEventRoleCommand.COMMAND_WORD)) {
             return new UnassignEventRoleCommandParser().parse(arguments);
-
-        default:
+        } else {
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
