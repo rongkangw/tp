@@ -166,7 +166,9 @@ Otherwise, AssignEventCommandParser will obtain the values as a Name object for 
 
 <puml src="diagrams/AssignEventActivityDiagram.puml" width="550" />
 
-Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. Next, it checks if the Event Role set is empty or not. If it is, it will give the Member a default role which only contains the name of the event, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
+Upon execution, AssignEventCommand will check if the Event and Member specified exists, as well as if the Set of Event Roles are all present in the Event’s roles list. 
+It also checks whether the Member already exists on the Event's roster, and will return an error if it does.
+Next, it checks if the Event Role set is empty or not. If it is, it will give the Member a default role which only contains the name of the event, while adding it to the Event’s roster. If Event Roles are specified, it will add corresponding Event Role object(s) to the Member’s event roles list and add the Member to the Event’s roster.
 
 
 The Event’s entry is then shown.
@@ -892,10 +894,10 @@ Currently, users are only able to view one list at a time, either the members li
 commands that require information from both lists, such as `assignEvent` or  `unassignEventRole` to be tedious and difficult,
 possibly requiring users to check both lists for member/event names. We plan to enhance the UI such that it shows both lists at the same time,
 and a collapsible third panel that shows an event's details when using the `event` command.
-This has the added benefit of streamlining other commands as well, since users do not have to run listEvents or listMembers first anymore.
-Furthermore, with both lists being displayed at the same time, commands that previously required member/event names can now be run using indices. 
-This allows multiple events and members with the same name to be added, and the duplicate checker 
-can be enhanced to check based on other fields such as phone numbers and emails.
+This has the added benefit of streamlining other commands as well, since users do not have to run `listEvents` or `listMembers` first anymore.
+Furthermore, with both lists being displayed at the same time, commands that use member/event names can now be run using indices instead, for example, `e/1` and `m/3`.
+This allows multiple events and members with the same name to be added, so that the `isSameMember`, `isSameEvent` methods 
+can be enhanced to check based on other fields such as duplicate phone numbers and emails.
 A mock-up for this feature can be seen below:
 
 ![splitListMockup.jpg](images/splitListMockup.jpg)
