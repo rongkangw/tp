@@ -187,9 +187,7 @@ Otherwise, `DisplayEventCommandParser` will obtain the index from
 the user's input and create a new instance of `DisplayEventCommand`. `DisplayEventCommand` includes a `targetIndex`
 which is the zero based index of the event to be displayed in the filtered event list.
 
-Executing `DisplayEventCommand` will update the model's view state to `SINGLE_EVENT`, call `m::updateMemberAndEventList` to update the event list to only
-include the selected event and the member list to only include the event's member roster.
-The two lists are then shown.
+Executing `DisplayEventCommand` will update the model's view state to `SINGLE_EVENT` and update the event and member list to only include the selected event and its member roster.
 
 --------------------------------------------------------------------------------------------------------------------
 
