@@ -96,7 +96,7 @@ public class AssignEventCommand extends Command {
             }
         }
 
-        // Handle no role provided, roles is empty so add an "unassigned" role
+        // Handle no role provided, add a special "role" that just shows event name
         if (rolesToAssign.isEmpty()) {
             EventRole unassignedRole = new EventRole(event.getName());
             rolesToAssign.add(unassignedRole);
