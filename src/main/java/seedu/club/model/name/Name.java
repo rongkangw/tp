@@ -10,14 +10,16 @@ import static seedu.club.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, "
-                    + "and should not be blank";
-
+            "Names should not be blank and can only contain alphanumeric characters, spaces, "
+                    + "and these special characters: \n"
+                    + "comma(,), parentheses(()), at sign(@), hyphen(-), period(.), apostrophe(') and backslash(\\).\n"
+                    + "For '/', please use '\\'.\n"
+                    + "The first and last characters should be alphanumeric.\n";
     /*
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}][\\p{Alnum} ,()@.'\\\\-]*[\\p{Alnum}]$";
 
     public final String fullName;
 
