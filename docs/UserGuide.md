@@ -33,7 +33,7 @@ You do not need to be a programmer or technical expert. Using EASync is like sen
       📁 Example: You could create a folder on your Desktop called `EASync`.
 
 4. **Run EASync** <br>
-   Open a command terminal, navigate into the folder you put the jar file in, and use the `java -jar EASync.jar` command to run the application.
+  Open a command terminal and navigate to the folder where you placed the JAR file, then use the `java -jar EASync.jar` command to run the application.
     * You can navigate between folders using the `cd path/to/your/folder` command in the terminal. For example, `cd C:/Users/<your username>/Desktop/EASync`.
     * After a few seconds, EASync will open, and you should see a window like this:<br>
 
@@ -100,7 +100,7 @@ EASync starts with some sample data so you can explore its features right away!
   e.g. `n/Alice\Bob` will result in the name being saved as `Alice/Bob`.
   <box type="tip">
 
-  For **`NAME`** and **`DETAILS`** fields, you may input a backslash (`\`) instead if you still wish to include a forward slash.
+  For **`NAME`** and **`DETAILS`** fields, you may type a backslash (`\`) instead if you still wish to include a forward slash.
   EASync will automatically convert it to a forward slash after the command runs.<br>
   </box>
 
@@ -137,7 +137,7 @@ Format: `listMembers`
 Format: `addMember n/NAME p/PHONE e/EMAIL [r/MEMBER_ROLE]…​`
 
 * `PHONE` should be within 7–12 digits. You can add a country code in front by typing `+` followed by 1–3 digits (see [detailed requirements](#phone))
-* `EMAIL`should be of the format `local-part@domain` (see [detailed requirements](#email))
+* `EMAIL` should be of the format `local-part@domain` (see [detailed requirements](#email))
 * If multiple `MEMBER_ROLE` are specified, the app displays them in alphabetical order.
 * Each `MEMBER_ROLE` should be 30 characters or fewer.
 * The new member will be added to the end of the list.
@@ -178,7 +178,7 @@ Examples:
 
 <box type="warning">
 
-**Caution:** When editing member roles, the existing roles of the member will be removed i.e. adding of member roles is not cumulative.
+**Caution:** When editing member roles, the existing roles of the member will be removed i.e. adding new member roles is not cumulative.
 </box>
 
 #### Locating members by name: `findMember`
@@ -197,7 +197,7 @@ Examples:
 
 <box type="warning">
 
-**Caution:** Only full words will be matched, e.g. `Han` will not match `Hans`
+**Caution:** Only full words will be matched, e.g. `Han` will not match `Hans`.
 </box>
 
 ### Managing Events
@@ -304,7 +304,7 @@ Examples:
 
 <box type="warning">
 
-**Caution:** **After a member has been assigned to an event, the member's assigned roles for that event cannot be edited directly.**
+**Caution:** **Once a member has been assigned to an event, their roles for that event cannot be edited directly.**
 To update an assigned member's event roles:
 1. Unassign them from the event (using `unassignEvent`).
 2. Reassign them with the updated roles (using `assignEvent`).<br>
@@ -316,7 +316,7 @@ Do note that this restriction applies only to event roles within the same event.
 
 Format: `unassignEvent e/EVENT m/MEMBER`
 
-* Removes the specified member from the event
+* Removes the specified member from the event.
 * All associated event roles in the member's event roles list are removed, if any.
 
 Examples:
@@ -342,13 +342,13 @@ Format: `clear`
 <box type="warning">
 
 **Caution:**
-This action is **irreversible**! Ensure that you truly want to clear your **entire club book** before proceeding.
+This action is **irreversible**! Make sure you truly want to clear **your entire club book** before proceeding.
 </box>
 
 <box type="tip">
 
 **Tip:**
-If you would like to get the sample data to show again, you could delete the `clubBook.json` file (see [Editing the data file](#editing-the-data-file)) and re-run EASync. **Do note the warning above still applies.**
+If you would like to get the sample data to show again, you could delete the `clubBook.json` file (see [Editing the data file](#editing-the-data-file)) and re-run EASync. **Note that the warning above still applies.**
 </box>
 
 #### Exiting the program: `exit`
@@ -377,8 +377,8 @@ Hence, it is recommended to take a backup of the file before editing it.
 ## Specific Parameter Requirements
 
 ##### **`PHONE`**
-  * The optional country code must start with +, followed by 1–3 digits (no leading zeros), and comes before the main number.
-  * The main number must be 7–12 digits, with at most one leading zero.
+  * The optional country code must start with `+`, followed by 1–3 digits (no leading zeros), and must come before the main number.
+  * The main number must contain 7–12 digits, with at most one leading zero.
   * Whitespace between the country code and main number is allowed (and normalized automatically) 
   * e.g. `+65 91234567`, `+1 2345678901`, `91234567`.
 
@@ -399,9 +399,9 @@ Hence, it is recommended to take a backup of the file before editing it.
 **A**: Unfortunately, there is no bulk delete feature implemented. However, you can remove multiple items by running `deleteMember` or `deleteEvent` repeatedly.
 
 **Q**: Why does the `unassignEventRole` command exist, but there’s no `assignEventRole` command? <br>
-**A**: Event roles are already assigned as part of the `assignEvent` command, thus there is no `assignEventRole` command. However, `unassignEventRole` exists to allow you to remove roles from a member without unassigning them entirely from the event. If you want to update a member’s roles for an event, refer to the [caution box](#assigning-a-member-to-an-event-assignevent) under the `assignEvent` command.
+**A**: Event roles are already assigned as part of the `assignEvent` command, thus `assignEventRole` has not been implemented. However, `unassignEventRole` exists to allow you to remove roles from a member without unassigning them entirely from the event. If you want to update a member’s roles for an event, refer to the [caution box](#assigning-a-member-to-an-event-assignevent) under the `assignEvent` command.
 
-**Q**: How do I transfer my data to another Computer? <br>
+**Q**: How do I transfer my data to another computer? <br>
 **A**: Follow these steps:
   1. Make a copy of the `data` folder in the **home folder of your current installation**.
   2. Install EASync on another computer (follow the [Quick Start guide](#quick-start))
