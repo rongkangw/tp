@@ -916,10 +916,10 @@ We needed to support switching between displaying events and members separately,
 However, this is not to say that these achievements came easily. Throughout development, we explored multiple designs to handle these highly complex relationships. Many early implementations failed due to various issues like data inconsistency and mutability conflicts, resulting in significant part of our time being spent on refinement and refactoring, rather than improving and implementing more features.
 
 #### 1. Immutability of events and members
-Both `Member` and `Event` objects maintain references to each other via hash sets. When the details of either one are modified e.g. through `editMember`/`editEvent` or multiple role assignments, the hash sets are unable to find the correct key as the object's `hashcode` changes. These objects thus seemed to disappear when in fact they were just hidden in the hash set, never to be found again.
+Both `Member` and `Event` objects maintain references to each other via hash sets. When the details of either one are modified e.g. through `editMember`/`editEvent` or multiple role assignments, the hash sets are unable to find the correct key as the object's `hashcode` changes. These objects thus seemed to disappear when in fact they were just hidden in the hash set.
 
-#### 2. Handling both events and members
-Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. In addition, it occasionally led to infinite loops, causing the application to crash.
+#### 2. Storing both events and members
+Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. Also, it was further complicated by events and members holding bidirectional references, resulting in duplicate members.
 
 #### 3. Assigning members to an event without a role (i.e. participant)
 A unique challenge arose when supporting members assigned to an event **without** a specific role. As our design enforces that role names must be non-empty (to prevent users from creating blank roles), participants lacked a natural representation in storage. This made it difficult to efficiently check or update a member's participant status, especially when performing operations like `editEvent` or `editMember`.
@@ -967,14 +967,14 @@ is to delete the entire event and add a new one containing the updated event rol
 `editEvent` command such that it is able to edit the event's roles list as well. This will reduce repetitive command usage
 and streamline event roles management.
 
-#### 6. Adding more date time and phone formats
+#### 6. Allow for more flexible field format recognition
 Currently, the date time format for events follows a strict `DDMMYY HHMM` (24 hour) format, which may reduce the app's
 flexibility for users. We plan to accept more date time formats, for example 12 hour formats.
 The app also has a very strict format for phone numbers, preventing words or special characters like hyphens. We plan to
 accept more flexible formats, allowing for more special characters and even words, such as `+65 6123 4567 (Office)`
 , and `(555) 555–5555`.
 
-#### 7. Improve `findMember` and `findEvent` commands
+#### 7. Improve the `find` commands
 The `findMember` and `findEvent` commands are only able to search for members and events by their names at the moment.
 We plan to expand upon this to support searching by other fields as well, such as roles, date and times, and details.
 
