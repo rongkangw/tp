@@ -13,6 +13,8 @@ import seedu.club.model.ClubBook;
 import seedu.club.model.ReadOnlyClubBook;
 import seedu.club.model.event.Event;
 import seedu.club.model.member.Member;
+import seedu.club.model.name.Name;
+import seedu.club.model.role.EventRole;
 
 /**
  * An Immutable ClubBook that is serializable to JSON format.
@@ -22,6 +24,8 @@ class JsonSerializableClubBook {
 
     public static final String MESSAGE_DUPLICATE_MEMBER = "Members list contains duplicate member(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
+    public static final String MESSAGE_INVALID_MEMBER_EVENT_ROLES = "Member '%s' has invalid event roles: \n%s.";
+    public static final String MESSAGE_INVALID_EVENT_ROLE_WITH_REASON = "'%s' — %s";
 
     private final List<JsonAdaptedMember> members = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
@@ -67,7 +71,59 @@ class JsonSerializableClubBook {
             }
             clubBook.addEvent(event);
         }
+
+        checkInvalidMember(clubBook);
         return clubBook;
     }
 
+    private static void checkInvalidMember(ClubBook clubBook) throws IllegalValueException {
+        List<Event> events = clubBook.getEventList();
+        for (Member member : clubBook.getMemberList()) {
+            List<String> invalidRoleMessages = new ArrayList<>();
+
+            for (EventRole er : member.getEventRoles()) {
+                Name assignedEventName = er.getAssignedTo();
+
+                // Check 1: Event does not exist
+                Event assignedEvent = events.stream()
+                        .filter(e -> e.getName().equals(assignedEventName))
+                        .findFirst()
+                        .orElse(null);
+
+                if (assignedEvent == null) {
+                    invalidRoleMessages.add(String.format(MESSAGE_INVALID_EVENT_ROLE_WITH_REASON,
+                            er, "event does not exist"));
+                    continue;
+                }
+
+                // Check 2: Member not in event roster
+                boolean isMemberInEventRoster = assignedEvent.getRoster().stream()
+                        .anyMatch(m -> m.equals(member));
+
+                if (!isMemberInEventRoster) {
+                    invalidRoleMessages.add(String.format(MESSAGE_INVALID_EVENT_ROLE_WITH_REASON,
+                            er, "member not in event roster"));
+                }
+
+                // Check 3: Event role not found in the event
+                if (er.isParticipant()) {
+                    continue;
+                }
+                boolean isRoleInEvent = assignedEvent.getRoles().stream()
+                        .anyMatch(role -> role.equals(er));
+
+                if (!isRoleInEvent) {
+                    invalidRoleMessages.add(String.format(MESSAGE_INVALID_EVENT_ROLE_WITH_REASON,
+                            er, "event role not defined in event"));
+                }
+            }
+
+            if (!invalidRoleMessages.isEmpty()) {
+                throw new IllegalValueException(String.format(
+                        MESSAGE_INVALID_MEMBER_EVENT_ROLES,
+                        member.getName(), invalidRoleMessages
+                ));
+            }
+        }
+    }
 }
