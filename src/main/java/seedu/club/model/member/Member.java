@@ -100,8 +100,10 @@ public class Member extends NamedEntity {
     public Member updateEditedEventRolesList(Set<EventRole> updatedRoles, Name oldName, Name updatedName) {
         Set<EventRole> newRoles = new HashSet<>();
         for (EventRole role : eventRoles) {
-            if (role.getAssignedTo().equals(oldName)) {
-                handleParticipant(newRoles, updatedName, role);
+            if (role.isParticipant() && role.getAssignedTo().equals(oldName)) {
+                newRoles.add(new EventRole(updatedName));
+            }
+            else if (role.getAssignedTo().equals(oldName)) {
                 updatedRoles.stream()
                         .filter(r -> r.roleName.equals(role.roleName))
                         .findFirst()
@@ -115,12 +117,6 @@ public class Member extends NamedEntity {
         eventRoles.addAll(newRoles);
 
         return this;
-    }
-
-    private void handleParticipant(Set<EventRole> newRoles, Name updatedName, EventRole role) {
-        if (role.isParticipant()) {
-            newRoles.add(new EventRole(updatedName));
-        }
     }
 
     /**
