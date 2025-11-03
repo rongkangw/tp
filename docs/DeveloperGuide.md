@@ -775,26 +775,27 @@ testers are expected to do more *exploratory* testing.
 
 ### Achievements
 
-We successfully designed and extended AB3 to handle multiple inter-related entity types (e.g. members, events and roles). This required a more complex logic handling and efficient storage management. 
+We successfully extended AB3 to support multiple inter-related entity types (e.g. members, events and roles). This required a substantial redesign of the underlying logic and storage management to ensure data consistency and seamless interaction between different model components. 
 <br>
 
-In EASync, members and events are "connected" via event roles. Managing this data integrity required implementing bidirectional features. For example, deleting an event should remove all associated event roles and ensure that these event roles were correctly unlinked from all relevant members. Conversely, deleting a member requires updating every event they were assigned to, ensuring no dangling references.
+#### 1. Bidirectional references
+In EASync, members and events are "connected" via event roles. Managing this data integrity required careful handling of  bidirectional references. For instance, deleting an event should remove all associated event roles and correctly unlink all affected members. Similarly, deleting a member requires updating every event they were assigned to, ensuring no dangling references.
+
+#### 2. View States
+We needed to support switching between displaying events and members separately, something AB3 did not require since there was only one entity type. We introduced a `ViewState` `enum` to manage these transitions. Depending on the current state, the visibility of `EventListPanel`, `MemberListPanel` and `SingleEventPanel` is alternated, ensuring that only one is visible at a time.
 
 ### Struggles
 
-However, this is not to say that these achievements came easily. Multiple solutions were proposed to appropriately handle these highly complex relationships, but which were majorly flawed, which resulted in significant part of our time being spent on refinement and refactoring, rather than improving and implementing more features.
+However, this is not to say that these achievements came easily. Throughout development, we explored multiple designs to handle these highly complex relationships. Many early implementations failed due to various issues like data inconsistency and mutability conflicts, resulting in significant part of our time being spent on refinement and refactoring, rather than improving and implementing more features.
 
 #### 1. Immutability of events and members
-Members and events store a reference to each other via a hash set. As such, when the details of either one change e.g. `editMember`/`editEvent` or when a member is assigned to more events, the object's `hashcode` changes, causing the hash sets to be unable to find the correct key.
+Both `Member` and `Event` objects maintain references to each other via hash sets. When the details of either one are modified e.g. through `editMember`/`editEvent` or multiple role assignments, the hash sets are unable to find the correct key as the object's `hashcode` changes. These objects thus seemed to disappear when in fact they were just hidden in the hash set, never to be found again.
 
-#### 2. Storing both events and members
-When we first started, events were stored in a separate file. However, this proved to be inefficient due to the bidirectional reference. As such, we had to refactor our storage halfway through the project, slowing down our progress significantly.
+#### 2. Handling both events and members
+Initially, we stored events in a separate storage file. This unnecessary split was highly error-prone and inefficient as it meant duplicating the logic for reading and saving data. In addition, it occasionally led to infinite loops, causing the application to crash.
 
-#### 3. Circular dependency
-The circular dependency between members and events complicated logic flow. As such, our app was prone to infinite loops when saving or reading data.
-
-#### 4. Assigning a member to an event without a role (i.e. participant)
-In our implementation of storage, members without a role for an event do not have a reference to that event. This is due to our restriction that event roles cannot be empty (otherwise the user can create empty roles). As such, we faced difficulty in finding a way to efficiently check whether a member is a participant for all the events. This was further exacerbated when `editEvent` or `editMember` was performed.
+#### 3. Assigning members to an event without a role (i.e. participant)
+A unique challenge arose when supporting members assigned to an event **without** a specific role. As our design enforces that role names must be non-empty (to prevent users from creating blank roles), participants lacked a natural representation in storage. This made it difficult to efficiently check or update a member's participant status, especially when performing operations like `editEvent` or `editMember`.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
