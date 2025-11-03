@@ -70,7 +70,8 @@ public class DeleteEventCommandTest {
         expectedModel.setViewState(ViewState.EVENT);
 
         expectedModel.deleteEvent(eventToDelete);
-        showNoEvent(expectedModel);
+        expectedModel.updateFilteredMemberList(x-> true);
+        expectedModel.updateFilteredEventList(x-> true);
 
         CommandTestUtil.assertCommandSuccess(deleteEventCommand, model, expectedMessage, expectedModel);
     }
@@ -118,16 +119,6 @@ public class DeleteEventCommandTest {
         String expected = DeleteEventCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteEventCommand.toString());
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no event.
-     */
-    private void showNoEvent(Model model) {
-        model.updateFilteredEventList(p -> false);
-
-        assertTrue(model.getFilteredEventList().isEmpty());
-    }
-
 
 
 }
