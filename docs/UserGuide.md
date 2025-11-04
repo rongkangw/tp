@@ -82,13 +82,13 @@ EASync starts with some sample data so you can explore its features right away!
 * **Parameters can be in any order.**<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
-* **Any extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
+* **For commands that do not take in parameters (e.g. `help`, `listMembers`, `exit`), any extra input will be ignored.**<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* **Items in square brackets are optional**. <br>
+* **Parameters in square brackets are optional**. <br>
   e.g. `n/NAME [r/MEMBER_ROLE]` can be used as `n/John Doe r/Logistics` or as `n/John Doe`.
 
-* **Items with `…`​ after them can be used multiple times, or omitted completely.**<br>
+* **Parameters with `…`​ after them can be used multiple times, or omitted completely.**<br>
   e.g. `[r/MEMBER_ROLE]…​` can be `r/Logistics`, `t/Publicity t/Logistics` or not be used at all.
 
 
@@ -101,10 +101,10 @@ EASync starts with some sample data so you can explore its features right away!
 * **The forward slash `/` is reserved for command parameters and cannot be used in any input field.**<br>
   <box type="tip">
 
-  For **`NAME`** and **`DETAILS`** fields, you may type a backslash (`\`) instead if you still wish to include a forward slash.
-  EASync will automatically convert it to a forward slash after the command runs.<br>
+  For `NAME` and `DETAILS` parameters: If you wish to include forward slashes, you must input backslashes (`\`) instead.
+  EASync will automatically display the backslash as a forward slash in lists and outputs.<br>
 
-  e.g. `n/Alice\Bob` will result in the name being saved as `Alice/Bob`.
+  e.g. Adding a member with parameter `n/Alice\Bob` will result in the name displayed as `Alice/Bob`.
   </box>
 
 * **For `NAME`, `MEMBER_ROLE` and `EVENT_ROLE` parameters, multiple spaces will be treated as single space.**<br>
@@ -397,6 +397,11 @@ EASync saves new data to the hard disk automatically, after any command is run. 
 EASync data is saved automatically as a JSON file in `[JAR file location]/data/clubBook.json`.
 
 **Advanced users** are welcome to update data directly by editing that data file.
+
+<box type="warning">
+
+You might notice that forward slashes (`/`) that you see displayed in the app are actually stored as backslashes (`\`) in the data file. This is because they are only converted to forward slashes (`/`) for display.
+</box>
 
 <box type="important">
 
