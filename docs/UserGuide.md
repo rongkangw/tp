@@ -89,7 +89,7 @@ EASync starts with some sample data so you can explore its features right away!
   e.g. `n/NAME [r/MEMBER_ROLE]` can be used as `n/John Doe r/Logistics` or as `n/John Doe`.
 
 * **Parameters with `…`​ after them can be used multiple times, or omitted completely.**<br>
-  e.g. `[r/MEMBER_ROLE]…​` can be `r/Logistics`, `t/Publicity t/Logistics` or not be used at all.
+  e.g. `[r/MEMBER_ROLE]…​` can be `r/Logistics`, `r/Publicity r/Logistics` or not be used at all.
 
 * **Command words are case-insensitive.**<br>
   e.g. `listMembers`, `listmembers`, and `LISTMEMBERS` are all valid.
