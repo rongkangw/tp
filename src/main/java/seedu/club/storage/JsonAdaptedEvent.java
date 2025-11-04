@@ -116,12 +116,17 @@ class JsonAdaptedEvent {
         final String modelDetails = this.details;
 
         final List<EventRole> eventRoles = new ArrayList<>();
+
         for (JsonAdaptedEventRole role : roles) {
             EventRole toAdd = role.toModelType();
             if (!toAdd.getAssignedTo().equals(modelName)) {
                 throw new IllegalValueException(String.format(INVALID_EVENT_ROLE_MESSAGE_FORMAT, toAdd, modelName));
             }
-            eventRoles.add(toAdd);
+            try {
+                eventRoles.add(toAdd);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalValueException(e.getMessage());
+            }
         }
 
         // Map the roster names to existing members

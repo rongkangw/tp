@@ -75,9 +75,14 @@ class JsonAdaptedMember {
         for (JsonAdaptedMemberRole memberRole : this.memberRoles) {
             memberRoles.add(memberRole.toModelType());
         }
-        for (JsonAdaptedEventRole eventRole : this.eventRoles) {
-            eventRoles.add(eventRole.toModelType());
+        try {
+            for (JsonAdaptedEventRole eventRole : this.eventRoles) {
+                eventRoles.add(eventRole.toModelType());
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
         }
+
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
