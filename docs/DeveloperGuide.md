@@ -985,3 +985,16 @@ We plan to expand upon this to support searching by other fields as well, such a
 Currently, assigning two or more events with overlapping dates and times to the same member is possible. To improve
 overall event management, we plan to implement a restriction that prevents assigning overlapping events to a single member.
 
+#### 9. Remove restriction regarding command prefixes
+Currently, our app requires users to include command prefixes (e.g. n/, d/) when entering parameters. To allow users to enter `/` in text fields, we introduced an escape mechanism: users type `\` in place of `/`, and the UI automatically converts it back to `/` when displaying the value.
+
+However, this introduces unnecessary extra steps for users and complicates input processing.
+
+In the future, we plan to improve this process by completely removing the need for command prefixes by grouping input parameters into separate fields(“boxes”), allowing the app to freely accept both `/` and `\` in their input.
+
+A mock-up for this improvement can be seen below:
+
+![CLIMockup.png](images/CLIMockup.png)
+
+Users will first type the command into the CLI, after which the app will create these "boxes" corresponding to the required input parameters for that command.
+
