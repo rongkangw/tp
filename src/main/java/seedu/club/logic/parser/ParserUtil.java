@@ -1,10 +1,8 @@
 package seedu.club.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.club.commons.util.AppUtil.checkArgument;
 import static seedu.club.commons.util.StringUtil.hasLessThanOrEqualLength;
 import static seedu.club.commons.util.StringUtil.normalizeAndTrimWhitespace;
-import static seedu.club.model.event.Event.isValidDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
