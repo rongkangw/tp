@@ -25,7 +25,8 @@ class JsonAdaptedEvent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
     public static final String MISSING_MEMBER_MESSAGE_FORMAT = "Event's member %s that is in the roster is missing!";
-    public static final String INVALID_EVENT_ROLE_MESSAGE_FORMAT = "Event role %s in '%s' event should be assigned to that event name!";
+    public static final String INVALID_EVENT_ROLE_MESSAGE_FORMAT = "Event role %s in '%s' event should be "
+            + "assigned to that event name!";
 
     private final String name;
     private final String from;
