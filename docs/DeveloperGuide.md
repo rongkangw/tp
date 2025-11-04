@@ -997,3 +997,4 @@ A mock-up for this improvement can be seen below:
 ![CLIMockup.png](images/CLIMockup.png)
 
 Users will first type the command into the CLI, after which the app will create these "boxes" corresponding to the required input parameters for that command.
+
