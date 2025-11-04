@@ -187,7 +187,9 @@ public class ParserUtil {
         requireNonNull(detail);
         String trimmedDetail = normalizeAndTrimWhitespace(detail);
         if (!trimmedDetail.isEmpty()) {
-            checkArgument(isValidDetails(trimmedDetail), Event.MESSAGE_CONSTRAINTS_DETAILS);
+            if (!Event.isValidDetails(trimmedDetail)) {
+                throw new ParseException(Event.MESSAGE_CONSTRAINTS_DETAILS);
+            }
         }
         if (!hasLessThanOrEqualLength(trimmedDetail, 500)) {
             throw new ParseException("Detail should be 500 characters or less");
