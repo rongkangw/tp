@@ -57,6 +57,7 @@ public class MemberCard extends UiPart<Region> {
                 .forEach(memberRole -> memberRoles.getChildren().add(new Label(memberRole.roleName)));
         member.getEventRoles().stream()
                 .sorted(Comparator.comparing(EventRole::toString))
-                .forEach(eventRole -> eventRoles.getChildren().add(new Label(eventRole.toString())));
+                .forEach(eventRole -> eventRoles.getChildren().add(
+                        new Label(eventRole.toString().replace('\\', '/'))));
     }
 }
