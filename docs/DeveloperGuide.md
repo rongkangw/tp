@@ -652,6 +652,9 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
+For testcases that require sample data, please delete the existing `clubBook.json` in `/data` directory. Next, relaunch the app 
+and run the `exit` command (this allows the app to create a new sample `clubBook.json`).
+
 ### Launch and shutdown
 
 1. Initial launch
@@ -680,7 +683,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `addMember n/Jane Doe p/98765432 e/janed@example.com r/President`<br>
        Expected: Similar to previous.
 
-    4. Test case: `addMember n/James Doe p/78765432 e/jamesd@example.com`<br>
+    4. Test case: `addMember n/Jame*s Doe p/78765432 e/jamesd@example.com`<br>
        Expected: Member is not added to the member list. Error details shown in the status message box.
 
 2. Adding a duplicate member to the member list
@@ -820,7 +823,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: The event and member must exist. Member must be in the event's roster.
 
-    2. Test case: `unassignEvent m/John Doe e/Orientation`<br>
+    2. Test case: `unassignEvent m/John Doe e/Welcome Party`<br>
        Expected: The member is removed from the event's member roster. The event is displayed with an updated member roster.
 
     3. Test case: `unassignEvent m/John Doe e/NonExistentEvent`<br>
