@@ -117,9 +117,9 @@ public class Messages {
     public static String formatAssignRole(Member member, Event event, Set<EventRole> roles) {
         final StringBuilder builder = new StringBuilder();
         builder.append("Assigned ")
-                .append(member.getName())
+                .append(member.getName().toString().replace('\\', '/'))
                 .append(" to ")
-                .append(event.getName());
+                .append(event.getName().toString().replace('\\', '/'));
 
         if (roles != null && !roles.isEmpty() && !roles.contains(new EventRole(event.getName()))) {
             builder.append(" with event role(s): ");
