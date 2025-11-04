@@ -652,6 +652,9 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
+For testcases that require sample data, please delete the existing `clubBook.json` in `/data` directory. Relaunch the app 
+and a new `clubBook.json` with the sample data will be created.
+
 ### Launch and shutdown
 
 1. Initial launch
