@@ -820,7 +820,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: The event and member must exist. Member must be in the event's roster.
 
-    2. Test case: `unassignEvent m/John Doe e/Orientation`<br>
+    2. Test case: `unassignEvent m/John Doe e/Welcome Party`<br>
        Expected: The member is removed from the event's member roster. The event is displayed with an updated member roster.
 
     3. Test case: `unassignEvent m/John Doe e/NonExistentEvent`<br>
